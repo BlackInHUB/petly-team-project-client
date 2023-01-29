@@ -6,7 +6,6 @@ export const HomePageWrapper = styled.div`
   flex-direction: column;
 
   background-color: #fdf7f2;
-  background-image: url('.././/src/images/mobile_woman_with_dog.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
