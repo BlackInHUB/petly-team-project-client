@@ -8,7 +8,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename='/petly-team-project-client'>
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>

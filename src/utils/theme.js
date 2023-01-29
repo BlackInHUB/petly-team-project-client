@@ -1,4 +1,7 @@
 const theme = {
+  fonts: {
+    body: 'Manrope, sans-serif'
+  },  
   colors: {
     text: '#111111',
     newsText: '#111321',
