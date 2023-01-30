@@ -1,4 +1,4 @@
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
     <main style={{ textAlign: "center" }}>
       <b style={{ fontSize: 70 }}>404</b>
