@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/8.c1306744.chunk.js","mappings":"4LAAe,SAASA,IACtB,OACI,2CAIL,C","sources":["Pages/OurFriendsPage/OurFriendsPage.jsx"],"sourcesContent":["export default function OurFriendsPage() {\n  return (\n      <h1>\n        OurFriends page\n      </h1>\n  );\n}"],"names":["OurFriendsPage"],"sourceRoot":""}
