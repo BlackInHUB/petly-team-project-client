@@ -43,6 +43,7 @@ const theme = {
   },
   borders: {
     none: 'none',
+    small: '1px solid',
     normal: '2px solid',
   },
   radii: {
