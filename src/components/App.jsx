@@ -4,14 +4,14 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { PublicRoute } from "./PublicRoute/PublicRoute";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 
-const HomePage = lazy(() => import('../Pages/HomePage/HomePage'))
-const RegisterPage = lazy(() => import('../Pages/RegisterPage/RegisterPage'))
-const LoginPage = lazy(() => import('../Pages/LoginPage/LoginPage'))
-const UserPage = lazy(() => import('../Pages/UserPage/UserPage'))
-const NewsPage = lazy(() => import('../Pages/NewsPage/NewsPage'))
-const NoticesPage = lazy(() => import('../Pages/NoticesPage/NoticesPage'))
-const OurFriendsPage = lazy(() => import('../Pages/OurFriendsPage/OurFriendsPage'))
-const NotFoundPage = lazy(() => import('../Pages/NotFoundPage/NotFoundPage')) 
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'))
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'))
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'))
+const UserPage = lazy(() => import('../pages/UserPage/UserPage'))
+const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'))
+const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'))
+const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage/OurFriendsPage'))
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage')) 
  
 
 export const App = () => {

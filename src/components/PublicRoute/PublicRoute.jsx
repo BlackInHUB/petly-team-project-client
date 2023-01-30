@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
-import { getAuth } from "redux/selectors"; 
+import { authSelectors } from "redux/auth";
 import { useSelector } from "react-redux";
 
 export const PublicRoute = ({children}) => {
-    const { isLoggedIn } = useSelector(getAuth)
+    const { isLoggedIn } = useSelector(authSelectors.getIsLoggedIn)
 
     return isLoggedIn ? <Navigate to="/user" /> : children
     
