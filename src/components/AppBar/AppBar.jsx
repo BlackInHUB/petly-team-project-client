@@ -4,6 +4,7 @@ import { getIsLoggedIn } from 'redux/selectors';
 import { AuthNav } from "./AuthNav";
 import { UserNav } from "./UserNav";
 import { AppBarWrapper, CommonLink } from "./AppBarStyled";
+import Logo from '../../images/petly_logo.svg';
 
 export const AppBar = () => {
 
@@ -11,8 +12,7 @@ export const AppBar = () => {
 
     return (
         <AppBarWrapper>
-            <img src="../../images/petly_logo.png" alt="PETLY" />
-            <CommonLink to="/" end>Home</CommonLink>
+            <img src={Logo} alt="PETLY_logo" width="94px" height="32px"/>
             <CommonLink to="/news">News</CommonLink>
             <CommonLink to="/notices">Find Pet</CommonLink>
             <CommonLink to="/friends">Our friends</CommonLink>
