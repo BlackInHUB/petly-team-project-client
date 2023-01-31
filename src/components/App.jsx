@@ -3,6 +3,9 @@ import { lazy } from "react";
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { PublicRoute } from "./PublicRoute/PublicRoute";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { authOperations } from "redux/auth";
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'))
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'))
@@ -14,6 +17,11 @@ const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage/OurFriendsPage
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'))
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser())
+  }, [dispatch])
   
   return (
     <div>
