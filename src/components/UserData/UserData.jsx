@@ -13,7 +13,7 @@ export const UserData = () => {
                 <UserDataImg src={defaultUserPhoto} alt='User' />
                 <form>
                     <EditCameraWrapper>
-                        <EditPhotoLabel for="user_photo">
+                        <EditPhotoLabel htmlFor="user_photo">
                             Edit photo
                         </EditPhotoLabel>
                         <EditCamera />
@@ -23,7 +23,7 @@ export const UserData = () => {
             </UserDataImgWrapper>
             <form>
                 <UserDataFormItemWrapper>
-                    <UserDataLabel for="user_name"> Name: </UserDataLabel>
+                    <UserDataLabel htmlFor="user_name"> Name: </UserDataLabel>
                     <UserDataInputBtnWrapper>
                         <UserDataInput type="text" name='name' id="user_name"/>
                         <UserDataBtn type='button'><Pencil /></UserDataBtn>
@@ -31,7 +31,7 @@ export const UserData = () => {
                 </UserDataFormItemWrapper>
 
                 <UserDataFormItemWrapper>
-                    <UserDataLabel for="user_email"> Email: </UserDataLabel>
+                    <UserDataLabel htmlFor="user_email"> Email: </UserDataLabel>
                     <UserDataInputBtnWrapper>
                         <UserDataInput type="email" name='email' id="user_email" disabled/>
                         <UserDataBtn type='button'><Pencil /></UserDataBtn>   
@@ -39,7 +39,7 @@ export const UserData = () => {
                 </UserDataFormItemWrapper>
 
                 <UserDataFormItemWrapper>
-                    <UserDataLabel for="user_birthday"> Birthday: </UserDataLabel>
+                    <UserDataLabel htmlFor="user_birthday"> Birthday: </UserDataLabel>
                     <UserDataInputBtnWrapper>
                         <UserDataInput type="date" name='birthday' id="user_birthday"/>
                         <UserDataBtn type='button'><Pencil /></UserDataBtn>
@@ -47,7 +47,7 @@ export const UserData = () => {
                 </UserDataFormItemWrapper>
 
                 <UserDataFormItemWrapper>
-                    <UserDataLabel for="user_phone"> Phone: </UserDataLabel>
+                    <UserDataLabel htmlFor="user_phone"> Phone: </UserDataLabel>
                     <UserDataInputBtnWrapper>
                         <UserDataInput type="tel" name='phone' id="user_phone" />
                         <UserDataBtn type='button'><Pencil /></UserDataBtn>
@@ -55,7 +55,7 @@ export const UserData = () => {
                 </UserDataFormItemWrapper>
 
                 <UserDataFormItemWrapper>
-                    <UserDataLabel for="user_city"> City: </UserDataLabel>
+                    <UserDataLabel htmlFor="user_city"> City: </UserDataLabel>
                     <UserDataInputBtnWrapper>
                         <UserDataInput type="text" name='city' id="user_city" />
                         <UserDataBtn type='button'><Pencil /></UserDataBtn>

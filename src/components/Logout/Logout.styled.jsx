@@ -27,6 +27,7 @@ export const LogoutBtn = styled.button`
     align-items: center;
     background: ${p => p.theme.colors.white};
     border: none;
+    cursor: pointer;
 `
 
 export const LogoutBtnText = styled.span`
