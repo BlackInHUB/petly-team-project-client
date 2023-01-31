@@ -1,41 +1,42 @@
+import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { Layout } from "./Layout";
-import { PrivateRoute } from "./PrivateRoute";
-import { PublicRoute } from "./PublicRoute";
-import { refreshing } from "redux/auth/authOperation";
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import { PublicRoute } from "./PublicRoute/PublicRoute";
+import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Box } from "utils/Box";
+import { authOperations } from "redux/auth";
 
-const HomePage = lazy(() => import('../pages/HomePage'));
-const LoginPage = lazy(() => import('../pages/LoginPage'))
-const RegisterPage = lazy(() => import('../pages/RegisterPage'))
-const ContactsPage = lazy(() => import('../pages/ContactsPage'))
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'))
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'))
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'))
+const UserPage = lazy(() => import('../pages/UserPage/UserPage'))
+const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'))
+const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'))
+const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage/OurFriendsPage'))
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'))
 
 export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const action = refreshing();
-    dispatch(action);
+    dispatch(authOperations.fetchCurrentUser())
   }, [dispatch])
-
+  
   return (
-    <Box>
-      <ToastContainer position="top-center" />
-
+    <div>
       <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="/register" element={<PublicRoute redirectTo="/contacts" component={<RegisterPage />} /> } />
-        <Route path="/login" element={<PublicRoute redirectTo="/contacts" component={<LoginPage />} /> } />
-        <Route path="/contacts" element={<PrivateRoute redirectTo="/login" component={<ContactsPage />} /> } />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Route>
-    </Routes>
-    </Box>
-  )
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/notices" element={<NoticesPage />} />
+          <Route path="/friends" element={<OurFriendsPage />} />
+          <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+          <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+          <Route path="/user" element={<PrivateRoute><UserPage /></PrivateRoute>} />
+          <Route path="*" element={<NotFoundPage />}/>
+        </Route>
+      </Routes>
+    </div>
+  );
 };
