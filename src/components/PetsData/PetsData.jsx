@@ -1,9 +1,11 @@
-import { TitlePetsData } from "./PetsData.styled"
+import { PetsDataWrapper, PetsDataText } from "./PetsData.styled"
 
 export const PetsData = () => {
     return(
         <>
-        <TitlePetsData>Component PetsData will be here</TitlePetsData>
+        <PetsDataWrapper>
+            <PetsDataText>Nothing here yet</PetsDataText>
+        </PetsDataWrapper>
         </>
     )
 }
