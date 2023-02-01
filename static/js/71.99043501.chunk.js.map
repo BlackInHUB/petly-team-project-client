@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/71.99043501.chunk.js","mappings":"8LAAe,SAASA,IACtB,OACI,yCAIL,C","sources":["Pages/NewsPage/NewsPage.jsx"],"sourcesContent":["export default function NewsPage() {\n  return (\n      <h1>\n        NewsPage page\n      </h1>\n  );\n}"],"names":["NewsPage"],"sourceRoot":""}

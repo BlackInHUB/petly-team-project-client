@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/461.b48c238f.chunk.js","mappings":"gMAAe,SAASA,IACtB,OACI,yCAIL,C","sources":["Pages/UserPage/UserPage.jsx"],"sourcesContent":["export default function UserPage() {\n  return (\n      <h1>\n        UserPage page\n      </h1>\n  );\n}"],"names":["UserPage"],"sourceRoot":""}
