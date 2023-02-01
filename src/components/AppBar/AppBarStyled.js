@@ -6,7 +6,18 @@ export const AppBarWrapper = styled.header`
   flex-direction: row;
   align-items: center;
   position: relative;
-  padding: 20px 16px 20px 42px;
+
+  @media (min-width: 480px) {
+    margin-bottom: 42px;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 88px;
+  }
+
+  @media (min-width: 1248px) {
+    margin-bottom: 60px;
+  }
 
   & div {
     margin-left: auto;
@@ -16,8 +27,6 @@ export const AppBarWrapper = styled.header`
 `;
 
 export const CommonLink = styled(NavLink)`
-  // font-family: 'Manrope';
-  // font-style: normal;
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes[4]};
   line-height: ${p => p.theme.fontHeight.l};
@@ -42,8 +51,6 @@ export const CommonLink = styled(NavLink)`
 `;
 
 export const UserLink = styled(NavLink)`
-  // font-family: 'Manrope';
-  // font-style: normal;
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes[4]};
   line-height: ${p => p.theme.fontHeight.l};
