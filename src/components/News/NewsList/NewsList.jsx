@@ -1,5 +1,5 @@
 
-import {Header, List, NewsListItem, Description, DateLink, Date, Link, Decor, Title } from "./NewsList.styled";
+import {List, NewsListItem, Description, DateLink, Date, Link, Decor, Title } from "./NewsList.styled";
 
 export default function NewsList({news}) {
     const elements = news.map(({title, description, _id, url, date}) => {
@@ -7,7 +7,7 @@ export default function NewsList({news}) {
 
             <Decor/>
             <Title>{title}</Title>
-            <Description maxlength="50">{description}</Description>
+            <Description>{description}</Description>
             
             <DateLink>
                  <Date>{date.replaceAll("-", "/")}</Date>
@@ -19,7 +19,6 @@ export default function NewsList({news}) {
 
     return (
         <>
-            <Header>News</Header>
             <List>{elements}</List>
         </>
     )
