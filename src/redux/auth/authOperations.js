@@ -61,11 +61,24 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
+const update = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
+  try {
+    console.log('credentialsUp', credentials);
+    const { data } = await axios.patch('/api/auth/update', credentials);
+    console.log('dataUp', data);
+    token.set(data.token);
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
 const authOperations = {
   register,
   login,
   logout,
   fetchCurrentUser,
+  update,
 };
 
 export default authOperations;

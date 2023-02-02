@@ -16,6 +16,7 @@ const theme = {
     white: '#FFFFFF',
     paleWhite: '#FFFFFF99',
     logout: '#707070',
+    inputColor: '#fac9ab',
   },
   shadows: {
     mainShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',

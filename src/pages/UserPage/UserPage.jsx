@@ -13,7 +13,7 @@ const UserPage = () => {
                 <UserData />
                 <Logout />
             </UserDataLogoutContainer>
-            <UserDataTitle title='My pets:' />
+            {/* <UserDataTitle title='My pets:' /> */}
             <PetsData />
         </UserPageWrapper>
         </>

@@ -50,6 +50,11 @@ export const EditPhotoInput = styled.input`
     height: 0;
 `
 
+
+
+
+
+
 export const UserDataFormItemWrapper = styled.div`
     display: flex;
     justify-content: space-between;
@@ -86,16 +91,16 @@ export const UserDataInput = styled.input`
     width: 159px;
     height: 24px;
     padding: 4px 18px;
-
-    background-color: ${p => p.theme.colors.white};
-    border-color: transparent;
-    
     border-radius: ${p => p.theme.radii.big};
-    border-color: 1px solid rgba(245, 146, 86, 0.5);
-    background: ${p => p.theme.colors.background};
+    background-color: ${p => (p.disabled ? p.theme.colors.white : p.theme.colors.background)};
+    border: ${p => p.disabled ? p.theme.borders.small : p.theme.borders.none};
+    border-color: ${p => p.disabled ? 'transparent' : p.theme.colors.inputColor};
+
+    :focus {
+    outline-color: transparent;
+  }
 `
 export const UserDataBtn = styled.button`
-    /* box-sizing:border-box; */
     display: flex;
     align-items: center;
     justify-content: center;
