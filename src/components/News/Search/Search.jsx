@@ -1,6 +1,6 @@
 import {Form, Input, Button} from "./Search.styled";
-import searchPic from "../../images/icons/search.png";
-import xCirlce from "../../images/icons/x-circle.png"
+import searchPic from "../../../images/icons/search.png";
+import xCirlce from "../../../images/icons/x-circle.png";
 
 export default function Search({onChange, value}) {
     const refreshPage = () => {

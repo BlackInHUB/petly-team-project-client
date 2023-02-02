@@ -8,27 +8,37 @@ export const Form = styled.form`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
-  width: 280px;
-  padding: 9px 12px;
-  height: 40px;
+  background-color: ${p => p.theme.colors.white};
+    @media screen and (max-width: 767px) {
+      width: 280px;
+    }
+  width: 608px;
+  padding: 9px 9px;
+    @media screen and (max-width: 767px) {
+      height: 40px;
+    }
+  height: 44px;
   box-shadow: 7px 4px 14px 0px rgba(490,210,400,0.7);
-  border-radius: 40px;
+  border-radius: ${p => p.theme.radii.big};
 `;
 
 export const Input = styled.input`
-  font-size: 14px;
-  line-height: 1;
+  font-family: ${p => p.theme.fonts.body};
+    @media screen and (max-width: 767px) {
+      font-size: ${p => p.theme.fontSizes[2]};
+    }
+  font-size: ${p => p.theme.fontSizes[4]};
+  line-height: ${p => p.theme.fontHeight.s};
   background-color: transparent;
   width: 100%;
   border: none;
-  color: black;
+  color: ${p => p.theme.colors.search};
   &:focus,
   &:active {
     outline: none;
   }
   &::placeholder {
-    color: #535353;
+    color: ${p => p.theme.colors.search};
   }
 `;
 
@@ -42,5 +52,5 @@ line-height: 1;
   background-color: transparent;
   border: none;
   outline: none;
-  color: black;
+  color: ${p => p.theme.colors.black};
 `;

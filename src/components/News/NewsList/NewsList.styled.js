@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const Header = styled.h3`
-    font-family: Manrope;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 1.38;
-    text-align: center;
-    color: #111111;
+    font-family: ${p => p.theme.fonts.body};
+    font-weight: ${p => p.theme.fontWeights.bold};
+    font-size: ${p => p.theme.fontSizes[9]};
+        @media screen and (max-width: 767px) {
+            font-size: ${p => p.theme.fontSizes[5]};
+        }
+    line-height: ${p => p.theme.fontHeight.l};
+    color: ${p => p.theme.colors.text};
     text-align: center;
 `
-
 export const List = styled.div`
     margin-left: auto;
     margin-right: auto;
@@ -44,23 +44,20 @@ export const List = styled.div`
 `
 export const NewsListItem = styled.li`
     list-style-type: none;
- 
 `
-
 export const Title = styled.h4`
-  font-family: Manrope;
-  font-weight: 700;
-  font-size: 24px;
-  color: #111111;
+    font-family: ${p => p.theme.fonts.body};
+    font-weight: ${p => p.theme.fontWeights.bold};
+    font-size: ${p => p.theme.fontSizes[5]};
+    color: ${p => p.theme.colors.text};
 `
-
 export const Description = styled.p`
-    font-family: Manrope;
-    font-weight: 400;
-    line-height: 1.37;
+    font-family: ${p => p.theme.fonts.body};
+    font-weight: ${p => p.theme.fontWeights.thin};
+    line-height: ${p => p.theme.fontHeight.l};
     max-height: 300px;
     overflow: hidden;
-    color: #111321;
+    color: ${p => p.theme.colors.newsText};
 `
 
 export const DateLink = styled.div`
@@ -72,24 +69,24 @@ export const DateLink = styled.div`
 
 export const Date = styled.p`
     display: inline-block;
-    font-family: inherit;
-    color: #11111199;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.37;
+    font-family: ${p => p.theme.fonts.body};
+    color: ${p => p.theme.colors.gray};
+    font-weight: ${p => p.theme.fontWeights.thin};
+    font-size: ${p => p.theme.fontSizes[2]};
+    line-height: ${p => p.theme.fontHeight.l};
 `
 
 export const Link = styled.a`
     display: inline-block;
-    font-family: inherit;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.37;
-    color: #F59256;
+    font-family: ${p => p.theme.fonts.body};
+    font-weight: ${p => p.theme.fontWeights.thin};;
+    font-size: ${p => p.theme.fontSizes[2]};
+    line-height: ${p => p.theme.fontHeight.l};
+    color: ${p => p.theme.colors.accent};
 `
 
 export const Decor = styled.div`
-    background: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
+    background: ${p => p.theme.colors.gradient};
     border-radius: 3px;
     @media screen and (min-width: 320px) {
         width: 200px;

@@ -10,7 +10,7 @@ export default function NewsList({news}) {
             <Description maxlength="50">{description}</Description>
             
             <DateLink>
-                <Date>{date}</Date>
+                 <Date>{date.replaceAll("-", "/")}</Date>
                 <Link href={url} target="_blank" rel="noreferrer">Read More</Link>
             </DateLink>
             
