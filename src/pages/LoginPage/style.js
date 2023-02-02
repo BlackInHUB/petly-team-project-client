@@ -24,13 +24,13 @@ export const PageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  flexDirection: column;
+  flex-direction: column;
   justify-content: center;
   align-items: start;
   @media (min-width: 768px) {
     align-items: center;
   }
-}}`;
+`;
 
 export const NavLinkStyled = styled(NavLink)`
   color: ${p => p.theme.colors.link};
@@ -72,7 +72,7 @@ export const FieldStyled = styled(Field)`
   &:hover + label,
   &:valid + label {
     top: -10px;
-    background-color: ${p => p.theme.colors.white};
+    background-color: transparent;
     line-height: ${p => p.theme.fontSizes[3]};
     font-size: ${p => p.theme.fontSizes[1]};
   }

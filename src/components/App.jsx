@@ -20,7 +20,8 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser())
+    console.log('refresh')
+    dispatch(authOperations.refresh())
   }, [dispatch])
   
   return (

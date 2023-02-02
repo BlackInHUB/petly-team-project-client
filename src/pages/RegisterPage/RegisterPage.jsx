@@ -62,7 +62,6 @@ export default function RegisterPage() {
   // const promisedState = newState =>
   //   new Promise(resolve => setStep(newState, resolve));
   useEffect(() => {
-    console.log(step);
   }, [step]);
   const dispatch = useDispatch();
 
@@ -85,16 +84,13 @@ export default function RegisterPage() {
 
   const onSubmit = async (values, { setSubmitting }) => {
     console.log(values);
-    const { name: username, email, city, phone, password } = values;
-    const data = { username, email, city, phone, password };
+    const { name, email, city, phone, password } = values;
+    const data = { name, email, city, phone, password };
     try {
-      console.log(data);
       await dispatch(authOperations.register(data));
     } catch (e) {
       console.log(e);
-      console.log('catch');
     } finally {
-      console.log('finally');
       setSubmitting(false);
     }
   };
