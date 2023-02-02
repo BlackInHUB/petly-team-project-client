@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { UserLink } from "./AppBarStyled";
 import { FaUserCircle } from 'react-icons/fa';
 
