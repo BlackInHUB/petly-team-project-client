@@ -12,15 +12,29 @@ const token = {
   },
 };
 
-const register = createAsyncThunk('auth/register', async credentials => {
-  try {
-    console.log(credentials);
-    const { data } = await axios.post('/api/auth/register', credentials);
-    console.log(data);
-    token.set(data.token);
-    return data;
-  } catch (error) {}
-});
+const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, thunkAPI) => {
+    try {
+      console.log(credentials);
+      const { data } = await axios.post('/api/auth/register', credentials);
+      console.log(data);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      let message = '';
+      if (error.response.status === 409)
+        message =
+          'User with the same email already registrated, we can send password on your email';
+      if (error.response.status === 401) message = 'Data is wrong';
+      if (error.response.status === 500)
+        message = 'BackEnd dead, please try later';
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+const eraseErrors = createAsyncThunk('auth/eraseErrors', () => {});
 
 const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
@@ -66,6 +80,7 @@ const authOperations = {
   login,
   logout,
   fetchCurrentUser,
+  eraseErrors,
 };
 
 export default authOperations;
