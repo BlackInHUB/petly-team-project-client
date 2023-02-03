@@ -66,7 +66,7 @@ const update = createAsyncThunk('auth/update', async (credentials, thunkAPI) => 
     console.log('credentialsUp', credentials);
     const { data } = await axios.patch('/api/auth/update', credentials);
     console.log('dataUp', data);
-    token.set(data.token);
+    // token.set(data.token);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

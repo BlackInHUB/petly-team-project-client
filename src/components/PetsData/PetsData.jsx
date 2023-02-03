@@ -1,19 +1,19 @@
-import { UserDataTitle } from "components/UserDataTitle/UserDataTitle"
+// import { UserDataTitle } from "components/UserDataTitle/UserDataTitle"
 import { AddPetButton } from "components/AddPetButton/AddPetButton"
 import { PetsList } from "components/PetsList/PetsList"
-import { PetsDataWrapper, AddPetDiv  } from "./PetsData.styled"
+import { AddPetDiv, PetDataTitle } from "./PetsData.styled"
 
 
 export const PetsData = () => {
     return(
         <>
-        <PetsDataWrapper>
+        <div>
             <AddPetDiv>
-                <UserDataTitle title='My pets:' />
+                <PetDataTitle>My pets:</PetDataTitle>
                 <AddPetButton />
             </AddPetDiv>
             <PetsList />
-        </PetsDataWrapper>
+        </div>
         </>
     )
 }

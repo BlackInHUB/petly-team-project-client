@@ -1,15 +1,22 @@
 import styled from "styled-components"
 
 export const UserDataContainer = styled.div`
-    /* background-color: ${p => p.theme.colors.white};
-    border-top-left-radius: ${p => p.theme.radii.normal};
-    border-top-right-radius:  ${p => p.theme.radii.normal};
-    box-shadow: ${p => p.theme.shadows.userDataShadow}; */
-    margin-bottom: ${p => p.theme.space[10]}px;
+    margin-bottom: 42px;
+
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin-bottom: ${ p => p.theme.space[0]}px;
+    }
 `
 
 export const UserDataImgWrapper = styled.div`
     margin-bottom: ${p => p.theme.space[9]}px;
+
+    @media screen and (min-width: 768px) {
+        margin-bottom: ${p => p.theme.space[0]}px;
+    }
 `
 
 export const UserDataImg = styled.img`
@@ -19,10 +26,11 @@ export const UserDataImg = styled.img`
     margin-left: auto;
     margin-right: auto;
     margin-bottom: ${p => p.theme.space[4]}px;
-
-
-
     object-fit: cover;
+
+    @media screen and (min-width: 768px) {
+        margin-bottom: ${p => p.theme.space[3]}px;
+    }
 `
 
 export const EditCameraWrapper = styled.div`
@@ -40,6 +48,10 @@ export const EditPhotoLabel = styled.label`
     font-size: ${p => p.theme.fontSizes[0]};
     font-weight: ${p => p.theme.fontWeights.thin};
     line-height: 1.8;
+
+    @media screen and (min-width: 768px) {
+        padding-right: ${p => p.theme.space[0]}px;
+    }
 `
 
 export const EditPhotoInput = styled.input`
@@ -50,10 +62,13 @@ export const EditPhotoInput = styled.input`
     height: 0;
 `
 
-
-
-
-
+export const UserDataList = styled.ul`
+     @media screen and (min-width: 768px) {
+        padding-top: ${p => p.theme.space[5]}px;
+        padding-bottom: 55px;
+        width: 379px;
+    }
+`
 
 export const UserDataFormItemWrapper = styled.div`
     display: flex;

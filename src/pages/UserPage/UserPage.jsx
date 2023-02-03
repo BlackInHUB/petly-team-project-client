@@ -2,18 +2,20 @@ import { Logout } from "components/Logout/Logout"
 import { PetsData } from "components/PetsData/PetsData"
 import { UserData } from "components/UserData/UserData"
 import { UserDataTitle } from "components/UserDataTitle/UserDataTitle"
-import { UserDataLogoutContainer, UserPageWrapper } from "./UserPage.styled"
+import { UserDataContainer, UserPageWrapper } from "./UserPage.styled"
 
 
-export const UserPage = () => {
+const UserPage = () => {
     return (
         <UserPageWrapper>
             <UserDataTitle title='My information:'/>
-            <UserDataLogoutContainer>
+            <UserDataContainer>
                 <UserData />
                 <Logout />
-            </UserDataLogoutContainer>
+            </UserDataContainer>
             <PetsData />
         </UserPageWrapper>
     )
 }
+
+export default UserPage;

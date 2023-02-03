@@ -6,6 +6,13 @@ export const LogoutBtn = styled.button`
     background: ${p => p.theme.colors.white};
     border: none;
     cursor: pointer;
+    margin-left: auto;
+    padding-right: ${ p => p.theme.space[4]}px;
+
+    @media screen and (min-width: 768px) {
+        position: absolute;
+        bottom: 24px;
+    }
 `
 
 export const LogoutBtnText = styled.span`
