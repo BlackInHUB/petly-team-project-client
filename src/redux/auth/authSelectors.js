@@ -1,19 +1,11 @@
-const getIsLoggedIn = ({ auth }) => auth.isLoggedIn;
+export const getIsLoggedIn = ({ auth }) => auth.isLoggedIn;
 
-const getIsError = ({ auth }) => auth.isError;
+export const getIsError = ({ auth }) => auth.isError;
 
-const getUserEmail = ({ auth }) => auth.user?.email;
+export const getUserEmail = ({ auth }) => auth.user?.email;
 
-const getIsRefreshing = ({ auth }) => auth.isRefreshing;
+export const getIsRefreshing = ({ auth }) => auth.isRefreshing;
 
-const getUser = ({ auth }) => auth.user;
+export const getUser = ({auth}) => auth.user;
 
-const authSelectors = {
-  getIsLoggedIn,
-  getUserEmail,
-  getIsRefreshing,
-  getIsError,
-  getUser,
-};
-
-export default authSelectors;
+export const getPets = ({auth}) => auth.pets;
