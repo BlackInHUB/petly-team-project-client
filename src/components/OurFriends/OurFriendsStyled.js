@@ -2,9 +2,14 @@ import styled from 'styled-components';
 
 export const ContainerList = styled.ul`
         @media screen and (min-width: 768px) {
-        display:flex;
-        flex-wrap: wrap;
-}
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 32px;
+        }
+
+        @media screen and (min-width: 1280px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
    
 `;
 
@@ -20,21 +25,11 @@ export const ContainerItem = styled.li`
     padding-bottom: ${p => p.theme.fontSizes[0]};
     margin-bottom: ${p => p.theme.fontSizes[0]};
     @media screen and (min-width: 768px) {
-        width: 336px;
-        height:246px;
-        flex-basis: calc(100% / 2 - 32px);
-        margin-right: 32px;
-
         border-radius: ${p => p.theme.radii.big};
         padding-top: ${p => p.theme.fontSizes[2]};
         padding-bottom: ${p => p.theme.fontSizes[2]};
     }
 
-    @media screen and (min-width: 1280px) {
-        width: 394px;
-        height:287px;
-        flex-basis: calc(100% / 3 - 32px);
-    }
 `;
 
 export const Title = styled.h2`
@@ -77,7 +72,6 @@ export const ContainerLogo = styled.div`
 `;
 
 export const Logo = styled.a`
-    display:flex;
     width: 110px;
     height: 78px;
 
