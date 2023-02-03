@@ -1,10 +1,10 @@
 import { UserLink } from "./AppBarStyled";
 
-export const AuthNav = () => {
+export const AuthNav = ({onClick}) => {
     return (
         <div>
-            <UserLink to='/login'>Login</UserLink>
-            <UserLink to='/register'>Registration</UserLink>
+            <UserLink to='/login' onClick={onClick}>Login</UserLink>
+            <UserLink to='/register' onClick={onClick}>Registration</UserLink>
         </div>
     )
 }

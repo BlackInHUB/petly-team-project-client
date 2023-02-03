@@ -1,16 +1,32 @@
-import defaultUserPhoto from '../../images/defaultUserPhoto.png'
-import {ReactComponent as EditCamera} from '../../images/icons/userData/camera.svg'
-import { ReactComponent as Pencil} from '../../images/icons/userData/pencil.svg'
-import { UserDataContainer, 
-    UserDataImgWrapper, UserDataImg, EditCameraWrapper, EditPhotoLabel, UserDataInputBtnWrapper,
-    EditPhotoInput, UserDataFormItemWrapper, UserDataLabel, UserDataInput, UserDataBtn } from './UserData.styled'
 
+
+import { useDispatch } from 'react-redux'
+import { authOperations } from '../../redux/auth'
+import defaultUserPhoto from '../../images/UserData/defaultUserPhoto.png'
+import { ReactComponent as EditCamera} from '../../images/icons/userData/camera.svg'
+import { UserDataItem } from './UserDataItem/UserDataItem'
+import { UserDataTitle } from 'components/UserDataTitle/UserDataTitle'
+import { UserDataContainer, UserDataCommonContainer,
+    UserDataImgWrapper, UserDataImg, EditCameraWrapper, EditPhotoLabel,
+    EditPhotoInput, UserDataList } from './UserData.styled'
+import { useAuth } from 'hooks/useAuth'
 export const UserData = () => {
+    const dispatch = useDispatch();   
+    const { user } = useAuth()
+   
+    const changeAvatar = e => {
+        const data = new FormData()
+        data.append('avatar', e.target.files[0])
+        dispatch(authOperations.update(data))
+    }
+    
     return (
         <>
         <UserDataContainer>
+            <UserDataTitle title='My information:'/>
+            <UserDataCommonContainer>
             <UserDataImgWrapper>
-                <UserDataImg src={defaultUserPhoto} alt='User' />
+                <UserDataImg src={user.avatarUrl ? user.avatarUrl : defaultUserPhoto} alt='User' />
                 <form>
                     <EditCameraWrapper>
                         <EditPhotoLabel htmlFor="user_photo">
@@ -18,51 +34,24 @@ export const UserData = () => {
                         </EditPhotoLabel>
                         <EditCamera />
                     </EditCameraWrapper>
-                    <EditPhotoInput  type="file" name='edit photo' id="user_photo"/>
+                    <EditPhotoInput  type="file" name='edit photo' id="user_photo" onChange={changeAvatar}/>
                 </form>
             </UserDataImgWrapper>
-            <form>
-                <UserDataFormItemWrapper>
-                    <UserDataLabel htmlFor="user_name"> Name: </UserDataLabel>
-                    <UserDataInputBtnWrapper>
-                        <UserDataInput type="text" name='name' id="user_name"/>
-                        <UserDataBtn type='button'><Pencil /></UserDataBtn>
-                    </UserDataInputBtnWrapper>                 
-                </UserDataFormItemWrapper>
 
-                <UserDataFormItemWrapper>
-                    <UserDataLabel htmlFor="user_email"> Email: </UserDataLabel>
-                    <UserDataInputBtnWrapper>
-                        <UserDataInput type="email" name='email' id="user_email" disabled/>
-                        <UserDataBtn type='button'><Pencil /></UserDataBtn>   
-                    </UserDataInputBtnWrapper>             
-                </UserDataFormItemWrapper>
+            <UserDataList>
+                <UserDataItem label={'Name:'} defaultValue={user.username} type="text" name='name' />
 
-                <UserDataFormItemWrapper>
-                    <UserDataLabel htmlFor="user_birthday"> Birthday: </UserDataLabel>
-                    <UserDataInputBtnWrapper>
-                        <UserDataInput type="date" name='birthday' id="user_birthday"/>
-                        <UserDataBtn type='button'><Pencil /></UserDataBtn>
-                    </UserDataInputBtnWrapper>          
-                </UserDataFormItemWrapper>
+                <UserDataItem label={'Email:'} defaultValue={user.email} type="email" name='email' />
 
-                <UserDataFormItemWrapper>
-                    <UserDataLabel htmlFor="user_phone"> Phone: </UserDataLabel>
-                    <UserDataInputBtnWrapper>
-                        <UserDataInput type="tel" name='phone' id="user_phone" />
-                        <UserDataBtn type='button'><Pencil /></UserDataBtn>
-                    </UserDataInputBtnWrapper>                
-                </UserDataFormItemWrapper>
+                <UserDataItem label={'Birthday:'} defaultValue={user.birthday || "01.01.1900"} type="text" name='birthday' />
 
-                <UserDataFormItemWrapper>
-                    <UserDataLabel htmlFor="user_city"> City: </UserDataLabel>
-                    <UserDataInputBtnWrapper>
-                        <UserDataInput type="text" name='city' id="user_city" />
-                        <UserDataBtn type='button'><Pencil /></UserDataBtn>
-                    </UserDataInputBtnWrapper>                
-                </UserDataFormItemWrapper>
-            </form>
-        </UserDataContainer>
+                <UserDataItem label={'Phone:'} defaultValue={user.phone} type="tel" name='phone' />
+
+                <UserDataItem label={'City:'} defaultValue={user.city} type="text" name='city' />
+            </UserDataList>
+            </UserDataCommonContainer>
+
+            </UserDataContainer>
         </>
     )
 }

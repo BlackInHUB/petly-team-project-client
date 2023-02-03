@@ -1,86 +1,82 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import * as api from '../../services/auth';
 
-axios.defaults.baseURL = 'https://petly.onrender.com';
+const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
+  try {
+    const result = await api.register(user);
+    
+    if (result._id) {
+      const {email, password} = user;
+      return await api.login({email, password})
+    }
+  } catch (error) {
+    console.log(error)
+    // const error = {
+    //   status: response.status,
+    //   message: response.data.message
+    // } 
+    return thunkAPI.rejectWithValue(error.response.message);
+  }
+});
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
+const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
+  try {
+    return await api.login(user);
+  } catch (error) {
+    console.log(error)
+    // const error = {
+    //   status: response.status,
+    //   message: response.data.message
+    // } 
+    return thunkAPI.rejectWithValue(error.response.message);
+  }
+});
 
-const register = createAsyncThunk(
-  'auth/register',
-  async (credentials, thunkAPI) => {
+const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await api.logout();
+    return;
+  } catch (error) {
+    console.log(error)
+    // const error = {
+    //   status: response.status,
+    //   message: response.data.message
+    // } 
+    return thunkAPI.rejectWithValue(error.response.message);
+  }
+});
+
+const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+    const {token} = thunkAPI.getState().auth;
     try {
-      console.log(credentials);
-      const { data } = await axios.post('/api/auth/register', credentials);
-      console.log(data);
-      token.set(data.token);
-      return data;
+      return await api.refresh(token);
     } catch (error) {
-      let message = '';
-      if (error.response.status === 409)
-        message =
-          'User with the same email already registrated, we can send password on your email';
-      if (error.response.status === 401) message = 'Data is wrong';
-      if (error.response.status === 500)
-        message = 'BackEnd dead, please try later';
-      return thunkAPI.rejectWithValue(message);
+      console.log(error)
+      // const error = {
+      //   status: response.status,
+      //   message: response.data.message
+      // } 
+      return thunkAPI.rejectWithValue(error.response.message);
     }
   }
 );
 
-const eraseErrors = createAsyncThunk('auth/eraseErrors', () => {});
-
-const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
+const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
   try {
-    const { data } = await axios.post('/api/auth/login', credentials);
-    console.log(data);
-    token.set(data.token);
+    const { data } = await api.update('/api/auth/update', updateData);
+    console.log('dataUp', data);
     return data;
   } catch (error) {
-    console.log('wrong password or email');
-    return thunkAPI.rejectWithValue('wrong password or email');
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-const logout = createAsyncThunk('auth/logout', async () => {
-  try {
-    await axios.get('/api/auth/logout');
-    token.unset();
-    return;
-  } catch (error) {}
-});
-
-const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const persistedToken = thunkAPI.getState().auth.token;
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('something goes wrong');
-    }
-
-    token.set(persistedToken);
-    try {
-      const { data } = await axios.get('/api/user/current');
-      console.log(data);
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue('something goes wrong');
-    }
-  }
-);
 
 const authOperations = {
   register,
   login,
   logout,
-  fetchCurrentUser,
-  eraseErrors,
+  refresh,
+  update
 };
 
 export default authOperations;
