@@ -9,7 +9,7 @@ const user = useSelector(authSelectors.getUser);
 
     return (
         <div>
-            <UserLink to="/user" onClick={onClick}><FaUserCircle /> {`${user.username}`}</UserLink>
+            <UserLink to="/user" onClick={onClick}><FaUserCircle /> {`${user.email}`}</UserLink>
         </div>
     )
 }

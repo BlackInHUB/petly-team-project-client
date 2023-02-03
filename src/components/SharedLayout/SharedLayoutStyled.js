@@ -6,7 +6,6 @@ export const SharedLayoutStyled = styled.div`
   background: ${p => p.theme.colors.background};
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   margin-left: auto;
   margin-right: auto;
 

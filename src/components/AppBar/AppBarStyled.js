@@ -77,8 +77,27 @@ export const CommonLink = styled(NavLink)`
     color: ${p => p.theme.colors.hoveredAccent};
   }
 
+  @media (min-width: 320px) and (max-width: 767.99px) {
+    .nav-modal {
+      font-weight: ${p => p.theme.fontWeights.normal};
+      font-size: ${p => p.theme.fontSizes[7]};
+      line-height: ${p => p.theme.fontHeight.l};
+      margin-left: 0;
+      margin-bottom: 40px;
+    }
+  }
+  }
+
   @media (max-width: 767.99px) {
     font-size: ${p => p.theme.fontSizes[1]};
+
+    .nav-modal {
+      font-weight: ${p => p.theme.fontWeights.normal};
+      font-size: ${p => p.theme.fontSizes[9]};
+      line-height: ${p => p.theme.fontHeight.l};
+      margin-left: 0;
+      margin-bottom: 60px;
+    }
   }
 `;
 
@@ -114,5 +133,50 @@ export const UserLink = styled(NavLink)`
 
   @media (max-width: 767.99px) {
     font-size: ${p => p.theme.fontSizes[1]};
+  }
+`;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) and (max-width: 1279.99px) {
+    margin-bottom: 88px;
+
+    .user-modal {
+      display: none;
+    }
+
+    
+`;
+
+export const HeaderModal = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 46px;
+
+  & img.logo-modal {
+    height: 32px;
+  }
+
+  & button.close-modal-btn {
+    border: ${p => p.theme.borders.none};
+    background: transparent;
+  }
+`;
+
+export const UserModal = styled.div`
+  margin-bottom: 60px;
+
+  & div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;

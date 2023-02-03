@@ -6,22 +6,24 @@ export const ModalStyled = styled.div`
   left: 0;
   background-color: ${p => p.theme.colors.background};
   z-index: 100;
+  width: 100vw;
+  height: 100vh;
 
-  & button.close-modal-btn {
-    position: fixed;
-    right: 0;
-    top: 0;
-    border: ${p => p.theme.borders.none};
-    background: transparent;
+  @media (min-width: 320px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 16px;
   }
 
-  & div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: ${p => p.theme.colors.background};
+  @media (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 24px;
+  }
+
+  @media (min-width: 1280px) {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 20px;
   }
 `;

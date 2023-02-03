@@ -1,34 +1,34 @@
 import { ModalStyled } from "./ModalStyled";
 import { createPortal } from 'react-dom';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 
-export const Modal = ({children}) => {
+export const Modal = ({children, setShow }) => {
 const modalRoot = document.querySelector('#modal-root');
 
-//  const handleBackdropClick = event => {
-//     if (event.currentTarget === event.target) {
-//       props.onClose();
-//     }
-//   };
-
-//     useEffect(() => {
-//     const handleKeyDown = e => {
-//     if (e.code === 'Escape') {
-//       props.onClose();
-//     }
-//   };
-//     window.addEventListener("keydown", handleKeyDown);
-//     return () => {
-//       window.removeEventListener("keydown", handleKeyDown);
-//     };
-//   }, [props]);
+    useEffect(() => {
+    const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      console.log("клик по ESCAPE");
+      setShow();
+    }
+  };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+    }, [setShow]);
+  
+   const handleBackdropClick = event => {
+     if (event.currentTarget === event.target) {
+       console.log("клик по бекдропу");
+      setShow();
+    }
+  };
 
     return createPortal(
-      <ModalStyled >
-        <div>{children}</div>
+      <ModalStyled onClick={handleBackdropClick}>
+        {children}
       </ModalStyled>,
       modalRoot,
     );
  }
-
-// --функцию onClose нужно заменить на правильную-- ;

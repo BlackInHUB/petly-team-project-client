@@ -5,7 +5,7 @@ import { AuthNav } from "./AuthNav";
 import { UserNav } from "./UserNav";
 import { Nav } from "./Nav";
 import { Modal } from 'components/Modal/Modal';
-import { AppBarWrapper } from "./AppBarStyled";
+import { AppBarWrapper, ModalWrapper, HeaderModal, UserModal } from "./AppBarStyled";
 import Logo from '../../images/petly_logo.svg';
 import Burger from "../../images/icons/modal/burger_menu.svg";
 import CloseBtn from "../../images/icons/modal/close_button.svg";
@@ -31,17 +31,20 @@ export const AppBar = () => {
             </div>
             <button className='open-modal-btn' type='button' onClick={handleOpen}><img src={Burger} alt="" width="40px" height="40px" /></button>
             
-            {showModal && <Modal>
-                <img src={Logo} alt="PETLY_logo" width="94px" height="32px"/>
-                <div className='user-modal'>
-                    {isLoggedIn ? <UserNav onClick={handleClose}/> : <AuthNav onClick={handleClose}/>}
-                </div>
-                <Nav className='nav-modal' onClick={handleClose}/>
-                <button className="close-modal-btn" type='button' onClick={handleClose}>
-                    <img src={CloseBtn} alt="" width="40px" height="40px"/>
-                </button>
+            {showModal && <Modal setShow={handleClose} onClick={handleClose}>
+                <ModalWrapper>
+                    <HeaderModal>
+                        <img className='logo-modal' src={Logo} alt="PETLY_logo" width="94px" height="32px" />
+                        <button className="close-modal-btn" type='button' onClick={handleClose}>
+                            <img src={CloseBtn} alt="" width="40px" height="40px"/>
+                        </button>
+                    </HeaderModal>
+                    <UserModal className='user-modal'>
+                        {isLoggedIn ? <UserNav onClick={handleClose}/> : <AuthNav className='auth-modal' onClick={handleClose} />}
+                    </UserModal>
+                    <Nav onClick={handleClose}/>
+                </ModalWrapper>
             </Modal>}
-
         </AppBarWrapper>
     );
 }
