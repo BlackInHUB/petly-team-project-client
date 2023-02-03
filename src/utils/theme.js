@@ -41,6 +41,10 @@ const theme = {
     s: '1.2',
     const: '26.5px',
   },
+  fontStyle: {
+    normal: 'normal',
+    italic: 'italic',
+  },
   fontWeights: {
     thin: '400',
     normal: '500',
