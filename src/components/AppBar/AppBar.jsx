@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { authSelectors } from 'redux/auth';
+import React from 'react';
+import { useAuth } from 'hooks/useAuth';
 import { AuthNav } from "./AuthNav";
 import { UserNav } from "./UserNav";
 import { Nav } from "./Nav";
@@ -9,10 +8,10 @@ import { AppBarWrapper } from "./AppBarStyled";
 import Logo from '../../images/petly_logo.svg';
 import Burger from "../../images/icons/modal/burger_menu.svg";
 import CloseBtn from "../../images/icons/modal/close_button.svg";
+import { useState } from 'react';
 
 export const AppBar = () => {
 
-    const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
     const [showModal, setShowModal] = useState(false);
     const handleOpen = () => {
     setShowModal(true);
@@ -21,6 +20,7 @@ export const AppBar = () => {
   const handleClose = () =>  {
     setShowModal(false);
   }
+    const {isLoggedIn} = useAuth();
 
     return (
         <AppBarWrapper>

@@ -8,13 +8,13 @@ export const PageWrapper = styled.div`
   width: 100vw;
   height: 100%;
   display: flex;
-  flexDirection: column;
+  flex-direction: column;
   justify-content: center;
   align-items: start;
   @media (min-width: 768px) {
     align-items: center;
   }
-}}`;
+`;
 
 const styleForBackgroundImg = `position: absolute;
 bottom: 0px;

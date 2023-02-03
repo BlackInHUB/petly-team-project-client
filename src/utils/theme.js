@@ -59,6 +59,9 @@ const theme = {
     big: '40px',
     round: '50%',
   },
+  transition: {
+    all: 'all 250ms linear'
+  }
 };
 
 export default theme;
