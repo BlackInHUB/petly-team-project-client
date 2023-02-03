@@ -94,23 +94,18 @@ export default function RegisterForm() {
     return phoneRegExp.test(`+${phoneNumber}`);
   };
 
-  const onSubmit = async (values, { setSubmitting }) => {
-    console.log(values);
-    const { name: username, email, city, password } = values;
+  const onSubmit = (values, { setSubmitting }) => {
+    const { name, email, city, password } = values;
     const phone = `+${phoneNumber}`;
-    const data = { username, email, city, phone, password };
+    const data = { name, email, city, phone, password };
 
-    try {
-      console.log(phoneValidation());
       if (phoneValidation()) {
         setPhoneIsValid(null);
-        await dispatch(authOperations.register(data));
+
+        dispatch(authOperations.register(data));
+
       } else setPhoneIsValid('incorrect phone number');
-    } catch (e) {
-      console.log(e);
-    } finally {
       setSubmitting(false);
-    }
   };
 
   return (
@@ -232,9 +227,6 @@ export default function RegisterForm() {
               <NavLinkStyled
                 to={'/login'}
                 key={'home'}
-                onClick={() => {
-                  dispatch(authOperations.eraseErrors());
-                }}
                 end
               >
                 Login

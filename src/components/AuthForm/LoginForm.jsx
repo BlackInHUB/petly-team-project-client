@@ -32,20 +32,10 @@ const validationSchema = yup.object({
 export default function LoginForm() {
   const dispatch = useDispatch();
   const isError = useSelector(state => state.auth.isError);
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const onSubmit = async (values, { setSubmitting }) => {
-    console.log(values);
+  const isLoading = useSelector(state => state.auth.isLoading);
 
-    try {
-      await dispatch(authOperations.login(values));
-      if (isLoggedIn) await dispatch(authOperations.fetchCurrentUser());
-    } catch (e) {
-      console.log(e.message);
-      console.log('catch');
-    } finally {
-      console.log('finally');
-      setSubmitting(false);
-    }
+  const onSubmit = (values) => {
+    dispatch(authOperations.login(values));
   };
 
   return (
@@ -54,7 +44,7 @@ export default function LoginForm() {
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      {({ isSubmitting, errors, touched }) => (
+      {({ errors, touched }) => (
         <FormStyled>
           <Header>Login</Header>
           <FieldsWrapper>
@@ -75,8 +65,8 @@ export default function LoginForm() {
             </div>
           </FieldsWrapper>
           <div>
-            <ButtonStyled type="submit" disabled={isSubmitting}>
-              {isSubmitting ? (
+            <ButtonStyled type="submit">
+              {isLoading ? (
                 <SpinnerStyled icon="fa-solid fa-spinner" size="1.5rem" />
               ) : (
                 <span>Login</span>
@@ -89,9 +79,6 @@ export default function LoginForm() {
             <NavLinkStyled
               to={'/register'}
               key={'home'}
-              onClick={() => {
-                dispatch(authOperations.eraseErrors());
-              }}
               end
             >
               Register
