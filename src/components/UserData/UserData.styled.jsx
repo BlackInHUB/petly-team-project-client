@@ -12,8 +12,8 @@ export const UserDataContainer = styled.div`
 `
 
 export const UserDataCommonContainer = styled.div`
-    position: relative;
-    /* border: 1px solid red; */
+position: relative;
+    border: 1px solid red;
     background-color: ${p => p.theme.colors.white};
     border-radius: ${p => p.theme.radii.normal};
     box-shadow: ${p => p.theme.shadows.userDataShadow};
