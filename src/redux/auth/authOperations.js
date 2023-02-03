@@ -61,10 +61,12 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   }
 );
 
-const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
+const update = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
   try {
-    const { data } = await api.update('/api/auth/update', updateData);
+    console.log('credentialsUp', credentials);
+    const { data } = await axios.patch('/api/auth/update', credentials);
     console.log('dataUp', data);
+    // token.set(data.token);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -76,7 +78,7 @@ const authOperations = {
   login,
   logout,
   refresh,
-  update
+  update,
 };
 
 export default authOperations;

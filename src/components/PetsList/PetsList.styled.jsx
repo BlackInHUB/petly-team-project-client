@@ -1,4 +1,4 @@
-// import styled from "styled-components"
+import styled from "styled-components"
 
 // export const PetsListWrapper= styled.ul`
 //     padding-left: ${p => p.theme.space[6]}px;
