@@ -12,7 +12,6 @@ const initialState = {
     avatarUrl: null,
   },
   pets: [],
-  favorites: [],
   token: null,
   isLoading: false,
   isLoggedIn: false,

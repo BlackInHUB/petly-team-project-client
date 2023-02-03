@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from '../../services/notices';
 
-const getAll = createAsyncThunk('notices/getAll', async (category, thunkApi) => {
+export const getAll = createAsyncThunk('notices/getAll', async (category, thunkApi) => {
     try {
         const result = await api.getAll(category);
         
@@ -10,7 +10,7 @@ const getAll = createAsyncThunk('notices/getAll', async (category, thunkApi) => 
     };
 });
 
-const getOne = createAsyncThunk('notices/getOne', async (id, thunkApi) => {
+export const getOne = createAsyncThunk('notices/getOne', async (id, thunkApi) => {
     try {
         const result = await api.getOne(id);
 
@@ -20,7 +20,7 @@ const getOne = createAsyncThunk('notices/getOne', async (id, thunkApi) => {
     };
 });
 
-const getOwn = createAsyncThunk('notices/getOwn', async (_, thunkApi) => {
+export const getOwn = createAsyncThunk('notices/getOwn', async (_, thunkApi) => {
     try {
         const result = await api.getOwn();
         
@@ -30,7 +30,7 @@ const getOwn = createAsyncThunk('notices/getOwn', async (_, thunkApi) => {
     };
 });
 
-const getFavorites = createAsyncThunk('notices/getFavorites', async (_, thunkApi) => {
+export const getFavorites = createAsyncThunk('notices/getFavorites', async (_, thunkApi) => {
     try {
         const result = await api.getFavorites();
 
@@ -38,4 +38,4 @@ const getFavorites = createAsyncThunk('notices/getFavorites', async (_, thunkApi
         console.log(error);
         return thunkApi.rejectWithValue(error.response.message);
     };
-})
+});
