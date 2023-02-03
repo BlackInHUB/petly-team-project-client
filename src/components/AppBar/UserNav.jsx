@@ -8,7 +8,7 @@ const {user} = useAuth();
 
     return (
         <div>
-            <UserLink to="/user" onClick={onClick}><FaUserCircle /> {`${user.username}`}</UserLink>
+            <UserLink to="/user" onClick={onClick}><FaUserCircle /> {`${user.name}`}</UserLink>
         </div>
     )
 }
