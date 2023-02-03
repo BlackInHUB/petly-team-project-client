@@ -177,7 +177,7 @@ import defaultUserPhoto from '../../images/UserData/defaultUserPhoto.png'
 import { ReactComponent as EditCamera} from '../../images/icons/userData/camera.svg'
 import { UserDataItem } from './UserDataItem/UserDataItem'
 import { UserDataTitle } from 'components/UserDataTitle/UserDataTitle'
-import { UserDataContainer, 
+import { UserDataContainer, UserDataCommonContainer,
     UserDataImgWrapper, UserDataImg, EditCameraWrapper, EditPhotoLabel,
     EditPhotoInput, UserDataList } from './UserData.styled'
 
@@ -194,7 +194,8 @@ export const UserData = () => {
     return (
         <>
         <UserDataContainer>
-        <UserDataTitle title='My information:'/>
+            <UserDataTitle title='My information:'/>
+            <UserDataCommonContainer>
             <UserDataImgWrapper>
                 <UserDataImg src={user.avatarUrl ? user.avatarUrl : defaultUserPhoto} alt='User' />
                 <form>
@@ -219,6 +220,7 @@ export const UserData = () => {
 
                 <UserDataItem label={'City:'} defaultValue={user.city} type="text" name='city' />
             </UserDataList>
+            </UserDataCommonContainer>
 
             </UserDataContainer>
         </>

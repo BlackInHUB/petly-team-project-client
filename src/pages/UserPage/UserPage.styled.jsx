@@ -19,13 +19,14 @@ export const UserPageWrapper = styled.div`
     }  
 `
 export const UserDataContainer = styled.div`
-    background-color: ${p => p.theme.colors.white};
+position: relative;
+    /* background-color: ${p => p.theme.colors.white};
     border-radius: ${p => p.theme.radii.normal};
     box-shadow: ${p => p.theme.shadows.userDataShadow};
     margin-bottom: ${p => p.theme.space[10]}px;
-    /* margin-top: 18px;
-    padding-top: ${ p => p.theme.space[6]}px; */
-    padding-bottom: ${ p => p.theme.space[6]}px;
+    margin-top: 18px; */
+    /* padding-top: ${ p => p.theme.space[6]}px; */
+
 
     @media screen and (min-width: 768px) {
         position: relative;

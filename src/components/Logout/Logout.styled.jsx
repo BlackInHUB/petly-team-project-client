@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const LogoutBtn = styled.button`
+    position: absolute;
+    top: 540px;
+    right: 20px;
     display: flex;
     align-items: center;
     background: ${p => p.theme.colors.white};
