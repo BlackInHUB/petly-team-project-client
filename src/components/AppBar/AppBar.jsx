@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { authSelectors } from 'redux/auth';
+import { useAuth } from 'hooks/useAuth';
 import { AuthNav } from "./AuthNav";
 import { UserNav } from "./UserNav";
 import { AppBarWrapper, CommonLink } from "./AppBarStyled";
@@ -8,7 +7,7 @@ import Logo from '../../images/petly_logo.svg';
 
 export const AppBar = () => {
 
-    const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+    const {isLoggedIn} = useAuth();
 
     return (
         <AppBarWrapper>

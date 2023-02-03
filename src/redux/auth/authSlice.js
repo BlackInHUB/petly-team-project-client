@@ -10,8 +10,9 @@ const initialState = {
     birthday: null,
     phone: null,
     avatarUrl: null,
-    pets: []
   },
+  pets: [],
+  favorites: [],
   token: null,
   isLoading: false,
   isLoggedIn: false,
@@ -28,7 +29,7 @@ const authSlice = createSlice({
       state.isLoading = true;
       state.isError = null;
     })
-      .addCase(authOperations.register.fulfilled, (state, { payload }) => {
+      .addCase(authOperations.register.fulfilled, (state, {payload}) => {
         state.isLoading = false;
         state.user = payload.user;
         state.token = payload.token;
@@ -44,9 +45,10 @@ const authSlice = createSlice({
         state.isError = null;
       })
       .addCase(authOperations.login.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.isLoading = false;
         state.isLoggedIn = true;
+        state.user = payload.user;
+        state.pets = payload.pets;
         state.token = payload.token;
         state.isError = null;
       })
@@ -61,8 +63,8 @@ const authSlice = createSlice({
         state.isError = null;
       })
       .addCase(authOperations.refresh.fulfilled,(state, { payload }) => {
-        console.log(payload);
         state.user = payload.user;
+        state.pets = payload.pets;
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.isError = null;

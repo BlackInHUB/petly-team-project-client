@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/authOperations';
 import { Formik } from 'formik';
 import {
@@ -14,6 +14,7 @@ import {
   SpinnerStyled,
 } from './style';
 import * as yup from 'yup';
+import { useAuth } from 'hooks/useAuth';
 
 const initialValues = { email: '', password: '' };
 
@@ -31,8 +32,7 @@ const validationSchema = yup.object({
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const isError = useSelector(state => state.auth.isError);
-  const isLoading = useSelector(state => state.auth.isLoading);
+  const {isError, isLoading} = useAuth();
 
   const onSubmit = (values) => {
     dispatch(authOperations.login(values));

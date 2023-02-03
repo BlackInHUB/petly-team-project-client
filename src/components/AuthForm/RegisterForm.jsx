@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
 import authOperations from 'redux/auth/authOperations';
 import { Formik } from 'formik';
 
@@ -61,15 +62,13 @@ export default function RegisterForm() {
   const [isPhoneValid, setPhoneIsValid] = useState(null);
 
   useEffect(() => {
-    console.log(step);
   }, [step]);
 
   const dispatch = useDispatch();
 
-  const isError = useSelector(state => state.auth.isError);
+  const {isError} = useAuth();
 
   const onNext = (errors, touched) => {
-    console.log(errors, touched);
     if (!touched.email || !touched.password || !touched.confirmPassword) {
       setNextError('Fill all data');
     }
@@ -99,13 +98,13 @@ export default function RegisterForm() {
     const phone = `+${phoneNumber}`;
     const data = { name, email, city, phone, password };
 
-      if (phoneValidation()) {
-        setPhoneIsValid(null);
+    if (phoneValidation()) {
+      setPhoneIsValid(null);
 
-        dispatch(authOperations.register(data));
+      dispatch(authOperations.register(data));
 
-      } else setPhoneIsValid('incorrect phone number');
-      setSubmitting(false);
+    } else setPhoneIsValid('incorrect phone number');
+    setSubmitting(false);
   };
 
   return (
