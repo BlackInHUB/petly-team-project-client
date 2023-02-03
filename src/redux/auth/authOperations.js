@@ -93,6 +93,7 @@ const authOperations = {
   logout,
   fetchCurrentUser,
   eraseErrors,
+  update,
 };
 
 export default authOperations;

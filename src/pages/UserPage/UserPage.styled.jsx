@@ -4,21 +4,18 @@ export const UserPageWrapper = styled.div`
     border: ${p => p.theme.borders.normal};
     border-color: ${p => p.theme.colors.accent};
     max-width: 280px;
-    margin-top: ${p => p.theme.space[12]}px;
-    margin-bottom: ${p => p.theme.space[13]}px;
+    padding-bottom: ${p => p.theme.space[13]}px;
 
     @media screen and (min-width: 768px) {
         max-width: 736px;
-        margin-top: 88px;
-        margin-bottom: ${p => p.theme.space[14]}px;
+        padding-bottom: ${p => p.theme.space[14]}px;
     }
 
     @media screen and (min-width: 1280px) {
         display: flex;
         justify-content: space-between;
         max-width: 1280px;
-        margin-top: 69px;
-        margin-bottom: ${p => p.theme.space[10]}px;
+        padding-bottom: ${p => p.theme.space[10]}px;
     }  
 `
 export const UserDataContainer = styled.div`
@@ -26,8 +23,8 @@ export const UserDataContainer = styled.div`
     border-radius: ${p => p.theme.radii.normal};
     box-shadow: ${p => p.theme.shadows.userDataShadow};
     margin-bottom: ${p => p.theme.space[10]}px;
-    margin-top: 18px;
-    padding-top: ${ p => p.theme.space[6]}px;
+    /* margin-top: 18px;
+    padding-top: ${ p => p.theme.space[6]}px; */
     padding-bottom: ${ p => p.theme.space[6]}px;
 
     @media screen and (min-width: 768px) {
