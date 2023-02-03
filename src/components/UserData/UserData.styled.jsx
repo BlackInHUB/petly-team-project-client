@@ -11,17 +11,11 @@ export const UserDataContainer = styled.div`
     }
 `
 
-export const UserDataCommonContainer = styled.div`
-position: relative;
-    border: 1px solid red;
-    background-color: ${p => p.theme.colors.white};
-    border-radius: ${p => p.theme.radii.normal};
-    box-shadow: ${p => p.theme.shadows.userDataShadow};
-    padding-bottom: 84px;
-`
-
 export const UserDataImgWrapper = styled.div`
     margin-bottom: ${p => p.theme.space[9]}px;
+    border-top-left-radius: ${p => p.theme.radii.normal};
+    border-top-right-radius: ${p => p.theme.radii.normal};
+    /* box-shadow: ${p => p.theme.shadows.userDataShadow}; */
 
     @media screen and (min-width: 768px) {
         margin-bottom: ${p => p.theme.space[0]}px;
@@ -78,9 +72,6 @@ export const UserDataList = styled.ul`
         width: 379px;
     }
 `
-
-
-
 
 export const UserDataFormItemWrapper = styled.div`
     display: flex;
