@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { device } from 'Device';
 import { CircleBtn } from 'components/common/CircleBtn.styled';
-import { HiOutlinePlus } from 'react-icons/hi';
+import { ReactComponent as IconPlus } from 'images/icons/plus.svg';
 
 export const WrapperAddPet = styled.div`
   display: flex;
@@ -27,7 +26,7 @@ export const AddPetBtn = styled(CircleBtn)`
     background-color: ${props => props.theme.colors.hoverAccent} ;
     transform: scale(1.2);
   }
-  @media ${device.tablet} {
+  @media screen and (max-width: 1279px) and (min-width: 720px) {
     width: 40px;
     height: 40px;
   }
@@ -43,7 +42,7 @@ export const StyledPlus = styled(IconPlus)`
     cursor: pointer;
     transform: scale(1.2);
   }
-  @media ${device.tablet} {
+  @media screen and (max-width: 1279px) and (min-width: 720px) {
     width: 24px;
     height: 24px;
   }

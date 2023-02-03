@@ -1,9 +1,3 @@
-// import { useEffect } from 'react';
-// import { useLocation, useSearchParams } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-// import operations from '../../redux/notices/noticesOperations';
-// import { selectToken } from 'redux/auth/authSelectors';
-
 import {
   Item,
   ImageWrapper,
@@ -21,21 +15,8 @@ import {
 const NoticesCategoryItem = ({ notice }) => {
   const {
     avatarURL,
-    // birthday,
-    // breed,
-    // comments,
-    // location,
-    // owner,
-    // name,
-    // price,
-    // sex,
     title,
-    // _id,
   } = notice
-
-  console.log(avatarURL)
-  // const dispatch = useDispatch();
-  // const token = useSelector(selectToken);
 
 
   return (

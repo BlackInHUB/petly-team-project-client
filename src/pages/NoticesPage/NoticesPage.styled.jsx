@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const GlobalBox = styled.div`
+export const BigBox = styled.div`
 `;
 
 export const Wrapper = styled.div`

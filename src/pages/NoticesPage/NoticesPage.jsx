@@ -1,28 +1,24 @@
 import { Outlet } from 'react-router-dom';
-import FilterNoticesButton from '../../components/FilterNoticesButton/FilterNoticesButton';
-import NoticesCategoryList from '../../components/NoticesCategoriesList/NoticesCategoriesList';
-import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
-import { Box, GlobalBox, Title, Wrapper } from './NoticesPage.styled';
-// import { useDispatch } from 'react-redux';
+// import FilterNoticesButton from 'components/NotisesTools/FilterNoticesButton/FilterNoticesButton';
+// import NoticesCategoryList from 'components/NotisesTools/NoticesCategoriesList/NoticesCategoriesList';
+import { SearchBar } from 'components/NotisesTools/NoticesSearchBar/SearchBar';
+import { Box, BigBox, Title, Wrapper } from './NoticesPage.styled';
 
 const NoticesPage = () => {
 
-  // const dispatch = useDispatch();
-
   return (
-    <GlobalBox>
+    <BigBox>
       <Wrapper>
         <Box>
           <Title>Find your favorite pet</Title>
           <SearchBar
-          // submitForm={search} 
           />
-          <FilterNoticesButton /> 
+          {/* <FilterNoticesButton />  */}
         </Box>
-        <NoticesCategoryList />
+        {/* <NoticesCategoryList /> */}
       </Wrapper>
       <Outlet />
-    </GlobalBox>
+    </BigBox>
   );
 };
 

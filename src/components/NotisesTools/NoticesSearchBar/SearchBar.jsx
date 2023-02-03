@@ -11,7 +11,6 @@ import {
 
 import PropTypes from 'prop-types';
 
-
 export const SearchBar = ({ submitForm }) => {
   const [input, setInput] = useState('');
 

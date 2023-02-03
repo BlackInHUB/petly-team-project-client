@@ -35,7 +35,6 @@ export const SearchFormButton = styled.button`
   :hover {
     opacity: 1;
   }
-  
 `;
 
 export const SearchFormButtonLabel = styled.span`
@@ -48,17 +47,14 @@ export const SearchFormButtonLabel = styled.span`
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   clip-path: inset(50%);
-  
 `;
 
 export const SearchFormInput = styled.input`
   display: inline-block;
   width: 100%;
   font: inherit;
- 
   border: none;
   outline: none;
- 
   ::placeholder {
     font: inherit;
     
