@@ -4,8 +4,7 @@ export const List = styled.div`
     margin-left: auto;
     margin-right: auto;
 @media screen and (min-width: 320px) {
-    padding-top: 20px; 
-    padding-bottom: 20px; 
+    padding-top: 40px; 
     display: grid;
     grid-template-columns: repeat(auto-fit, 1fr);
     gap: 40px 0px;
@@ -13,7 +12,7 @@ export const List = styled.div`
 }
 
 @media screen and (min-width: 768px) {
-    padding-top: 59px;
+    padding-top: 60px;
     display: grid;
     max-width: 1279px;
     grid-template-columns: 1fr 1fr;
@@ -23,7 +22,7 @@ export const List = styled.div`
 }
 
 @media screen and (min-width: 1280px) {
-    padding-top: 69px; 
+    padding-top: 60px; 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
