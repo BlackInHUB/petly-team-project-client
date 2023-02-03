@@ -39,3 +39,9 @@ export const refresh = async (token) => {
         throw error;
     }
 };
+
+export const update = async (updateData) => {
+    const {data} = await instance.patch('/auth/update', updateData);
+    return data;
+};
+
