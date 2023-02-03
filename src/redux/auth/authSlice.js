@@ -22,11 +22,20 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
+      .addCase(authOperations.eraseErrors.fulfilled, (state, _) => {
+        state.isError = null;
+      })
       .addCase(authOperations.register.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.isLoggedIn = true;
         state.token = payload.token;
         state.isError = null;
+      })
+      .addCase(authOperations.register.rejected, (state, { payload }) => {
+        state.user = initialState.user;
+        state.isLoggedIn = false;
+        state.token = null;
+        state.isError = payload;
       })
       .addCase(authOperations.login.fulfilled, (state, { payload }) => {
         state.user = payload.user;

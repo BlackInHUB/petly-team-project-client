@@ -1,15 +1,18 @@
 const getIsLoggedIn = ({ auth }) => auth.isLoggedIn;
 
+const getIsError = ({ auth }) => auth.isError;
+
 const getUserEmail = ({ auth }) => auth.user?.email;
 
 const getIsRefreshing = ({ auth }) => auth.isRefreshing;
 
-export const getUser = state => state.auth.user;
+const getUser = ({ auth }) => auth.user;
 
 const authSelectors = {
   getIsLoggedIn,
   getUserEmail,
   getIsRefreshing,
+  getIsError,
   getUser,
 };
 
