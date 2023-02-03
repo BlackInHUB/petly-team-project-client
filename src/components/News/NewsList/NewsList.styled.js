@@ -115,16 +115,14 @@ export const Decor = styled.div`
     background: ${p => p.theme.colors.gradient};
     border-radius: 3px;
     margin-bottom: 4px;
+    width: 75%;
     @media screen and (min-width: 320px) {
-        width: 200px;
         height: 4px;
     }
     @media screen and (min-width: 768px) {
-        width: 280px;
         height: 8px;
     }
     @media screen and (min-width: 1280px) {
-        width: 340px;
         height: 8px;
     }
 `
