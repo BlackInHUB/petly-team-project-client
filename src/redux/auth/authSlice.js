@@ -58,6 +58,19 @@ const authSlice = createSlice({
         state.token = null;
         state.isError = payload;
       })
+      .addCase(authOperations.update.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(authOperations.update.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user[Object.keys(payload.user)[0]] = Object.values(payload.user)[0];
+        state.isError = null;
+      })
+      .addCase(authOperations.update.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = payload;
+      })
       .addCase(authOperations.refresh.pending, state => {
         state.isRefreshing = true;
         state.isError = null;

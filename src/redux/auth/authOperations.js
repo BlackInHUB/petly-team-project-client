@@ -32,6 +32,15 @@ const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   }
 });
 
+const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
+  try {
+    const result = await api.update(updateData);
+    return result;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.message);
+  }
+});
+
 const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await api.logout();
@@ -60,18 +69,6 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     }
   }
 );
-
-const update = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
-  try {
-    console.log('credentialsUp', credentials);
-    const { data } = await axios.patch('/api/auth/update', credentials);
-    console.log('dataUp', data);
-    // token.set(data.token);
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
 
 const authOperations = {
   register,
