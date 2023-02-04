@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/202.7ebc23b7.chunk.js","mappings":"iMAAe,SAASA,IACtB,OACI,4CAIL,C","sources":["pages/NoticesPage/NoticesPage.jsx"],"sourcesContent":["export default function NoticesPage() {\n  return (\n      <h1>\n        NoticesPage page\n      </h1>\n  );\n}"],"names":["NoticesPage"],"sourceRoot":""}
