@@ -22,10 +22,10 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('refresh')
-    dispatch(authOperations.refresh())
-  }, [dispatch])
-  
+    console.log('refresh');
+    dispatch(authOperations.refresh());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

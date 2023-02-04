@@ -1,42 +1,35 @@
-import { Form, Field } from 'formik';
+import { Form } from 'formik';
 import { NavLink } from 'react-router-dom';
-import { FaSpinner } from 'react-icons/fa';
+import PhoneInput from 'react-phone-input-2';
+import './material.css';
 
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-const spinerAnimation = keyframes`
-from {
-  transform: rotate(0deg);
-}
-to {
-  transform: rotate(360deg);
-}
-`;
-export const SpinnerStyled = styled(FaSpinner)`
-  animation: ${spinerAnimation} infinite 2s ease;
-`;
-
-export const PageWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flexDirection: column;
-  justify-content: center;
-  align-items: start;
-  @media (min-width: 768px) {
-    align-items: center;
+export const PhoneInputStyled = styled(PhoneInput)`
+  width: 100%;
+  #phone:hover,
+  #phone:focus {
+    border-color: ${p => p.theme.colors.hoveredAccent};
+    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
   }
-}}`;
+  #phone {
+    background-color: ${p => p.theme.colors.background};     
+    }
+  }
+  .special-label {
+    position: absolute;
+      z-index: 1;
+      top: -7px;
+      left: 25px;
+      display: block;
+      color: ${p => p.theme.colors.text};
 
-export const NavLinkStyled = styled(NavLink)`
-  color: ${p => p.theme.colors.link};
-  font-size: ${p => p.theme.fontSizes[0]};
-  line-height: ${p =>
-    Math.floor(p.theme.fontHeight.s * p.theme.fontSizes[0].slice(0, -2)) +
-    'px'};
-  letter-spacing: 4%;
-  font-weight: ${p => p.theme.fontWeights.thin};
-  display: inline-block;
+      background: ${p => p.theme.colors.white};
+      padding: 0 5px;
+      font-size: 14px;
+
+      white-space: nowrap;
+  }
 `;
 
 export const Header = styled.p`
@@ -46,55 +39,6 @@ export const Header = styled.p`
     Math.floor(p.theme.fontHeight.l * p.theme.fontSizes[5].slice(0, -2)) +
     'px'};
   font-weight: ${p => p.theme.fontWeights.bold};
-`;
-
-export const FieldStyled = styled(Field)`
-  width: 100%;
-  height: 40px;
-  color: ${p => p.theme.colors.text};
-  font-size: ${p => p.theme.fontSizes[3]};
-  line-height: ${p =>
-    Math.floor(p.theme.fontHeight.l * p.theme.fontSizes[3].slice(0, -2)) +
-    'px'};
-  font-weight: ${p => p.theme.fontWeights.thin};
-
-  background-color: ${p => p.theme.colors.background};
-  border: ${p => p.theme.borders.small};
-  border-radius: ${p => p.theme.radii.big};
-  border-color: ${p => p.theme.colors.accent};
-  padding-left: ${p => p.theme.space[5] + 'px'};
-
-  transition: box-shadow ease 0.25s, border-color ease 0.25s;
-
-  &:focus + label,
-  &:hover + label,
-  &:valid + label {
-    top: -9px;
-    left: 25px;
-    color: ${p => p.theme.colors.text};
-    padding: 0 ${p => p.theme.space[2] + 'px'};
-    background-color: ${p => p.theme.colors.white};
-    line-height: ${p => p.theme.fontSizes[3]};
-    font-size: ${p => p.theme.fontSizes[1]};
-  }
-  &:hover,
-  &:focus {
-    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
-
-    outline: none;
-    border-color: ${p => p.theme.colors.hoveredAccent};
-  }
-
-  @media (min-width: 768px) {
-    height: 52px;
-
-    &:focus + label,
-    &:hover + label,
-    &:valid + label {
-      top: -9px;
-      left: 25px;
-    }
-  }
 `;
 
 export const FormStyled = styled(Form)`
@@ -128,69 +72,8 @@ export const FormStyled = styled(Form)`
   }
 `;
 
-export const ButtonStyled = styled.button`
-  width: 100%;
-  height: 44px;
-
-  color: ${p => p.theme.colors.white};
-  font-size: ${p => p.theme.fontSizes[4]};
-  line-height: ${p =>
-    Math.floor(p.theme.fontHeight.l * p.theme.fontSizes[4].slice(0, -2)) +
-    'px'};
-  font-weight: ${p => p.theme.fontWeights.normal};
-
-  background-color: ${p => p.theme.colors.accent};
-  border: ${p => p.theme.borders.none};
-  border-radius: ${p => p.theme.radii.big};
-
-  transition: box-shadow ease 0.25s, border-color ease 0.25s,
-    background-color ease 0.25s;
-
-  &:focus,
-  &:hover {
-    outline: none;
-    cursor: pointer;
-    background-color: ${p => p.theme.colors.hoveredAccent};
-    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
-  }
-
-  @media (min-width: 1280px) {
-    height: 48px;
-  }
-`;
-
-export const ButtonType2Styled = styled.button`
-  width: 100%;
-  height: 44px;
-
-  color: ${p => p.theme.colors.text};
-  font-size: ${p => p.theme.fontSizes[4]};
-  line-height: ${p =>
-    Math.floor(p.theme.fontHeight.l * p.theme.fontSizes[4].slice(0, -2)) +
-    'px'};
-  font-weight: ${p => p.theme.fontWeights.normal};
-
-  background-color: ${p => p.theme.colors.white};
-  border: ${p => p.theme.borders.normal + ' ' + p.theme.colors.accent};
-  border-radius: ${p => p.theme.radii.big};
-
-  transition: box-shadow ease 0.25s, border-color ease 0.25s,
-    background-color ease 0.25s;
-
-  &:focus,
-  &:hover {
-    outline: none;
-    cursor: pointer;
-    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
-  }
-
-  @media (min-width: 1280px) {
-    height: 48px;
-  }
-`;
-
 export const Error = styled.p`
-  padding: ${p => p.theme.space[1] + 'px'} 0px 0px
+  padding: ${p => p.theme.space[1] + 'px'} ${p => p.theme.space[5] + 'px'} 0px
     ${p => p.theme.space[5] + 'px'};
   color: ${p => p.theme.colors.hoveredAccent};
   font-size: ${p => p.theme.fontSizes[3]};
@@ -200,39 +83,19 @@ export const Error = styled.p`
   font-weight: ${p => p.theme.fontWeights.normal};
 `;
 
-export const FieldsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-
-  gap: ${p => p.theme.space[5] + 'px'};
-`;
-
-export const FieldWrapper = styled.div`
-  position: relative;
-`;
-
-export const Label = styled.label`
-  position: absolute;
-  top: 10px;
-  left: ${p => p.theme.space[5] + 'px'};
-
-  color: ${p => p.theme.colors.gray};
-  font-size: ${p => p.theme.fontSizes[3]};
-  line-height: ${p =>
-    Math.floor(p.theme.fontHeight.l * p.theme.fontSizes[3].slice(0, -2)) +
-    'px'};
-  font-weight: ${p => p.theme.fontWeights.thin};
-
-  transition: 0.2s linear;
-
-  @media (min-width: 768px) {
-    top: 13px;
-  }
-`;
-
 export const BottomText = styled.p`
   color: ${p => p.theme.colors.gray};
+  font-size: ${p => p.theme.fontSizes[0]};
+  line-height: ${p =>
+    Math.floor(p.theme.fontHeight.s * p.theme.fontSizes[0].slice(0, -2)) +
+    'px'};
+  letter-spacing: 4%;
+  font-weight: ${p => p.theme.fontWeights.thin};
+  display: inline-block;
+`;
+
+export const NavLinkStyled = styled(NavLink)`
+  color: ${p => p.theme.colors.link};
   font-size: ${p => p.theme.fontSizes[0]};
   line-height: ${p =>
     Math.floor(p.theme.fontHeight.s * p.theme.fontSizes[0].slice(0, -2)) +

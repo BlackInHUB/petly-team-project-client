@@ -17,7 +17,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <PageWrapper>
+      <PageWrapper onClick={e => e.stopPropagation()}>
         <LoginForm />
       </PageWrapper>
       {isMobile.matches && <BackgroundMobileIconStyled />}

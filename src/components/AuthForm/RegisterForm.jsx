@@ -4,24 +4,22 @@ import { useAuth } from 'hooks/useAuth';
 import authOperations from 'redux/auth/authOperations';
 import { Formik } from 'formik';
 
+import Button from '../baseComponents/Button/Button';
+import ButtonSpinner from '../baseComponents/ButtonSpinner/ButtonSpinner';
+import Input from 'components/baseComponents/Input/Input';
 import FieldsWrapper from '../baseComponents/FieldsWrapper/FieldsWrapper';
+
+import { MobPhoneInput } from '../baseComponents/PhoneInput/style';
+
 import {
   FormStyled,
-  FieldStyled,
-  ButtonStyled,
   Header,
   Error,
   NavLinkStyled,
   BottomText,
-  ButtonType2Styled,
-  SpinnerStyled,
-  FieldWrapper,
-  Label,
+  //PhoneInputStyled,
 } from './style';
 import * as yup from 'yup';
-
-import PhoneInput from 'react-phone-input-2';
-import './material.css';
 
 const initialValues = {
   email: '',
@@ -32,16 +30,23 @@ const initialValues = {
   phone: '',
 };
 
-const phoneRegExp = /^(\+\d{1,3}[- ]?)?\d{10}$/;
+const phoneRegExp = /^\+\d{7,15}$/;
 
 const validationSchema = yup.object({
-  email: yup.string().email('Invalid email format').required('Required'),
+  email: yup
+    .string()
+    .matches(
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+      'Invalid email format'
+    )
+    .required('Required'),
   password: yup
     .string()
-    .min(8, 'Password is too short - should be 8 chars minimum.')
+    .min(7, 'Password is too short - should be 7 chars minimum.')
+    .max(32, 'Password is too long - should be 32 chars maximum.')
     .matches(
       /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/,
-      'Password can only contain Latin letters.'
+      'Password can only contain Latin letters, and without spaces.'
     )
     .required('No password provided'),
   confirmPassword: yup.string().when('password', {
@@ -51,7 +56,13 @@ const validationSchema = yup.object({
       .oneOf([yup.ref('password')], 'Both password need to be the same'),
   }),
   name: yup.string().required('Required'),
-  city: yup.string().required('Required'),
+  city: yup
+    .string()
+    .matches(
+      /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/,
+      'put City, Region or only City'
+    )
+    .required('Required'),
 });
 
 export default function RegisterForm() {
@@ -61,50 +72,61 @@ export default function RegisterForm() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isPhoneValid, setPhoneIsValid] = useState(null);
 
-  useEffect(() => {
-  }, [step]);
+  useEffect(() => {}, [step]);
 
   const dispatch = useDispatch();
 
-  const {isError} = useAuth();
+  const { isError } = useAuth();
 
-  const onNext = (errors, touched) => {
-    if (!touched.email || !touched.password || !touched.confirmPassword) {
-      setNextError('Fill all data');
+  const onNext = (errors, values) => {
+    console.log(values);
+    if (!values.email || !values.password || !values.confirmPassword) {
+      setNextError('Please, enter all data');
     }
     if (
       !errors.email &&
       !errors.password &&
       !errors.confirmPassword &&
-      touched.email &&
-      touched.password &&
-      touched.confirmPassword
+      values.email &&
+      values.password &&
+      values.confirmPassword
     ) {
       setStep(prevState => prevState + 1);
       setNextError(null);
+      dispatch(authOperations.eraseErrors());
     }
   };
 
   const onPrevious = () => {
     setStep(prevState => prevState - 1);
+
+    dispatch(authOperations.eraseErrors());
   };
 
   const phoneValidation = () => {
     return phoneRegExp.test(`+${phoneNumber}`);
   };
 
-  const onSubmit = (values, { setSubmitting }) => {
+  const onBlurPhone = () => {
+    phoneValidation()
+      ? setPhoneIsValid(null)
+      : setPhoneIsValid('incorrect phone number');
+  };
+
+  const onSubmit = async (values, { setSubmitting }) => {
     const { name, email, city, password } = values;
     const phone = `+${phoneNumber}`;
     const data = { name, email, city, phone, password };
 
-    if (phoneValidation()) {
-      setPhoneIsValid(null);
-
-      dispatch(authOperations.register(data));
-
-    } else setPhoneIsValid('incorrect phone number');
-    setSubmitting(false);
+    try {
+      if (phoneValidation()) {
+        setPhoneIsValid(null);
+        await dispatch(authOperations.register(data));
+      } else setPhoneIsValid('incorrect phone number');
+    } catch (e) {
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -114,75 +136,52 @@ export default function RegisterForm() {
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        {({ isSubmitting, errors, touched }) => (
+        {({ isSubmitting, errors, touched, values }) => (
           <FormStyled>
             <Header>Registration</Header>
 
             <FieldsWrapper visible={step === 1 ? true : false}>
-              <FieldWrapper>
-                <FieldStyled id="email" name="email" required />
-                <Label htmlFor="email">Email</Label>
+              <Input name="email" text="Email">
                 <Error>{touched.email ? errors.email : null}</Error>
-              </FieldWrapper>
-
-              <FieldWrapper>
-                <FieldStyled
-                  id="password"
-                  type="password"
-                  name="password"
-                  autoComplete="new-password"
-                  required
-                />
-                <Label htmlFor="password">Password</Label>
+              </Input>
+              <div>
+                <Input name="password" password={true} text="Password" />
                 <Error>{touched.password ? errors.password : null}</Error>
-              </FieldWrapper>
-              <FieldWrapper>
-                <FieldStyled
-                  id="confirmPassword"
-                  type="password"
+              </div>
+              <div>
+                <Input
                   name="confirmPassword"
-                  autoComplete="new-password"
-                  required
+                  password={true}
+                  text="Confirm Password"
                 />
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
                 <Error>
                   {touched.confirmPassword ? errors.confirmPassword : null}
                 </Error>
-              </FieldWrapper>
+              </div>
             </FieldsWrapper>
 
             <FieldsWrapper visible={step === 2 ? true : false}>
-              <FieldWrapper>
-                <FieldStyled
-                  id="name"
-                  name="name"
-                  autoComplete="off"
-                  required
-                />
-                <Label htmlFor="name">Name</Label>
+              <Input name="name" text="Name">
                 <Error>{touched.name ? errors.name : null}</Error>
-              </FieldWrapper>
-              <FieldWrapper>
-                <FieldStyled
-                  id="city"
-                  name="city"
-                  autoComplete="off"
-                  required
-                />
-                <Label htmlFor="city">City, region</Label>
+              </Input>
+              <Input name="city" text="City, region">
                 <Error>{touched.city ? errors.city : null}</Error>
-              </FieldWrapper>
+              </Input>
               <div>
-                <PhoneInput
+                <MobPhoneInput
                   inputProps={{
                     id: 'phone',
                   }}
+                  onBlur={() => onBlurPhone()}
+                  countryCodeEditable={false}
                   name="phone"
                   autoComplete="off"
                   country={'ua'}
                   placeholder="Mobile phone"
                   value={phoneNumber}
-                  onChange={value => setPhoneNumber(value)}
+                  onChange={value => {
+                    setPhoneNumber(value);
+                  }}
                 />
 
                 {isPhoneValid ? <Error>{isPhoneValid}</Error> : null}
@@ -190,34 +189,25 @@ export default function RegisterForm() {
             </FieldsWrapper>
 
             <FieldsWrapper visible={step === 1 ? true : false}>
-              <ButtonStyled
-                type="button"
-                onClick={() => onNext(errors, touched)}
-              >
-                Next
-              </ButtonStyled>
+              <Button onClick={() => onNext(errors, values)}>Next</Button>
               <Error>{nextError}</Error>
             </FieldsWrapper>
 
             <FieldsWrapper visible={step === 2 ? true : false}>
               <div>
-                <ButtonStyled type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    <SpinnerStyled icon="fa-solid fa-spinner" size="1.5rem" />
-                  ) : (
-                    <span>Register</span>
-                  )}
-                </ButtonStyled>
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? <ButtonSpinner /> : <span>Register</span>}
+                </Button>
                 <Error>{isError}</Error>
               </div>
               <div>
-                <ButtonType2Styled
-                  type="button"
+                <Button
+                  buttonStyle="secondary"
                   disabled={isSubmitting}
                   onClick={onPrevious}
                 >
                   Back
-                </ButtonType2Styled>
+                </Button>
               </div>
             </FieldsWrapper>
 
@@ -226,6 +216,9 @@ export default function RegisterForm() {
               <NavLinkStyled
                 to={'/login'}
                 key={'home'}
+                onClick={() => {
+                  dispatch(authOperations.eraseErrors());
+                }}
                 end
               >
                 Login
