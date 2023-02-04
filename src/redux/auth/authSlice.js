@@ -25,11 +25,11 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-    .addCase(authOperations.register.pending, (state) => {
-      state.isLoading = true;
-      state.isError = null;
-    })
-      .addCase(authOperations.register.fulfilled, (state, {payload}) => {
+      .addCase(authOperations.register.pending, state => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(authOperations.register.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.user = payload.user;
         state.token = payload.token;
@@ -40,7 +40,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = payload;
       })
-      .addCase(authOperations.login.pending, (state) => {
+      .addCase(authOperations.login.pending, state => {
         state.isLoading = true;
         state.isError = null;
       })
@@ -62,16 +62,16 @@ const authSlice = createSlice({
         state.isRefreshing = true;
         state.isError = null;
       })
-      .addCase(authOperations.refresh.fulfilled,(state, { payload }) => {
+      .addCase(authOperations.refresh.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.pets = payload.pets;
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.isError = null;
       })
-      .addCase(authOperations.refresh.rejected, (state, {payload}) => {
+      .addCase(authOperations.refresh.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.isError = payload;
+        //state.isError = payload;
       })
       .addCase(authOperations.logout.fulfilled, (state, _) => {
         state.user = initialState.user;
@@ -80,6 +80,9 @@ const authSlice = createSlice({
         state.token = initialState.token;
         state.isError = null;
       })
+      .addCase(authOperations.eraseErrors.fulfilled, (state, _) => {
+        state.isError = null;
+      });
   },
 });
 
