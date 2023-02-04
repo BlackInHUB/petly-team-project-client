@@ -13,4 +13,3 @@ const user = useSelector(authSelectors.getUser);
         </div>
     )
 }
-

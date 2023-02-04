@@ -25,6 +25,12 @@ const modalRoot = document.querySelector('#modal-root');
     }
   };
 
+  window.matchMedia('(min-width: 1280px)').addEventListener('change', e => {
+    if (!e.matches) return;
+    setShow();
+  });
+
+
     return createPortal(
       <ModalStyled onClick={handleBackdropClick}>
         {children}

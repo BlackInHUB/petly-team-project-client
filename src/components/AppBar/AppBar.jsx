@@ -42,7 +42,7 @@ export const AppBar = () => {
                     <UserModal className='user-modal'>
                         {isLoggedIn ? <UserNav onClick={handleClose}/> : <AuthNav className='auth-modal' onClick={handleClose} />}
                     </UserModal>
-                    <Nav onClick={handleClose}/>
+                    <Nav className='nav-modal' onClick={handleClose}/>
                 </ModalWrapper>
             </Modal>}
         </AppBarWrapper>
