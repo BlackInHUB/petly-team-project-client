@@ -15,6 +15,7 @@ const UserPage = () => {
             </UserDataContainer>
             <PetsData />
         </UserPageWrapper>
+        </>
     )
 }
 
