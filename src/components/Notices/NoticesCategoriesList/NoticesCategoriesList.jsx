@@ -24,7 +24,7 @@ const NoticesCategoriesList = () => {
       <ul>
          {notices.map(notice => <NoticeCategoryItem key={notice._id} notice={notice}/>)}
       </ul>
-   )
+   )  
 };
 
 export default NoticesCategoriesList;
