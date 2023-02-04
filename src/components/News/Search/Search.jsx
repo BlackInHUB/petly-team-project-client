@@ -17,7 +17,7 @@ export default function Search({onChange, value}) {
                 />
                 
                 {value === "" ? (
-                    <Button type="submit">
+                    <Button type="submit" disabled>
                         <img src={searchPic} alt="search"/>   
                     </Button>
                 ) : (
