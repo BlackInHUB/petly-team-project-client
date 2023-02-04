@@ -183,6 +183,8 @@ import { useAuth } from 'hooks/useAuth'
 export const UserData = () => {
     const dispatch = useDispatch();   
     const {user} = useAuth();
+
+    console.log(user);
    
     const changeAvatar = e => {
         const data = new FormData()
