@@ -5,12 +5,10 @@ export const SharedLayoutStyled = styled.div`
   flex-direction: column; 
   background: ${p => p.theme.colors.background};
   width: 100vw;
-  height: auto;
-  /* height: 100vh; */
-  /* overflow: hidden; */
+  height: 100vh;
+  overflow: hidden;
   margin-left: auto;
   margin-right: auto;
-  align-items: center;
 
   @media (min-width: 320px) {
     padding-left: 20px;
