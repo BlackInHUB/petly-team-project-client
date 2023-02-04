@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const HomePageWrapper = styled.div`
-  // padding: 20px;
   display: flex;
   height: auto;
   width: 100vw;
@@ -12,17 +11,27 @@ export const HomePageWrapper = styled.div`
 export const BackgroundWrapper = styled.div`
   & img.main {
     position: absolute;
-    width: 590px;
-    height: 640px;
+    // width: 590px;
+    // height: 640px;
+    width: auto;
+    height: 75%;
     right: 0;
     bottom: 0px;
     z-index: 10;
   }
 
+  & img.union {
+    position: absolute;
+    width: auto;
+    right: 375px;
+    bottom: 412px;
+    z-index: 9;
+  }
+
   & img.bg {
     position: absolute;
-    width: 1178px;
-    height: 418px;
+    width: auto;
+    height: 50%;
     right: 20px;
     bottom: 0px;
     z-index: 8;
@@ -30,26 +39,16 @@ export const BackgroundWrapper = styled.div`
 
   & img.bgRight {
     position: absolute;
-    width: 511px;
-    height: 393px;
+    width: auto;
+    height: 50%;
     right: 0;
     bottom: 0px;
     z-index: 9;
   }
 
-  & img.union {
-    position: absolute;
-    width: 92px;
-    height: 89px;
-    right: 500px;
-    bottom: 550px;
-    z-index: 9;
-  }
-
   & img.mainTablet {
     position: absolute;
-    width: 645px;
-    height: auto;
+    height: 50%;
     right: 0;
     bottom: 0px;
     z-index: 10;
@@ -57,8 +56,8 @@ export const BackgroundWrapper = styled.div`
 
   & img.bgTablet {
     position: absolute;
-    width: 1449px;
-    height: 80vh;
+    width: 100vw;
+    height: 50%;
     right: 0;
     bottom: 0px;
     z-index: 9;
@@ -67,7 +66,6 @@ export const BackgroundWrapper = styled.div`
   & img.mainMobile {
     position: absolute;
     width: auto;
-    // height: 30em;
     right: 0;
     bottom: 0px;
     z-index: 10;
@@ -76,7 +74,7 @@ export const BackgroundWrapper = styled.div`
   & img.bgMobile {
     position: absolute;
     width: 100vw;
-    // height: 30em;
+    height: 50%;
     right: 0;
     bottom: 0;
     z-index: 9;
