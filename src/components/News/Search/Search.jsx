@@ -3,8 +3,10 @@ import searchPic from "../../../images/icons/search.png";
 import xCirlce from "../../../images/icons/x-circle.png";
 
 export default function Search({onChange, value}) {
-    const refreshPage = () => {
-        window.location.reload(false);
+    const refreshPage = (e) => {
+        e.stopPropagation()
+        e.preventDefault();
+        e.currentTarget.value = "";
     } 
 
     return (
@@ -21,7 +23,7 @@ export default function Search({onChange, value}) {
                         <img src={searchPic} alt="search"/>   
                     </Button>
                 ) : (
-                    <Button type="submit" onClick={refreshPage}>
+                    <Button type="submit" onClick={() => refreshPage}>
                         <img src={xCirlce} alt="search"/>   
                     </Button>
                 )
