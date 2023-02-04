@@ -19,6 +19,14 @@ export const PetsItemWrapper= styled.li`
         padding-top: ${p => p.theme.space[6]}px;
         padding-bottom: ${p => p.theme.space[6]}px;
     }
+
+    @media screen and (min-width: 1280px) {
+        padding-right: ${p => p.theme.space[8]}px;
+
+        &:not(:last-child){
+            margin-bottom: 22px;
+    }
+    }
 `
 export const PetsItemImg = styled.img`
     width:240px;
@@ -44,7 +52,11 @@ export const PetsItemInfoBlock = styled.div`
 
     @media screen and (min-width: 768px) {
         width:471px;
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 580px;
     }
 `
 
@@ -63,7 +75,6 @@ export const PetsItemDeleteBtn = styled.button`
     cursor: pointer;
 
     @media screen and (min-width: 768px) {
-        /* right: ${p => p.theme.space[6]}px; */
         top: ${p => p.theme.space[0]}px;
         width: 44px;
         height: 44px;
@@ -97,6 +108,14 @@ export const PetsItemDesc = styled.p`
         line-height: ${p => p.theme.fontHeight.l};
     }
 
+    @media screen and (min-width: 1280px) {
+        font-size: ${p => p.theme.fontSizes[3]};
+        
+        &:not(:last-child){
+        margin-bottom: ${p => p.theme.space[5]}px;
+    }
+    }
+
     
 `
 
@@ -104,9 +123,4 @@ export const PetsItemSpan = styled.span`
     /* font-family: ${p => p.theme.fonts.body}; */
     color: ${p => p.theme.colors.black};
     font-weight: ${p => p.theme.fontWeights.normal};
-
-    /* @media screen and (min-width: 768px) {
-        font-size: ${p => p.theme.fontSizes[1]};
-    } */
- 
 `
