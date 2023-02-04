@@ -8,7 +8,7 @@ import { UserDataContainer, UserPageWrapper } from "./UserPage.styled"
 const UserPage = () => {
     return (
         <UserPageWrapper>
-            {/* <UserDataTitle title='My information:'/> */}
+            <UserDataTitle title='My information:'/>
             <UserDataContainer>
                 <UserData />
                 <Logout />
