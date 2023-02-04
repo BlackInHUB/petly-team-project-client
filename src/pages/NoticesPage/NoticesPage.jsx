@@ -1,7 +1,25 @@
-export default function NoticesPage() {
+import { Outlet } from 'react-router-dom';
+// import FilterNoticesButton from 'components/NotisesTools/FilterNoticesButton/FilterNoticesButton';
+// import NoticesCategoryList from 'components/NotisesTools/NoticesCategoriesList/NoticesCategoriesList';
+import { SearchBar } from 'components/NotisesTools/NoticesSearchBar/SearchBar';
+import { Box, BigBox, Title, Wrapper } from './NoticesPage.styled';
+
+const NoticesPage = () => {
+
   return (
-      <h1>
-        NoticesPage page
-      </h1>
+    <BigBox>
+      <Wrapper>
+        <Box>
+          <Title>Find your favorite pet</Title>
+          <SearchBar
+          />
+          {/* <FilterNoticesButton />  */}
+        </Box>
+        {/* <NoticesCategoryList /> */}
+      </Wrapper>
+      <Outlet />
+    </BigBox>
   );
-}
+};
+
+export default NoticesPage;
