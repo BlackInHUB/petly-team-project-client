@@ -12,13 +12,6 @@ export default function OurFriendsPage() {
             .then(setOurFriends)
     }, []);
 
-    if (!ourFriends) {
-        return null;
-    }
-    
-    // console.log(ourFriends);
-
-
     return (
       <div >
         <h1>Our friends</h1>
