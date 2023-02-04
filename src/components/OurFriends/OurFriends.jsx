@@ -1,7 +1,6 @@
 import { ContainerItem, ContainerCard, Logo, TimeList, Title, ContainerText, ContainerAddr, ContainerLogo, AddrLink, Time, ContainerList } from './OurFriendsStyled';
 
 export const OurFriends = ({ items }) => {
-    console.log(items);
     return (
         <div>
             <ContainerList>
