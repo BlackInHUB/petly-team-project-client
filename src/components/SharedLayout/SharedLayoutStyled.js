@@ -7,6 +7,7 @@ export const SharedLayoutStyled = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: auto;
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
 

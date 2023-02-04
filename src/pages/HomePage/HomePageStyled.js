@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HomePageWrapper = styled.div`
   display: flex;
   height: auto;
-  width: 100vw;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
 `;

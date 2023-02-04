@@ -6,6 +6,7 @@ export const AppBarWrapper = styled.header`
   flex-direction: row;
   align-items: center;
   position: relative;
+  width: 100%;
 
   @media (min-width: 320px) and (max-width: 767.99px) {
     margin-bottom: 42px;
