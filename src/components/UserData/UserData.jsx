@@ -170,8 +170,7 @@
 
 
 
-import { useSelector, useDispatch } from 'react-redux'
-import { authSelectors } from '../../redux/auth'
+import { useDispatch } from 'react-redux'
 import { authOperations } from '../../redux/auth'
 import defaultUserPhoto from '../../images/UserData/defaultUserPhoto.png'
 import { ReactComponent as EditCamera} from '../../images/icons/userData/camera.svg'
@@ -179,10 +178,11 @@ import { UserDataItem } from './UserDataItem/UserDataItem'
 import { UserDataContainer, 
     UserDataImgWrapper, UserDataImg, EditCameraWrapper, EditPhotoLabel,
     EditPhotoInput, UserDataList } from './UserData.styled'
+import { useAuth } from 'hooks/useAuth'
 
 export const UserData = () => {
     const dispatch = useDispatch();   
-    const user = useSelector(authSelectors.getUser)
+    const {user} = useAuth();
    
     const changeAvatar = e => {
         const data = new FormData()
