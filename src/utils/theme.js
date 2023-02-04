@@ -16,12 +16,13 @@ const theme = {
     white: '#FFFFFF',
     paleWhite: '#FFFFFF99',
     logout: '#707070',
+    inputColor: '#fac9ab',
   },
   shadows: {
     mainShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
     userDataShadow: '7px 4px 14px rgba(0, 0, 0, 0.11)',
   },
-  space: [0, 2, 4, 8, 12, 16, 20, 24, 28, 32, 40, 50, 60, 80],
+  space: [0, 2, 4, 8, 12, 16, 20, 24, 28, 32, 40, 50, 60, 80, 100],
   fontSizes: [
     '12px',
     '14px',
@@ -40,6 +41,10 @@ const theme = {
     l: '1.37',
     s: '1.2',
     const: '26.5px',
+  },
+  fontStyle: {
+    normal: 'normal',
+    italic: 'italic',
   },
   fontWeights: {
     thin: '400',

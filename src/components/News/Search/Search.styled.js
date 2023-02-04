@@ -18,7 +18,7 @@ export const Form = styled.form`
       height: 40px;
     }
   height: 44px;
-  box-shadow: 7px 4px 14px 0px rgba(490,210,400,0.7);
+  box-shadow: ${p => p.theme.shadows.mainShadow};
   border-radius: ${p => p.theme.radii.big};
 `;
 
@@ -29,6 +29,10 @@ export const Input = styled.input`
     }
   font-size: ${p => p.theme.fontSizes[4]};
   line-height: ${p => p.theme.fontHeight.s};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
   background-color: transparent;
   width: 100%;
   border: none;
