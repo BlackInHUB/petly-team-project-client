@@ -9,6 +9,8 @@ export const HomePageWrapper = styled.div`
 `;
 
 export const BackgroundWrapper = styled.div`
+  max-width: 1280px;
+
   & img.main {
     position: absolute;
     // width: 590px;
