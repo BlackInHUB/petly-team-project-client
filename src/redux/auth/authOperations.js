@@ -32,6 +32,15 @@ const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   }
 });
 
+const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
+  try {
+    const result = await api.update(updateData);
+    return result;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.message);
+  }
+});
+
 const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await api.logout();
@@ -61,22 +70,12 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   }
 );
 
-const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
-  try {
-    const { data } = await api.update('/api/auth/update', updateData);
-    console.log('dataUp', data);
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
 const authOperations = {
   register,
   login,
   logout,
   refresh,
-  update
+  update,
 };
 
 export default authOperations;
