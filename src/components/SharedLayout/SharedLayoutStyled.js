@@ -7,7 +7,7 @@ export const SharedLayoutStyled = styled.div`
 
   width: 100vw;
   min-height: 100vh;
-
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
 `;

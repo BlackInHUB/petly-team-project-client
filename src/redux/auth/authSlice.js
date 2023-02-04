@@ -12,7 +12,6 @@ const initialState = {
     avatarUrl: null,
   },
   pets: [],
-  favorites: [],
   token: null,
   isLoading: false,
   isLoggedIn: false,
@@ -56,6 +55,19 @@ const authSlice = createSlice({
         state.user = initialState.user;
         state.isLoggedIn = false;
         state.token = null;
+        state.isError = payload;
+      })
+      .addCase(authOperations.update.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(authOperations.update.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user[Object.keys(payload.user)[0]] = Object.values(payload.user)[0];
+        state.isError = null;
+      })
+      .addCase(authOperations.update.rejected, (state, { payload }) => {
+        state.isLoading = false;
         state.isError = payload;
       })
       .addCase(authOperations.refresh.pending, state => {

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const instance = axios.create({
   baseURL: 'https://petly.onrender.com/api',
+  // baseURL: 'http://localhost:8080/api'
 });
 
 const setToken = token => {
@@ -43,4 +44,9 @@ export const refresh = async token => {
     setToken();
     throw error;
   }
+};
+
+export const update = async updateData => {
+  const { data } = await instance.patch('/auth/update', updateData);
+  return data;
 };
