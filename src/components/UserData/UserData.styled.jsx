@@ -8,6 +8,13 @@ export const UserDataContainer = styled.div`
         flex-direction: row-reverse;
         justify-content: space-between;
         margin-bottom: ${ p => p.theme.space[0]}px;
+        margin-left: 32px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        display: block;
+        margin-left: ${p => p.theme.space[5]}px;
+        margin-bottom: ${p => p.theme.space[7]}px;
     }
 `
 
@@ -16,6 +23,18 @@ export const UserDataImgWrapper = styled.div`
 
     @media screen and (min-width: 768px) {
         margin-bottom: ${p => p.theme.space[0]}px;
+    }
+    @media screen and (min-width: 1280px) {
+        position: relative;
+        margin-bottom: 36px;
+    }
+`
+
+export const EditCameraForm = styled.form`
+    @media screen and (min-width: 1280px) {
+        position: absolute;
+        right: 0;
+        top: 214px;
     }
 `
 
@@ -30,6 +49,10 @@ export const UserDataImg = styled.img`
 
     @media screen and (min-width: 768px) {
         margin-bottom: ${p => p.theme.space[3]}px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin-bottom: ${p => p.theme.space[0]}px;
     }
 `
 
@@ -67,6 +90,11 @@ export const UserDataList = styled.ul`
         padding-top: ${p => p.theme.space[5]}px;
         padding-bottom: 55px;
         width: 379px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        padding-top: ${p => p.theme.space[0]}px;
+        padding-bottom: ${p => p.theme.space[0]}px;
     }
 `
 

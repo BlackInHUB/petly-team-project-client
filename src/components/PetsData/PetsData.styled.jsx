@@ -20,10 +20,3 @@ export const PetDataTitle = styled.h2`
         letter-spacing: 0;
     }
 `
-
-// export const PetsDataWrapper = styled.div`
-//     /* border-radius: ${p => p.theme.radii.normal};
-//     box-shadow: ${p => p.theme.shadows.userDataShadow}; */
-//     margin-bottom: ${p => p.theme.space[10]}px;
-// `
-

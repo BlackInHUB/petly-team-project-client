@@ -12,6 +12,13 @@ export const LogoutBtn = styled.button`
     @media screen and (min-width: 768px) {
         position: absolute;
         bottom: 24px;
+        left: 32px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        position: static;
+        margin-left: ${ p => p.theme.space[6]}px;
+        padding-right: ${ p => p.theme.space[0]}px;
     }
 `
 
