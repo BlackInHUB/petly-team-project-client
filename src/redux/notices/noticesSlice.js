@@ -32,7 +32,7 @@ const noticesSlice = createSlice({
         state.isLoading = true;
         state.isError = null;
     })
-    .addCase(noticesOperations.getAll.fulfilled, (state, {payload}) => {
+    .addCase(noticesOperations.getOne.fulfilled, (state, {payload}) => {
         state.isLoading = false;
         state.isError = null;
         state.details = payload;
