@@ -2,7 +2,7 @@ import React from "react";
 import NewsList from "../../components/News/NewsList/NewsList";
 import Search from "../../components/News/Search/Search";
 import { useState, useEffect } from "react";
-import {Container} from "./NewsPage.styled"
+import {Container, Header} from "./NewsPage.styled"
 import fetchNews from "../../services/news/fetchNews"
 
 export default function NewsPage() {
@@ -10,7 +10,6 @@ export default function NewsPage() {
     const [filter, setFilter] = useState("");
 
     useEffect(()=> {
-        console.log(fetchNews())
         fetchNews().then(response => {
             setNews(response);
         })
@@ -24,9 +23,9 @@ export default function NewsPage() {
         if(!filter) {
         return news;
         } 
-            const normalizedFilter = filter.toLowerCase();
+            const normalizedFilter = filter.toLowerCase().trim();
             const filteredNews = news.filter(({title}) => {
-                const normalizedTitle = title.toLowerCase();
+                const normalizedTitle = title.toLowerCase().trim();
                 const result = normalizedTitle.includes(normalizedFilter);
             return result;
             })
@@ -35,6 +34,7 @@ export default function NewsPage() {
 
     return (
         <Container>
+             <Header>News</Header>
             <Search onChange={handleChange} value={filter}/>
                 {news.length !== 0 && (
                 <NewsList 

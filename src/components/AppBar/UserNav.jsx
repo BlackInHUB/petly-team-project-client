@@ -1,15 +1,15 @@
 import { UserLink } from "./AppBarStyled";
 import { FaUserCircle } from 'react-icons/fa';
-import { authSelectors } from "../../redux/auth/index";
-import { useSelector } from 'react-redux';
+import { useAuth } from "hooks/useAuth";
 
 export const UserNav = ({onClick}) => {
 
-const user = useSelector(authSelectors.getUser);
+const {user} = useAuth();
 
     return (
         <div>
-            <UserLink to="/user" onClick={onClick}><FaUserCircle /> {`${user.email}`}</UserLink>
+            <UserLink to="/user" onClick={onClick}><FaUserCircle /> {`${user.name}`}</UserLink>
         </div>
     )
 }
+

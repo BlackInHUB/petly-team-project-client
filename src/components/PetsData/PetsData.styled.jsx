@@ -1,24 +1,29 @@
 import styled from "styled-components";
 
-export const PetsDataWrapper = styled.div`
-    /* border: ${p => p.theme.borders.normal}; */
-    /* border-color: ${p => p.theme.colors.accent}; */
-    /* max-width: 280px;
-    margin-left: auto;
-    margin-right: auto; */
-    background-color: ${p => p.theme.colors.white};
-    border-radius: ${p => p.theme.radii.normal};
-    box-shadow: ${p => p.theme.shadows.userDataShadow};
-    margin-bottom: ${p => p.theme.space[10]}px;
-    /* margin-top: ${p => p.theme.space[12]}px;
-    margin-bottom: ${p => p.theme.space[13]}px; */
-
+export const AddPetDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: ${p => p.theme.space[7]}px;
 `
 
-export const PetsDataText = styled.p`
+export const PetDataTitle = styled.h2`
+    color:${p => p.theme.colors.black};
     font-family: ${p => p.theme.fonts.body};
-    font-size: ${p => p.theme.fontSizes[2]};
-    /* max-width: 280px; */
-    min-height: 80px;
-    
+    font-size: ${p => p.theme.fontSizes[4]};
+    font-weight: ${p => p.theme.fontWeights.normal};
+    line-height: ${p => p.theme.fontHeight.l};
+    letter-spacing: 0.04em;
+
+    @media screen and (min-width: 768px) {
+        font-size: ${p => p.theme.fontSizes[6]};
+        letter-spacing: 0;
+    }
 `
+
+// export const PetsDataWrapper = styled.div`
+//     /* border-radius: ${p => p.theme.radii.normal};
+//     box-shadow: ${p => p.theme.shadows.userDataShadow}; */
+//     margin-bottom: ${p => p.theme.space[10]}px;
+// `
+

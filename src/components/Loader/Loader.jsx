@@ -1,16 +1,23 @@
-import { MagnifyingGlass } from 'react-loader-spinner';
+import { Watch } from 'react-loader-spinner';
 
 export const Loader = () => {
-    return <div>
-        <MagnifyingGlass
-        visible={true}
-        height="200"
-        width="200"
-        ariaLabel="MagnifyingGlass-loading"
-        wrapperStyle={{}}
-        wrapperClass="MagnifyingGlass-wrapper"
-        glassColor='#c0efff'
-        color='#808080'
-    />
-    </div>  
+    return (
+        <Watch
+          height="200"
+          width="200"
+          color="#F59256"
+          wrapperStyle={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="watch-loading"
+          outerCircleColor=""
+          innerCircleColor=""
+          middleCircleColor=""
+        />
+      );
 };
