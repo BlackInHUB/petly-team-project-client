@@ -5,16 +5,19 @@ import { ReactComponent as BackgroundPCIcon } from '../../images/pcBackground.sv
 import styled from 'styled-components';
 
 export const PageWrapper = styled.div`
-  width: 100vw;
-  height: 100%;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  z-index: 1;
+  transform: translateY(-50%);
   display: flex;
-  flexDirection: column;
+  flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   @media (min-width: 768px) {
     align-items: center;
   }
-}}`;
+`;
 
 const styleForBackgroundImg = `position: absolute;
 bottom: 0px;

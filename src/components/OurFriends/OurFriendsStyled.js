@@ -86,53 +86,6 @@ export const Logo = styled.a`
     }
 `;
 
-export const Time = styled.p`
-    padding-top:${p => p.theme.fontSizes[0]};
-
-    @media screen and (min-width: 768px){
-        padding-top:${p => p.theme.fontSizes[2]};
-        font-size: ${p => p.theme.fontSizes[1]};
-    }
-
-    @media screen and (min-width: 1280px){
-        font-size: ${p => p.theme.fontSizes[2]};
-    }
-`;
-
-export const TimeList = styled.ul`
-    /* li:first-child{
-        color: red;
-    } */
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-/* 
-    :hover{
-        position: absolute;
-        outline: 1px solid red;
-        width:120px;
-        height:160px;
-        padding:${p => p.theme.fontSizes[0]};
-
-        background: ${p => p.theme.colors.white};
-        border: 1px solid ${p => p.theme.colors.accent};
-        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
-        border-radius: ${p => p.theme.radii.small};
-    } */
-`;
-
-export const TimeCalendar = styled.li`
-    
-`;
-
 export const ContainerText = styled.div`
     position: relative;
 

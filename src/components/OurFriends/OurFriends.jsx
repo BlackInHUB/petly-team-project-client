@@ -1,4 +1,5 @@
-import { ContainerItem, ContainerCard, Logo, TimeList, Title, ContainerText, ContainerAddr, ContainerLogo, AddrLink, Time, ContainerList } from './OurFriendsStyled';
+import { ContainerItem, ContainerCard, Logo, Title, ContainerText, ContainerAddr, ContainerLogo, AddrLink, ContainerList } from './OurFriendsStyled';
+import { TimeContainer } from './TimeContainer';
 
 export const OurFriends = ({ items }) => {
     return (
@@ -15,12 +16,10 @@ export const OurFriends = ({ items }) => {
                               </Logo>
                         </ContainerLogo>
                       
-                        <ContainerText>                       
-                            <Time>Time:</Time>  
-                              <TimeList>
-                                {workDays ? workDays.map(({ isOpen, from, to }, index) => isOpen && <li key={index}>{from} - {to}</li>) : "--------------------------------------"}
-                            </TimeList>
-                            
+                          <ContainerText>
+                              
+                            <TimeContainer work={workDays} />
+                              
                             <ContainerAddr>
                                 <p>Address: </p>
                                 {address ? <AddrLink href={addressUrl}  rel="noreferrer" target="_blank" >{address}</AddrLink> : "--------------------------------------"}

@@ -48,6 +48,7 @@ export const AppBarWrapper = styled.header`
   & div {
     display: flex;
     flex-direction: row;
+    gap: 20px;
   }
 
   & .user {
@@ -87,7 +88,6 @@ export const CommonLink = styled(NavLink)`
       margin-bottom: 40px;
       justify-self: center;
     }
-  }
 
   @media (min-width: 768px) and (max-width: 1279.99px) {
       font-weight: ${p => p.theme.fontWeights.normal};
@@ -114,7 +114,6 @@ export const UserLink = styled(NavLink)`
   flex-direction: row;
   align-items: center;
   letter-spacing: 0.04em;
-  margin-left: 20px;
   padding: 10px 28px;
   color: ${p => p.theme.colors.text};
 
@@ -124,6 +123,11 @@ export const UserLink = styled(NavLink)`
   border-radius: ${p => p.theme.radii.big};
 
   text-decoration: none;
+
+  & img {
+    border-radius: 50%;
+    background: white;
+  }
 
   &.active {
     background-color: ${p => p.theme.colors.accent};
@@ -138,6 +142,7 @@ export const UserLink = styled(NavLink)`
 
   @media (max-width: 767.99px) {
     font-size: ${p => p.theme.fontSizes[1]};
+    margin-left: 0;
   }
 `;
 
@@ -209,5 +214,6 @@ export const UserModal = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 20px;
   }
 `;

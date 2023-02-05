@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8080/api/notices'
+    baseURL: 'https://petly.onrender.com/api/notices'
 });
 
-export const getAll = async (category) => {
-    return await instance.get(`/${category}`);
+export const getAll = async ({category, filter}) => {
+    return await instance.get(`/${category}`, filter);
 };
 
 export const getOne = async (id) => {

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import noticesOperations from "./noticesOperations";
 
 const initialState = {
-    notices: [],
+    allNotices: [],
     favorites: [],
     own: [],
     details: null,
@@ -22,7 +22,7 @@ const noticesSlice = createSlice({
     .addCase(noticesOperations.getAll.fulfilled, (state, {payload}) => {
         state.isLoading = false;
         state.isError = null;
-        state.notices = payload;
+        state.allNotices = payload;
     })
     .addCase(noticesOperations.getAll.rejected, (state, {payload}) => {
         state.isLoading = false;
