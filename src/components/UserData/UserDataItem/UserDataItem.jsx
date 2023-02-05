@@ -49,24 +49,3 @@ export const UserDataItem = ({name, label, type, defaultValue}) => {
         </>
     )
 }
-
-
-
-// import { ReactComponent as Pencil} from '../../images/icons/userData/pencil.svg'
-// import { ReactComponent as CheckMark } from '../../images/icons/userData/checkMark.svg'
-// import { UserDataItemWrapper, UserDataItemLabel, UserDataItemInputBtnWrapper,
-//     UserDataItemInput, UserDataItemBtn } from './UserDataItem.styled'
-
-// export const UserDataItem = ({name, type, value, active}) => {
-//     return(
-//         <>
-//            <UserDataItemWrapper>
-//                     <UserDataItemLabel htmlFor={name}>{name}</UserDataItemLabel>
-//                     <UserDataItemInputBtnWrapper>
-//                         <UserDataItemInput onChange={handleChange} disabled={!active} value={value} type={type} name={name} id={name}/> 
-//                         <UserDataItemBtn onClick={handleClick}>{!active ? <Pencil /> : <CheckMark />}</UserDataItemBtn>
-//                     </UserDataItemInputBtnWrapper>                 
-//             </UserDataItemWrapper>
-//         </>
-//     )
-// }
