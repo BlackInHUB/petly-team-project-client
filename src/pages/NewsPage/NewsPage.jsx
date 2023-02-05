@@ -19,6 +19,10 @@ export default function NewsPage() {
         setFilter(e.target.value);
     }
 
+    const emptyInput = e => {
+        setFilter("");
+    }
+
     const getFilteredNews = () => {
         if(!filter) {
         return news;
@@ -35,7 +39,7 @@ export default function NewsPage() {
     return (
         <Container>
              <Header>News</Header>
-            <Search onChange={handleChange} value={filter}/>
+            <Search onChange={handleChange} value={filter} onClick={emptyInput}/>
                 {news.length !== 0 && (
                 <NewsList 
                     news = {getFilteredNews()}
