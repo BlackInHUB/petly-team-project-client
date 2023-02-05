@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-  width: 100%;
-  height: 44px;
+  width: ${p => (p.loadMore ? '248px' : '100%')};
+  height: ${p => (p.loadMore ? '38px' : '44px')};
   display: flex;
   align-items: center;
   justify-content: center;
 
   color: ${p =>
-    p.buttonStyle === 'primary' ? p.theme.colors.white : p.theme.colors.text};
+    p.buttonStyle === 'primary'
+      ? p.theme.colors.white
+      : p.loadMore
+      ? p.theme.colors.accent
+      : p.theme.colors.text};
   font-size: ${p => p.theme.fontSizes[4]};
   line-height: ${p =>
     Math.floor(p.theme.fontHeight.l * p.theme.fontSizes[4].slice(0, -2)) +
@@ -38,6 +42,6 @@ export const StyledButton = styled.button`
   }
 
   @media (min-width: 1280px) {
-    height: 48px;
+    height: ${p => (p.loadMore ? '40px' : '48px')};
   }
 `;
