@@ -1,8 +1,7 @@
 .react-tel-input {
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
+  /* font-family: 'Roboto', sans-serif;
+  font-size: 15px; */
   position: relative;
-  width: 100%;
 }
 .react-tel-input :disabled {
   cursor: not-allowed;
@@ -923,18 +922,4 @@
   background: #fff;
   padding: 0 5px;
   color: #de0000;
-}
-.react-tel-input .special-label {
-  position: absolute;
-  z-index: 1;
-  top: -7px;
-  left: 25px;
-  display: block;
-  color: #111111;
-
-  background: white;
-  padding: 0 5px;
-  font-size: 14px;
-
-  white-space: nowrap;
 }

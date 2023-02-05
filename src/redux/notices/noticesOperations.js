@@ -3,8 +3,8 @@ import * as api from '../../services/notices';
 
 const getAll = createAsyncThunk('notices/getAll', async (category, thunkApi) => {
     try {
-        const result = await api.getAll(category);
-        return result;
+        const {data} = await api.getAll(category);
+        return data;
         
     } catch (error) {
         return thunkApi.rejectWithValue(error.response.message);

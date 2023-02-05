@@ -17,6 +17,7 @@ const theme = {
     paleWhite: '#FFFFFF99',
     logout: '#707070',
     inputColor: '#fac9ab',
+    focusedSearch: 'rgba(245, 146, 86, 0.5)'
   },
   shadows: {
     mainShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
@@ -40,6 +41,7 @@ const theme = {
     xl: '1.5',
     l: '1.37',
     s: '1.2',
+    xs: '1',
     const: '26.5px',
   },
   fontStyle: {

@@ -2,40 +2,52 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/authOperations';
 import { Formik } from 'formik';
-import {
-  FormStyled,
-  FieldStyled,
-  ButtonStyled,
-  Header,
-  Error,
-  FieldsWrapper,
-  NavLinkStyled,
-  BottomText,
-  SpinnerStyled,
-} from './style';
-import * as yup from 'yup';
-import { useAuth } from 'hooks/useAuth';
+import { FormStyled, Header, Error, NavLinkStyled, BottomText } from './style';
 
-const initialValues = { email: '', password: '' };
+import Button from '../baseComponents/Button/Button';
+import ButtonSpinner from 'components/baseComponents/ButtonSpinner/ButtonSpinner';
+import Input from 'components/baseComponents/Input/Input';
+import FieldsWrapper from 'components/baseComponents/FieldsWrapper/FieldsWrapper';
+
+import * as yup from 'yup';
+import { useAuth } from '../../hooks/useAuth';
+
+const initialValues = { email: '', password: '', showPassword: false };
 
 const validationSchema = yup.object({
-  email: yup.string().email('Invalid email format').required('Required'),
+  email: yup
+    .string()
+    .matches(
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+      'Invalid email format'
+    )
+    .required('Required'),
   password: yup
     .string()
-    .min(8, 'Password is too short - should be 8 chars minimum.')
+    .min(7, 'Password is too short - should be 7 chars minimum.')
+    .max(32, 'Password is too long - should be 32 chars maximum.')
     .matches(
       /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/,
-      'Password can only contain Latin letters.'
+      'Password can only contain Latin letters, and without spaces.'
     )
     .required('No password provided'),
 });
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const {isError, isLoading} = useAuth();
+  const { isError, isLoggedIn } = useAuth();
 
-  const onSubmit = (values) => {
-    dispatch(authOperations.login(values));
+  const onSubmit = async (values, { setSubmitting }) => {
+    try {
+      await dispatch(authOperations.login(values));
+      if (isLoggedIn) await dispatch(authOperations.fetchCurrentUser());
+    } catch (e) {
+      console.log(e.message);
+      console.log('catch');
+    } finally {
+      console.log(isError, isLoggedIn);
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -44,34 +56,22 @@ export default function LoginForm() {
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      {({ errors, touched }) => (
+      {({ isSubmitting, errors, touched }) => (
         <FormStyled>
           <Header>Login</Header>
           <FieldsWrapper>
-            <div>
-              <FieldStyled id="email" name="email" placeholder="Email" />
+            <Input name="email" text="Email">
               <Error>{touched.email ? errors.email : null}</Error>
-            </div>
-
+            </Input>
             <div>
-              <FieldStyled
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Password"
-              />
-
+              <Input name="password" password={true} text="Password" />
               <Error>{touched.password ? errors.password : null}</Error>
             </div>
           </FieldsWrapper>
           <div>
-            <ButtonStyled type="submit">
-              {isLoading ? (
-                <SpinnerStyled icon="fa-solid fa-spinner" size="1.5rem" />
-              ) : (
-                <span>Login</span>
-              )}
-            </ButtonStyled>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? <ButtonSpinner /> : <span>Login</span>}
+            </Button>
             <Error>{isError}</Error>
           </div>
           <span>
@@ -79,6 +79,9 @@ export default function LoginForm() {
             <NavLinkStyled
               to={'/register'}
               key={'home'}
+              onClick={() => {
+                dispatch(authOperations.eraseErrors());
+              }}
               end
             >
               Register

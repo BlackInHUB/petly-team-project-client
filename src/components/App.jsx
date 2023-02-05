@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { PublicRoute } from './PublicRoute/PublicRoute';
@@ -13,6 +13,7 @@ const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
+const NoticesCategoriesList = lazy(() => import('../components/Notices/NoticesCategoriesList/NoticesCategoriesList'));
 const OurFriendsPage = lazy(() =>
   import('../pages/OurFriendsPage/OurFriendsPage')
 );
@@ -22,16 +23,19 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('refresh')
-    dispatch(authOperations.refresh())
-  }, [dispatch])
-  
+    console.log('refresh');
+    dispatch(authOperations.refresh());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/news" element={<NewsPage />} />
-        <Route path="/notices" element={<NoticesPage />} />
+        <Route path="/notices" element={<NoticesPage />}>
+          <Route path=":categoryName" element={<NoticesCategoriesList />}/>
+          <Route index element={<Navigate to="sell" />} />
+        </Route>
         <Route path="/friends" element={<OurFriendsPage />} />
         <Route
           path="/register"
