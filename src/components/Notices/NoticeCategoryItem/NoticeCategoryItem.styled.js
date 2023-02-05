@@ -8,6 +8,9 @@ export const NoticeCard = styled.li`
   width: 288px;
   height: 606px;
 
+  //временно
+  margin-bottom: 32px;
+
   background: ${p => p.theme.colors.white};
 
   box-shadow: ${p => p.theme.shadows.mainShadow};
@@ -21,6 +24,7 @@ export const NoticeCard = styled.li`
     width: 158px;
     height: 28px;
     align-content: center;
+    justify-content: center;
     padding: 6px 20px;
 
     font-style: ${p => p.theme.fontStyle.normal};
@@ -41,6 +45,52 @@ export const NoticeCard = styled.li`
   & img {
     width: 100%;
     height: auto;
+    margin-bottom: 20px;
+  }
+
+  & h3 {
+    font-weight: ${p => p.theme.fontWeights.bold};
+    font-size: ${p => p.theme.fontSizes[6]};
+    line-height: ${p => p.theme.fontHeight.l};
+    letter-spacing: -0.01em;
+    color: ${p => p.theme.colors.text};
+
+    max-width: 232px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const PetInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin-bottom: 20px;
+
+  & p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+    min-width: 50px;
+  }
+
+  & span.pet-info-title {
+    width: 50px;
+  }
+
+  & span {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes[2]};
+    line-height: ${p => p.theme.fontHeight.l};
+
+    color: ${p => p.theme.colors.text};
+  }
+
+  & span + span {
+    margin-left: 36px;
   }
 `;
 

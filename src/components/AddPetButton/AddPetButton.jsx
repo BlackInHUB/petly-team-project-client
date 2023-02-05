@@ -5,10 +5,10 @@ export const AddPetButton = () => {
     return(
         <>
             <AddPetWrapper>
-                <AddPetDesc>Add pet</AddPetDesc>
-                <AddPetBtn type="button">
+                <AddPetBtn className='add-button' type="button">
                     <Plus />
                 </AddPetBtn>
+                <AddPetDesc className='add-text'>Add pet</AddPetDesc>
             </AddPetWrapper>
         </>
     )

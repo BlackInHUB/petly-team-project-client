@@ -7,8 +7,13 @@ export const Wrapper = styled.div``;
 export const Box = styled.div`
   display: flex;
   flex-direction: row;
-`;
+  justify-content: space-between;
+  align-items: center;
 
+  margin-bottom: 60px;
+  margin-top: 40px;
+`;
+// временные стили. нужно удалить потом
 export const Title = styled.h1`
   font-style: ${p => p.theme.fontStyle.normal};
   font-weight: ${p => p.theme.fontWeights.bold};

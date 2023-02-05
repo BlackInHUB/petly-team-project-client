@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { noticesOperations } from "redux/notices";
 import useNotices from "hooks/useNotices";
 import { NoticeCategoryItem } from "../NoticeCategoryItem/NoticeCategoryItem";
+import {NoticesCategoriesListStyled} from "./NoticesCategoriesList.Styled"
 
 const NoticesCategoriesList = () => {
    const {categoryName} = useParams();
@@ -21,9 +22,9 @@ const NoticesCategoriesList = () => {
    console.log(notices);
 
    return (
-      <ul>
+      <NoticesCategoriesListStyled>
          {notices.map(notice => <NoticeCategoryItem key={notice._id} notice={notice}/>)}
-      </ul>
+      </NoticesCategoriesListStyled>
    )  
 };
 
