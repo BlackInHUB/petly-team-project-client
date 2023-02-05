@@ -83,7 +83,7 @@ const authSlice = createSlice({
       })
       .addCase(authOperations.refresh.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        //state.isError = payload;
+        state.isError = payload;
       })
       .addCase(authOperations.logout.fulfilled, (state, _) => {
         state.user = initialState.user;
@@ -94,7 +94,20 @@ const authSlice = createSlice({
       })
       .addCase(authOperations.eraseErrors.fulfilled, (state, _) => {
         state.isError = null;
-      });
+      })
+      .addCase(authOperations.addPet.pending, state => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(authOperations.addPet.fulfilled, (state, { payload }) => {
+        state.pets = [payload, ...state.pets];
+        state.isLoading = false;
+        state.isError = null;
+      })
+      .addCase(authOperations.addPet.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = payload;
+      })
   },
 });
 

@@ -39,7 +39,7 @@ const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
     const result = await api.update(updateData);
     return result;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.message);
+    return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
 
@@ -48,7 +48,7 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await api.logout();
     return true;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
 
@@ -57,9 +57,18 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   try {
     return await api.refresh(token);
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.message);
+    return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
+
+const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
+  try {
+    const result = await api.addPet(pet);
+    return result
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message);
+  };
+})
 
 const authOperations = {
   register,
@@ -68,6 +77,7 @@ const authOperations = {
   refresh,
   update,
   eraseErrors,
+  addPet
 };
 
 export default authOperations;

@@ -1,21 +1,34 @@
 import { NoticesSearch } from 'components/Notices/NoticesSearch/NoticesSearch';
 import { Loader } from 'components/Loader/Loader';
 import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
-import { AddPetButton } from 'components/AddPetButton/AddPetButton';
-import {Title, Box} from "./NoticesPage.styled"
-import { Suspense} from 'react';
-import { Outlet } from 'react-router';
+import { AddNoticeButton } from 'components/Notices/AddNoticeButton/AddNoticeButton';
+import { Suspense, useEffect } from 'react';
+import { Outlet, useParams } from 'react-router';
+import { Title } from 'components/baseComponents/Title/Title';
+import { noticesOperations } from 'redux/notices';
+import { useDispatch } from 'react-redux';
+
 
 const NoticesPage = () => {
+  const {categoryName} = useParams();
+   const dispath = useDispatch();
+
+   useEffect(() => {
+      if(categoryName === '') {
+         return;
+      }
+      dispath(noticesOperations.getAll(categoryName));
+   }, [categoryName, dispath]);
+
   return (
     <>
       <div>
-        <Title>Find your favorite pet</Title>
+        <Title value={'Find your favorite pet'}/>
         <NoticesSearch/>
-        <Box>
+        <div>
           <NoticesCategoriesNav/>
-          <AddPetButton/>
-        </Box>
+          <AddNoticeButton/>
+        </div>
       </div>
       <Suspense fallback={<Loader />}>
         <Outlet />
