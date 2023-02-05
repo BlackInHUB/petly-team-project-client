@@ -18,8 +18,6 @@ const NoticesCategoriesList = () => {
 
    const {notices} = useNotices();
 
-   console.log(notices);
-
    return (
       <ul>
          {notices.map(notice => <NoticeCategoryItem key={notice._id} notice={notice}/>)}

@@ -4,12 +4,13 @@ import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/No
 import { AddNoticeButton } from 'components/Notices/AddNoticeButton/AddNoticeButton';
 import { Suspense} from 'react';
 import { Outlet } from 'react-router';
+import { Title } from 'components/baseComponents/Title/Title';
 
 const NoticesPage = () => {
   return (
     <>
       <div>
-        <h1>Find your favorite pet</h1>
+        <Title value={'Find your favorite pet'}/>
         <NoticesSearch/>
         <div>
           <NoticesCategoriesNav/>
