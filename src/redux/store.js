@@ -12,20 +12,29 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import { noticesReducer } from './notices';
+import { default as filterReducer } from './filter/filter';
 
 
-const persistConfig = {
+const persistAuthConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
 
-const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistFiltersConfig = {
+  key: 'filter',
+  storage,
+  whitelist: ['filter'],
+}
+
+const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
+const persistedFilterReducer = persistReducer(persistFiltersConfig, filterReducer);
 
 export const store = configureStore({
   reducer: {
-    auth: persistedReducer,
-    notices: noticesReducer
+    auth: persistedAuthReducer,
+    notices: noticesReducer,
+    filter: persistedFilterReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

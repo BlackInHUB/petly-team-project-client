@@ -47,6 +47,19 @@ export const refresh = async token => {
 };
 
 export const update = async updateData => {
-  const { data } = await instance.patch('/auth/update', updateData);
-  return data;
+  try {
+    const { data } = await instance.patch('/auth/update', updateData);
+    return data.pet;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addPet = async (pet) => {
+  try {
+    const {data} = await instance.post('/user/pet/add', pet);
+    return data;
+  } catch (error) {
+    console.log(error);
+  };
 };
