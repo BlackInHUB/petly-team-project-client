@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from '../../services/notices';
 
-const getAll = createAsyncThunk('notices/getAll', async (category, thunkApi) => {
+const getAll = createAsyncThunk('notices/getAll', async (query, thunkApi) => {
     try {
-        const {data} = await api.getAll(category);
+        const {data} = await api.getAll(query);
         return data;
         
     } catch (error) {

@@ -24,7 +24,7 @@ const NoticesPage = () => {
     <>
       <div>
         <Title value={'Find your favorite pet'}/>
-        <NoticesSearch/>
+        <NoticesSearch category={categoryName}/>
         <div>
           <NoticesCategoriesNav/>
           <AddNoticeButton/>
