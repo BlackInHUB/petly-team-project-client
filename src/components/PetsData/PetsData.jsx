@@ -4,11 +4,15 @@ import { PetsList } from "components/PetsList/PetsList"
 import { Modal } from "components/Modal/Modal"
 import { ModalAddsPet } from "components/ModalAddsPet/ModalAddsPet";
 import { AddPetDiv, PetDataTitle } from "./PetsData.styled"
+import { useAuth } from "hooks/useAuth";
 
 
 export const PetsData = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const toggleModal = () => setIsModalOpen(state => !state);
+
+    const { pets } = useAuth()
+    // console.log('pets', pets)
 
     // useEffect(() => {
     //     dispatch(fetchContacts())
@@ -25,7 +29,7 @@ export const PetsData = () => {
 
             {isModalOpen  &&(
               <Modal setShow={toggleModal}>    
-                <ModalAddsPet onCloseBtn={toggleModal}/>
+                <ModalAddsPet onClose={toggleModal} onCloseBtn={toggleModal}/>
 
                 {/* <PhonebookForm  onClose={toggleModal} onCloseBtn={toggleModal}/> */}
               </Modal>

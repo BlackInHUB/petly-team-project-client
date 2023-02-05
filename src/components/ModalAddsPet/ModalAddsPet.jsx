@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
-import { FirstPageAddsPetForm, SecondPageAddsPetForm } from './ModalAddsPet.styled'
+import { ModalAddsPetWrapper, FirstPageAddsPetForm, SecondPageAddsPetForm,
+    ModalAddsPetItputsWrapper, ModalAddsPetContainer, ModalAddsPetLabel, ModalAddsPetInput
+ } from './ModalAddsPet.styled'
+import { useDispatch } from "react-redux";
+import { authOperations } from "redux/auth";
 
-export const ModalAddsPet = ({onCloseBtn}) => {
+export const ModalAddsPet = ({onClose, onCloseBtn}) => {
+    const dispatch = useDispatch()
     const [firstPageHide, setFirstPageHide] = useState(true)
     const [secondPageHide, setSecondPageHide] = useState(false)
     
@@ -21,15 +26,18 @@ export const ModalAddsPet = ({onCloseBtn}) => {
         name: '',
         date: '',
         breed: '',
-        // file: null,
+        photo: '',
         comments: '',
     }
 
     const [state, setState] = useState(initialState);
 
+    const data = new FormData()
+        // console.log('data', data )
+
     const handleChange = e => {
-        const { value, type, name, checked } = e.target;
-        const newValue = type === 'checkbox' ? checked : value;
+        const { value, type, name, files } = e.target;
+        const newValue = type === 'files' ? files[0] : value;
     
         setState(prevState => ({
           ...prevState,
@@ -37,22 +45,43 @@ export const ModalAddsPet = ({onCloseBtn}) => {
         }));
       };
 
+    //   console.log('state2', state)
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        data.append('name', state.name)
+        data.append('date', state.date)
+        data.append('breed', state.breed)
+        data.append('photoUrl', state.photo)
+        data.append('comments', state.comments)
+
+        dispatch(authOperations.addPet(data))
+    
+        // dispatch(authOperations.addPet(state))
+        // setState(initialState)
+        onClose();
+    }
+
+
     const patternName=/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
     const patternDate=/\d{4}-\d{2}-\d{2}/
     const patterBreed = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
 
     return(
-        <div>
+        <ModalAddsPetWrapper>
             
-            <form>
+            <form method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
 
                 {firstPageHide && (
                     <FirstPageAddsPetForm>
 
                     <AddsPetTitle onClick={onCloseBtn}/>
 
-                    <label>Name pet</label>
-                      <input 
+                   <ModalAddsPetItputsWrapper>
+                   <ModalAddsPetContainer>
+                   <ModalAddsPetLabel>Name pet</ModalAddsPetLabel>
+                      <ModalAddsPetInput
                         value={state.name} onChange={handleChange}
                         name='name'
                         type='text'
@@ -61,9 +90,11 @@ export const ModalAddsPet = ({onCloseBtn}) => {
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                         required
                        /> 
+                   </ModalAddsPetContainer>
       
-                      <label>Date of birth</label>
-                      <input 
+                    <ModalAddsPetContainer>
+                    <ModalAddsPetLabel>Date of birth</ModalAddsPetLabel>
+                      <ModalAddsPetInput
                         value={state.date} onChange={handleChange}
                         name='date'
                         type='date'
@@ -74,9 +105,11 @@ export const ModalAddsPet = ({onCloseBtn}) => {
                         title="Date may contain only format 0000-00-00 and up-to-date"
                         required
                        />  
+                    </ModalAddsPetContainer>
       
-                      <label>Breed</label>
-                      <input 
+                    <ModalAddsPetContainer>
+                     <ModalAddsPetLabel>Breed</ModalAddsPetLabel>
+                      <ModalAddsPetInput
                         value={state.breed} onChange={handleChange}
                         name='breed'
                         type='text'
@@ -85,6 +118,8 @@ export const ModalAddsPet = ({onCloseBtn}) => {
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                         required
                        /> 
+                    </ModalAddsPetContainer>
+                   </ModalAddsPetItputsWrapper>
 
                     <AddsPetBtn titleBtn='Next' type='button' onClick={clickNextHandle} />
                     <AddsPetBtn titleBtn='Cancel' type='button' onClick={onCloseBtn} />
@@ -101,14 +136,14 @@ export const ModalAddsPet = ({onCloseBtn}) => {
     
                         <label></label>
                         <input 
+                            value={state.photo} onChange={handleChange}
                             // value={state.file} onChange={handleChange}
                             type="file"
                             name="photo"
                             accept=".png, .jpg, .jpeg"
-                            required
                         />
     
-                        <label>Comments</label>
+                        <ModalAddsPetLabel>Comments</ModalAddsPetLabel>
                         <textarea   
                             value={state.comments} onChange={handleChange}
                             name="comments"
@@ -123,6 +158,6 @@ export const ModalAddsPet = ({onCloseBtn}) => {
             
                  
             </form>
-        </div>
+        </ModalAddsPetWrapper>
     )
 }

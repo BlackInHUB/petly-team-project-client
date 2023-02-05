@@ -1,17 +1,17 @@
-import cat from '../../../images/cat.jpg'
-import { ReactComponent as Delete } from '../../../images/icons/petsItem/delete.svg' 
-import { PetsItemWrapper, PetsItemDeleteBtn, PetsItemInfoBlock, PetsItemImg, PetsItemDesc, PetsItemSpan } from './PetsItem.styled'
-export const PetsItem = () => {
+// import cat from '../../../images/cat.jpg'
+// import { ReactComponent as Delete } from '../../../images/icons/petsItem/delete.svg' 
+import { PetsItemWrapper, PetsItemDeleteBtn, PetsItemInfoBlock, PetsItemImg, DeleteIcon, PetsItemDesc, PetsItemSpan } from './PetsItem.styled'
+export const PetsItem = ({name, breed, photoUrl, comments}) => {
     return(
         <>
         <PetsItemWrapper>
-            <PetsItemImg src={cat} alt='cat'/>
+            <PetsItemImg src={photoUrl} alt={name}/>
             <PetsItemInfoBlock>
-                <PetsItemDeleteBtn><Delete /></PetsItemDeleteBtn>
-                <PetsItemDesc><PetsItemSpan>Name:</PetsItemSpan></PetsItemDesc>
+                <PetsItemDeleteBtn><DeleteIcon /></PetsItemDeleteBtn>
+                <PetsItemDesc><PetsItemSpan>Name:{name}</PetsItemSpan></PetsItemDesc>
                 <PetsItemDesc><PetsItemSpan>Date of birth:</PetsItemSpan></PetsItemDesc>
-                <PetsItemDesc><PetsItemSpan>Breed:</PetsItemSpan></PetsItemDesc>
-                <PetsItemDesc><PetsItemSpan>Comments:</PetsItemSpan></PetsItemDesc>
+                <PetsItemDesc><PetsItemSpan>Breed:{breed}</PetsItemSpan></PetsItemDesc>
+                <PetsItemDesc><PetsItemSpan>Comments:{comments}</PetsItemSpan></PetsItemDesc>
             </PetsItemInfoBlock>
         </PetsItemWrapper>
         </>
