@@ -87,7 +87,6 @@ export const CommonLink = styled(NavLink)`
       margin-bottom: 40px;
       justify-self: center;
     }
-  }
 
   @media (min-width: 768px) and (max-width: 1279.99px) {
       font-weight: ${p => p.theme.fontWeights.normal};
