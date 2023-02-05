@@ -4,7 +4,8 @@ export const List = styled.div`
     margin-left: auto;
     margin-right: auto;
 @media screen and (min-width: 320px) {
-    padding-top: 40px; 
+    padding-top: 40px;
+    padding-bottom: 40px;
     display: grid;
     grid-template-columns: repeat(auto-fit, 1fr);
     gap: 40px 0px;
@@ -13,6 +14,7 @@ export const List = styled.div`
 
 @media screen and (min-width: 768px) {
     padding-top: 60px;
+    padding-bottom: 60px;
     display: grid;
     max-width: 1279px;
     grid-template-columns: 1fr 1fr;
@@ -23,6 +25,7 @@ export const List = styled.div`
 
 @media screen and (min-width: 1280px) {
     padding-top: 60px; 
+    padding-bottom: 60px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -117,11 +120,14 @@ export const Decor = styled.div`
     width: 75%;
     @media screen and (min-width: 320px) {
         height: 4px;
+        min-width: 200px;
     }
     @media screen and (min-width: 768px) {
         height: 8px;
+        min-width: 280px
     }
     @media screen and (min-width: 1280px) {
+        width: 340px;
         height: 8px;
     }
 `
