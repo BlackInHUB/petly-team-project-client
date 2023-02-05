@@ -1,5 +1,7 @@
+import Search from "../../News/Search/Search";
+
 export const NoticesSearch = () => {
     return (
-        <input type="search"/>
+        <Search />
     )
 };
