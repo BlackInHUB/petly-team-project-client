@@ -109,8 +109,8 @@ export const ModalAddsPetPlusWrapper = styled.div`
     width: 208px;
     height: 208px;
     border-radius: ${p => p.theme.radii.normal};
-    border: ${p => p.theme.borders.none}
-`
+    border: ${p => p.theme.borders.none};
+` 
 
 export const ModalAddsPetPlusInput = styled.input`
     padding-bottom: 25px;

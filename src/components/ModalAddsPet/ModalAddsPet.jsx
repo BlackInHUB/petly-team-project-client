@@ -2,7 +2,6 @@ import { useState } from "react";
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
 import { AddsPetBtnOrange } from "./AddsPetBtn/AddsPetBtnOrange/AddsPetBtnOrange";
-// import { ReactComponent as Plus } from '../../images/icons/modalAddsPet/plus.svg'
 import { ModalAddsPetWrapper, FirstPageAddsPetForm, SecondPageAddsPetForm,
     ModalAddsPetItputsWrapper, ModalAddsPetContainer, ModalAddsPetLabel, ModalAddsPetInput,
     ModalAddsPetDescription, ModalAddsPetPlusWrapper, ModalAddsPetPlusInput, PlusStyled, ModalAddsPetTextarea
@@ -35,41 +34,25 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
 
     const [state, setState] = useState(initialState);
 
-    // const data = new FormData()
-        // console.log('data', data )
-
     const handleChange = e => {
-        // console.log('e.target1', e.target)
         const { value, type, name, files } = e.target;
-        const newValue = type === 'files' ? files[0] : value;
+        const newValue = type === 'file' ? files : value;
     
         setState(prevState => ({
-          ...prevState,
-          [name]: newValue,
+        ...prevState,
+        [name]: newValue, 
         }));
-      };
-
-    //   console.log('state2', state)
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const form = e.currentTarget;
-    // const name = form.elements.name.value;
-    // const photo = form.elements.photoUrl.value;
-        // console.log('e.target2', e.currentTarget.elements)
-        // console.log('name', name)
-        // console.log('photo', photo)
-         const data = new FormData()
+        const data = new FormData()
         data.append('name', state.name)
         data.append('date', state.date)
         data.append('breed', state.breed)
-        data.append('photoUrl', state.photo)
+        data.append('photoUrl', state.photoUrl[0])
         data.append('comments', state.comments)
-
         dispatch(authOperations.addPet(data))
-    
-        // dispatch(authOperations.addPet(state))
-        // setState(initialState)
         onClose();
     }
 
@@ -150,15 +133,19 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                         
                         <ModalAddsPetPlusWrapper>
                             <label htmlFor="photoUrl"></label>
+                            {state.photoUrl === '' ?
+                            (<>
                             <PlusStyled />
-                            <ModalAddsPetPlusInput 
-                            value={state.photoUrl} onChange={handleChange}
-                            // value={state.file} onChange={handleChange}
+                            <ModalAddsPetPlusInput
+                            onChange={handleChange}
                             type="file"
                             name="photoUrl"
                             accept=".png, .jpg, .jpeg"
                             id="photoUrl"
                             />
+                            </>) :
+                            (<img src={`${URL.createObjectURL(state.photoUrl[0])}`} alt=''/>)
+                            }
                         </ModalAddsPetPlusWrapper>
                        
     
@@ -173,9 +160,6 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                     <AddsPetBtn titleBtn='Back' type="button" onClick={clickBackHandle} />
                   </SecondPageAddsPetForm>
               )}
-
-            
-                 
             </form>
         </ModalAddsPetWrapper>
     )

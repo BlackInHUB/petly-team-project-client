@@ -4,7 +4,7 @@ import { PetsItem } from "./PetsItem/PetsItem"
 
 export const PetsList = () => {
     const { pets } = useAuth()
-    console.log('pets', pets)
+    // console.log('pets', pets)
 
     return(
         <>

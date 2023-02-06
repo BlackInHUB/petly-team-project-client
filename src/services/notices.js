@@ -5,6 +5,10 @@ const instance = axios.create({
     // baseURL: 'http://localhost:8080/api/notices'
 });
 
+export const add = async (notice) => {
+    return await instance.post('/', notice)
+};
+
 export const getAll = async (category, filter) => {
     return await instance.get(`/${category}?filter=${filter}`);
 };
