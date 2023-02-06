@@ -39,7 +39,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         // console.log('data', data )
 
     const handleChange = e => {
-        console.log('e.target1', e.target)
+        // console.log('e.target1', e.target)
         const { value, type, name, files } = e.target;
         const newValue = type === 'files' ? files[0] : value;
     
