@@ -44,14 +44,14 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData()
-        data.append('name', state.name)
-        data.append('date', state.date)
-        data.append('breed', state.breed)
-        data.append('photoUrl', state.photoUrl[0])
-        data.append('comments', state.comments)
+        await data.append('name', state.name)
+        await data.append('date', state.date)
+        await data.append('breed', state.breed)
+        await data.append('photoUrl', state.photoUrl[0])
+        await data.append('comments', state.comments)
         dispatch(authOperations.addPet(data))
         onClose();
     }
