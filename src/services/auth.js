@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'https://petly.onrender.com/api',
-  // baseURL: 'http://localhost:8080/api'
+  // baseURL: 'https://petly.onrender.com/api',
+  baseURL: 'http://localhost:8080/api'
 });
 
 const setToken = token => {
@@ -49,7 +49,7 @@ export const refresh = async token => {
 export const update = async updateData => {
   try {
     const { data } = await instance.patch('/auth/update', updateData);
-    return data.pet;
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -58,7 +58,7 @@ export const update = async updateData => {
 export const addPet = async (pet) => {
   try {
     const {data} = await instance.post('/user/pet/add', pet);
-    return data;
+    return data.pet;
   } catch (error) {
     console.log(error);
   };
