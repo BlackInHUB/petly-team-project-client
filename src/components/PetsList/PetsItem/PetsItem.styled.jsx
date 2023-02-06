@@ -90,6 +90,11 @@ export const DeleteIcon = styled(Delete)`
         width: ${p => p.theme.space[7]}px;
         height: ${p => p.theme.space[7]}px;
     }
+
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.accent}
+    }
 `
 
 export const PetsItemDesc = styled.p`
