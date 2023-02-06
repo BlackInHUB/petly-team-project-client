@@ -4,6 +4,13 @@ export const AddPetWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: row-reverse;
+    min-width: 130px;
+
+    & button.add-button:hover ~ p.add-text {
+    translate: 110px;
+    color: ${p => p.theme.colors.white};
+}
 `
 
 export const AddPetDesc = styled.p`
@@ -21,4 +28,14 @@ export const AddPetBtn = styled.button`
     border-radius: ${p => p.theme.radii.big};
     padding: ${p => p.theme.space[3]}px;
     cursor: pointer;
+
+    &:hover {
+    transition: margin-left 3s;
+    border-radius: 40px;
+    width: 120px;
+        
+        & svg {
+            opacity: 0;
+        }
+    }
 `
