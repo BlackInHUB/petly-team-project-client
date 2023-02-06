@@ -64,11 +64,20 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
   try {
     const result = await api.addPet(pet);
-    return result
+    return result;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data.message);
-  };
-})
+  }
+});
+
+const favorites = createAsyncThunk('auth/favorites', async (id, thunkAPI) => {
+  try {
+    const { favorites } = await api.favorites(id);
+    return favorites;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message);
+  }
+});
 
 const authOperations = {
   register,
@@ -77,7 +86,8 @@ const authOperations = {
   refresh,
   update,
   eraseErrors,
-  addPet
+  addPet,
+  favorites,
 };
 
 export default authOperations;
