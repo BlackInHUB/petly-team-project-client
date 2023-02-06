@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import friendsApi from '../../services/petly-api';
 import  {OurFriends}  from '../../components/OurFriends/OurFriends';
+import { Title } from "components/baseComponents/Title/Title";
 
 
 export default function OurFriendsPage() {
@@ -14,8 +15,8 @@ export default function OurFriendsPage() {
 
     return (
       <div >
-        <h1>Our friends</h1>
-        {ourFriends && <OurFriends items={ourFriends} />}
+        <Title>Our friends</Title>
+        {ourFriends ? <OurFriends items={ourFriends} /> : "No friends added yet :(" }
           
       </div>
         

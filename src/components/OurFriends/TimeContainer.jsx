@@ -9,10 +9,10 @@ export const TimeContainer = ({ work }) => {
         <ul>
             <TimeList>
                 <Time>Time:</Time>
-                {work ? work.map(({ isOpen, from, to }, index) => index === date.getDay() && <p key={index}>{from} - {to}</p>) : "--------------------------------------"}
+                {work ? work.map(({ isOpen, from, to }, index) => index === date.getDay() && <p key={index}>{from} - {to}</p>) : <p>{"Closed"}</p>}
 
                 <ul>
-                    {work ? work.map(({ isOpen, from, to }, index) => isOpen && <li key={index}>{week[index]} {from} - {to}</li>) : "--------------------------------------"}
+                     {work && work.map(({ isOpen, from, to }, index) => isOpen ? <li key={index}>{week[index]} {from} - {to}</li> : <li key={index}>{week[index]} - {"Closed"}</li>)}
                 </ul>
 
             </TimeList>
