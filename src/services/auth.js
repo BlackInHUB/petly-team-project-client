@@ -63,3 +63,12 @@ export const addPet = async (pet) => {
     console.log(error);
   };
 };
+
+export const removePet = async (_id) => {
+  try {
+    const {data} = await instance.delete(`/user/pet/${_id}`);
+    return data
+  } catch (error) {
+    console.log(error);
+  }
+}

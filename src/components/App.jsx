@@ -23,7 +23,6 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('refresh');
     dispatch(authOperations.refresh());
   }, [dispatch]);
 

@@ -1,37 +1,45 @@
 import { Search } from "components/baseComponents/Search/Search";
 import { useDispatch, useSelector } from "react-redux";
-// import { useSearchParams } from "react-router-dom";
 import { setFilter } from "redux/filter/filter";
 import { noticesOperations } from "redux/notices";
+import { useState } from "react";
 
 export const NoticesSearch = ({category}) => {
     const {filter} = useSelector(state => state.filter);
-    // const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
+    const [submit, setSubmit] = useState(false);
 
-    // console.log(searchParams);
-
-    const handleFilterChange = (e) => {
-      dispatch(setFilter(e.target.value));
+  const handleFilterChange = (e) => {
+    dispatch(setFilter(e.target.value));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // setSearchParams({filter});
-
-    dispatch(noticesOperations.getAll({category, filter}));
+    if (filter === '') {
+      return
+    }
+    setSubmit(!submit)
+    dispatch(noticesOperations.getAll(category));
   }
-  
-    const handleSearhcEscClick = () => {
-    };
+
+  const handleEscClick = async () => {
+    try {
+      setSubmit(!submit)
+      await dispatch(setFilter(''));
+      dispatch(noticesOperations.getAll(category));
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
     return (
         <Search 
+            handleClick={handleEscClick}
             handleChange={handleFilterChange}
-            handleClick={handleSearhcEscClick}
             value={filter}
             onSubmit={handleSubmit}
+            submit={submit}
         />
     )
 };

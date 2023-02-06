@@ -7,25 +7,25 @@ import { Title } from 'components/baseComponents/Title/Title';
 import { noticesOperations } from 'redux/notices';
 import { useDispatch } from 'react-redux';
 import { AddPetButton } from 'components/AddPetButton/AddPetButton';
-import {Box} from "./NoticesPage.styled"
+import {Box} from "./NoticesPage.styled";
+
 
 const NoticesPage = () => {
-  const {categoryName} = useParams();
-   const dispath = useDispatch();
+  const {categoryName: category} = useParams();
+  const dispath = useDispatch();
 
-   useEffect(() => {
-      if(categoryName === '') {
-         return;
+  useEffect(() => {
+      if(category === '') {
+        return;
       }
-      dispath(noticesOperations.getAll(categoryName));
-   }, [categoryName, dispath]);
+      dispath(noticesOperations.getAll(category));
+  }, [category, dispath]);
 
   return (
     <>
       <div>
         <Title value={'Find your favorite pet'}/>
-        <NoticesSearch category={categoryName}/>
-        <NoticesSearch/>
+        <NoticesSearch category={category}/>
         <Box>
           <NoticesCategoriesNav/>
           <AddPetButton/>
