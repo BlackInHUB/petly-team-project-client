@@ -1,13 +1,13 @@
 import React from "react";
 import NewsList from "../../components/News/NewsList/NewsList";
-import Search from "../../components/News/Search/Search";
+import {Search} from "../../components/baseComponents/Search/Search";
 import { useState, useEffect } from "react";
 import {Container, Header} from "./NewsPage.styled"
 import fetchNews from "../../services/news/fetchNews"
 
 export default function NewsPage() {
     const [news, setNews] = useState([]);
-    const [filter, setFilter] = useState("");
+    const [value, setValue] = useState("");
 
     useEffect(()=> {
         fetchNews().then(response => {
@@ -16,14 +16,18 @@ export default function NewsPage() {
     }, [])
     
     const handleChange = e => {
-        setFilter(e.target.value);
+        setValue(e.target.value);
+    }
+
+    const handleClick = () => {
+        setValue("")
     }
 
     const getFilteredNews = () => {
-        if(!filter) {
+        if(!value) {
         return news;
         } 
-            const normalizedFilter = filter.toLowerCase().trim();
+            const normalizedFilter = value.toLowerCase().trim();
             const filteredNews = news.filter(({title}) => {
                 const normalizedTitle = title.toLowerCase().trim();
                 const result = normalizedTitle.includes(normalizedFilter);
@@ -35,7 +39,7 @@ export default function NewsPage() {
     return (
         <Container>
              <Header>News</Header>
-            <Search onChange={handleChange} value={filter}/>
+            <Search handleChange={handleChange} handleClick={handleClick} value={value}/>
                 {news.length !== 0 && (
                 <NewsList 
                     news = {getFilteredNews()}
