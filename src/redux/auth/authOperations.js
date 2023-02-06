@@ -68,6 +68,15 @@ const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
   };
 });
 
+const favorites = createAsyncThunk('auth/favorites', async (id, thunkAPI) => {
+  try {
+    const { favorites } = await api.favorites(id);
+    return favorites;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message);
+  }
+});
+
 const removePet = createAsyncThunk('auth/removePet', async (_id, thunkAPI) => {
   try {
     const result = await api.removePet(_id);
@@ -85,7 +94,8 @@ const authOperations = {
   update,
   eraseErrors,
   addPet,
-  removePet
+  favorites,
+  removePet,
 };
 
 export default authOperations;

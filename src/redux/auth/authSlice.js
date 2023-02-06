@@ -10,6 +10,7 @@ const initialState = {
     birthday: null,
     phone: null,
     avatarUrl: null,
+    favorites: [],
   },
   pets: [],
   token: null,
@@ -57,13 +58,15 @@ const authSlice = createSlice({
         state.token = null;
         state.isError = payload;
       })
-      .addCase(authOperations.update.pending, (state) => {
+      .addCase(authOperations.update.pending, state => {
         state.isLoading = true;
         state.isError = null;
       })
       .addCase(authOperations.update.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.user[Object.keys(payload.user)[0]] = Object.values(payload.user)[0];
+        state.user[Object.keys(payload.user)[0]] = Object.values(
+          payload.user
+        )[0];
         state.isError = null;
       })
       .addCase(authOperations.update.rejected, (state, { payload }) => {
@@ -83,7 +86,6 @@ const authSlice = createSlice({
       })
       .addCase(authOperations.refresh.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.isError = payload;
       })
       .addCase(authOperations.logout.fulfilled, (state, _) => {
         state.user = initialState.user;
@@ -108,6 +110,18 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = payload;
       })
+      .addCase(authOperations.favorites.fulfilled, (state, { payload }) => {
+        state.user.favorites = payload;
+        state.isLoading = false;
+        state.isError = null;
+      })
+      .addCase(authOperations.favorites.pending, (state, _) => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(authOperations.favorites.rejected, (state, _) => {
+        state.isLoading = false;
+      })
       .addCase(authOperations.removePet.pending, state => {
         state.isLoading = true;
         state.isError = null;
@@ -120,7 +134,7 @@ const authSlice = createSlice({
       .addCase(authOperations.removePet.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isError = payload;
-      })
+      });
   },
 });
 
