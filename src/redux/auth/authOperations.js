@@ -1,8 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../services/auth';
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://petly.onrender.com';
 
 const eraseErrors = createAsyncThunk('auth/eraseErrors', () => {});
 
