@@ -1,6 +1,6 @@
 import React from "react";
 import NewsList from "../../components/News/NewsList/NewsList";
-import Search from "../../components/News/Search/Search";
+import {Search} from "../../components/baseComponents/Search/Search"
 import { useState, useEffect } from "react";
 import {Container, Header} from "./NewsPage.styled"
 import fetchNews from "../../services/news/fetchNews"
@@ -19,7 +19,7 @@ export default function NewsPage() {
         setFilter(e.target.value);
     }
 
-    const emptyInput = e => {
+    const handleClick = e => {
         setFilter("");
     }
 
@@ -39,7 +39,7 @@ export default function NewsPage() {
     return (
         <Container>
              <Header>News</Header>
-            <Search onChange={handleChange} value={filter} onClick={emptyInput}/>
+            <Search onChange={handleChange} value={filter} onClick={handleClick}/>
                 {news.length !== 0 && (
                 <NewsList 
                     news = {getFilteredNews()}
