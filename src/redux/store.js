@@ -21,20 +21,13 @@ const persistAuthConfig = {
   whitelist: ['token'],
 };
 
-const persistFiltersConfig = {
-  key: 'filter',
-  storage,
-  whitelist: ['filter'],
-}
-
 const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
-const persistedFilterReducer = persistReducer(persistFiltersConfig, filterReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     notices: noticesReducer,
-    filter: persistedFilterReducer
+    filter: filterReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
