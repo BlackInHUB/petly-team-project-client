@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
+import { AddsPetBtnOrange } from "./AddsPetBtn/AddsPetBtnOrange/AddsPetBtnOrange";
+// import { ReactComponent as Plus } from '../../images/icons/modalAddsPet/plus.svg'
 import { ModalAddsPetWrapper, FirstPageAddsPetForm, SecondPageAddsPetForm,
-    ModalAddsPetItputsWrapper, ModalAddsPetContainer, ModalAddsPetLabel, ModalAddsPetInput
+    ModalAddsPetItputsWrapper, ModalAddsPetContainer, ModalAddsPetLabel, ModalAddsPetInput,
+    ModalAddsPetDescription, ModalAddsPetPlusWrapper, ModalAddsPetPlusInput, PlusStyled, ModalAddsPetTextarea
  } from './ModalAddsPet.styled'
 import { useDispatch } from "react-redux";
 import { authOperations } from "redux/auth";
@@ -26,16 +29,17 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         name: '',
         date: '',
         breed: '',
-        photo: '',
+        photoUrl: '',
         comments: '',
     }
 
     const [state, setState] = useState(initialState);
 
-    const data = new FormData()
+    // const data = new FormData()
         // console.log('data', data )
 
     const handleChange = e => {
+        console.log('e.target1', e.target)
         const { value, type, name, files } = e.target;
         const newValue = type === 'files' ? files[0] : value;
     
@@ -49,7 +53,13 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+        // const form = e.currentTarget;
+    // const name = form.elements.name.value;
+    // const photo = form.elements.photoUrl.value;
+        // console.log('e.target2', e.currentTarget.elements)
+        // console.log('name', name)
+        // console.log('photo', photo)
+         const data = new FormData()
         data.append('name', state.name)
         data.append('date', state.date)
         data.append('breed', state.breed)
@@ -71,7 +81,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
     return(
         <ModalAddsPetWrapper>
             
-            <form method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
+            <form encType="multipart/form-data" onSubmit={handleSubmit}>
 
                 {firstPageHide && (
                     <FirstPageAddsPetForm>
@@ -80,7 +90,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
 
                    <ModalAddsPetItputsWrapper>
                    <ModalAddsPetContainer>
-                   <ModalAddsPetLabel>Name pet</ModalAddsPetLabel>
+                   <ModalAddsPetLabel htmlFor="name">Name pet</ModalAddsPetLabel>
                       <ModalAddsPetInput
                         value={state.name} onChange={handleChange}
                         name='name'
@@ -88,27 +98,29 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                         placeholder='Type name pet'
                         pattern={patternName}
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                        id="name"
                         required
                        /> 
                    </ModalAddsPetContainer>
       
                     <ModalAddsPetContainer>
-                    <ModalAddsPetLabel>Date of birth</ModalAddsPetLabel>
+                    <ModalAddsPetLabel htmlFor="date">Date of birth</ModalAddsPetLabel>
                       <ModalAddsPetInput
                         value={state.date} onChange={handleChange}
                         name='date'
-                        type='date'
+                        type='text'
                         placeholder='Type date of birth'
                         min="1990-01-01"
                         max={new Date()}
                         pattern={patternDate}
                         title="Date may contain only format 0000-00-00 and up-to-date"
+                        id="date"
                         required
                        />  
                     </ModalAddsPetContainer>
       
                     <ModalAddsPetContainer>
-                     <ModalAddsPetLabel>Breed</ModalAddsPetLabel>
+                     <ModalAddsPetLabel htmlFor="breed">Breed</ModalAddsPetLabel>
                       <ModalAddsPetInput
                         value={state.breed} onChange={handleChange}
                         name='breed'
@@ -116,12 +128,13 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                         placeholder='Type breed'
                         pattern={patterBreed}
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                        id="breed"
                         required
                        /> 
                     </ModalAddsPetContainer>
                    </ModalAddsPetItputsWrapper>
 
-                    <AddsPetBtn titleBtn='Next' type='button' onClick={clickNextHandle} />
+                    <AddsPetBtnOrange titleBtn='Next' type='button' onClick={clickNextHandle} />
                     <AddsPetBtn titleBtn='Cancel' type='button' onClick={onCloseBtn} />
       
                     </FirstPageAddsPetForm>
@@ -132,26 +145,32 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
 
                     <AddsPetTitle onClick={onCloseBtn}/>
 
-                    <p>Add photo and some comments</p>
+                    <ModalAddsPetDescription>Add photo and some comments</ModalAddsPetDescription>
     
-                        <label></label>
-                        <input 
-                            value={state.photo} onChange={handleChange}
+                        
+                        <ModalAddsPetPlusWrapper>
+                            <label htmlFor="photoUrl"></label>
+                            <PlusStyled />
+                            <ModalAddsPetPlusInput 
+                            value={state.photoUrl} onChange={handleChange}
                             // value={state.file} onChange={handleChange}
                             type="file"
-                            name="photo"
+                            name="photoUrl"
                             accept=".png, .jpg, .jpeg"
-                        />
+                            id="photoUrl"
+                            />
+                        </ModalAddsPetPlusWrapper>
+                       
     
                         <ModalAddsPetLabel>Comments</ModalAddsPetLabel>
-                        <textarea   
+                        <ModalAddsPetTextarea   
                             value={state.comments} onChange={handleChange}
                             name="comments"
                             placeholder="Type comments">
-                        </textarea>
+                        </ModalAddsPetTextarea>
                             
-                    <button type="submit">Done</button>
-                    <button type="button" onClick={clickBackHandle}>Back</button>
+                    <AddsPetBtnOrange titleBtn='Done' type="submit" />
+                    <AddsPetBtn titleBtn='Back' type="button" onClick={clickBackHandle} />
                   </SecondPageAddsPetForm>
               )}
 

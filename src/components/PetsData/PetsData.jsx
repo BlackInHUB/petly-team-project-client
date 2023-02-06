@@ -30,8 +30,6 @@ export const PetsData = () => {
             {isModalOpen  &&(
               <Modal setShow={toggleModal}>    
                 <ModalAddsPet onClose={toggleModal} onCloseBtn={toggleModal}/>
-
-                {/* <PhonebookForm  onClose={toggleModal} onCloseBtn={toggleModal}/> */}
               </Modal>
           )}
         </div>

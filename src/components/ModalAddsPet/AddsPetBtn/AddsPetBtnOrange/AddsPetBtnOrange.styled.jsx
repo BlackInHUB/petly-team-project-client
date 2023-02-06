@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const AddsPetBtnStyle = styled.button`
+export const AddsPetBtnStyleOrange = styled.button`
     width: 240px;
     height: 40px;
     display: flex;
@@ -13,13 +13,13 @@ export const AddsPetBtnStyle = styled.button`
     font-size: ${p => p.theme.fontSizes[2]};
     font-weight: ${p => p.theme.fontWeights.normal};
     line-height: ${p => p.theme.fontHeight.l};
-    color: ${p => p.theme.colors.text};
-    background: ${p => p.theme.colors.white};
-    border: ${p => p.theme.borders.normal};
-    border-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
+    background: ${p => p.theme.colors.accent};
+    border-color: transparent;
+    margin-bottom: ${p => p.theme.space[4]}px;
     cursor: pointer;
 
-    &:hover, :focus {
-        border-color: ${p => p.theme.colors.hoveredAccent};
-    }
+&:hover, :focus {
+    border-color: ${p => p.theme.colors.hoveredAccent};
+}
 `

@@ -28,12 +28,13 @@ export const CloseIcon = styled(Close)`
 
 export const ModalAddsPetTitle = styled.h2`
     color:${p => p.theme.colors.black};
-    font-size: ${p => p.theme.fontSizes[4]};
+    font-size: ${p => p.theme.fontSizes[5]};
     font-weight: ${p => p.theme.fontWeights.normal};
     line-height: ${p => p.theme.fontHeight.l};
+    text-align: center;
     letter-spacing: 0.04em;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
 
     /* @media screen and (min-width: 768px) {
         font-size: ${p => p.theme.fontSizes[6]};

@@ -8,17 +8,19 @@ export const PetsList = () => {
 
     return(
         <>
-        <ul>
-            {pets.length > 0 && 
-                pets.map(pet => (
+        {pets.length > 0 &&(
+            <ul>
+                {pets.map(pet => (
                     <PetsItem key={pet._id}
                        name={pet.name}
                        breed={pet.breed}
+                       data={pet.data}
                        photoUrl={pet.photoUrl}
                        comments={pet.comments}/>
                 ))}
-        {/* <PetsItem /> */}
-        </ul>
+            </ul>
+        )
+        }
         </>
     )
 }
