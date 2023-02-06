@@ -22,4 +22,4 @@ export const Search = ({handleChange, handleClick, value, onSubmit}) => {
         }
         </>
     )
-}
+};
