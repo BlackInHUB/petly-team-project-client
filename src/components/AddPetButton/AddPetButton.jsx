@@ -9,6 +9,7 @@ export const AddPetButton = ({onOpenAddsPet}) => {
                 <AddPetBtn type="button" onClick={onOpenAddsPet}>
                     <Plus />
                 </AddPetBtn>
+                <AddPetDesc className='add-text'>Add pet</AddPetDesc>
             </AddPetWrapper>
         </>
     )

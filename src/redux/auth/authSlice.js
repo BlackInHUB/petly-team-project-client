@@ -108,6 +108,19 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = payload;
       })
+      .addCase(authOperations.removePet.pending, state => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(authOperations.removePet.fulfilled, (state, { payload }) => {
+        state.pets = state.pets.filter(pet => pet._id !== payload._id);
+        state.isLoading = false;
+        state.isError = null;
+      })
+      .addCase(authOperations.removePet.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = payload;
+      })
   },
 });
 
