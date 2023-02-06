@@ -1,33 +1,54 @@
 import React from "react";
 import NewsList from "../../components/News/NewsList/NewsList";
 import {Search} from "../../components/baseComponents/Search/Search";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import {Container, Header} from "./NewsPage.styled"
-import fetchNews from "../../services/news/fetchNews"
+// import getNews from "../../redux/news/news/news-operations";
+import fetchNews from "services/news/fetchNews";
+
+
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setFilter } from '../../redux/news/newsFilter';
 
 export default function NewsPage() {
+     // const [value, setValue] = useState("");
+    // const news = useSelector(store => store.news);
+    // console.log(typeof(news))
+
     const [news, setNews] = useState([]);
-    const [value, setValue] = useState("");
+
+    const dispatch = useDispatch();
+    const {filter} = useSelector(store => store.newsFilter);
+    console.log(filter)
 
     useEffect(()=> {
         fetchNews().then(response => {
             setNews(response);
         })
     }, [])
-    
-    const handleChange = e => {
-        setValue(e.target.value);
-    }
 
-    const handleClick = () => {
-        setValue("")
+    // useEffect(() => {
+    //     dispatch(getNews());
+    // }, [dispatch]);
+
+    const onSetFilter = (e) => {
+        dispatch(setFilter(e.target.value));
+    };
+    
+    // const handleChange = e => {
+    //     setValue(e.target.value);
+    // }
+
+    const handleX = (e) => {
+        dispatch(setFilter(""));
     }
 
     const getFilteredNews = () => {
-        if(!value) {
+        if(!filter) {
         return news;
         } 
-            const normalizedFilter = value.toLowerCase().trim();
+            const normalizedFilter = filter.toLowerCase().trim();
             const filteredNews = news.filter(({title}) => {
                 const normalizedTitle = title.toLowerCase().trim();
                 const result = normalizedTitle.includes(normalizedFilter);
@@ -39,7 +60,7 @@ export default function NewsPage() {
     return (
         <Container>
              <Header>News</Header>
-            <Search handleChange={handleChange} handleClick={handleClick} value={value}/>
+            <Search handleChange={onSetFilter} handleClick={handleX} value={filter}/>
                 {news.length !== 0 && (
                 <NewsList 
                     news = {getFilteredNews()}

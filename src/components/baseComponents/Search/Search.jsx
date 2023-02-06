@@ -15,7 +15,7 @@ export const Search = ({handleChange, handleClick, value, onSubmit}) => {
         </SearchForm>) :
         (<SearchForm>
             <SearchInput type="search" value={value} placeholder="Search" onChange={handleChange}/>
-            <SearchButton type="button" onClick={handleClick}>{value === '' ? 
+            <SearchButton type="button" onClick={handleClick}>{!value ? 
             (<Icon src={searchPic} alt='' />) : 
             (<Icon src={xCirlce} alt='' />)}</SearchButton>
         </SearchForm>)
