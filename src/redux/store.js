@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import { noticesReducer } from './notices';
 import { default as filterReducer } from './filter/filter';
+import {default as newsFilterReducer} from './news/newsFilter';
 
 
 const persistAuthConfig = {
@@ -27,14 +28,22 @@ const persistFiltersConfig = {
   whitelist: ['filter'],
 }
 
+const persistNewsFiltersConfig = {
+  key: 'newsFilter',
+  storage,
+  whitelist: ['newsFilter'],
+}
+
 const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
 const persistedFilterReducer = persistReducer(persistFiltersConfig, filterReducer);
+const persistedNewsFiltersReducer = persistReducer(persistNewsFiltersConfig, newsFilterReducer)
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     notices: noticesReducer,
-    filter: persistedFilterReducer
+    filter: persistedFilterReducer,
+    newsFilter: persistedNewsFiltersReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -1,13 +1,14 @@
 import useNotices from "hooks/useNotices";
 import { NoticeCategoryItem } from "../NoticeCategoryItem/NoticeCategoryItem";
+import {NoticesCategoriesListStyled} from "./NoticesCategoriesList.Styled"
 
 const NoticesCategoriesList = () => {
    const {notices} = useNotices();
 
    return (
-      <ul>
+      <NoticesCategoriesListStyled>
          {notices.map(notice => <NoticeCategoryItem key={notice._id} notice={notice}/>)}
-      </ul>
+      </NoticesCategoriesListStyled>
    )  
 };
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const List = styled.div`
     margin-left: auto;
     margin-right: auto;
+
 @media screen and (min-width: 320px) {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -16,7 +17,7 @@ export const List = styled.div`
     padding-top: 60px;
     padding-bottom: 60px;
     display: grid;
-    max-width: 1279px;
+
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     gap: 60px 33px;
