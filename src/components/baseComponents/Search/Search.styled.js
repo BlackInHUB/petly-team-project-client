@@ -1,13 +1,38 @@
 import styled from "styled-components";
+import {ReactComponent as searchPic} from "../../../images/icons/search.svg";
+import {ReactComponent as xCirlce} from "../../../images/icons/x-circle.svg";
 
-export const Icon = styled.img`
-fill: inherit;
+export const IconX = styled(xCirlce)`
 padding: 0;
 width: 18px;
 height: auto;
+stroke: ${p => p.theme.colors.black};
+transition: ${p => p.theme.transition.all};
 
 @media (min-width: 768px) {
-    width: 20px;
+    width: 22px;
+    }
+
+    &:hover,
+    :focus {
+        stroke: ${p => p.theme.colors.accent};
+    }
+`
+
+export const IconS = styled(searchPic)`
+padding: 0;
+width: 18px;
+height: auto;
+fill: ${p => p.theme.colors.black};
+transition: ${p => p.theme.transition.all};
+
+@media (min-width: 768px) {
+    width: 24px;
+    }
+
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.accent};
     }
 `
 
