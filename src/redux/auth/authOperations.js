@@ -1,8 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../services/auth';
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://petly.onrender.com';
 
 const eraseErrors = createAsyncThunk('auth/eraseErrors', () => {});
 
@@ -38,8 +35,8 @@ const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
   try {
     const result = await api.update(updateData);
     return result;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.message);
+  } catch ({response}) {
+    return thunkAPI.rejectWithValue(response.data.message);
   }
 });
 
@@ -47,8 +44,8 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await api.logout();
     return true;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.message);
+  } catch ({response}) {
+    return thunkAPI.rejectWithValue(response.data.message);
   }
 });
 
@@ -56,18 +53,37 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const { token } = thunkAPI.getState().auth;
   try {
     return await api.refresh(token);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.message);
+  } catch ({response}) {
+    return thunkAPI.rejectWithValue(response.data.message);
   }
 });
 
 const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
   try {
+    console.log('pet', pet)
     const result = await api.addPet(pet);
     return result
+  } catch ({response}) {
+    return thunkAPI.rejectWithValue(response.data.message);
+  };
+});
+
+const favorites = createAsyncThunk('auth/favorites', async (id, thunkAPI) => {
+  try {
+    const { favorites } = await api.favorites(id);
+    return favorites;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data.message);
-  };
+  }
+});
+
+const removePet = createAsyncThunk('auth/removePet', async (_id, thunkAPI) => {
+  try {
+    const result = await api.removePet(_id);
+    return {result, _id}
+  } catch ({response}) {
+    return thunkAPI.rejectWithValue(response.data.message)
+  }
 })
 
 const authOperations = {
@@ -77,7 +93,9 @@ const authOperations = {
   refresh,
   update,
   eraseErrors,
-  addPet
+  addPet,
+  favorites,
+  removePet,
 };
 
 export default authOperations;

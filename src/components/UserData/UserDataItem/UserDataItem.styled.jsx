@@ -19,6 +19,11 @@ export const UserDataItemWrapper = styled.li`
     }
 `
 
+export const UserDataItemInputBtnWrapper = styled.div`
+    display: flex;
+    align-items: center;
+`
+
 export const UserDataItemLabel = styled.label`
     display: block;
     font-family: ${p => p.theme.fonts.body};
@@ -31,11 +36,6 @@ export const UserDataItemLabel = styled.label`
         font-size: ${p => p.theme.fontSizes[3]};
         line-height: 1.8;
     }
-`
-
-export const UserDataItemInputBtnWrapper = styled.div`
-    display: flex;
-    align-items: center;
 `
 
 export const UserDataItemInput = styled.input`
@@ -65,6 +65,7 @@ export const UserDataItemInput = styled.input`
         padding-right: ${p => p.theme.space[4]}px;
     }
 `
+
 export const UserDataItemBtn = styled.button`
     display: flex;
     align-items: center;

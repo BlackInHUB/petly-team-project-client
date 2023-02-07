@@ -1,11 +1,12 @@
 import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
 import { AddPetWrapper, AddPetDesc , AddPetBtn } from './AddPetButton.styled'
 
-export const AddPetButton = () => {
+export const AddPetButton = ({onOpenAddsPet}) => {
     return(
         <>
             <AddPetWrapper>
-                <AddPetBtn className='add-button' type="button">
+                <AddPetDesc>Add pet</AddPetDesc>
+                <AddPetBtn type="button" onClick={onOpenAddsPet}>
                     <Plus />
                 </AddPetBtn>
                 <AddPetDesc className='add-text'>Add pet</AddPetDesc>

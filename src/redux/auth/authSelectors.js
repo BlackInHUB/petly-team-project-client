@@ -6,6 +6,8 @@ export const getUserEmail = ({ auth }) => auth.user?.email;
 
 export const getIsRefreshing = ({ auth }) => auth.isRefreshing;
 
-export const getUser = ({auth}) => auth.user;
+export const getUser = ({ auth }) => auth.user;
 
-export const getPets = ({auth}) => auth.pets;
+export const getPets = ({ auth }) => auth.pets;
+
+export const getFavorites = ({ auth }) => auth.user?.favorites;

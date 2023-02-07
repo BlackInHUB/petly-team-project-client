@@ -49,17 +49,37 @@ export const refresh = async token => {
 export const update = async updateData => {
   try {
     const { data } = await instance.patch('/auth/update', updateData);
-    return data.pet;
+    return data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const addPet = async (pet) => {
+export const addPet = async pet => {
   try {
-    const {data} = await instance.post('/user/pet/add', pet);
-    return data;
+    console.log(pet)
+    const { data } = await instance.post('/user/pet/add', pet);
+    return data.pet;
   } catch (error) {
     console.log(error);
   };
 };
+
+export const favorites = async id => {
+  try {
+    const { data } = await instance.get(`/user/favorites/${id}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const removePet = async (_id) => {
+  try {
+    const { data } = await instance.delete(`/user/pet/${_id}`);
+    return data
+  } catch (error) {
+    console.log(error);
+  }
+}
+

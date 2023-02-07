@@ -4,7 +4,7 @@ import Button from "../../baseComponents/Button/Button"
 
 export const NoticeCategoryItem = ({ notice }) => {
     const {category, photoUrl, title, breed, location, price, birthday} = notice;
-    console.log(notice.title);
+
     return (
         <NoticeCard>
             <span className="category">{category}</span>

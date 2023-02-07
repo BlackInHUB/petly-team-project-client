@@ -15,6 +15,19 @@ const noticesSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder
+    .addCase(noticesOperations.add.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+    })
+    .addCase(noticesOperations.add.fulfilled, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = null;
+        state.allNotices = [payload.notice, ...state.allNotices];
+    })
+    .addCase(noticesOperations.add.rejected, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = payload;
+    })
     .addCase(noticesOperations.getAll.pending, (state) => {
         state.isLoading = true;
         state.isError = null;
