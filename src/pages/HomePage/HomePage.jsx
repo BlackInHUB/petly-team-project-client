@@ -1,4 +1,5 @@
 import { HomePageWrapper, HomePageTitle, BackgroundWrapper } from "./HomePageStyled";
+import PaddingWrapper from "../../components/baseComponents/PaddingWrapper/PaddingWrapper"
 import MainImage from "../../images/desktop_girl_with_dog.png";
 import BgFrame from "../../images/desktop_Frame.png";
 import BgFrameRight from "../../images/desktop_Frame_right.png";
@@ -11,7 +12,8 @@ import FrameMobile from "../../images/mobile_Frame.png";
 export default function HomePage() {
   return (
     <HomePageWrapper>
-      <HomePageTitle>
+      <PaddingWrapper>
+        <HomePageTitle>
         Take good care of
         <br/>your small pets
       </HomePageTitle>
@@ -25,6 +27,9 @@ export default function HomePage() {
         <img className="mainMobile" src={MainImageMobile} alt="girl with dog"/>
         <img className="bgMobile" src={FrameMobile} alt=""/>
       </BackgroundWrapper>
+      </PaddingWrapper>
+      
+      
     </HomePageWrapper>
   );
 }

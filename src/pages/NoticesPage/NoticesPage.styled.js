@@ -9,20 +9,12 @@ export const Box = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   margin-bottom: 60px;
   margin-top: 40px;
-`;
-// временные стили. нужно удалить потом
-export const Title = styled.h1`
-  font-style: ${p => p.theme.fontStyle.normal};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes[5]};
-  line-height: ${p => p.theme.fontHeight.xl};
-  text-align: center;
-  color: ${p => p.theme.colors.text};
 
-  margin-bottom: 28px;
-  margin-left: auto;
-  margin-right: auto;
+  // & div {
+  //   margin-left: auto;
+  // }
 `;
