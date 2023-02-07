@@ -57,6 +57,7 @@ export const update = async updateData => {
 
 export const addPet = async pet => {
   try {
+    console.log(pet)
     const { data } = await instance.post('/user/pet/add', pet);
     return data.pet;
   } catch (error) {

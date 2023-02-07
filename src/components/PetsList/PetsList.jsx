@@ -4,7 +4,6 @@ import { PetsItem } from "./PetsItem/PetsItem"
 
 export const PetsList = () => {
     const { pets } = useAuth()
-    console.log('pets', pets)
 
     return(
         <>
@@ -12,11 +11,8 @@ export const PetsList = () => {
             <ul>
                 {pets.map(pet => (
                     <PetsItem key={pet._id}
-                       name={pet.name}
-                       breed={pet.breed}
-                       data={pet.data}
-                       photoUrl={pet.photoUrl}
-                       comments={pet.comments}/>
+                    pet={pet}
+                    />
                 ))}
             </ul>
         )
