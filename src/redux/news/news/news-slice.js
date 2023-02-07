@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import getNews from "./news-operations";
-import fetchNews from "../../../services/news/fetchNews";
-const initiaData = fetchNews();
-console.log(initiaData)
+
+export const setNews = createAsyncThunk('news', async (value, thunkApi) => {
+    return value;
+});
 
     const initialState = {
         news: [],

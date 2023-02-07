@@ -1,13 +1,34 @@
 import styled from "styled-components";
+import {ReactComponent as searchPic} from "../../../images/icons/search.svg";
+import {ReactComponent as xCirlce} from "../../../images/icons/x-circle.svg";
 
-export const Icon = styled.img`
-fill: inherit;
+export const IconX = styled(xCirlce)`
 padding: 0;
 width: 18px;
 height: auto;
-
+stroke: ${p => p.theme.colors.black};
+transition: ${p => p.theme.transition.all};
 @media (min-width: 768px) {
-    width: 20px;
+    width: 22px;
+    }
+    &:hover,
+    :focus {
+        stroke: ${p => p.theme.colors.accent};
+    }
+`
+
+export const IconS = styled(searchPic)`
+padding: 0;
+width: 18px;
+height: auto;
+fill: ${p => p.theme.colors.black};
+transition: ${p => p.theme.transition.all};
+@media (min-width: 768px) {
+    width: 24px;
+    }
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.accent};
     }
 `
 
@@ -25,11 +46,9 @@ export const SearchInput = styled.input`
     line-height: ${p => p.theme.fontHeight.l};
     font-weight: ${p => p.theme.fontWeights.normal};
     transition: ${p => p.theme.transition.all};
-
 &::placeholder {
     color: ${p => p.theme.colors.search};
 }
-
 @media (min-width: 768px) {
         font-size: ${p => p.theme.fontSizes[4]};
         line-height: ${p => p.theme.fontHeight.l};
@@ -37,11 +56,9 @@ export const SearchInput = styled.input`
         padding-right: ${p => p.theme.space[6]}px;
         border-radius: ${p => p.theme.radii.big};
     }
-
     &:focus {
         border: ${p => p.theme.borders.small} ${p => p.theme.colors.focusedSearch};
     }
-
 &::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
@@ -58,7 +75,6 @@ background-color: transparent;
 border: none;
 transform: translate(0, -40%);
 cursor: pointer;
-
 @media (min-width: 768px) {
     right: ${p => p.theme.space[6]}px;
 }
@@ -67,9 +83,6 @@ cursor: pointer;
 export const SearchForm = styled.form`
     position: relative;
     width: 100vw;
-    margin-left: auto;
-    margin-right: auto;
-
     @media (min-width: 768px) {
         width: 608px;
     }
