@@ -52,7 +52,6 @@ export const PetsItemInfoBlock = styled.div`
 
     @media screen and (min-width: 768px) {
         width:471px;
-        /* border: 1px solid blue; */
     }
 
     @media screen and (min-width: 1280px) {
@@ -72,7 +71,7 @@ export const PetsItemDeleteBtn = styled.button`
     border-radius: ${p => p.theme.radii.round};
     width: ${p => p.theme.space[6]}px;
     height: ${p => p.theme.space[6]}px;
-    cursor: pointer;
+    cursor: pointer;  
 
     @media screen and (min-width: 768px) {
         top: ${p => p.theme.space[0]}px;
@@ -93,7 +92,7 @@ export const DeleteIcon = styled(Delete)`
 
     &:hover,
     :focus {
-        fill: ${p => p.theme.colors.accent}
+        fill: ${p => p.theme.colors.hoveredAccent}
     }
 `
 
@@ -119,13 +118,10 @@ export const PetsItemDesc = styled.p`
         &:not(:last-child){
         margin-bottom: ${p => p.theme.space[5]}px;
     }
-    }
-
-    
+    }   
 `
 
 export const PetsItemSpan = styled.span`
-    /* font-family: ${p => p.theme.fonts.body}; */
     color: ${p => p.theme.colors.black};
     font-weight: ${p => p.theme.fontWeights.normal};
 `

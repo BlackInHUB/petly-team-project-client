@@ -1,8 +1,10 @@
 import styled from "styled-components"
-import { ReactComponent as Close } from '../../images/icons/modalAddsPet/close.svg'
+// import { ReactComponent as Close } from '../../images/icons/modalAddsPet/close.svg'
 import { ReactComponent as Plus} from '../../images/icons/modalAddsPet/plus.svg'
 
 export const ModalAddsPetWrapper = styled.div`
+    border: 1px solid red;
+
     position: absolute;
     max-width: 280px;
     background-color: ${p => p.theme.colors.white};
@@ -15,13 +17,17 @@ export const ModalAddsPetWrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
 
-    border: 1px solid red;
+    @media (min-width: 768px) {
+        max-width: 608px;
+        padding-left: ${p => p.theme.space[13]}px;
+        padding-right: ${p => p.theme.space[13]}px;
+    }
 `
 
-export const DeleteIcon = styled(Close)`
-    width: ${p => p.theme.space[5]};
-    height: ${p => p.theme.space[5]};
-`
+// export const DeleteIcon = styled(Close)`
+//     width: ${p => p.theme.space[5]};
+//     height: ${p => p.theme.space[5]};
+// `
 
 export const FirstPageAddsPetForm = styled.div`
     position: ${p => p.firstPageHide ? 'fixed' : 'static'};
@@ -34,14 +40,25 @@ export const SecondPageAddsPetForm = styled.div`
     opacity: ${p => p.firstPageHide ? 0 : 1};
     width: ${p => p.firstPageHide ? p.theme.space[0] : '100%'};
 `
+
 export const ModalAddsPetItputsWrapper = styled.div`
     margin-top: ${p => p.theme.space[8]}px;
     margin-bottom: ${p => p.theme.space[10]}px;
+
+     @media screen and (min-width: 768px) {
+        margin-top: ${p => p.theme.space[10]}px;
+    }
 `
 
 export const ModalAddsPetContainer = styled.div`
     &:not(:last-child){
         margin-bottom: ${p => p.theme.space[5]}px; 
+    }
+
+    @media screen and (min-width: 768px) {
+        &:not(:last-child){
+        margin-bottom: ${p => p.theme.space[8]}px; 
+    }
     }
 `
 
@@ -52,14 +69,14 @@ export const ModalAddsPetLabel = styled.label`
     line-height: 1.44;
     margin-bottom: ${p => p.theme.space[3]}px;
 
-    /* @media screen and (min-width: 768px) {
-        font-size: ${p => p.theme.fontSizes[3]};
-        line-height: 1.8;
-    } */
+    @media screen and (min-width: 768px) {
+        font-size: ${p => p.theme.fontSizes[5]};
+        line-height: ${p => p.theme.fontHeight.xs};
+        margin-bottom: ${p => p.theme.space[4]}px;
+    }
 `
 
 export const ModalAddsPetInput = styled.input`
-    /* box-sizing:border-box; */
     color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes[1]};
     font-weight: ${p => p.theme.fontWeights.thin};
@@ -80,14 +97,20 @@ export const ModalAddsPetInput = styled.input`
         outline-color: transparent;
     }
 
-    /* @media screen and (min-width: 768px) {
-        font-size: ${p => p.theme.fontSizes[3]};
-        line-height: 1.8;
-        width: 216px;
-        height: 32px;
-        padding-left: ${p => p.theme.space[4]}px;
-        padding-right: ${p => p.theme.space[4]}px;
-    } */
+    @media screen and (min-width: 768px) {
+        font-size: ${p => p.theme.fontSizes[2]};
+        line-height: 1.6;
+        width: 448px;
+        height: 48px;
+        padding-left: ${p => p.theme.space[5]}px;
+        padding-right: ${p => p.theme.space[5]}px;
+    }
+`
+
+export const ButtonWrapper = styled.div`
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
 `
 
 export const ModalAddsPetDescription = styled.p`
@@ -111,6 +134,13 @@ export const ModalAddsPetPlusWrapper = styled.div`
     border-radius: ${p => p.theme.radii.normal};
     border: ${p => p.theme.borders.none};
 ` 
+
+export const ModalAddsPetImg = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+`
 
 export const ModalAddsPetPlusInput = styled.input`
     padding-bottom: 25px;

@@ -3,20 +3,15 @@ import { AddPetButton } from "components/AddPetButton/AddPetButton"
 import { PetsList } from "components/PetsList/PetsList"
 import { Modal } from "components/Modal/Modal"
 import { ModalAddsPet } from "components/ModalAddsPet/ModalAddsPet";
-import { AddPetDiv, PetDataTitle } from "./PetsData.styled"
-// import { useAuth } from "hooks/useAuth";
-
+import { AddPetDiv, PetDataTitle, PetDataWrapper, PetDataInfo } from "./PetsData.styled"
+import { useAuth } from "hooks/useAuth";
 
 export const PetsData = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const toggleModal = () => setIsModalOpen(state => !state);
 
-    // const { pets } = useAuth()
-    // console.log('pets', pets)
-
-    // useEffect(() => {
-    //     dispatch(fetchContacts())
-    // }, [dispatch]);
+    const { pets } = useAuth()
+    console.log('pets', pets)
 
     return(
         <>
@@ -25,7 +20,13 @@ export const PetsData = () => {
                 <PetDataTitle>My pets:</PetDataTitle>
                 <AddPetButton onOpenAddsPet={toggleModal}/>
             </AddPetDiv>
+
+            {pets.length === 0 ?
+            (<PetDataWrapper>
+              <PetDataInfo>Unfortunately there is no one here yet.</PetDataInfo>
+            </PetDataWrapper>) :
             <PetsList />
+          }
 
             {isModalOpen  &&(
               <Modal setShow={toggleModal}>    
