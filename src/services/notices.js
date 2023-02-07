@@ -1,7 +1,6 @@
 import { instance } from './auth';
 
 export const add = async notice => {
-  console.log(notice);
   return await instance.post('notices/', notice);
 };
 

@@ -1,25 +1,11 @@
-
-import {List, NewsListItem, Description, DateLink, Date, Link, Decor, Title } from "./NewsList.styled";
+import {List} from "./NewsList.styled";
+import { NewsListItem } from "./NewsListItem";
 
 export default function NewsList({news}) {
-    const elements = news.map(({title, description, _id, url, date}) => {
-        return <NewsListItem key={_id} >
-
-            <Decor/>
-            <Title>{title}</Title>
-            <Description>{description}</Description>
-            
-            <DateLink>
-                 <Date>{date.replaceAll("-", "/")}</Date>
-                <Link href={url} target="_blank" rel="noreferrer">Read More</Link>
-            </DateLink>
-            
-        </NewsListItem>
-    })
 
     return (
-        <>
-            <List>{elements}</List>
-        </>
+            <List>
+                {news.map(item => <NewsListItem key={item._id} item={item}/>)}
+            </List>
     )
 }

@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import { noticesReducer } from './notices';
 import { default as filterReducer } from './filter/filter';
+import { default as newsReducer } from './news/news';
 
 
 const persistAuthConfig = {
@@ -27,7 +28,8 @@ export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     notices: noticesReducer,
-    filter: filterReducer
+    filter: filterReducer,
+    news: newsReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

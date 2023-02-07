@@ -28,6 +28,7 @@ a {
   color: currentColor;
 }
 
-ul {
+ul,
+li {
   list-style: none;
 }
