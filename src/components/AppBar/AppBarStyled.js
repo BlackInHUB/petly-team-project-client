@@ -69,6 +69,7 @@ export const CommonLink = styled(NavLink)`
   color: ${p => p.theme.colors.text};
 
   text-decoration: none;
+  transition: ${p => p.theme.transition.all};
 
   &.active {
     color: ${p => p.theme.colors.accent};
@@ -123,6 +124,8 @@ export const UserLink = styled(NavLink)`
   border-radius: ${p => p.theme.radii.big};
 
   text-decoration: none;
+
+  transition: ${p => p.theme.transition.all};
 
   & img {
     border-radius: 50%;

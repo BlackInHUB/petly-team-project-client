@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'https://petly.onrender.com/api',
-  // baseURL: 'http://localhost:8080/api'
+  // baseURL: 'https://petly.onrender.com/api',
+  baseURL: 'http://localhost:8080/api'
 });
 
 const setToken = token => {

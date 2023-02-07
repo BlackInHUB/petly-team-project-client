@@ -5,7 +5,8 @@ export const add = async notice => {
 };
 
 export const getAll = async (category, filter) => {
-  return await instance.get(`notices/${category}?filter=${filter}`);
+  const reqParams = filter !== '' ? `notices/${category}?${new URLSearchParams({filter})}` : `notices/${category}`;
+  return await instance.get(reqParams);
 };
 
 export const getOne = async id => {
