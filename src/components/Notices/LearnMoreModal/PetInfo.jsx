@@ -62,11 +62,11 @@ const PetInfo = props => {
       </Li>
       <Li>
         <ItemBold>Email:</ItemBold>
-        <Item>{props.data?.owner}</Item>
+        <Item>{props.data?.owner.email}</Item>
       </Li>
       <Li>
         <ItemBold>Phone:</ItemBold>
-        <Item>{props.data?.owner}</Item>
+        <Item>{props.data?.owner.phone}</Item>
       </Li>
       {props.data?.category === 'sell' && (
         <Li>
