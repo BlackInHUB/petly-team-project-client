@@ -4,7 +4,7 @@ export const NoticeCard = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  position: absolute;
+  position: relative;
 
   @media (max-width: 767.98px) {
     width: 280px;
@@ -131,12 +131,13 @@ export const HeartBtn = styled.button`
     border: ${p => p.theme.borders.small} ${p => p.theme.colors.hoveredAccent};
     color: ${p => p.theme.colors.hoveredAccent};
     cursor: pointer;
-`;
+  };
+`
 
 export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-atems: center;
+  align-items: center;
   justify-content: center;
   height: 120px;
   padding: 0 20px 0 20px;
