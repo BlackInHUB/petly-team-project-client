@@ -133,7 +133,12 @@ const LearnMoreModal = props => {
           </PetPhotoAndInfoAndCommentsContainer>
           <div style={{ display: 'flex', justifyContent: 'end' }}>
             <ButtonContainer>
-              <Button style={{ height: '40px' }}>Contact</Button>
+              <Button
+                style={{ height: '40px' }}
+                onClick={() => window.open(`tel:${pet?.owner.phone}`, '_self')}
+              >
+                Contact
+              </Button>
               <Button
                 style={{ height: '40px' }}
                 buttonStyle="secondary"
