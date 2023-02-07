@@ -1,6 +1,5 @@
 import { useAuth } from "hooks/useAuth";
 import { PetsItem } from "./PetsItem/PetsItem"
-// import { PetsListWrapper } from './PetsList.styled'
 
 export const PetsList = () => {
     const { pets } = useAuth()

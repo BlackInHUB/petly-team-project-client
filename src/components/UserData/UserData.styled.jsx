@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { ReactComponent as EditCamera} from '../../images/icons/userData/camera.svg'
 
 export const UserDataContainer = styled.div`
     margin-bottom: 42px;
@@ -8,12 +9,12 @@ export const UserDataContainer = styled.div`
         flex-direction: row-reverse;
         justify-content: space-between;
         margin-bottom: ${ p => p.theme.space[0]}px;
-        margin-left: 32px;
+        /* margin-left: 32px; */
     }
 
     @media screen and (min-width: 1280px) {
         display: block;
-        margin-left: ${p => p.theme.space[5]}px;
+        /* margin-left: ${p => p.theme.space[5]}px; */
         margin-bottom: ${p => p.theme.space[7]}px;
     }
 `
@@ -63,9 +64,9 @@ export const EditCameraWrapper = styled.div`
 `
 
 export const EditPhotoLabel = styled.label`
-    display: block;
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    margin-left: ${p => p.theme.space[2]}px;
     padding-right: ${p => p.theme.space[7]}px;
     font-family: ${p => p.theme.fonts.body};
     font-size: ${p => p.theme.fontSizes[0]};
@@ -74,6 +75,17 @@ export const EditPhotoLabel = styled.label`
 
     @media screen and (min-width: 768px) {
         padding-right: ${p => p.theme.space[0]}px;
+    }
+`
+
+export const EditCameraStyle = styled(EditCamera)`
+    margin-right: ${p => p.theme.space[2]}px;
+    fill: ${p => p.theme.colors.accent};
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.hoveredAccent}
     }
 `
 
@@ -92,9 +104,14 @@ export const UserDataList = styled.ul`
         width: 379px;
     }
 
+    @media screen and (min-width: 768px) {
+        margin-left: ${p => p.theme.space[9]}px;
+    }
+
     @media screen and (min-width: 1280px) {
         padding-top: ${p => p.theme.space[0]}px;
         padding-bottom: ${p => p.theme.space[0]}px;
+        margin-left: ${p => p.theme.space[5]}px;
     }
 `
 

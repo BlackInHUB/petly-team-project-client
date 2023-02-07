@@ -53,7 +53,7 @@ export const UserDataItemInput = styled.input`
     border-color: ${p => p.disabled ? 'transparent' : p.theme.colors.inputColor};
 
     :focus {
-        outline-color: transparent;
+        outline-color: ${p => p.theme.colors.inputColor};
     }
 
     @media screen and (min-width: 768px) {
@@ -88,19 +88,34 @@ export const UserDataItemBtn = styled.button`
 export const PensilStyle = styled(Pencil)`
     width: 14px;
     height: 14px;
+    fill: ${p => p.theme.colors.accent};
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.hoveredAccent}
+    }
 
     @media screen and (min-width: 768px) {
-        width: 20px;
-        height: 20px;
+        width: ${p => p.theme.space[6]}px;
+        height: ${p => p.theme.space[6]}px;
     }
 `
 
 export const CheckMarkStyle = styled(CheckMark)`
     width: 14px;
     height: 14px;
+    fill: ${p => p.theme.colors.accent};
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.hoveredAccent}
+    }
+    
 
     @media screen and (min-width: 768px) {
-        width: 20px;
-        height: 20px;
+        width: ${p => p.theme.space[6]}px;
+        height: ${p => p.theme.space[6]}px;
     }
 `
