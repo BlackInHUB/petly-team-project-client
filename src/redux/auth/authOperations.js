@@ -60,7 +60,6 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 
 const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
   try {
-    console.log('pet', pet)
     const result = await api.addPet(pet);
     return result
   } catch ({response}) {
