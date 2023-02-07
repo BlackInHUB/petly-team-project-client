@@ -7,7 +7,7 @@ export const Search = ({handleChange, handleClick, value, onSubmit, submit}) => 
         (<SearchForm onSubmit={onSubmit}>
             <SearchInput 
                 type="text" value={value} placeholder="Search" onChange={handleChange}/>
-            {!submit ?
+            {!submit && value === '' ?
             (<SearchButton type="submit">
                 <IconS />
             </SearchButton>) :

@@ -41,8 +41,8 @@ export const refresh = async token => {
     const { data } = await instance.get('/user/current');
     return data;
   } catch (error) {
-    setToken();
-    throw error;
+    setToken('');
+    console.log(error)
   }
 };
 

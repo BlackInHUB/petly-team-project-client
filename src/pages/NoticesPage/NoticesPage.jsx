@@ -15,10 +15,11 @@ const NoticesPage = () => {
   const dispath = useDispatch();
 
   useEffect(() => {
-      if(category === '') {
-        return;
-      }
-      dispath(noticesOperations.getAll(category));
+    if(!category) {
+      return;
+    };
+
+    dispath(noticesOperations.getAll(category));
   }, [category, dispath]);
 
   return (
