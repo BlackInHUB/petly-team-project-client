@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import authOperations from 'redux/auth/authOperations';
+import noticesOperations from 'redux/notices/noticesOperations';
 
 import Button from 'components/baseComponents/Button/Button';
 import ModalForm from 'components/baseComponents/ModalForm/ModalForm';
@@ -60,7 +60,6 @@ const ModalAddPet = props => {
       ...prevState,
       [name]: newValue,
     }));
-    console.log(values);
   };
 
   const handleSubmit = e => {
@@ -77,11 +76,7 @@ const ModalAddPet = props => {
     data.append('photoUrl', values.photoUrl[0]);
     data.append('comments', values.comments);
 
-    for (var pair of data.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
-
-    dispatch(authOperations.addPet(data));
+    dispatch(noticesOperations.add(data));
     props.setShow();
   };
 
@@ -288,6 +283,9 @@ const ModalAddPet = props => {
               <InputContainer>
                 <Label htmlFor="petComments">Comment</Label>
                 <Textarea
+                  onChange={e => {
+                    handleChange(e);
+                  }}
                   rows={4}
                   id="petComments"
                   name="comments"
