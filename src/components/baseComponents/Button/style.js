@@ -29,7 +29,7 @@ export const StyledButton = styled.button`
   border-radius: ${p => p.theme.radii.big};
 
   transition: box-shadow ease 0.25s, border-color ease 0.25s,
-    background-color ease 0.25s;
+    background-color ease 0.25s, color ease 0.25s, background-color ease 0.25s;
 
   &:focus,
   &:hover {

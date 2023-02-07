@@ -9,6 +9,11 @@ import femaleIcon from 'images/icons/modalAddsPet/female_icon.jpg';
 import maleIcon from 'images/icons/modalAddsPet/male_icon.jpg';
 import plusIcon from 'images/icons/modalAddsPet/plus.svg';
 
+import { formateDate } from 'components/baseComponents/DatePicker/formateDate';
+import DatePicker from 'components/baseComponents/DatePicker/DatePicker';
+// import 'react-datepicker/dist/react-datepicker.css';
+// import { formateDate } from 'components/baseComponents/DatePicker/formateDate';
+
 import { useState } from 'react';
 import {
   ButtonContainer,
@@ -27,9 +32,10 @@ import {
   ImageContainer,
   ImagePlus,
   Image,
+  Error,
 } from './style';
 
-const ModalAddPet = props => {
+const ModalAddNotice = props => {
   const dispatch = useDispatch();
 
   const initialState = {
@@ -43,11 +49,24 @@ const ModalAddPet = props => {
     price: '',
     photoUrl: '',
     comments: '',
+    next: '',
+    submit: '',
+  };
+  const errorInitialState = {
+    title: '',
+    name: '',
+    breed: '',
+    location: '',
+    price: '',
+    comments: '',
   };
   const [step, setStep] = useState(1);
   const [values, setValues] = useState(initialState);
+  const [isError, setIsError] = useState(errorInitialState);
+  const [startDate, setStartDate] = useState(new Date());
 
   const handleChange = e => {
+    console.log(startDate);
     const { value, type, name, files } = e.target;
     const newValue =
       type === 'file'
@@ -62,13 +81,70 @@ const ModalAddPet = props => {
     }));
   };
 
+  const validation = e => {
+    if (e.target.name === 'title') {
+      values.title.length < 2 || values.title.length > 48
+        ? setIsError({ ...isError, title: 'please type from 2 to 48 letters' })
+        : setIsError({ ...isError, title: '', next: '' });
+    }
+    if (e.target.name === 'name') {
+      values.name.length < 2 || values.name.length > 16
+        ? setIsError({ ...isError, name: 'please type from 2 to 16 letters' })
+        : setIsError({ ...isError, name: '', next: '' });
+    }
+    if (e.target.name === 'breed') {
+      values.breed.length < 2 || values.breed.length > 24
+        ? setIsError({ ...isError, breed: 'please type from 2 to 24 letters' })
+        : setIsError({ ...isError, breed: '', next: '' });
+    }
+    if (e.target.name === 'location') {
+      !values.location.match(
+        /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/
+      )
+        ? setIsError({
+            ...isError,
+            location: 'please type city or/and region, like "Brovary, Kyiv"',
+          })
+        : setIsError({ ...isError, location: '', submit: '' });
+    }
+    if (e.target.name === 'price') {
+      values.price.length === 0
+        ? setIsError({ ...isError, price: 'please fill this field' })
+        : setIsError({ ...isError, price: '', submit: '' });
+    }
+    if (e.target.name === 'comments') {
+      values.comments.length > 120
+        ? setIsError({ ...isError, comments: 'max size - 120 letters' })
+        : setIsError({ ...isError, comments: '', submit: '' });
+    }
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
+
+    setIsError({ ...isError, submit: '' });
+
+    Object.entries(isError).forEach(([key, value]) => {
+      if (value !== '' && key !== 'submit')
+        setIsError({ ...isError, submit: 'please put valid data' });
+
+      return;
+    });
+
+    if (
+      values.title === '' ||
+      values.location === '' ||
+      (values.price === '' && values.category === 'sell')
+    ) {
+      setIsError({ ...isError, submit: 'please put all data' });
+      return;
+    }
+
     const data = new FormData();
     data.append('category', values.category);
     data.append('title', values.title);
     data.append('name', values.name);
-    data.append('birthday', values.birthday);
+    data.append('birthday', formateDate(startDate));
     data.append('breed', values.breed);
     data.append('sex', values.sex);
     data.append('location', values.location);
@@ -77,10 +153,23 @@ const ModalAddPet = props => {
     data.append('comments', values.comments);
 
     dispatch(noticesOperations.add(data));
+    document.body.style.overflow = '';
     props.setShow();
   };
 
   const stepChange = (...args) => {
+    if (step === 1) {
+      setIsError({ ...isError, next: '' });
+      if (
+        isError.title ||
+        isError.name ||
+        isError.breed ||
+        values.title === ''
+      ) {
+        setIsError({ ...isError, next: 'please put valid data' });
+        return;
+      }
+    }
     setStep(prev => prev + args[0]);
     console.log(step);
   };
@@ -144,48 +233,67 @@ const ModalAddPet = props => {
                 <Label htmlFor="adTitle">
                   Tittle of ad<span style={{ color: 'red' }}>*</span>
                 </Label>
+
                 <Input
                   id="adTitle"
                   name="title"
                   placeholder="Type title of ad"
+                  value={values.title}
                   onChange={e => handleChange(e)}
-                  required
+                  onBlur={e => validation(e)}
                 />
+                <Error>{isError.title ? isError.title : null}</Error>
               </InputContainer>
               <InputContainer>
                 <Label htmlFor="petName">Name pet</Label>
+
                 <Input
                   id="petName"
                   name="name"
                   placeholder="Type pet name"
+                  value={values.name}
                   onChange={e => handleChange(e)}
+                  onBlur={e => validation(e)}
                 />
+                <Error>{isError.name ? isError.name : null}</Error>
               </InputContainer>
               <InputContainer>
                 <Label htmlFor="petBirthday">Date of birth</Label>
-                <Input
-                  id="petBirthday"
-                  name="birthday"
-                  placeholder="Type date of birth"
-                  onChange={e => handleChange(e)}
+                <DatePicker
+                  birthdayDate={startDate}
+                  setBirthdayDate={setStartDate}
                 />
               </InputContainer>
               <InputContainer>
                 <Label htmlFor="petBreed">Breed</Label>
+
                 <Input
                   id="petBreed"
                   name="breed"
                   placeholder="Type breed"
+                  value={values.breed}
                   onChange={e => handleChange(e)}
+                  onBlur={e => validation(e)}
                 />
+                <Error>{isError.breed ? isError.breed : null}</Error>
               </InputContainer>
             </FormContainer>
-            <FormButtonContainer>
-              <Button onClick={() => stepChange(1)}>Next</Button>
-              <Button buttonStyle="secondary" onClick={() => props.setShow()}>
-                Cancel
-              </Button>
-            </FormButtonContainer>
+            <div>
+              {' '}
+              <FormButtonContainer>
+                <Button onClick={() => stepChange(1)}>Next</Button>
+                <Button
+                  buttonStyle="secondary"
+                  onClick={() => {
+                    document.body.style.overflow = '';
+                    props.setShow();
+                  }}
+                >
+                  Cancel
+                </Button>
+              </FormButtonContainer>
+              <Error>{isError.next ? isError.next : null}</Error>
+            </div>
           </>
         )}
         {step === 2 && (
@@ -232,6 +340,7 @@ const ModalAddPet = props => {
                 <Label htmlFor="petLocation">
                   Location<span style={{ color: 'red' }}>*</span>:
                 </Label>
+
                 <Input
                   id="petLocation"
                   name="location"
@@ -239,14 +348,17 @@ const ModalAddPet = props => {
                   onChange={e => {
                     handleChange(e);
                   }}
-                  required
+                  value={values.location}
+                  onBlur={e => validation(e)}
                 />
+                <Error>{isError.location ? isError.location : null}</Error>
               </InputContainer>
               {values.category === 'sell' && (
                 <InputContainer>
                   <Label htmlFor="petPrice">
                     Price<span style={{ color: 'red' }}>*</span>:
                   </Label>
+
                   <Input
                     id="petPrice"
                     name="price"
@@ -254,8 +366,10 @@ const ModalAddPet = props => {
                     onChange={e => {
                       handleChange(e);
                     }}
-                    required
+                    value={values.price}
+                    onBlur={e => validation(e)}
                   />
+                  <Error>{isError.price ? isError.price : null}</Error>
                 </InputContainer>
               )}
               <InputContainer>
@@ -282,6 +396,7 @@ const ModalAddPet = props => {
               </InputContainer>
               <InputContainer>
                 <Label htmlFor="petComments">Comment</Label>
+
                 <Textarea
                   onChange={e => {
                     handleChange(e);
@@ -290,15 +405,21 @@ const ModalAddPet = props => {
                   id="petComments"
                   name="comments"
                   placeholder="Type comment"
+                  onBlur={e => validation(e)}
+                  value={values.comments}
                 />
+                <Error>{isError.comments ? isError.comments : null}</Error>
               </InputContainer>
             </FormContainer>
-            <FormButtonContainer>
-              <Button onClick={e => handleSubmit(e)}>Done</Button>
-              <Button buttonStyle="secondary" onClick={() => stepChange(-1)}>
-                Back
-              </Button>
-            </FormButtonContainer>
+            <div>
+              <FormButtonContainer>
+                <Button onClick={e => handleSubmit(e)}>Done</Button>
+                <Button buttonStyle="secondary" onClick={() => stepChange(-1)}>
+                  Back
+                </Button>
+              </FormButtonContainer>
+              <Error>{isError.submit ? isError.submit : null}</Error>
+            </div>
           </>
         )}
       </ModalForm>
@@ -306,4 +427,4 @@ const ModalAddPet = props => {
   );
 };
 
-export default ModalAddPet;
+export default ModalAddNotice;

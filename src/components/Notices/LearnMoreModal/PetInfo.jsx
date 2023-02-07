@@ -29,6 +29,7 @@ const Item = styled.p`
   width: 100%;
   text-align: start;
   overflow: hidden;
+  flex: 0.5 0.5 auto;
 `;
 const ItemBold = styled.p`
   width: 100%;
@@ -62,7 +63,14 @@ const PetInfo = props => {
       </Li>
       <Li>
         <ItemBold>Email:</ItemBold>
-        <Item>{props.data?.owner.email}</Item>
+        <Item>
+          <a
+            style={{ color: `${p => p.theme.colors.link}` }}
+            href={`mailto:${props.data?.owner.email}`}
+          >
+            {props.data?.owner.email}
+          </a>
+        </Item>
       </Li>
       <Li>
         <ItemBold>Phone:</ItemBold>
