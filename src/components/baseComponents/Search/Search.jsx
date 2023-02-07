@@ -7,14 +7,16 @@ export const Search = ({handleChange, handleClick, value, onSubmit, submit}) => 
         (<SearchForm onSubmit={onSubmit}>
             <SearchInput 
                 type="text" value={value} placeholder="Search" onChange={handleChange}/>
-            {!submit && value === '' ?
+            <SearchButton type="submit">
+                <IconS />
+            </SearchButton>
+            {/* {!submit ?
             (<SearchButton type="submit">
                 <IconS />
             </SearchButton>) :
             (<SearchButton type="button" onClick={handleClick}>
                 <IconX />
-            </SearchButton>)            
-        }
+            </SearchButton>)}             */}
         </SearchForm>) :
         (<SearchForm>
             <SearchInput type="search" value={value} placeholder="Search" onChange={handleChange}/>
