@@ -1,9 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import fetchNews from "../../../services/news/fetchNews";
 
-const getNews = createAsyncThunk('news', async (_,thunkApi) => {
+export const getNews = createAsyncThunk('news', async (_,thunkApi) => {
     try {
         const data = await fetchNews();
+        console.log(data)
         return data;
         
     } catch (error) {
@@ -11,4 +12,4 @@ const getNews = createAsyncThunk('news', async (_,thunkApi) => {
     };
 });
 
-export default getNews;
+export default getNews; 

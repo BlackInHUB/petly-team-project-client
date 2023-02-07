@@ -14,6 +14,7 @@ import { authReducer } from './auth';
 import { noticesReducer } from './notices';
 import { default as filterReducer } from './filter/filter';
 import {default as newsFilterReducer} from './news/newsFilter';
+import {default as newsReducer} from './news/news/news-slice';
 
 
 const persistAuthConfig = {
@@ -34,9 +35,17 @@ const persistNewsFiltersConfig = {
   whitelist: ['newsFilter'],
 }
 
+const persistNewsConfig = {
+  key: 'news',
+  storage,
+  whitelist: ['news'],
+};
+
 const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
 const persistedFilterReducer = persistReducer(persistFiltersConfig, filterReducer);
-const persistedNewsFiltersReducer = persistReducer(persistNewsFiltersConfig, newsFilterReducer)
+const persistedNewsFiltersReducer = persistReducer(persistNewsFiltersConfig, newsFilterReducer);
+const persistedNewsReducer = persistReducer(persistNewsConfig, newsReducer);
+
 
 export const store = configureStore({
   reducer: {
@@ -44,6 +53,7 @@ export const store = configureStore({
     notices: noticesReducer,
     filter: persistedFilterReducer,
     newsFilter: persistedNewsFiltersReducer,
+    news: persistedNewsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
