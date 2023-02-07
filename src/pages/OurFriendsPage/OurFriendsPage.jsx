@@ -1,6 +1,6 @@
 // import { Box } from "components/Box";
 import { useState, useEffect } from "react";
-import friendsApi from '../../services/petly-api';
+import friendsApi from '../../services/friends';
 import  {OurFriends}  from '../../components/OurFriends/OurFriends';
 import { Title } from "components/baseComponents/Title/Title";
 

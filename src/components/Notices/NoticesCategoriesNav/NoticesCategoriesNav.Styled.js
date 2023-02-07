@@ -2,7 +2,12 @@ import styled from 'styled-components';
 
 export const NoticesCategoriesNavWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: start;
   flex-wrap: wrap;
+  gap: 10px;
+  // max-width: 500px;
+  position: relative;
 
   & a {
     font-weight: ${p => p.theme.fontWeights.normal};
@@ -15,7 +20,6 @@ export const NoticesCategoriesNavWrapper = styled.div`
     padding: 10px 28px;
     color: ${p => p.theme.colors.text};
 
-    gap: 10px;
     background: ${p => p.theme.colors.white};
     border: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
     border-radius: ${p => p.theme.radii.big};
@@ -39,13 +43,9 @@ export const NoticesCategoriesNavWrapper = styled.div`
       color: ${p => p.theme.colors.hoveredAccent};
     }
 
-    @media (max-width: 767.99px) {
+    @media (max-width: 767px) {
       font-size: ${p => p.theme.fontSizes[1]};
       margin-left: 0;
     }
-  }
-
-  & a + a {
-    margin-left: 12px;
   }
 `;
