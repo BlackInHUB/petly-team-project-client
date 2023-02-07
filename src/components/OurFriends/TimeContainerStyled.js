@@ -1,4 +1,20 @@
 import styled from 'styled-components';
+import { date } from './TimeContainer';
+
+export const LiStyled = styled.li`
+display: flex;
+justify-content: space-between;
+color:  ${p => (p.index === date.getDay()) ? p.theme.colors.accent : p.theme.colors.text};
+text-decoration: ${p => (p.index === date.getDay()) ? p.theme.textDecor.under : p.theme.textDecor.none};
+`
+
+export const ListWeek = styled.span`
+
+`
+
+export const ListTime = styled.span`
+
+`
 
 export const Time = styled.p`
     padding-top:${p => p.theme.fontSizes[0]};
@@ -22,7 +38,10 @@ export const TimeList = styled.li`
 
     ul{
         position: absolute;
-        padding:${p => p.theme.fontSizes[0]};
+        width: 120px;
+        font-size: ${p => p.theme.fontSizes[0]};
+        line-height: ${p => p.theme.fontHeight.l};
+        padding:${p => p.theme.space[4]}px;
         background: ${p => p.theme.colors.white};
         border: 1px solid ${p => p.theme.colors.accent};
         box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);

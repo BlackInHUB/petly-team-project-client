@@ -69,6 +69,10 @@ const theme = {
   },
   transition: {
     all: 'all 150ms linear'
+  },
+  textDecor: {
+    under: 'underline',
+    none: 'none'
   }
 };
 

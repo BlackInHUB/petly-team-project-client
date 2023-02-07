@@ -1,12 +1,8 @@
-import { Time, TimeList } from "./TimeContainerStyled";
-import styled from 'styled-components';
+import { Time, TimeList, LiStyled, ListWeek, ListTime } from "./TimeContainerStyled";
 
-const date = new Date();
+export const date = new Date();
 
 const week = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"];
-
-
-export const LiStyled = styled.li`background-color:  ${p => (p.index === date.getDay()) ? p.theme.colors.accent : p.theme.colors.background};`
 
 export const TimeContainer = ({ work }) => {      
     return (
@@ -19,8 +15,8 @@ export const TimeContainer = ({ work }) => {
 
                 <ul>
                     {work && work.map(({ isOpen, from, to }, index) => isOpen ?
-                        <LiStyled key={index} index={index}>{week[index]} {from} - {to}</LiStyled> :
-                        <LiStyled key={index} index={index}> {week[index]} - {"Closed"}</LiStyled>)
+                        <LiStyled key={index} index={index}><ListWeek>{week[index]}</ListWeek><ListTime>{from}- {to}</ListTime></LiStyled> :
+                        <LiStyled key={index} index={index}><ListWeek>{week[index]}</ListWeek><ListTime>Closed</ListTime></LiStyled>)
                     }
                 </ul>
 

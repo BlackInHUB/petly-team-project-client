@@ -1,7 +1,7 @@
 import { StyledTytle } from "./Title.styled"
 
-export const Title = ({ children }) => {
+export const Title = ({ value }) => {
     return (
-        <StyledTytle>{children}</StyledTytle>
+        <StyledTytle>{value}</StyledTytle>
     )
 }

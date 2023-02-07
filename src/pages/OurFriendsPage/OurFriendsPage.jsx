@@ -15,7 +15,7 @@ export default function OurFriendsPage() {
 
     return (
       <div >
-        <Title>Our friends</Title>
+        <Title value={'Our friends'} />
         {ourFriends ? <OurFriends items={ourFriends} /> : <Title>{"No friends added yet :("}</Title> }
           
       </div>
