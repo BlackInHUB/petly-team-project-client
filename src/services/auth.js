@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'https://petly.onrender.com/api',
-  // baseURL: 'http://localhost:8080/api'
+  // baseURL: 'https://petly.onrender.com/api',
+  baseURL: 'http://localhost:8080/api'
 });
 
 const setToken = token => {
@@ -28,7 +28,7 @@ export const logout = async () => {
   try {
     await instance.get('/auth/logout');
 
-    setToken('');
+    setToken(null);
     return true;
   } catch (error) {
     console.log(error);
@@ -38,11 +38,10 @@ export const logout = async () => {
 export const refresh = async token => {
   try {
     setToken(token);
-    const { data } = await instance.get('/user/current');
+    const {data} = await instance.get('/user/current');
     return data;
   } catch (error) {
-    setToken();
-    throw error;
+    setToken(null);
   }
 };
 
