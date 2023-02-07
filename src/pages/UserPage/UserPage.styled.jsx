@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const UserPageWrapper = styled.div`
     @media (min-width: 320px) {
+        width: 100%;
         padding-bottom: ${p => p.theme.space[13]}px;
         padding-left: ${p => p.theme.space[6]}px;
         padding-right: ${p => p.theme.space[6]}px;
     }
     
-
     @media screen and (min-width: 768px) {
         /* max-width: 736px; */
         padding-bottom: ${p => p.theme.space[14]}px;

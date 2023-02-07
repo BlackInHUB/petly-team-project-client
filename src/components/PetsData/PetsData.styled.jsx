@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const AddPetWrapper = styled.div`
+    width: 100%;
+
+    @media screen and (min-width: 768px) {
+        padding-left: ${p => p.theme.space[9]}px;
+    }
+
+    @media screen and (min-width: 768px) {
+        padding-left: ${p => p.theme.space[5]}px;
+    }
+`
+
 export const AddPetDiv = styled.div`
     display: flex;
     justify-content: space-between;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
 import { AddsPetBtnOrange } from "./AddsPetBtn/AddsPetBtnOrange/AddsPetBtnOrange";
-import { ModalAddsPetWrapper, FirstPageAddsPetForm, SecondPageAddsPetForm,
+import { ModalAddsPetWrapper, ModalAddsPetForm, FirstPageAddsPetForm, SecondPageAddsPetForm,
     ModalAddsPetItputsWrapper, ModalAddsPetContainer, ModalAddsPetLabel, ModalAddsPetInput,
     ModalAddsPetDescription, ModalAddsPetPlusWrapper, ButtonWrapper, ModalAddsPetImg, ModalAddsPetPlusInput, PlusStyled, ModalAddsPetTextarea
  } from './ModalAddsPet.styled'
@@ -64,7 +64,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
     return(
         <ModalAddsPetWrapper>
             
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
+            <ModalAddsPetForm encType="multipart/form-data" onSubmit={handleSubmit}>
 
                 {firstPageHide && (
                     <FirstPageAddsPetForm>
@@ -151,7 +151,6 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                             }
                         </ModalAddsPetPlusWrapper>
                        
-    
                         <ModalAddsPetLabel>Comments</ModalAddsPetLabel>
                         <ModalAddsPetTextarea   
                             value={state.comments} onChange={handleChange}
@@ -159,13 +158,14 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                             placeholder="Type comments"
                             required>
                         </ModalAddsPetTextarea>
+
                     <ButtonWrapper>
                     <AddsPetBtnOrange titleBtn='Done' type="submit" />
                     <AddsPetBtn titleBtn='Back' type="button" onClick={clickBackHandle} />
                     </ButtonWrapper>      
                   </SecondPageAddsPetForm>
               )}
-            </form>
+            </ModalAddsPetForm>
         </ModalAddsPetWrapper>
     )
 }

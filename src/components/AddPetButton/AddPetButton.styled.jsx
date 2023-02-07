@@ -43,6 +43,7 @@ export const AddPetBtn = styled.button`
 
 export const PlusIcon = styled(Plus)`
     fill: ${p => p.theme.colors.black};
+    transition: ${p => p.theme.transition.all};
 
     &:hover,
     :focus {

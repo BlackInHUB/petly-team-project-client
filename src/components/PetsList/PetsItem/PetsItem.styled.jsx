@@ -49,13 +49,14 @@ export const PetsItemImg = styled.img`
 export const PetsItemInfoBlock = styled.div`
     position: relative;
     border-color: ${p => p.theme.colors.accent};
+    width: 100%;
 
     @media screen and (min-width: 768px) {
-        width:471px;
+        min-width:471px;
     }
 
     @media screen and (min-width: 1280px) {
-        width: 580px;
+        min-width: 580px;
     }
 `
 

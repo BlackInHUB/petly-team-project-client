@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {ReactComponent as LogoutIcon} from '../../images/icons/logout/logout.svg'
 
 export const LogoutBtn = styled.button`
     display: flex;
@@ -17,9 +18,19 @@ export const LogoutBtn = styled.button`
 
     @media screen and (min-width: 1280px) {
         position: static;
-        margin-left: ${ p => p.theme.space[6]}px;
+        margin-left: ${ p => p.theme.space[5]}px;
         padding-right: ${ p => p.theme.space[0]}px;
     }
+`
+
+export const LogoutIconStyled = styled(LogoutIcon)`
+ fill: ${p => p.theme.colors.accent};
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.hoveredAccent}
+    }    
 `
 
 export const LogoutBtnText = styled.span`

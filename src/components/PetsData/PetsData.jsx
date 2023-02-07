@@ -3,7 +3,7 @@ import { AddPetButton } from "components/AddPetButton/AddPetButton"
 import { PetsList } from "components/PetsList/PetsList"
 import { Modal } from "components/Modal/Modal"
 import { ModalAddsPet } from "components/ModalAddsPet/ModalAddsPet";
-import { AddPetDiv, PetDataTitle, PetDataWrapper, PetDataInfo } from "./PetsData.styled"
+import { AddPetWrapper, AddPetDiv, PetDataTitle, PetDataWrapper, PetDataInfo } from "./PetsData.styled"
 import { useAuth } from "hooks/useAuth";
 
 export const PetsData = () => {
@@ -15,7 +15,7 @@ export const PetsData = () => {
 
     return(
         <>
-        <div>
+        <AddPetWrapper>
             <AddPetDiv>
                 <PetDataTitle>My pets:</PetDataTitle>
                 <AddPetButton onOpenAddsPet={toggleModal}/>
@@ -33,7 +33,7 @@ export const PetsData = () => {
                 <ModalAddsPet onClose={toggleModal} onCloseBtn={toggleModal}/>
               </Modal>
           )}
-        </div>
+        </AddPetWrapper>
         </>
     )
 }

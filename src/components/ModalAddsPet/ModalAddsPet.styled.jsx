@@ -23,11 +23,9 @@ export const ModalAddsPetWrapper = styled.div`
         padding-right: ${p => p.theme.space[13]}px;
     }
 `
-
-// export const DeleteIcon = styled(Close)`
-//     width: ${p => p.theme.space[5]};
-//     height: ${p => p.theme.space[5]};
-// `
+export const ModalAddsPetForm = styled.form`
+    min-width: 446px;
+`
 
 export const FirstPageAddsPetForm = styled.div`
     position: ${p => p.firstPageHide ? 'fixed' : 'static'};
@@ -88,14 +86,19 @@ export const ModalAddsPetInput = styled.input`
     background-color: ${p => p.theme.colors.background};
     border: ${p => p.theme.borders.small};
     border-color: ${p => p.theme.colors.inputColor};
+    transition: ${p => p.theme.transition.all};
+
+    &:focus {
+        border-color: ${p => p.theme.colors.hoveredAccent};
+        border: ${p => p.theme.borders.small};
+        border-radius: ${p => p.theme.radii.normal};
+        box-shadow: ${p => p.theme.shadows.mainShadow};
+        outline-color: ${p => p.theme.colors.hoveredAccent};
+    }
 
     &::placeholder {
         color: ${p => p.theme.colors.inputPlaceholder};
 }
-
-    :focus {
-        outline-color: transparent;
-    }
 
     @media screen and (min-width: 768px) {
         font-size: ${p => p.theme.fontSizes[2]};
@@ -121,6 +124,12 @@ export const ModalAddsPetDescription = styled.p`
     text-align: center;
     margin-bottom: ${p => p.theme.space[6]}px;
     margin-top: ${p => p.theme.space[6]}px;
+
+    @media screen and (min-width: 768px) {
+        font-size: ${p => p.theme.fontSizes[4]};
+        line-height: ${p => p.theme.fontHeight.s};
+        letter-spacing: -0.01em;
+    }
 `
 
 export const ModalAddsPetPlusWrapper = styled.div`
@@ -133,13 +142,19 @@ export const ModalAddsPetPlusWrapper = styled.div`
     height: 208px;
     border-radius: ${p => p.theme.radii.normal};
     border: ${p => p.theme.borders.none};
+
+    @media screen and (min-width: 768px) {
+        width: 182px;
+        height: 182px;
+        margin-bottom: ${p => p.theme.space[10]}px;
+    }
 ` 
 
 export const ModalAddsPetImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: ${p => p.theme.radii.normal};
 `
 
 export const ModalAddsPetPlusInput = styled.input`
@@ -153,6 +168,7 @@ export const ModalAddsPetPlusInput = styled.input`
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
+    
 `
 
 export const PlusStyled = styled(Plus)`
@@ -160,6 +176,13 @@ export const PlusStyled = styled(Plus)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+      :focus {
+           fill: ${p => p.theme.colors.hoveredAccent}
+    }
+
 `
 
 export const ModalAddsPetTextarea = styled.textarea`
@@ -177,8 +200,27 @@ export const ModalAddsPetTextarea = styled.textarea`
     border-radius: ${p => p.theme.radii.normal};
     border-color: ${p => p.theme.colors.inputColor};
     margin-bottom: ${p => p.theme.space[10]}px;
+    transition: ${p => p.theme.transition.all};
+    resize : none;
+    overflow : auto;
+
+    &:focus {
+        border-color: ${p => p.theme.colors.hoveredAccent};
+        border: ${p => p.theme.borders.small};
+        border-radius: ${p => p.theme.radii.normal};
+        box-shadow: ${p => p.theme.shadows.mainShadow};
+        outline-color: ${p => p.theme.colors.hoveredAccent};
+    }
 
     &::placeholder {
         color: ${p => p.theme.colors.inputPlaceholder};
-}
+    }
+
+@media screen and (min-width: 768px) {
+        width: 394px;
+        min-height: 116px;
+        font-size: ${p => p.theme.fontSizes[2]};
+        padding-top: ${p => p.theme.space[5]}px;
+        padding-left: ${p => p.theme.space[5]}px;
+    }
 `

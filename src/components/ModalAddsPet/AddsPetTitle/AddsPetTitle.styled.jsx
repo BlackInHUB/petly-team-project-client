@@ -31,6 +31,7 @@ export const CloseIcon = styled(Close)`
     width: ${p => p.theme.space[5]};
     height: ${p => p.theme.space[5]};
     fill: ${p => p.theme.colors.black};
+    transition: ${p => p.theme.transition.all};
 
     &:hover,
     :focus {

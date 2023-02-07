@@ -80,6 +80,13 @@ export const EditPhotoLabel = styled.label`
 
 export const EditCameraStyle = styled(EditCamera)`
     margin-right: ${p => p.theme.space[2]}px;
+    fill: ${p => p.theme.colors.accent};
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.hoveredAccent}
+    }
 `
 
 export const EditPhotoInput = styled.input`
@@ -97,9 +104,14 @@ export const UserDataList = styled.ul`
         width: 379px;
     }
 
+    @media screen and (min-width: 768px) {
+        margin-left: ${p => p.theme.space[9]}px;
+    }
+
     @media screen and (min-width: 1280px) {
         padding-top: ${p => p.theme.space[0]}px;
         padding-bottom: ${p => p.theme.space[0]}px;
+        margin-left: ${p => p.theme.space[5]}px;
     }
 `
 
