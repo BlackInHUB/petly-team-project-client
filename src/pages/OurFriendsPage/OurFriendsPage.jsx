@@ -16,7 +16,7 @@ export default function OurFriendsPage() {
     return (
       <div >
         <Title>Our friends</Title>
-        {ourFriends ? <OurFriends items={ourFriends} /> : "No friends added yet :(" }
+        {ourFriends ? <OurFriends items={ourFriends} /> : <Title>{"No friends added yet :("}</Title> }
           
       </div>
         
