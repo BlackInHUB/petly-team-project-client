@@ -3,13 +3,23 @@ import styled from 'styled-components';
 export const NoticeCard = styled.li`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: start;
   position: absolute;
-  width: 288px;
-  height: 606px;
 
-  //временно
-  margin-bottom: 32px;
+  @media (max-width: 767.98px) {
+    width: 280px;
+    height: auto;
+  }
+
+  @media (min-width: 768px) and (max-width: 1279px) {
+    width: 366px;
+    height: auto;
+  }
+
+  @media (min-width: 1280px) {
+    width: 288px;
+    height: auto;
+  }
 
   background: ${p => p.theme.colors.white};
 
@@ -23,6 +33,8 @@ export const NoticeCard = styled.li`
     top: 20px;
     width: 158px;
     height: 28px;
+    display: flex;
+    align-items: center;
     align-content: center;
     justify-content: center;
     padding: 6px 20px;
@@ -31,8 +43,6 @@ export const NoticeCard = styled.li`
     font-weight: ${p => p.theme.fontWeights.normal};
     font-size: ${p => p.theme.fontSizes[0]};
     line-height: ${p => p.theme.fontHeight.l};
-    display: flex;
-    align-items: center;
     letter-spacing: 0.04em;
     color: ${p => p.theme.colors.text};
 
@@ -57,13 +67,15 @@ export const NoticeCard = styled.li`
 
     max-width: 232px;
     margin-bottom: 20px;
+    margin-left: 20px;
   }
 `;
 
 export const PetInfo = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
+  align-items: start;
   margin-bottom: 20px;
 
   & p {
@@ -71,6 +83,7 @@ export const PetInfo = styled.div`
     flex-direction: row;
     align-items: center;
     margin-bottom: 8px;
+    margin-left: 20px;
     min-width: 50px;
   }
 
@@ -118,6 +131,17 @@ export const HeartBtn = styled.button`
     border: ${p => p.theme.borders.small} ${p => p.theme.colors.hoveredAccent};
     color: ${p => p.theme.colors.hoveredAccent};
     cursor: pointer;
+`;
 
-    
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-atems: center;
+  justify-content: center;
+  height: 120px;
+  padding: 0 20px 0 20px;
+
+  & button {
+    margin-bottom: 12px;
+  }
 `;

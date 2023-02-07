@@ -4,11 +4,11 @@ import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/No
 import { Suspense, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router';
 import { Title } from 'components/baseComponents/Title/Title';
+import { Box } from "./NoticesPage.styled";
 import { noticesOperations } from 'redux/notices';
 import { useDispatch } from 'react-redux';
 import { AddPetButton } from 'components/AddPetButton/AddPetButton';
-import {Box} from "./NoticesPage.styled";
-
+// import PaddingWrapper from "../../components/baseComponents/PaddingWrapper/PaddingWrapper"
 
 const NoticesPage = () => {
   const {categoryName: category} = useParams();
@@ -21,6 +21,7 @@ const NoticesPage = () => {
 
     dispath(noticesOperations.getAll(category));
   }, [category, dispath]);
+  
 
   return (
     <>
@@ -29,7 +30,7 @@ const NoticesPage = () => {
         <NoticesSearch category={category}/>
         <Box>
           <NoticesCategoriesNav/>
-          <AddPetButton/>
+          <AddPetButton />
         </Box>
       </div>
       <Suspense fallback={<Loader />}>
