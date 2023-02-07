@@ -68,7 +68,7 @@ const theme = {
     round: '50%',
   },
   transition: {
-    all: 'all 250ms linear'
+    all: 'all 150ms linear'
   }
 };
 

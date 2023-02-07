@@ -1,6 +1,4 @@
-import { SearchInput, SearchForm, SearchButton, Icon } from "./Search.styled"
-import searchPic from "../../../images/icons/search.svg";
-import xCirlce from "../../../images/icons/x-circle.svg";
+import { SearchInput, SearchForm, SearchButton, IconX, IconS } from "./Search.styled"
 
 export const Search = ({handleChange, handleClick, value, onSubmit, submit}) => {
     return (
@@ -11,18 +9,18 @@ export const Search = ({handleChange, handleClick, value, onSubmit, submit}) => 
                 type="text" value={value} placeholder="Search" onChange={handleChange}/>
             {!submit ?
             (<SearchButton type="submit">
-                <Icon src={searchPic} alt='' />
+                <IconS />
             </SearchButton>) :
             (<SearchButton type="button" onClick={handleClick}>
-                <Icon src={xCirlce} alt='' />
+                <IconX />
             </SearchButton>)            
         }
         </SearchForm>) :
         (<SearchForm>
             <SearchInput type="search" value={value} placeholder="Search" onChange={handleChange}/>
             <SearchButton type="button" onClick={handleClick}>{value === '' ? 
-            (<Icon src={searchPic} alt='' />) : 
-            (<Icon src={xCirlce} alt='' />)}</SearchButton>
+            (<IconS />) : 
+            (<IconX />)}</SearchButton>
         </SearchForm>)
         }
         </>
