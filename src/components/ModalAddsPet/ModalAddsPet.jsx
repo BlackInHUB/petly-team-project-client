@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
@@ -164,3 +165,4 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         </ModalAddsPetWrapper>
     )
 }
+

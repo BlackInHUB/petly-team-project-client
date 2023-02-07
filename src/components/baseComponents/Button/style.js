@@ -6,7 +6,8 @@ export const StyledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  padding-left: 28px;
+  padding-right: 28px;
   color: ${p =>
     p.buttonStyle === 'primary'
       ? p.theme.colors.white
