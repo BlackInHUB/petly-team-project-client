@@ -28,7 +28,7 @@ export const logout = async () => {
   try {
     await instance.get('/auth/logout');
 
-    setToken('');
+    setToken(null);
     return true;
   } catch (error) {
     console.log(error);
@@ -38,11 +38,10 @@ export const logout = async () => {
 export const refresh = async token => {
   try {
     setToken(token);
-    const { data } = await instance.get('/user/current');
+    const {data} = await instance.get('/user/current');
     return data;
   } catch (error) {
-    setToken();
-    throw error;
+    setToken(null);
   }
 };
 
@@ -57,7 +56,6 @@ export const update = async updateData => {
 
 export const addPet = async pet => {
   try {
-    console.log(pet)
     const { data } = await instance.post('/user/pet/add', pet);
     return data.pet;
   } catch (error) {

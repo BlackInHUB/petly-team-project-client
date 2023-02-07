@@ -22,4 +22,12 @@ export const AddsPetBtnStyle = styled.button`
     &:hover, :focus {
         border-color: ${p => p.theme.colors.hoveredAccent};
     }
+
+    @media screen and (min-width: 768px) {
+        width: 180px;
+        height: 44px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: ${p => p.theme.fontSizes[4]};
+    }
 `

@@ -1,18 +1,15 @@
 import { useDispatch } from 'react-redux'
 import { authOperations } from '../../redux/auth'
 import defaultUserPhoto from '../../images/UserData/defaultUserPhoto.png'
-import { ReactComponent as EditCamera} from '../../images/icons/userData/camera.svg'
 import { UserDataItem } from './UserDataItem/UserDataItem'
 import { UserDataContainer, 
-    UserDataImgWrapper, EditCameraForm, UserDataImg, EditCameraWrapper, EditPhotoLabel,
+    UserDataImgWrapper, EditCameraForm, UserDataImg, EditCameraWrapper, EditCameraStyle, EditPhotoLabel,
     EditPhotoInput, UserDataList } from './UserData.styled'
 import { useAuth } from 'hooks/useAuth'
 
 export const UserData = () => {
     const dispatch = useDispatch();   
     const {user} = useAuth();
-
-    // console.log(user);
    
     const changeAvatar = e => {
         const data = new FormData()
@@ -28,9 +25,9 @@ export const UserData = () => {
                 <EditCameraForm>
                     <EditCameraWrapper>
                         <EditPhotoLabel htmlFor="user_photo">
-                            Edit photo
+                            <EditCameraStyle />
+                            <span>Edit photo</span>
                         </EditPhotoLabel>
-                        <EditCamera />
                     </EditCameraWrapper>
                     <EditPhotoInput  type="file" name='edit photo' id="user_photo" onChange={changeAvatar}/>
                 </EditCameraForm>

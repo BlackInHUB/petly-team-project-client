@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
 
 export const AddPetWrapper = styled.div`
     display: flex;
@@ -28,7 +29,7 @@ export const AddPetBtn = styled.button`
     border-radius: ${p => p.theme.radii.big};
     padding: ${p => p.theme.space[3]}px;
     cursor: pointer;
-
+/* 
     &:hover {
     transition: margin-left 3s;
     border-radius: 40px;
@@ -37,5 +38,15 @@ export const AddPetBtn = styled.button`
         & svg {
             opacity: 0;
         }
+    } */
+`
+
+export const PlusIcon = styled(Plus)`
+    fill: ${p => p.theme.colors.black};
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.hoveredAccent}
     }
 `

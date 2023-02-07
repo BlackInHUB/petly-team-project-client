@@ -1,30 +1,26 @@
-import axios from "axios";
+import { instance } from './auth';
 
-const instance = axios.create({
-    baseURL: 'https://petly.onrender.com/api/notices'
-    // baseURL: 'http://localhost:8080/api/notices'
-});
-
-export const add = async (notice) => {
-    return await instance.post('/', notice)
+export const add = async notice => {
+  return await instance.post('notices/', notice);
 };
 
 export const getAll = async (category, filter) => {
-    return await instance.get(`/${category}?filter=${filter}`);
+  const reqParams = filter !== '' ? `notices/${category}?${new URLSearchParams({filter})}` : `notices/${category}`;
+  return await instance.get(reqParams);
 };
 
-export const getOne = async (id) => {
-    return await instance.get(`/details/${id}`);
+export const getOne = async id => {
+  return await instance.get(`notices/details/${id}`);
 };
 
-export const remove = async (id) => {
-    return await instance.delete(`/${id}`);
+export const remove = async id => {
+  return await instance.delete(`notices/${id}`);
 };
 
 export const getOwn = async () => {
-    return await instance.get('/user/own');
+  return await instance.get('notices/user/own');
 };
 
 export const getFavorites = async () => {
-    return await instance.get('/user/favorites');
+  return await instance.get('notices/user/favorites');
 };

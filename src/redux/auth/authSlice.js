@@ -78,6 +78,9 @@ const authSlice = createSlice({
         state.isError = null;
       })
       .addCase(authOperations.refresh.fulfilled, (state, { payload }) => {
+        if (!payload) {
+          return state = initialState
+        };
         state.user = payload.user;
         state.pets = payload.pets;
         state.isLoggedIn = true;
@@ -85,6 +88,7 @@ const authSlice = createSlice({
         state.isError = null;
       })
       .addCase(authOperations.refresh.rejected, (state, { payload }) => {
+        state.error = payload;
         state.isRefreshing = false;
       })
       .addCase(authOperations.logout.fulfilled, (state, _) => {

@@ -1,10 +1,11 @@
+
 import { useState } from "react";
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
 import { AddsPetBtnOrange } from "./AddsPetBtn/AddsPetBtnOrange/AddsPetBtnOrange";
-import { ModalAddsPetWrapper, FirstPageAddsPetForm, SecondPageAddsPetForm,
+import { ModalAddsPetWrapper, ModalAddsPetForm, FirstPageAddsPetForm, SecondPageAddsPetForm,
     ModalAddsPetItputsWrapper, ModalAddsPetContainer, ModalAddsPetLabel, ModalAddsPetInput,
-    ModalAddsPetDescription, ModalAddsPetPlusWrapper, ModalAddsPetPlusInput, PlusStyled, ModalAddsPetTextarea
+    ModalAddsPetDescription, ModalAddsPetPlusWrapper, ButtonWrapper, ModalAddsPetImg, ModalAddsPetPlusInput, PlusStyled, ModalAddsPetTextarea
  } from './ModalAddsPet.styled'
 import { useDispatch } from "react-redux";
 import { authOperations } from "redux/auth";
@@ -26,7 +27,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
 
     const initialState = {
         name: '',
-        date: '',
+        birthday: '',
         breed: '',
         photoUrl: '',
         comments: '',
@@ -48,7 +49,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         e.preventDefault();
         const data = new FormData()
         await data.append('name', state.name)
-        await data.append('date', state.date)
+        await data.append('birthday', state.birthday)
         await data.append('breed', state.breed)
         await data.append('photoUrl', state.photoUrl[0])
         await data.append('comments', state.comments)
@@ -64,7 +65,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
     return(
         <ModalAddsPetWrapper>
             
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
+            <ModalAddsPetForm encType="multipart/form-data" onSubmit={handleSubmit}>
 
                 {firstPageHide && (
                     <FirstPageAddsPetForm>
@@ -87,17 +88,17 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                    </ModalAddsPetContainer>
       
                     <ModalAddsPetContainer>
-                    <ModalAddsPetLabel htmlFor="date">Date of birth</ModalAddsPetLabel>
+                    <ModalAddsPetLabel htmlFor="birthday">Date of birth</ModalAddsPetLabel>
                       <ModalAddsPetInput
-                        value={state.date} onChange={handleChange}
-                        name='date'
+                        value={state.birthday} onChange={handleChange}
+                        name='birthday'
                         type='text'
                         placeholder='Type date of birth'
                         min="1990-01-01"
                         max={new Date()}
                         pattern={patternDate}
                         title="Date may contain only format 0000-00-00 and up-to-date"
-                        id="date"
+                        id="birthday"
                         required
                        />  
                     </ModalAddsPetContainer>
@@ -117,8 +118,10 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                     </ModalAddsPetContainer>
                    </ModalAddsPetItputsWrapper>
 
+                    <ButtonWrapper>
                     <AddsPetBtnOrange titleBtn='Next' type='button' onClick={clickNextHandle} />
                     <AddsPetBtn titleBtn='Cancel' type='button' onClick={onCloseBtn} />
+                    </ButtonWrapper>
       
                     </FirstPageAddsPetForm>
                 )}
@@ -142,25 +145,29 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                             name="photoUrl"
                             accept=".png, .jpg, .jpeg"
                             id="photoUrl"
+                            required
                             />
                             </>) :
-                            (<img src={`${URL.createObjectURL(state.photoUrl[0])}`} alt=''/>)
+                            (<ModalAddsPetImg src={`${URL.createObjectURL(state.photoUrl[0])}`} alt=''/>)
                             }
                         </ModalAddsPetPlusWrapper>
                        
-    
                         <ModalAddsPetLabel>Comments</ModalAddsPetLabel>
                         <ModalAddsPetTextarea   
                             value={state.comments} onChange={handleChange}
                             name="comments"
-                            placeholder="Type comments">
+                            placeholder="Type comments"
+                            required>
                         </ModalAddsPetTextarea>
-                            
+
+                    <ButtonWrapper>
                     <AddsPetBtnOrange titleBtn='Done' type="submit" />
                     <AddsPetBtn titleBtn='Back' type="button" onClick={clickBackHandle} />
+                    </ButtonWrapper>      
                   </SecondPageAddsPetForm>
               )}
-            </form>
+            </ModalAddsPetForm>
         </ModalAddsPetWrapper>
     )
 }
+

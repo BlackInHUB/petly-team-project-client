@@ -19,11 +19,29 @@ export const ModalAddsPetCloseBtn = styled.button`
     width: 34px;
     height: 34px;
     cursor: pointer;
+
+    @media screen and (min-width: 768px) {
+        width: 44px;
+        height: 44px;
+        right: -55px;
+    }
 `
 
 export const CloseIcon = styled(Close)`
     width: ${p => p.theme.space[5]};
     height: ${p => p.theme.space[5]};
+    fill: ${p => p.theme.colors.black};
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+    :focus {
+        fill: ${p => p.theme.colors.hoveredAccent}
+    }
+
+    @media screen and (min-width: 768px) {
+        width: ${p => p.theme.space[6]};
+        height: ${p => p.theme.space[6]};
+    }
 `
 
 export const ModalAddsPetTitle = styled.h2`
@@ -36,8 +54,8 @@ export const ModalAddsPetTitle = styled.h2`
     /* margin-left: auto;
     margin-right: auto; */
 
-    /* @media screen and (min-width: 768px) {
-        font-size: ${p => p.theme.fontSizes[6]};
+    @media screen and (min-width: 768px) {
+        font-size: ${p => p.theme.fontSizes[8]};
         letter-spacing: 0;
-    } */
+    }
 `
