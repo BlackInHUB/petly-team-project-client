@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal } from "components/Modal/Modal"
 import { ModalConfirmDelete } from 'components/ModalConfirmDelete/ModalConfirmDelete';
 import { PetsItemWrapper, PetsItemDeleteBtn, PetsItemInfoBlock, PetsItemImg, DeleteIcon, PetsItemDesc, PetsItemSpan } from './PetsItem.styled'
@@ -8,6 +8,12 @@ export const PetsItem = ({pet}) => {
     const toggleModal = () => setIsModalOpen(state => !state);
 
     const {_id, name, birthday, breed, photoUrl, comments} = pet;
+
+    useEffect(() => {
+        if (!isModalOpen) {
+            document.body.style.overflow = ''
+        }
+    }, [isModalOpen])
 
     return(
         <>

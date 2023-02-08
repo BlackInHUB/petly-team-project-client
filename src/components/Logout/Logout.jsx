@@ -1,22 +1,4 @@
-// import { useDispatch } from 'react-redux';
-// import { authOperations } from '../../redux/auth'
-
-// import { LogoutBtn, LogoutBtnText, LogoutIconStyled  } from './Logout.styled'
-
-// export const Logout = () => {
-//     const dispatch = useDispatch();
-    
-//     return(
-//         <>
-//         <LogoutBtn onClick={() => dispatch(authOperations.logout())}>
-//             <LogoutIconStyled  />
-//             <LogoutBtnText>Log Out</LogoutBtnText>
-//         </LogoutBtn>
-//         </>
-//     )
-// }
-
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 import { Modal } from "components/Modal/Modal"
 import { ModalLogout } from '../ModalLogout/ModalLogout'
 import { LogoutBtn, LogoutBtnText, LogoutIconStyled  } from './Logout.styled'
@@ -24,6 +6,12 @@ import { LogoutBtn, LogoutBtnText, LogoutIconStyled  } from './Logout.styled'
 export const Logout = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const toggleModal = () => setIsModalOpen(state => !state);
+
+    useEffect(() => {
+        if (!isModalOpen) {
+            document.body.style.overflow = ''
+        }
+    }, [isModalOpen])
     
     return(
         <>

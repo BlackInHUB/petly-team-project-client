@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AddPetButton } from "components/AddPetButton/AddPetButton"
 import { PetsList } from "components/PetsList/PetsList"
 import { Modal } from "components/Modal/Modal"
@@ -11,6 +11,12 @@ export const PetsData = () => {
     const toggleModal = () => setIsModalOpen(state => !state);
 
     const { pets } = useAuth()
+
+    useEffect(() => {
+      if (!isModalOpen) {
+          document.body.style.overflow = ''
+      }
+  }, [isModalOpen])
 
     return(
         <>
