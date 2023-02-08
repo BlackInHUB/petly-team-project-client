@@ -8,7 +8,7 @@ import { Box } from "./NoticesPage.styled";
 import { noticesOperations } from 'redux/notices';
 import { useDispatch } from 'react-redux';
 import { AddPetButton } from 'components/AddPetButton/AddPetButton';
-// import PaddingWrapper from "../../components/baseComponents/PaddingWrapper/PaddingWrapper"
+import PaddingWrapper from "../../components/baseComponents/PaddingWrapper/PaddingWrapper"
 
 const NoticesPage = () => {
   const {categoryName: category} = useParams();
@@ -24,7 +24,7 @@ const NoticesPage = () => {
   
 
   return (
-    <>
+    <PaddingWrapper>
       <div>
         <Title value={'Find your favorite pet'}/>
         <NoticesSearch category={category}/>
@@ -36,7 +36,7 @@ const NoticesPage = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-    </>
+    </PaddingWrapper>
   );
 };
 

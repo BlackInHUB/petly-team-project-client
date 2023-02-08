@@ -5,24 +5,7 @@ export const NoticeCard = styled.li`
   flex-direction: column;
   justify-content: start;
   position: relative;
-
-  @media (max-width: 767.98px) {
-    width: 280px;
-    height: auto;
-  }
-
-  @media (min-width: 768px) and (max-width: 1279px) {
-    width: 366px;
-    height: auto;
-  }
-
-  @media (min-width: 1280px) {
-    width: 288px;
-    height: auto;
-  }
-
   background: ${p => p.theme.colors.white};
-
   box-shadow: ${p => p.theme.shadows.mainShadow};
   border-radius: ${p => p.theme.radii.none} ${p => p.theme.radii.none}
     ${p => p.theme.radii.big} ${p => p.theme.radii.big};
@@ -56,6 +39,22 @@ export const NoticeCard = styled.li`
     width: 100%;
     height: auto;
     margin-bottom: 20px;
+    object-fit: cover;
+
+    @media (max-width: 767px) {
+      width: 280px;
+      height: 280px;
+    }
+
+    @media (min-width: 768px) and (max-width: 1279px) {
+      width: 366px;
+      height: 366px;
+    }
+
+    @media (min-width: 1280px) {
+      width: 288px;
+      height: 288px;
+    }
   }
 
   & h3 {
@@ -66,6 +65,7 @@ export const NoticeCard = styled.li`
     color: ${p => p.theme.colors.text};
 
     max-width: 232px;
+    min-height: 76px;
     margin-bottom: 20px;
     margin-left: 20px;
   }
@@ -98,7 +98,6 @@ export const PetInfo = styled.div`
     font-weight: ${p => p.theme.fontWeights.normal};
     font-size: ${p => p.theme.fontSizes[2]};
     line-height: ${p => p.theme.fontHeight.l};
-
     color: ${p => p.theme.colors.text};
   }
 
@@ -124,6 +123,10 @@ export const HeartBtn = styled.button`
 
   & svg.active {
     fill: ${p => p.theme.colors.accent};
+
+    &:hover,
+    &:focus-visible {
+    }
   }
 
   &:hover,
@@ -131,8 +134,8 @@ export const HeartBtn = styled.button`
     border: ${p => p.theme.borders.small} ${p => p.theme.colors.hoveredAccent};
     color: ${p => p.theme.colors.hoveredAccent};
     cursor: pointer;
-  };
-`
+  }
+`;
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -141,6 +144,7 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
   height: 120px;
   padding: 0 20px 0 20px;
+  margin-top: auto;
 
   & button {
     margin-bottom: 12px;

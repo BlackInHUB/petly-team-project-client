@@ -18,10 +18,6 @@ border: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
 background-color: ${p => p.theme.colors.white};
 transition: ${p => p.theme.transition.all};
 
-/* &:not(:last-child) {
-  margin-right: ${p => p.theme.space[4]}px;
-} */
-
 &.active {
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.white};

@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 
 export const NoticesCategoriesListStyled = styled.ul`
-  gap: 32px;
+  display: grid;
+  grid-gap: 32px;
+  justify-items: center;
   padding: 0;
   margin: 0 auto;
 
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  };
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  @media (min-width: 768px) and (max-width: 1279px) {
+    grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
+  }
 
   @media (min-width: 1280px) {
-    grid-template-columns: repeat(4, 1fr);
-  };
+    grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+  }
 `;

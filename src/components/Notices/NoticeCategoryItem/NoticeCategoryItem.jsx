@@ -5,12 +5,12 @@ import { useAuth } from 'hooks/useAuth';
 
 export const NoticeCategoryItem = ({ notice }) => {
     const { category, photoUrl, title, breed, location, price, birthday } = notice;
-    const {isLoggedIn} = useAuth();
+    const { isLoggedIn, getFavorites } = useAuth();
 
     return (
         <NoticeCard>
             <span className="category">{category}</span>
-            <HeartBtn className="heart" type="button">{<HiOutlineHeart width="28" height="28"/>}</HeartBtn>
+            <HeartBtn className="heart" type="button" addFavorite={true}>{<HiOutlineHeart width="28" height="28"/>}</HeartBtn>
             <img src={photoUrl} alt={title}/>
             <h3>{title}</h3>
             <PetInfo>
@@ -21,8 +21,11 @@ export const NoticeCategoryItem = ({ notice }) => {
             </PetInfo>
             <ButtonWrapper>
                 <Button type="button" buttonStyle="secondary" loadMore={true}>Learn more</Button>
-                {isLoggedIn && <Button type="button" buttonStyle="secondary" loadMore={true}>Delete <HiTrash width="28px" height="28px" /></Button> }
+                {isLoggedIn && getFavorites && <Button type="button" buttonStyle="secondary" loadMore={true}>Delete <HiTrash width="28px" height="28px" /></Button> }
             </ButtonWrapper>
         </NoticeCard>
     )
 }
+
+
+/* getFavorite нужно прописать условие добавления по кнопке */
