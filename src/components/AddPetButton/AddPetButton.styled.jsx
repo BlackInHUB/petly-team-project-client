@@ -2,10 +2,7 @@ import styled from "styled-components"
 import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
 
 export const AddPetWrapper = styled.div`
-    display: flex;
-    align-items: center;
-
-@media (max-width: 767px) {
+    @media (max-width: 767px) {
     position: fixed;
     top: 75vh;
     right: 5vh;
@@ -18,24 +15,30 @@ export const AddPetWrapper = styled.div`
     justify-content: center;
     box-shadow: ${p => p.theme.shadows.userDataShadow};    
 }
+    
+    display: flex;
+    align-items: center;
 `
 
 export const AddPetDesc = styled.p`
+@media (max-width: 767px) {
+    font-size: ${p => p.theme.fontSizes[0]};
+    color: ${p => p.theme.colors.white};
+    margin: 0;
+}
+
     color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes[4]};
     font-weight: ${p => p.theme.fontWeights.normal};
     line-height: ${p => p.theme.fontHeight.l};
     margin-right: ${p => p.theme.space[4]}px;
-
-@media (max-width: 767px) {
-    /* position: absolute; */
-    font-size: ${p => p.theme.fontSizes[0]};
-    color: ${p => p.theme.colors.white};
-    margin: 0;
-}
 `
 
 export const AddPetBtn = styled.button`
+@media (max-width: 767px) {
+    padding-bottom: 0;
+}
+
     display: flex;
     background-color: transparent;
     border: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
@@ -43,18 +46,14 @@ export const AddPetBtn = styled.button`
     background: ${p => p.theme.colors.accent};
     border-radius: ${p => p.theme.radii.big};
     cursor: pointer;
-
-@media (max-width: 767px) {
-    padding-bottom: 0;
-}
 `
 
 export const PlusIcon = styled(Plus)`
-width: 24px;
-stroke: ${p => p.theme.colors.white};
-
 @media (max-width: 767px) {
     width: 32px;
     height: auto;
 }
+
+width: 24px;
+stroke: ${p => p.theme.colors.white};
 `

@@ -66,7 +66,6 @@ const ModalAddNotice = props => {
   const [startDate, setStartDate] = useState(new Date());
 
   const handleChange = e => {
-    console.log(startDate);
     const { value, type, name, files } = e.target;
     const newValue =
       type === 'file'
@@ -153,6 +152,7 @@ const ModalAddNotice = props => {
     data.append('comments', values.comments);
 
     dispatch(noticesOperations.add(data));
+    console.log(data)
     document.body.style.overflow = '';
     props.setShow();
   };
@@ -196,9 +196,9 @@ const ModalAddNotice = props => {
                   name="category"
                   style={{ width: 'max-content', height: '35px' }}
                   buttonStyle={
-                    values.category === 'lost/found' ? 'primary' : 'secondary'
+                    values.category === 'lost-found' ? 'primary' : 'secondary'
                   }
-                  value="lost/found"
+                  value="lost-found"
                   onClick={e => handleChange(e)}
                 >
                   lost/found
@@ -207,11 +207,11 @@ const ModalAddNotice = props => {
                   name="category"
                   style={{ width: 'max-content', height: '35px' }}
                   buttonStyle={
-                    values.category === 'In good hands'
+                    values.category === 'for-free'
                       ? 'primary'
                       : 'secondary'
                   }
-                  value="In good hands"
+                  value="for-free"
                   onClick={e => handleChange(e)}
                 >
                   In good hands
