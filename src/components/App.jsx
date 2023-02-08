@@ -6,6 +6,8 @@ import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { authOperations } from 'redux/auth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
@@ -27,7 +29,8 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <Routes>
+    <>
+        <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/news" element={<NewsPage />} />
@@ -63,5 +66,8 @@ export const App = () => {
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
+    <ToastContainer autoClose={3000}/>
+    </>
+
   );
 };

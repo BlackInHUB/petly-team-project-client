@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
+// import styled from "styled-components"
+// import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
 
 export const AddPetWrapper = styled.div`
     @media (max-width: 767px) {
@@ -29,11 +29,26 @@ export const AddPetDesc = styled.p`
 
     color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes[4]};
+    color: ${p => p.theme.colors.text};
     font-weight: ${p => p.theme.fontWeights.normal};
     line-height: ${p => p.theme.fontHeight.l};
     margin-right: ${p => p.theme.space[4]}px;
 `
 
+export const PlusContainer = styled.div`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${p => p.theme.colors.accent};
+  transition: ${p => p.theme.transition.all};
+  border-radius: ${p => p.theme.radii.big};
+  @media (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+  }
+`;
 export const AddPetBtn = styled.button`
 @media (max-width: 767px) {
     padding-bottom: 0;

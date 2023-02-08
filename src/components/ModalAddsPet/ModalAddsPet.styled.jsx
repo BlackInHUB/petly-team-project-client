@@ -1,10 +1,7 @@
 import styled from "styled-components"
-// import { ReactComponent as Close } from '../../images/icons/modalAddsPet/close.svg'
 import { ReactComponent as Plus} from '../../images/icons/modalAddsPet/plus.svg'
 
 export const ModalAddsPetWrapper = styled.div`
-    border: 1px solid red;
-
     position: absolute;
     max-width: 280px;
     background-color: ${p => p.theme.colors.white};

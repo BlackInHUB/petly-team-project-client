@@ -72,6 +72,11 @@ export const EditPhotoLabel = styled.label`
     font-size: ${p => p.theme.fontSizes[0]};
     font-weight: ${p => p.theme.fontWeights.thin};
     line-height: 1.8;
+    transition: ${p => p.theme.transition.all};
+
+    &:hover, &:focus {
+        color: ${p => p.theme.colors.hoveredAccent}
+    }
 
     @media screen and (min-width: 768px) {
         padding-right: ${p => p.theme.space[0]}px;

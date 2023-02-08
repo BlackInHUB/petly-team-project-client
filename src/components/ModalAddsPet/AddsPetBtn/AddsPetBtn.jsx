@@ -1,4 +1,4 @@
-import { AddsPetBtnStyle } from './AddsPetBtn.styles'
+import { AddsPetBtnStyle } from './AddsPetBtn.styled'
 
 export const AddsPetBtn = ({type, titleBtn, onClick}) => {
     return (

@@ -24,7 +24,7 @@ export const LogoutBtn = styled.button`
 `
 
 export const LogoutIconStyled = styled(LogoutIcon)`
- fill: ${p => p.theme.colors.accent};
+    fill: ${p => p.theme.colors.accent};
     transition: ${p => p.theme.transition.all};
 
     &:hover,
@@ -41,4 +41,10 @@ export const LogoutBtnText = styled.span`
     letter-spacing: 0.04em;
     color: ${p => p.theme.colors.logout};
     margin-left: ${ p => p.theme.space[3]}px;
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+    :focus {
+        color: ${p => p.theme.colors.hoveredAccent}
+    }  
 `
