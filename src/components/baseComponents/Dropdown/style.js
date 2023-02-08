@@ -1,0 +1,98 @@
+import styled from 'styled-components';
+
+export const DropdownWrapper = styled.div`
+  color: ${p => p.theme.colors.text};
+  font-size: ${p => p.theme.fontSizes[1]};
+  line-height: ${p => p.theme.fontHeight.l};
+  font-weight: ${p => p.theme.fontWeights.thin};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: left;
+  border: 1px solid #ccc;
+  position: relative;
+  border: ${p => p.theme.borders.small};
+  border-color: ${p => p.theme.colors.accent};
+  background-color: ${p => p.theme.colors.background};
+  border-radius: ${p => p.theme.radii.normal};
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+
+  transition: box-shadow ease 0.25s, border-color ease 0.25s;
+  @media (min-width: 768px) {
+    height: 48px;
+    border-radius: ${p => p.theme.radii.big};
+  }
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
+
+    outline: none;
+    border-color: ${p => p.theme.colors.hoveredAccent};
+
+`;
+
+export const Input = styled.div`
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+`;
+
+export const Menu = styled.div`
+  color: ${p => p.theme.colors.text};
+  font-size: ${p => p.theme.fontSizes[1]};
+  line-height: ${p => p.theme.fontHeight.l};
+  font-weight: ${p => p.theme.fontWeights.thin};
+
+  border: ${p => p.theme.borders.small};
+  border-color: ${p => p.theme.colors.accent};
+  background-color: ${p => p.theme.colors.background};
+  border-radius: ${p => p.theme.radii.normal} 0 0 ${p => p.theme.radii.normal};
+
+  scrollbar-width: thin;
+  scrollbar-color: ${p => p.theme.colors.accent} #ffffff;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${p => p.theme.colors.accent};
+    border-radius: 20px;
+    border: 2px none #ffffff;
+  }
+
+  position: absolute;
+  left: 0;
+  transform: translateY(5px);
+  width: 100%;
+
+  overflow: auto;
+  overflow-x: hidden;
+  max-height: 150px;
+
+  z-index: 2;
+`;
+
+export const Item = styled.div`
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  :hover {
+    background-color: ${p => p.theme.colors.accent};
+  }
+
+  &.selected {
+    background-color: ${p => p.theme.colors.hoveredAccent};
+    color: #fff;
+  }
+`;

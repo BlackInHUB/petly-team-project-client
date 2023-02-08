@@ -2,18 +2,32 @@ import styled from 'styled-components';
 
 export const ModalFormStyled = styled.div`
   position: absolute;
+
+  scrollbar-width: thin;
+  scrollbar-color: ${p => p.theme.colors.accent} #ffffff;
+
   ::-webkit-scrollbar {
-    display: none;
+    width: 10px;
   }
-  scrollbar-width: none;
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${p => p.theme.colors.accent};
+    border-radius: 40px;
+
+    border: 1px solid ${p => p.theme.colors.accent};
+  }
 
   left: 50%;
   width: calc(100vw - 40px);
   max-width: 500px;
-  max-height: calc(100vh - 80px);
+  max-height: calc(100vh - 40px);
   overflow-y: scroll;
   z-index: 1;
-  transform: translateX(-50%);
+  transform: translateY(20px) translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,6 +45,7 @@ export const ModalFormStyled = styled.div`
   box-shadow: ${p => p.theme.shadows.mainShadow};
 
   @media (min-width: 768px) {
+    max-height: calc(100vh - 80px);
     max-width: 1000px;
     left: 50%;
     top: 50%;

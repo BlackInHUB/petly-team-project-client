@@ -11,7 +11,6 @@ const add = createAsyncThunk('notices/add', async (notice, thunkApi) => {
 }) 
 
 const getAll = createAsyncThunk('notices/getAll', async (category, thunkApi) => {
-    console.log('getAll')
     try {
         const {filter} = thunkApi.getState().filter;
         const {data} = await api.getAll(category, filter);
@@ -61,13 +60,18 @@ const remove = createAsyncThunk('notices/remove', async (id, thunkApi) => {
     }
 })
 
+const setCategory = createAsyncThunk('notice/category', async (category, thunkApi) => {
+    return category;
+})
+
 const noticesOperations = {
     getAll,
     getOne,
     getOwn,
     getFavorites,
     add,
-    remove
+    remove,
+    setCategory
 };
 
 export default noticesOperations;

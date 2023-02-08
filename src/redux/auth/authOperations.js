@@ -68,6 +68,7 @@ const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
 });
 
 const favorites = createAsyncThunk('auth/favorites', async (id, thunkAPI) => {
+  console.log(id)
   try {
     const {favorites} = await api.favorites(id);
     return favorites;

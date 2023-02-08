@@ -7,7 +7,8 @@ const initialState = {
     own: [],
     details: null,
     isLoading: false,
-    isError: null
+    isError: null,
+    userCategory: null
 }
 
 const noticesSlice = createSlice({
@@ -22,7 +23,9 @@ const noticesSlice = createSlice({
     .addCase(noticesOperations.add.fulfilled, (state, {payload}) => {
         state.isLoading = false;
         state.isError = null;
-        state.allNotices = [payload.notice, ...state.allNotices];
+        state.allNotices = state.category === payload.notice.category 
+        ? [payload.notice, ...state.allNotices] 
+        : state.allNotices;
     })
     .addCase(noticesOperations.add.rejected, (state, {payload}) => {
         state.isLoading = false;
@@ -92,6 +95,9 @@ const noticesSlice = createSlice({
     .addCase(noticesOperations.remove.rejected, (state, {payload}) => {
         state.isLoading = false;
         state.isError = payload;
+    })
+    .addCase(noticesOperations.setCategory.fulfilled, (state, {payload}) => {
+        state.category = payload;
     })
     }
 });
