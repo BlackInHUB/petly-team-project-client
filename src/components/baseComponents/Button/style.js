@@ -24,7 +24,7 @@ export const StyledButton = styled.button`
     p.buttonStyle === 'primary' ? p.theme.colors.accent : p.theme.colors.white};
   border: ${p =>
     p.buttonStyle === 'primary'
-      ? p.theme.borders.none
+      ? p.theme.borders.normal + ' ' + p.theme.colors.accent
       : p.theme.borders.normal + ' ' + p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.big};
 
@@ -39,6 +39,7 @@ export const StyledButton = styled.button`
       p.buttonStyle === 'primary'
         ? p.theme.colors.hoveredAccent
         : p.theme.colors.white};
+    border-color: ${p => p.theme.colors.hoveredAccent};
     box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
   }
 
