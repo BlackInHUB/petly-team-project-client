@@ -97,7 +97,7 @@ const ModalAddNotice = props => {
     }
     if (e.target.name === 'location') {
       !values.location.match(
-        /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/
+        /^\s*([A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+,\s?)?[A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+\s*$/
       )
         ? setIsError({
             ...isError,
@@ -211,9 +211,7 @@ const ModalAddNotice = props => {
                   name="category"
                   style={{ width: 'max-content', height: '35px' }}
                   buttonStyle={
-                    values.category === 'for-free'
-                      ? 'primary'
-                      : 'secondary'
+                    values.category === 'for-free' ? 'primary' : 'secondary'
                   }
                   value="for-free"
                   onClick={e => handleChange(e)}

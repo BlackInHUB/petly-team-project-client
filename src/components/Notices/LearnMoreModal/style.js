@@ -2,17 +2,15 @@ import styled from 'styled-components';
 
 export const ModalForm = styled.div`
   position: absolute;
-  ::-webkit-scrollbar {
-    display: none;
-  }
+
   scrollbar-width: none;
 
   left: 50%;
   width: 280px;
-  max-height: calc(100vh - 210px);
+  max-height: calc(100vh - 40px);
   overflow-y: scroll;
   z-index: 1;
-  transform: translateX(-50%);
+  transform: translateY(20px) translateX(-50%);
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -142,7 +140,7 @@ export const ButtonContainer = styled.div`
   gap: 12px;
   width: 100%;
   @media (min-width: 768px) {
-    width: 332px;
+    width: 380px;
     flex-direction: row-reverse;
   }
 `;
