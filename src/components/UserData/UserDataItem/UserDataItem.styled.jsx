@@ -113,9 +113,19 @@ export const CheckMarkStyle = styled(CheckMark)`
         fill: ${p => p.theme.colors.hoveredAccent}
     }
     
-
     @media screen and (min-width: 768px) {
         width: ${p => p.theme.space[6]}px;
         height: ${p => p.theme.space[6]}px;
+    }
+`
+
+export const UserDataInputError = styled.p`
+    font-size: 10px;
+    color: red;
+    padding-left: 90px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 12px;
+        padding-left: 120px;
     }
 `

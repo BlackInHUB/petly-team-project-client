@@ -11,7 +11,6 @@ export const PetsData = () => {
     const toggleModal = () => setIsModalOpen(state => !state);
 
     const { pets } = useAuth()
-    console.log('pets', pets)
 
     return(
         <>

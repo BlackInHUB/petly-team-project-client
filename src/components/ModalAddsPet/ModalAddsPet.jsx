@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
@@ -33,6 +32,11 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         comments: '',
     }
 
+    const patternName=/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
+    const patternDate=/\d{4}-\d{2}-\d{2}/
+    const patterBreed = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
+
+    
     const [state, setState] = useState(initialState);
 
     const handleChange = e => {
@@ -57,11 +61,6 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         onClose();
     }
 
-
-    const patternName=/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
-    const patternDate=/\d{4}-\d{2}-\d{2}/
-    const patterBreed = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
-
     return(
         <ModalAddsPetWrapper>
             
@@ -85,6 +84,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                         id="name"
                         required
                        /> 
+                       {/* {!isValid && <p>Name may contain only letters</p>} */}
                    </ModalAddsPetContainer>
       
                     <ModalAddsPetContainer>
