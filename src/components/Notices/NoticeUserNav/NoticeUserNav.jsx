@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom"
 export const NoticeUserNav = () => {
     return (
         <>
-            <NavLink>favorite ads</NavLink>
-            <NavLink>my ads</NavLink>
+            <NavLink to='favorite-ads'>favorite ads</NavLink>
+            <NavLink to='my-ads'>my ads</NavLink>
         </>
     )
 }

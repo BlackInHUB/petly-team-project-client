@@ -6,7 +6,6 @@ export const NoticesCategoriesNavWrapper = styled.div`
   justify-content: start;
   flex-wrap: wrap;
   gap: 10px;
-  // max-width: 500px;
   position: relative;
 
   & a {

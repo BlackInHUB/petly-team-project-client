@@ -75,17 +75,7 @@ export const AddPetBtn = styled.button`
                 opacity: 0;
             }
         }
-}
-/* 
-    &:hover {
-    transition: margin-left 3s;
-    border-radius: 40px;
-    width: 120px;
-        
-        & svg {
-            opacity: 0;
-        }
-    } */
+    }   
 `
 
 export const PlusIcon = styled(Plus)`

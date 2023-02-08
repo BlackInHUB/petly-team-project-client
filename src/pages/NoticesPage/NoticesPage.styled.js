@@ -13,8 +13,4 @@ export const Box = styled.div`
 
   margin-bottom: 60px;
   margin-top: 40px;
-
-  // & div {
-  //   margin-left: auto;
-  // }
 `;
