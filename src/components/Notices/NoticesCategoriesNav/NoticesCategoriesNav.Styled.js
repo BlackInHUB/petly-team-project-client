@@ -26,4 +26,9 @@ transition: ${p => p.theme.transition.all};
 @media (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes[4]};
   }
+
+  &:hover:not(.active),
+  :focus-visible:not(.active) {
+    border-color: ${p => p.theme.colors.hoveredAccent};
+  }
 `

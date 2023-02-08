@@ -3,7 +3,7 @@ import { useAuth } from 'hooks/useAuth';
 
 export const NoticesCategoriesNav = () => {
     const { isLoggedIn } = useAuth();
-    
+
     return (
         <NavContainer>
             <NavBtn to='sell'>sell</NavBtn>
