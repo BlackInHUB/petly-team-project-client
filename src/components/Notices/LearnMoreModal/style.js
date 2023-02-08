@@ -84,6 +84,7 @@ export const PetPhotoContainer = styled.div`
 `;
 
 export const PetPhoto = styled.img`
+  object-fit: cover;
   width: 240px;
   height: 240px;
   border-radius: 0 0 40px 40px;

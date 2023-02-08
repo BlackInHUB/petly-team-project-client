@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from '../../services/notices';
 
 const add = createAsyncThunk('notices/add', async (notice, thunkApi) => {
+    console.log(notice)
     try {
         const {data} = await api.add(notice);
         return data;

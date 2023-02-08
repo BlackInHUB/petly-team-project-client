@@ -1,51 +1,29 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const NoticesCategoriesNavWrapper = styled.div`
+export const NavContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 12px;
+`
 
-  & a {
-    font-weight: ${p => p.theme.fontWeights.normal};
-    font-size: ${p => p.theme.fontSizes[2]};
-    line-height: ${p => p.theme.fontHeight.l};
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    letter-spacing: 0.04em;
-    padding: 10px 28px;
-    color: ${p => p.theme.colors.text};
+export const NavBtn = styled(NavLink)`
+text-decoration: none;
+font-size: ${p => p.theme.fontSizes[2]};
+line-height: ${p => p.theme.fontHeight.l};
+font-weight: ${p => p.theme.fontWeights.normal};
+padding: ${p => p.theme.space[3]}px ${p => p.theme.space[8]}px;
+border-radius: ${p => p.theme.radii.big};
+border: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+background-color: ${p => p.theme.colors.white};
+transition: ${p => p.theme.transition.all};
 
-    gap: 10px;
-    background: ${p => p.theme.colors.white};
-    border: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
-    border-radius: ${p => p.theme.radii.big};
+&.active {
+  background-color: ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.white};
+}
 
-    text-decoration: none;
-
-    & img {
-      border-radius: 50%;
-      background: white;
-    }
-
-    &.active {
-      background-color: ${p => p.theme.colors.accent};
-      color: ${p => p.theme.colors.white};
-    }
-
-    :hover:not(.active),
-    :focus-visible:not(.active) {
-      border: ${p => p.theme.borders.normal}
-        ${p => p.theme.colors.hoveredAccent};
-      color: ${p => p.theme.colors.hoveredAccent};
-    }
-
-    @media (max-width: 767.99px) {
-      font-size: ${p => p.theme.fontSizes[1]};
-      margin-left: 0;
-    }
+@media (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes[4]};
   }
-
-  & a + a {
-    margin-left: 12px;
-  }
-`;
+`

@@ -1,46 +1,41 @@
 import React from "react";
 import NewsList from "../../components/News/NewsList/NewsList";
-import Search from "../../components/News/Search/Search";
 import { useState, useEffect } from "react";
-import {Container, Header} from "./NewsPage.styled"
-import fetchNews from "../../services/news/fetchNews"
+import {Container} from "./NewsPage.styled";
+import { Search } from "components/baseComponents/Search/Search";
+import { Title } from "components/baseComponents/Title/Title";
+import { getNews } from "redux/news/news";
+import { useDispatch, useSelector } from "react-redux";
+import { newsFilter } from "components/News/newsFilter";
 
 export default function NewsPage() {
-    const [news, setNews] = useState([]);
-    const [filter, setFilter] = useState("");
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getNews());
+    }, [dispatch])
 
-    useEffect(()=> {
-        fetchNews().then(response => {
-            setNews(response);
-        })
-    }, [])
-    
+    const [filter, setFilter] = useState("");
+    const news = useSelector(state => state.news.news);
+
     const handleChange = e => {
         setFilter(e.target.value);
     }
 
-    const getFilteredNews = () => {
-        if(!filter) {
-        return news;
-        } 
-            const normalizedFilter = filter.toLowerCase().trim();
-            const filteredNews = news.filter(({title}) => {
-                const normalizedTitle = title.toLowerCase().trim();
-                const result = normalizedTitle.includes(normalizedFilter);
-            return result;
-            })
-        return filteredNews;
-    }
+    const handleXclick = () => {
+        setFilter('');
+    };
+
+    const newsToRender = newsFilter(news, filter);
 
     return (
         <Container>
-             <Header>News</Header>
-            <Search onChange={handleChange} value={filter}/>
-                {news.length !== 0 && (
-                <NewsList 
-                    news = {getFilteredNews()}
-                />)
-                }
+             <Title value={'News'} />
+                <Search
+                handleChange={handleChange}
+                handleClick={handleXclick}
+                value={filter}
+                />
+                {newsToRender.length !== 0 && <NewsList news = {newsToRender}/>}
         </Container>
     )
 }

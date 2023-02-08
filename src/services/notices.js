@@ -1,12 +1,13 @@
 import { instance } from './auth';
 
 export const add = async notice => {
-  console.log(notice);
+  console.log(notice)
   return await instance.post('notices/', notice);
 };
 
 export const getAll = async (category, filter) => {
-  return await instance.get(`notices/${category}?filter=${filter}`);
+  const reqParams = filter !== '' ? `notices/${category}?${new URLSearchParams({filter})}` : `notices/${category}`;
+  return await instance.get(reqParams);
 };
 
 export const getOne = async id => {

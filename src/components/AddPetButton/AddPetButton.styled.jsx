@@ -1,75 +1,39 @@
 // import styled from "styled-components"
 // import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
 
-// export const AddPetWrapper = styled.div`
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     flex-direction: row-reverse;
-//     min-width: 130px;
-
-//     & button.add-button:hover ~ p.add-text {
-//     translate: 110px;
-//     color: ${p => p.theme.colors.white};
-// }
-// `
-
-// export const AddPetDesc = styled.p`
-//     font-size: ${p => p.theme.fontSizes[4]};
-//     font-weight: ${p => p.theme.fontWeights.normal};
-//     line-height: ${p => p.theme.fontHeight.l};
-//     margin-right: 15px;
-// `
-
-// export const AddPetBtn = styled.button`
-//     display: flex;
-//     align-items: center;
-//     background: ${p => p.theme.colors.accent};
-//     border: none;
-//     border-radius: ${p => p.theme.radii.big};
-//     padding: ${p => p.theme.space[3]}px;
-//     cursor: pointer;
-// /* 
-//     &:hover {
-//     transition: margin-left 3s;
-//     border-radius: 40px;
-//     width: 120px;
-        
-//         & svg {
-//             opacity: 0;
-//         }
-//     } */
-// `
-
-// export const PlusIcon = styled(Plus)`
-//     fill: ${p => p.theme.colors.black};
-//     transition: ${p => p.theme.transition.all};
-
-//     &:hover,
-//     :focus {
-//         fill: ${p => p.theme.colors.hoveredAccent}
-//     }
-// `
-
-import styled from 'styled-components';
+export const AddPetWrapper = styled.div`
+    @media (max-width: 767px) {
+    position: fixed;
+    top: 75vh;
+    right: 5vh;
+    background: ${p => p.theme.colors.accent};
+    width: 80px;
+    height: 80px;
+    border-radius: ${p => p.theme.radii.big};
+    z-index: 10;
+    flex-direction: column-reverse;
+    justify-content: center;
+    box-shadow: ${p => p.theme.shadows.userDataShadow};    
+}
+    
+    display: flex;
+    align-items: center;
+`
 
 export const AddPetDesc = styled.p`
-  font-size: ${p => p.theme.fontSizes[0]};
-  color: ${p => p.theme.colors.white};
-  font-weight: ${p => p.theme.fontWeights.normal};
-  line-height: ${p => p.theme.fontHeight.l};
-  overflow: hidden;
-  white-space: nowrap;
+@media (max-width: 767px) {
+    font-size: ${p => p.theme.fontSizes[0]};
+    color: ${p => p.theme.colors.white};
+    margin: 0;
+}
 
-  pointer-events: none;
-
-  @media (min-width: 768px) {
+    color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes[4]};
     color: ${p => p.theme.colors.text};
     font-weight: ${p => p.theme.fontWeights.normal};
     line-height: ${p => p.theme.fontHeight.l};
-  }
-`;
+    margin-right: ${p => p.theme.space[4]}px;
+`
 
 export const PlusContainer = styled.div`
   width: 24px;
@@ -86,53 +50,25 @@ export const PlusContainer = styled.div`
   }
 `;
 export const AddPetBtn = styled.button`
-  position: absolute;
-  right: 0;
+@media (max-width: 767px) {
+    padding-bottom: 0;
+}
 
-  width: 80px;
-  height: 80px;
-
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  justify-content: center;
-  background: ${p => p.theme.colors.accent};
-  border: none;
-  border-radius: ${p => p.theme.radii.round};
-
-  cursor: pointer;
-
-  transition: width 0.5s linear;
-  :hover {
-    box-shadow: ${p => p.theme.shadows.mainShadow};
-  }
-  @media (min-width: 768px) {
-    position: relative;
-    flex-direction: row;
-    gap: 12px;
-    background: transparent;
+    display: flex;
+    background-color: transparent;
+    border: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+    padding: ${p => p.theme.space[3]}px;
+    background: ${p => p.theme.colors.accent};
     border-radius: ${p => p.theme.radii.big};
-    width: 130px;
-    height: 44px;
-  }
+    cursor: pointer;
+`
 
-  :hover p {
-    @media (min-width: 768px) {
-      position: absolute;
-      color: ${p => p.theme.colors.white};
-    }
-  }
+export const PlusIcon = styled(Plus)`
+@media (max-width: 767px) {
+    width: 32px;
+    height: auto;
+}
 
-  :hover div {
-    @media (min-width: 768px) {
-      border-radius: ${p => p.theme.radii.big};
-      width: 100%;
-    }
-  }
-
-  :hover svg {
-    @media (min-width: 768px) {
-      opacity: 0;
-    }
-  }
-`;
+width: 24px;
+stroke: ${p => p.theme.colors.white};
+`

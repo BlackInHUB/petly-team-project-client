@@ -24,12 +24,8 @@ export const FormContainer = styled.div`
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
 
-  @media (min-width: 768px) {
-    gap: 12px;
-  }
+  align-items: flex-start;
 `;
 
 export const Label = styled.label`
@@ -38,7 +34,10 @@ export const Label = styled.label`
   line-height: ${p => p.theme.fontHeight.const};
   font-weight: ${p => p.theme.fontWeights.normal};
 
+  padding-bottom: 8px;
+
   @media (min-width: 768px) {
+    padding-bottom: 12px;
     font-size: ${p => p.theme.fontSizes[5]};
   }
 `;
@@ -76,7 +75,7 @@ export const Input = styled.input`
 export const Textarea = styled.textarea`
   resize: none;
   width: 100%;
-
+  font-family: 'Manrope', sans-serif;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -229,4 +228,15 @@ export const Image = styled.img`
     width: 120px;
     height: 120px;
   }
+`;
+
+export const Error = styled.p`
+  padding: ${p => p.theme.space[1] + 'px'} ${p => p.theme.space[5] + 'px'} 0px
+    ${p => p.theme.space[5] + 'px'};
+  color: ${p => p.theme.colors.hoveredAccent};
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: ${p =>
+    Math.floor(p.theme.fontHeight.s * p.theme.fontSizes[3].slice(0, -2)) +
+    'px'};
+  font-weight: ${p => p.theme.fontWeights.normal};
 `;

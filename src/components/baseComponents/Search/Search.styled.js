@@ -92,6 +92,7 @@ cursor: pointer;
 export const SearchForm = styled.form`
     position: relative;
     width: 100vw;
+    margin: 0 auto;
 
     @media (min-width: 768px) {
         width: 608px;
