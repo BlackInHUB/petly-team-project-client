@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { ReactComponent as Plus} from '../../images/icons/modalAddsPet/plus.svg'
 
 export const ModalAddsPetWrapper = styled.div`
     position: absolute;
@@ -21,7 +20,7 @@ export const ModalAddsPetWrapper = styled.div`
     }
 `
 export const ModalAddsPetForm = styled.form`
-    /* min-width: 446px; */
+   
 `
 
 export const FirstPageAddsPetForm = styled.div`
@@ -254,55 +253,3 @@ export const InputContainer = styled.div`
 export const PhotoInput = styled.input`
   display: none;
 `;
-
-
-
-
-
-
-
-/* =============================================== */
-
-// export const ImageContainer = styled.div`
-//   position: relative;
-//   top: 0;
-//   left: 0;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 116px;
-//   height: 116px;
-//   @media (min-width: 768px) {
-//     width: 140px;
-//     height: 140px;}
-// `;
-
-
-/* export const Image = styled.img`
-  border: ${p => p.theme.borders.none};
-  border-radius: ${p => p.theme.radii.normal};
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 100px;
-  height: 100px;
-  @media (min-width: 768px) {
-    top: 10px;
-    left: 10px;
-    width: 120px;
-    height: 120px;
-  }
-`; */
-
-// export const Label = styled.label`
-//   color: ${p => p.theme.colors.text};
-//   font-size: ${p => p.theme.fontSizes[3]};
-//   line-height: ${p => p.theme.fontHeight.const};
-//   font-weight: ${p => p.theme.fontWeights.normal};
-//   padding-bottom: ${p => p.theme.space[3]}px;
-
-//   @media (min-width: 768px) {
-//     padding-bottom: ${p => p.theme.space[4]}px;
-//     font-size: ${p => p.theme.fontSizes[5]};
-//   }
-// `;
