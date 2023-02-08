@@ -2,16 +2,16 @@ import { Search } from "components/baseComponents/Search/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "redux/filter/filter";
 import { noticesOperations } from "redux/notices";
-// import { useEffect, useState } from "react";
 
 export const NoticesSearch = ({category}) => {
     const {filter} = useSelector(state => state.filter);
     const dispatch = useDispatch();
-    // const [submit, setSubmit] = useState(false);
 
   const handleFilterChange = async (e) => {
     await dispatch(setFilter(e.target.value));
   };
+
+  const disable = category === 'my-favorites' ? true : category === 'my-notices' ? true : false;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,27 +19,15 @@ export const NoticesSearch = ({category}) => {
     if (filter === '') {
       return
     }
-    // setSubmit(!submit)
     dispatch(noticesOperations.getAll(category));
   }
 
-  // const handleEscClick = async () => {
-  //   try {
-  //     setSubmit(!submit)
-  //     await dispatch(setFilter(''));
-  //     dispatch(noticesOperations.getAll(category));
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
     return (
         <Search 
-            // handleClick={handleEscClick}
+            disabled={disable}
             handleChange={handleFilterChange}
             value={filter}
             onSubmit={handleSubmit}
-            // submit={submit}
         />
     )
 };

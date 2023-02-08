@@ -3,13 +3,11 @@ import { AddPetWrapper, AddPetDesc , AddPetBtn, PlusIcon } from './AddPetButton.
 
 export const AddPetButton = ({onOpenAddsPet}) => {
     return(
-        <>
             <AddPetWrapper>
+                <AddPetDesc>Add pet</AddPetDesc>
                 <AddPetBtn type="button" onClick={onOpenAddsPet}>
                     <PlusIcon />
                 </AddPetBtn>
-                <AddPetDesc>Add pet</AddPetDesc>
             </AddPetWrapper>
-        </>
     )
 }
