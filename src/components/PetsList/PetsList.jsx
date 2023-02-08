@@ -1,5 +1,6 @@
 import { useAuth } from "hooks/useAuth";
-import { PetsItem } from "./PetsItem/PetsItem"
+import { PetsItem } from "./PetsItem/PetsItem";
+import { PetsListWrapper } from './PetsList.styled'
 
 export const PetsList = () => {
     const { pets } = useAuth()
@@ -7,13 +8,13 @@ export const PetsList = () => {
     return(
         <>
         {pets.length > 0 &&(
-            <ul>
+            <PetsListWrapper>
                 {pets.map(pet => (
                     <PetsItem key={pet._id}
                     pet={pet}
                     />
                 ))}
-            </ul>
+            </PetsListWrapper>
         )
         }
         </>

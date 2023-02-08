@@ -16,13 +16,7 @@ export const UserData = () => {
         data.append('avatar', e.target.files[0])
         dispatch(authOperations.update(data))
     }
-
-    const patternName=/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
-    const patternEmail=/^\S+@\S+\.\S+$/
-    // const patternDate=/\d{4}-\d{2}-\d{2}/
-    const patternPhone=/^\+\d{7,15}$/
-    const patternCity=/^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/
-
+    
     return (
         <>
         <UserDataContainer>
@@ -40,45 +34,15 @@ export const UserData = () => {
             </UserDataImgWrapper>
 
             <UserDataList>
-                <UserDataItem label={'Name:'} 
-                                defaultValue={user.name} 
-                                type="text" 
-                                name='name'
-                                pattern={patternName}
-                                title="Name may contain only letters."
-                                id="name" />
+                <UserDataItem label={'Name:'} defaultValue={user.name} type="text" name='name' />
 
-                <UserDataItem   label={'Email:'}
-                                defaultValue={user.email}   
-                                type="email" 
-                                name='email' 
-                                pattern={patternEmail}
-                                title="Email no valid"
-                                id="email"/>
+                <UserDataItem label={'Email:'} defaultValue={user.email} type="email" name='email' />
 
-                <UserDataItem   label={'Birthday:'} 
-                                defaultValue={user.birthday || "01.01.1900"} 
-                                type="text" 
-                                name='birthday'
-                                // pattern={patternDate}
-                                title="Date may contain only format 0000-00-00"
-                                id="birthday" />
+                <UserDataItem label={'Birthday:'} defaultValue={user.birthday || "01.01.1900"} type="text" name='birthday' />
 
-                <UserDataItem   label={'Phone:'}    
-                                defaultValue={user.phone} 
-                                type="tel" 
-                                name='phone'
-                                pattern={patternPhone}
-                                title="Phone may be formated +0000000000"
-                                id="phone"  />
+                <UserDataItem label={'Phone:'} defaultValue={user.phone} type="tel" name='phone' />
 
-                <UserDataItem   label={'City:'} 
-                                defaultValue={user.city} 
-                                type="text" 
-                                name='city'
-                                pattern={patternCity}
-                                title="City, Region"
-                                id="city" />
+                <UserDataItem label={'City:'} defaultValue={user.city} type="text" name='city' />
             </UserDataList>
 
             </UserDataContainer>

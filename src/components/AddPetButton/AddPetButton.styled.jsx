@@ -1,5 +1,5 @@
-// import styled from "styled-components"
-// import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
+import styled from "styled-components"
+import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
 
 export const AddPetWrapper = styled.div`
     @media (max-width: 767px) {
