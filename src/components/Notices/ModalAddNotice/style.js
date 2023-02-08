@@ -227,6 +227,7 @@ export const ImagePlus = styled.img`
 export const Image = styled.img`
   border: ${p => p.theme.borders.none};
   border-radius: ${p => p.theme.radii.normal};
+  object-fit: cover;
   position: absolute;
   top: 8px;
   left: 8px;

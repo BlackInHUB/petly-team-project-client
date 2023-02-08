@@ -8,6 +8,7 @@ export const StyledButton = styled.button`
   justify-content: center;
   padding-left: 28px;
   padding-right: 28px;
+  white-space: nowrap;
   color: ${p =>
     p.buttonStyle === 'primary'
       ? p.theme.colors.white

@@ -37,6 +37,9 @@ const ItemBold = styled.p`
   font-weight: ${p => p.theme.fontWeights.bold};
   overflow: hidden;
 `;
+const Link = styled.a`
+  color: ${p => p.theme.colors.link};
+`;
 
 const PetInfo = props => {
   return (
@@ -64,12 +67,9 @@ const PetInfo = props => {
       <Li>
         <ItemBold>Email:</ItemBold>
         <Item>
-          <a
-            style={{ color: `${p => p.theme.colors.link}` }}
-            href={`mailto:${props.data?.owner.email}`}
-          >
+          <Link href={`mailto:${props.data?.owner.email}`}>
             {props.data?.owner.email}
-          </a>
+          </Link>
         </Item>
       </Li>
       <Li>
