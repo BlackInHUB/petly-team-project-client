@@ -1,14 +1,35 @@
 import useNotices from "hooks/useNotices";
 import { NoticeCategoryItem } from "../NoticeCategoryItem/NoticeCategoryItem";
 import {NoticesCategoriesListStyled} from "./NoticesCategoriesList.Styled"
-import { useParams, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import { useEffect } from "react";
+import { useAuth } from "hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { noticesOperations } from "redux/notices";
+
 
 const NoticesCategoriesList = () => {
    const {notices, favorites, own} = useNotices();
-   const {categoryName} = useParams();
-   const {handleInfoOpen} = useOutletContext();
+   const {handleInfoOpen, category} = useOutletContext();
+   const {user} = useAuth();
+   const dispatch = useDispatch();
 
-   const toRender = categoryName === 'my-favorites' ? favorites : categoryName === 'my-notices' ? own : notices;
+   useEffect(() => {
+      if(!category) {
+        return;
+      };
+
+      dispatch(noticesOperations.setCategory(category));
+  
+      if(user) {
+        dispatch(noticesOperations.getFavorites(user._id));
+        dispatch(noticesOperations.getOwn(user._id));
+      };
+  
+      dispatch(noticesOperations.getAll(category));
+    }, [category, dispatch, user]);
+
+   const toRender = category === 'my-favorites' ? favorites : category === 'my-notices' ? own : notices;
 
    if (toRender.length === 0) {
       return;

@@ -8,5 +8,7 @@ export default function useNotices() {
 
     const own = useSelector(noticesSelectors.getOwn);
 
-    return {notices, favorites, own};
+    const isLoading = useSelector(noticesSelectors.isLoading);
+
+    return {notices, favorites, own, isLoading};
 };

@@ -60,13 +60,18 @@ const remove = createAsyncThunk('notices/remove', async (id, thunkApi) => {
     }
 })
 
+const setCategory = createAsyncThunk('notice/category', async (category, thunkApi) => {
+    return category;
+})
+
 const noticesOperations = {
     getAll,
     getOne,
     getOwn,
     getFavorites,
     add,
-    remove
+    remove,
+    setCategory
 };
 
 export default noticesOperations;
