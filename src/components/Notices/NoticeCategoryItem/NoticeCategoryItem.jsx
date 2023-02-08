@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { noticesOperations } from "redux/notices";
 import { authOperations } from "redux/auth";
 
-export const NoticeCategoryItem = ({ notice }) => {
+export const NoticeCategoryItem = ({ notice, learnMore }) => {
     const { category, photoUrl, title, breed, location, price, birthday } = notice;
     const {user} = useAuth();
     const owner = user._id === notice.owner ? true : false;
@@ -33,12 +33,9 @@ export const NoticeCategoryItem = ({ notice }) => {
                 {price !== '' && <p><span className="pet-info-title">Price:</span><span>{price}</span></p>}
             </PetInfo>
             <ButtonWrapper>
-                <Button type="button" buttonStyle="secondary" loadMore={true}>Learn more</Button>
+                <Button type="button" buttonStyle="secondary" onClick={() => learnMore(notice._id)}>Learn more</Button>
                 {owner && <Button type="button" buttonStyle="secondary" onClick={handleDelete} >Delete <HiTrash width="28px" height="28px" /></Button> }
             </ButtonWrapper>
         </NoticeCard>
     )
 }
-
-
-/* getFavorite нужно прописать условие добавления по кнопке */

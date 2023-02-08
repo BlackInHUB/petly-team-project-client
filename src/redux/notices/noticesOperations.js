@@ -11,7 +11,6 @@ const add = createAsyncThunk('notices/add', async (notice, thunkApi) => {
 }) 
 
 const getAll = createAsyncThunk('notices/getAll', async (category, thunkApi) => {
-    console.log('getAll')
     try {
         const {filter} = thunkApi.getState().filter;
         const {data} = await api.getAll(category, filter);

@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { AddPetButton } from 'components/AddPetButton/AddPetButton';
 import PaddingWrapper from "../../components/baseComponents/PaddingWrapper/PaddingWrapper";
 import ModalAddNotice from 'components/Notices/ModalAddNotice/ModalAddNotice';
+import LearnMoreModal from 'components/Notices/LearnMoreModal/LearnMoreModal';
 import { createPortal } from 'react-dom';
 import { useAuth } from 'hooks/useAuth';
 const modalRoot = document.querySelector('#modal-root');
@@ -17,7 +18,8 @@ const modalRoot = document.querySelector('#modal-root');
 const NoticesPage = () => {
   const {categoryName: category} = useParams();
   const dispath = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState({open: false, id: null});
   const {isLoggedIn, user} = useAuth();
 
   useEffect(() => {
@@ -33,8 +35,12 @@ const NoticesPage = () => {
     dispath(noticesOperations.getAll(category));
   }, [category, dispath, user]);
 
-  const handleModalShown = () => {
-    setIsOpen(!isOpen);
+  const handleAddModalOpen = () => {
+    setIsAddOpen(!isAddOpen);
+  };
+
+  const handleInfoOpen = (id) => {
+    setIsInfoOpen({open: !isInfoOpen.open, id});
   };
   
   return (
@@ -45,22 +51,32 @@ const NoticesPage = () => {
         <NoticesSearch category={category}/>
         <Box>
           <NoticesCategoriesNav/>
-          <AddPetButton onOpenAddsPet={handleModalShown}/>
+          <AddPetButton onOpenAddsPet={handleAddModalOpen}/>
         </Box>
       </div>
       <Suspense fallback={<Loader />}>
-        <Outlet />
+        <Outlet context={{handleInfoOpen}}/>
       </Suspense>
     </PaddingWrapper>
-    {isOpen && isLoggedIn &&
+    {isAddOpen && isLoggedIn &&
     createPortal(
     <ModalAddNotice
     width="608px"
     paddings="40px 80px"
-    setShow={handleModalShown}
+    setShow={handleAddModalOpen}
     />,
     modalRoot
     )
+    }
+    {isInfoOpen.open &&
+    createPortal(
+      <LearnMoreModal
+      id={isInfoOpen.id}
+      setShow={handleInfoOpen}
+      />,
+      modalRoot
+    )
+
     }
     </>
   );
