@@ -59,7 +59,7 @@ const validationSchema = yup.object({
   city: yup
     .string()
     .matches(
-      /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/,
+      /^\s*([A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+,\s?)?[A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+\s*$/,
       'put City, Region or only City'
     )
     .required('Required'),
