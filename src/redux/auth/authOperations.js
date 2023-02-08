@@ -69,7 +69,7 @@ const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
 
 const favorites = createAsyncThunk('auth/favorites', async (id, thunkAPI) => {
   try {
-    const { favorites } = await api.favorites(id);
+    const {favorites} = await api.favorites(id);
     return favorites;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data.message);

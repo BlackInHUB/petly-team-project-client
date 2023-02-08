@@ -1,16 +1,29 @@
 import { NoticeCard, HeartBtn, PetInfo, ButtonWrapper } from "./NoticeCategoryItem.styled";
 import { HiOutlineHeart, HiTrash } from "react-icons/hi";
 import Button from "../../baseComponents/Button/Button";
-import { useAuth } from 'hooks/useAuth';
+import { useAuth } from "hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { noticesOperations } from "redux/notices";
+import { authOperations } from "redux/auth";
 
 export const NoticeCategoryItem = ({ notice }) => {
     const { category, photoUrl, title, breed, location, price, birthday } = notice;
-    const { isLoggedIn, getFavorites } = useAuth();
+    const {user} = useAuth();
+    const owner = user._id === notice.owner ? true : false;
+    const dispatch = useDispatch();
+
+    const handleDelete = () => {
+        dispatch(noticesOperations.remove(notice._id))
+    }
+
+    const toggleFavorites = () => {
+        dispatch(authOperations.favorites(notice._id))
+    }
 
     return (
         <NoticeCard>
             <span className="category">{category}</span>
-            <HeartBtn className="heart" type="button" addFavorite={true}>{<HiOutlineHeart width="28" height="28"/>}</HeartBtn>
+            <HeartBtn className="heart" type="button" onClick={toggleFavorites}>{<HiOutlineHeart width="28" height="28"/>}</HeartBtn>
             <img src={photoUrl} alt={title}/>
             <h3>{title}</h3>
             <PetInfo>
@@ -21,7 +34,7 @@ export const NoticeCategoryItem = ({ notice }) => {
             </PetInfo>
             <ButtonWrapper>
                 <Button type="button" buttonStyle="secondary" loadMore={true}>Learn more</Button>
-                {isLoggedIn && getFavorites && <Button type="button" buttonStyle="secondary" loadMore={true}>Delete <HiTrash width="28px" height="28px" /></Button> }
+                {owner && <Button type="button" buttonStyle="secondary" onClick={handleDelete} >Delete <HiTrash width="28px" height="28px" /></Button> }
             </ButtonWrapper>
         </NoticeCard>
     )

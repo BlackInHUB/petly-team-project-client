@@ -74,9 +74,22 @@ const noticesSlice = createSlice({
     .addCase(noticesOperations.getFavorites.fulfilled, (state, {payload}) => {
         state.isLoading = false;
         state.isError = null;
-        state.favorites = payload;
+        state.favorites = payload.favorites;
     })
     .addCase(noticesOperations.getFavorites.rejected, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = payload;
+    })
+    .addCase(noticesOperations.remove.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+    })
+    .addCase(noticesOperations.remove.fulfilled, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = null;
+        state.allNotices = state.allNotices.filter(notice => notice._id !== payload)
+    })
+    .addCase(noticesOperations.remove.rejected, (state, {payload}) => {
         state.isLoading = false;
         state.isError = payload;
     })

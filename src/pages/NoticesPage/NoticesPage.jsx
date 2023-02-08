@@ -11,20 +11,27 @@ import { AddPetButton } from 'components/AddPetButton/AddPetButton';
 import PaddingWrapper from "../../components/baseComponents/PaddingWrapper/PaddingWrapper";
 import ModalAddNotice from 'components/Notices/ModalAddNotice/ModalAddNotice';
 import { createPortal } from 'react-dom';
+import { useAuth } from 'hooks/useAuth';
 const modalRoot = document.querySelector('#modal-root');
 
 const NoticesPage = () => {
   const {categoryName: category} = useParams();
   const dispath = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const {isLoggedIn, user} = useAuth();
 
   useEffect(() => {
     if(!category) {
       return;
     };
 
+    if(user) {
+      dispath(noticesOperations.getFavorites(user._id));
+      dispath(noticesOperations.getOwn(user._id));
+    };
+
     dispath(noticesOperations.getAll(category));
-  }, [category, dispath]);
+  }, [category, dispath, user]);
 
   const handleModalShown = () => {
     setIsOpen(!isOpen);
@@ -45,7 +52,7 @@ const NoticesPage = () => {
         <Outlet />
       </Suspense>
     </PaddingWrapper>
-    {isOpen && 
+    {isOpen && isLoggedIn &&
     createPortal(
     <ModalAddNotice
     width="608px"
