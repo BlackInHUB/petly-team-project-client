@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
+import { DropdownGroup } from 'components/baseComponents/Dropdown/DropdownGroup'
 import { AddsPetBtnOrange } from "./AddsPetBtn/AddsPetBtnOrange/AddsPetBtnOrange";
 import { ModalAddsPetWrapper, ModalAddsPetForm, FirstPageAddsPetForm, SecondPageAddsPetForm,
     ModalAddsPetItputsWrapper, ModalAddsPetContainer, ModalAddsPetLabel, ModalAddsPetInput,
@@ -11,6 +12,7 @@ import { authOperations } from "redux/auth";
 
 export const ModalAddsPet = ({onClose, onCloseBtn}) => {
     const dispatch = useDispatch()
+    const [startDate, setStartDate] = useState();
     const [firstPageHide, setFirstPageHide] = useState(true)
     const [secondPageHide, setSecondPageHide] = useState(false)
     
@@ -33,7 +35,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
     }
 
     const patternName=/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
-    const patternDate=/\d{4}-\d{2}-\d{2}/
+    // const patternDate=/\d{4}-\d{2}-\d{2}/
     const patterBreed = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
 
     
@@ -53,7 +55,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         e.preventDefault();
         const data = new FormData()
         await data.append('name', state.name)
-        await data.append('birthday', state.birthday)
+        data.append('birthday', startDate);
         await data.append('breed', state.breed)
         await data.append('photoUrl', state.photoUrl[0])
         await data.append('comments', state.comments)
@@ -89,7 +91,10 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
       
                     <ModalAddsPetContainer>
                     <ModalAddsPetLabel htmlFor="birthday">Date of birth</ModalAddsPetLabel>
-                      <ModalAddsPetInput
+                    <DropdownGroup date={startDate} setState={setStartDate} />
+                   
+                   
+                      {/* <ModalAddsPetInput
                         value={state.birthday} onChange={handleChange}
                         name='birthday'
                         type='text'
@@ -100,7 +105,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
                         title="Date may contain only format 0000-00-00 and up-to-date"
                         id="birthday"
                         required
-                       />  
+                       />   */}
                     </ModalAddsPetContainer>
       
                     <ModalAddsPetContainer>

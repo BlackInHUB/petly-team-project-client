@@ -183,6 +183,7 @@ export const PlusStyled = styled(Plus)`
 `
 
 export const ModalAddsPetTextarea = styled.textarea`
+    font-family: ${p => p.theme.fonts.body};
     color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes[1]};
     font-weight: ${p => p.theme.fontWeights.thin};
