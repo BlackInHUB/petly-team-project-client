@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.div`
+  width: 100%;
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -108,7 +109,12 @@ export const Textarea = styled.textarea`
   @media (min-width: 768px) {
   }
 `;
-
+export const FormButtonContainerWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 export const FormButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -155,6 +161,10 @@ export const TopText = styled.p`
 export const Img = styled.img`
   width: 51px;
   height: 60px;
+  &:hover {
+    filter: grayscale(0%) !important;
+    cursor: pointer;
+  }
 `;
 
 export const PhotoInput = styled.input`
@@ -206,11 +216,11 @@ export const ImagePlus = styled.img`
   position: relative;
   top: 0;
   left: 0;
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   @media (min-width: 768px) {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
   }
   z-index: 2;
 `;

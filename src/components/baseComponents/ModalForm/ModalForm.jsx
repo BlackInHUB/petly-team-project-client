@@ -8,7 +8,12 @@ import { ModalFormStyled, ModalCloseBtn } from './style';
 const ModalForm = ({ paddings, width, setShow, children }) => {
   return (
     <ModalFormStyled width={width} paddings={paddings}>
-      <ModalCloseBtn onClick={() => setShow()}>
+      <ModalCloseBtn
+        onClick={() => {
+          document.body.style.overflow = '';
+          setShow();
+        }}
+      >
         <img src={closeImg} width="16px" alt="close" />
       </ModalCloseBtn>
 

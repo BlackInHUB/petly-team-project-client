@@ -4,15 +4,13 @@ import noticesOperations from 'redux/notices/noticesOperations';
 import Button from 'components/baseComponents/Button/Button';
 import ModalForm from 'components/baseComponents/ModalForm/ModalForm';
 import { Modal } from 'components/Modal/Modal';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import femaleIcon from 'images/icons/modalAddsPet/female_icon.jpg';
 import maleIcon from 'images/icons/modalAddsPet/male_icon.jpg';
 import plusIcon from 'images/icons/modalAddsPet/plus.svg';
 
-import { formateDate } from 'components/baseComponents/DatePicker/formateDate';
-import DatePicker from 'components/baseComponents/DatePicker/DatePicker';
-// import 'react-datepicker/dist/react-datepicker.css';
-// import { formateDate } from 'components/baseComponents/DatePicker/formateDate';
+import { DropdownGroup } from 'components/baseComponents/Dropdown/DropdownGroup';
 
 import { useState } from 'react';
 import {
@@ -33,6 +31,7 @@ import {
   ImagePlus,
   Image,
   Error,
+  FormButtonContainerWrapper,
 } from './style';
 
 const ModalAddNotice = props => {
@@ -63,7 +62,7 @@ const ModalAddNotice = props => {
   const [step, setStep] = useState(1);
   const [values, setValues] = useState(initialState);
   const [isError, setIsError] = useState(errorInitialState);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
 
   const handleChange = e => {
     const { value, type, name, files } = e.target;
@@ -143,7 +142,7 @@ const ModalAddNotice = props => {
     data.append('category', values.category);
     data.append('title', values.title);
     data.append('name', values.name);
-    data.append('birthday', formateDate(startDate));
+    data.append('birthday', startDate);
     data.append('breed', values.breed);
     data.append('sex', values.sex);
     data.append('location', values.location);
@@ -152,7 +151,12 @@ const ModalAddNotice = props => {
     data.append('comments', values.comments);
 
     dispatch(noticesOperations.add(data));
-    console.log(data)
+
+    Notify.init({ position: 'center-center' });
+    Notify.success('ad successfully created', {
+      timeout: 1500,
+    });
+
     document.body.style.overflow = '';
     props.setShow();
   };
@@ -259,10 +263,7 @@ const ModalAddNotice = props => {
               </InputContainer>
               <InputContainer>
                 <Label htmlFor="petBirthday">Date of birth</Label>
-                <DatePicker
-                  birthdayDate={startDate}
-                  setBirthdayDate={setStartDate}
-                />
+                <DropdownGroup date={startDate} setState={setStartDate} />
               </InputContainer>
               <InputContainer>
                 <Label htmlFor="petBreed">Breed</Label>
@@ -278,7 +279,7 @@ const ModalAddNotice = props => {
                 <Error>{isError.breed ? isError.breed : null}</Error>
               </InputContainer>
             </FormContainer>
-            <div>
+            <FormButtonContainerWrapper>
               {' '}
               <FormButtonContainer>
                 <Button onClick={() => stepChange(1)}>Next</Button>
@@ -293,7 +294,7 @@ const ModalAddNotice = props => {
                 </Button>
               </FormButtonContainer>
               <Error>{isError.next ? isError.next : null}</Error>
-            </div>
+            </FormButtonContainerWrapper>
           </>
         )}
         {step === 2 && (
@@ -314,7 +315,7 @@ const ModalAddNotice = props => {
                     style={{
                       filter:
                         values.sex === 'male'
-                          ? 'grayscale(0%)'
+                          ? 'grayscale(25%)'
                           : 'grayscale(100%)',
                     }}
                     alt="male"
@@ -330,7 +331,7 @@ const ModalAddNotice = props => {
                     style={{
                       filter:
                         values.sex === 'female'
-                          ? 'grayscale(0%)'
+                          ? 'grayscale(25%)'
                           : 'grayscale(100%)',
                     }}
                   />
@@ -392,6 +393,7 @@ const ModalAddNotice = props => {
                   type="file"
                   id="petImage"
                   name="photoUrl"
+                  accept=".gif,.jpg,.jpeg,.png"
                 />
               </InputContainer>
               <InputContainer>
@@ -411,7 +413,7 @@ const ModalAddNotice = props => {
                 <Error>{isError.comments ? isError.comments : null}</Error>
               </InputContainer>
             </FormContainer>
-            <div>
+            <FormButtonContainerWrapper>
               <FormButtonContainer>
                 <Button onClick={e => handleSubmit(e)}>Done</Button>
                 <Button buttonStyle="secondary" onClick={() => stepChange(-1)}>
@@ -419,7 +421,7 @@ const ModalAddNotice = props => {
                 </Button>
               </FormButtonContainer>
               <Error>{isError.submit ? isError.submit : null}</Error>
-            </div>
+            </FormButtonContainerWrapper>
           </>
         )}
       </ModalForm>
