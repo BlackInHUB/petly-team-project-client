@@ -25,14 +25,10 @@ export const login = async user => {
 };
 
 export const logout = async () => {
-  try {
-    await instance.get('/auth/logout');
+  await instance.get('/auth/logout');
 
-    setToken(null);
-    return true;
-  } catch (error) {
-    console.log(error);
-  }
+  setToken(null);
+  return true;
 };
 
 export const refresh = async token => {
@@ -46,38 +42,17 @@ export const refresh = async token => {
 };
 
 export const update = async updateData => {
-  try {
-    const { data } = await instance.patch('/auth/update', updateData);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  const { data } = await instance.patch('/auth/update', updateData);
+  return data;
 };
 
 export const addPet = async pet => {
-  try {
-    const { data } = await instance.post('/user/pet/add', pet);
-    return data.pet;
-  } catch (error) {
-    console.log(error);
-  };
-};
-
-export const favorites = async id => {
-  try {
-    const { data } = await instance.get(`/user/favorites/${id}`);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  const { data } = await instance.post('/user/pet/add', pet);
+  return data.pet;
 };
 
 export const removePet = async (_id) => {
-  try {
-    const { data } = await instance.delete(`/user/pet/${_id}`);
-    return data
-  } catch (error) {
-    console.log(error);
-  }
+  const { data } = await instance.delete(`/user/pet/${_id}`);
+  return data
 }
 
