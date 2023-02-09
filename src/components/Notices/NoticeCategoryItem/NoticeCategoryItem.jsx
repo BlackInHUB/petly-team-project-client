@@ -1,5 +1,4 @@
-import { NoticeCard, HeartBtn, PetInfo, ButtonWrapper, HeartIcon } from "./NoticeCategoryItem.styled";
-import { HiTrash } from "react-icons/hi";
+import { NoticeCard, HeartBtn, PetInfo, ButtonWrapper, HeartIcon, DeleteIcon } from "./NoticeCategoryItem.styled";
 import Button from "../../baseComponents/Button/Button";
 import { useAuth } from "hooks/useAuth";
 import { useDispatch } from "react-redux";
@@ -35,7 +34,7 @@ export const NoticeCategoryItem = ({ notice, learnMore }) => {
             </PetInfo>
             <ButtonWrapper>
                 <Button type="button" loadMore buttonStyle="secondary" onClick={() => learnMore(notice._id)}>Learn more</Button>
-                {owner && <Button type="button" loadMore buttonStyle="secondary" onClick={handleDelete} >Delete <HiTrash width="28px" height="28px" /></Button> }
+                {owner && <Button type="button" loadMore buttonStyle="secondary" onClick={handleDelete} >Delete <DeleteIcon /></Button> }
             </ButtonWrapper>
         </NoticeCard>
     )
