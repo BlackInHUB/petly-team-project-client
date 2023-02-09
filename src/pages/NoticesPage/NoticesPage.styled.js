@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
+  position: relative;
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;

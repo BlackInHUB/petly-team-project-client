@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { DropdownWrapper, Input, Menu, Item } from './style';
+import { DropdownWrapper, Input, Menu, Item, InputContainer } from './style';
 const Icon = () => {
   return (
     <svg height="20" width="20" viewBox="0 0 20 20">
@@ -9,7 +9,7 @@ const Icon = () => {
   );
 };
 
-export const Dropdown = ({ placeHolder, options, setValue }) => {
+export const Dropdown = ({ placeHolder, options, setValue, height }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
 
@@ -45,12 +45,13 @@ export const Dropdown = ({ placeHolder, options, setValue }) => {
   };
 
   return (
-    <DropdownWrapper>
-      <Input onClick={handleInputClick}>
+    <DropdownWrapper onClick={handleInputClick}>
+      <Input onKeyPress={e => e.key === 'Enter' && handleInputClick(e)} />
+      <InputContainer>
         <div className="dropdown-selected-value">{getDisplay()}</div>
         <Icon />
         {showMenu && (
-          <Menu>
+          <Menu style={{ height: `${height}` }}>
             {options.map(option => (
               <Item
                 onClick={() => onItemClick(option)}
@@ -62,7 +63,7 @@ export const Dropdown = ({ placeHolder, options, setValue }) => {
             ))}
           </Menu>
         )}
-      </Input>
+      </InputContainer>
     </DropdownWrapper>
   );
 };

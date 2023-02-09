@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
 export const ModalFormStyled = styled.div`
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+
   position: absolute;
 
   scrollbar-width: thin;
@@ -71,12 +78,25 @@ export const ModalCloseBtn = styled.button`
   width: 34px;
   height: 34px;
 
-  :hover {
+  :hover,
+  :focus {
+    outline: none;
     cursor: pointer;
   }
+  :hover img,
+  :focus img {
+    width: 20px;
+    filter: invert(16%) sepia(99%) saturate(7404%) hue-rotate(4deg)
+      brightness(95%) contrast(118%);
+  }
+
   @media (min-width: 768px) {
     top: 12px;
     width: 44px;
     height: 44px;
   }
+`;
+
+export const Img = styled.img`
+  width: 16px;
 `;

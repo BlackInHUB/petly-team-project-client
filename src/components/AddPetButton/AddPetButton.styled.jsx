@@ -4,8 +4,8 @@ import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
 export const AddPetWrapper = styled.div`
     @media (max-width: 767px) {
     position: fixed;
-    top: 75vh;
-    right: 5vh;
+    top: 80vh;
+    right: 10vw;
     background: ${p => p.theme.colors.accent};
     width: 80px;
     height: 80px;
@@ -15,7 +15,9 @@ export const AddPetWrapper = styled.div`
     justify-content: center;
     box-shadow: ${p => p.theme.shadows.userDataShadow};    
 }
-    
+    position: absolute;
+    top: 0;
+    right: 0;
     display: flex;
     align-items: center;
 `
@@ -26,7 +28,6 @@ export const AddPetDesc = styled.p`
     color: ${p => p.theme.colors.white};
     margin: 0;
 }
-
     color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes[4]};
     color: ${p => p.theme.colors.text};
