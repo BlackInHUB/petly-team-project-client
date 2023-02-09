@@ -94,6 +94,8 @@ export const PetsItemDeleteBtn = styled.button`
 export const DeleteIcon = styled(Delete)`
     width: ${p => p.theme.space[6]}px;
     height: ${p => p.theme.space[6]}px;
+    fill: ${p => p.theme.colors.logout};
+    transform: ${p => p.theme.transition.all};
 
     @media screen and (min-width: 768px) {
         width: ${p => p.theme.space[7]}px;
