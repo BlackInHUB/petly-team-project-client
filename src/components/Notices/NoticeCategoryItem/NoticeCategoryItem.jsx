@@ -31,7 +31,7 @@ export const NoticeCategoryItem = ({ notice, learnMore }) => {
                 <p><span className="pet-info-title">Breed:</span><span>{breed}</span></p>
                 <p><span className="pet-info-title">Place:</span><span>{location}</span></p>
                 <p><span className="pet-info-title">Age:</span><span>{birthday}</span></p>
-                {price !== '' && <p><span className="pet-info-title">Price:</span><span>{price}</span></p>}
+                {price && <p><span className="pet-info-title">Price:</span><span>{price}</span></p>}
             </PetInfo>
             <ButtonWrapper>
                 <Button type="button" loadMore buttonStyle="secondary" onClick={() => learnMore(notice._id)}>Learn more</Button>
