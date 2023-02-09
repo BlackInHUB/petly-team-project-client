@@ -35,7 +35,7 @@ export const Modal = ({ children, setShow }) => {
   });
 
   return createPortal(
-    <ModalStyled onClick={handleBackdropClick}>{children}</ModalStyled>,
+    <ModalStyled onMouseDown={handleBackdropClick}>{children}</ModalStyled>,
     modalRoot
   );
 };

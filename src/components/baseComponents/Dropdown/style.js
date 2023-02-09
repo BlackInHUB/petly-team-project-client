@@ -30,17 +30,38 @@ export const DropdownWrapper = styled.div`
   &:focus {
     box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
 
-    outline: none;
+    
     border-color: ${p => p.theme.colors.hoveredAccent};
 
 `;
 
-export const Input = styled.div`
+export const Input = styled.input`
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  border: ${p => p.theme.borders.small};
+  border-color: ${p => p.theme.colors.accent};
+  background-color: ${p => p.theme.colors.background};
+  border-radius: ${p => p.theme.radii.normal};
+  z-index: -1;
+
+  @media (min-width: 768px) {
+    height: 48px;
+    border-radius: ${p => p.theme.radii.big};
+  }
+  &:focus {
+    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
+    caret-color: transparent;
+    outline: none;
+    
+    border-color: ${p => p.theme.colors.hoveredAccent};
+`;
+
+export const InputContainer = styled.div`
   padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none;
 `;
 
 export const Menu = styled.div`
@@ -52,33 +73,25 @@ export const Menu = styled.div`
   border: ${p => p.theme.borders.small};
   border-color: ${p => p.theme.colors.accent};
   background-color: ${p => p.theme.colors.background};
-  border-radius: ${p => p.theme.radii.normal} 0 0 ${p => p.theme.radii.normal};
-
-  scrollbar-width: thin;
-  scrollbar-color: ${p => p.theme.colors.accent} #ffffff;
+  border-radius: ${p => p.theme.radii.normal} ${p => p.theme.radii.normal};
 
   ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
+    width: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: ${p => p.theme.colors.accent};
-    border-radius: 20px;
-    border: 2px none #ffffff;
+    background-color: #f59256;
+    border-radius: 5px;
+
+    border: 1px solid #f59256;
   }
 
-  position: absolute;
   left: 0;
   transform: translateY(5px);
   width: 100%;
+  position: absolute;
 
-  overflow: auto;
   overflow-x: hidden;
-  max-height: 150px;
 
   z-index: 2;
 `;

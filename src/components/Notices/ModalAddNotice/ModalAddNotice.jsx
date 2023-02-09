@@ -72,7 +72,8 @@ const ModalAddNotice = props => {
         : name === 'sex'
         ? e.target.getAttribute('data-value')
         : value;
-
+    if (type === 'file' && newValue.length === 0) return;
+    console.log(1);
     setValues(prevState => ({
       ...prevState,
       [name]: newValue,
@@ -86,12 +87,14 @@ const ModalAddNotice = props => {
         : setIsError({ ...isError, title: '', next: '' });
     }
     if (e.target.name === 'name') {
-      values.name.length < 2 || values.name.length > 16
+      values.name.length !== 0 &&
+      (values.name.length < 2 || values.name.length > 16)
         ? setIsError({ ...isError, name: 'please type from 2 to 16 letters' })
         : setIsError({ ...isError, name: '', next: '' });
     }
     if (e.target.name === 'breed') {
-      values.breed.length < 2 || values.breed.length > 24
+      values.breed.length !== 0 &&
+      (values.breed.length < 2 || values.breed.length > 24)
         ? setIsError({ ...isError, breed: 'please type from 2 to 24 letters' })
         : setIsError({ ...isError, breed: '', next: '' });
     }
@@ -237,11 +240,15 @@ const ModalAddNotice = props => {
                 </Label>
 
                 <Input
+                  maxLength={48}
                   id="adTitle"
                   name="title"
                   placeholder="Type title of ad"
                   value={values.title}
-                  onChange={e => handleChange(e)}
+                  onChange={e => {
+                    handleChange(e);
+                    isError.title && validation(e);
+                  }}
                   onBlur={e => validation(e)}
                 />
                 <Error>{isError.title ? isError.title : null}</Error>
@@ -250,11 +257,15 @@ const ModalAddNotice = props => {
                 <Label htmlFor="petName">Name pet</Label>
 
                 <Input
+                  maxLength={16}
                   id="petName"
                   name="name"
                   placeholder="Type pet name"
                   value={values.name}
-                  onChange={e => handleChange(e)}
+                  onChange={e => {
+                    handleChange(e);
+                    isError.name && validation(e);
+                  }}
                   onBlur={e => validation(e)}
                 />
                 <Error>{isError.name ? isError.name : null}</Error>
@@ -267,11 +278,15 @@ const ModalAddNotice = props => {
                 <Label htmlFor="petBreed">Breed</Label>
 
                 <Input
+                  maxLength={24}
                   id="petBreed"
                   name="breed"
                   placeholder="Type breed"
                   value={values.breed}
-                  onChange={e => handleChange(e)}
+                  onChange={e => {
+                    handleChange(e);
+                    isError.breed && validation(e);
+                  }}
                   onBlur={e => validation(e)}
                 />
                 <Error>{isError.breed ? isError.breed : null}</Error>
@@ -304,6 +319,8 @@ const ModalAddNotice = props => {
                 </Label>
                 <div style={{ display: 'flex', gap: '80px' }}>
                   <Img
+                    tabIndex={0}
+                    onKeyPress={e => e.key === 'Enter' && handleChange(e)}
                     name="sex"
                     data-value="male"
                     src={maleIcon}
@@ -319,6 +336,8 @@ const ModalAddNotice = props => {
                     alt="male"
                   />
                   <Img
+                    tabIndex={0}
+                    onKeyPress={e => e.key === 'Enter' && handleChange(e)}
                     name="sex"
                     data-value="female"
                     src={femaleIcon}
@@ -341,11 +360,13 @@ const ModalAddNotice = props => {
                 </Label>
 
                 <Input
+                  maxLength={40}
                   id="petLocation"
                   name="location"
                   placeholder="Type location"
                   onChange={e => {
                     handleChange(e);
+                    isError.location && validation(e);
                   }}
                   value={values.location}
                   onBlur={e => validation(e)}
@@ -359,11 +380,13 @@ const ModalAddNotice = props => {
                   </Label>
 
                   <Input
+                    maxLength={20}
                     id="petPrice"
                     name="price"
                     placeholder="Type price"
                     onChange={e => {
                       handleChange(e);
+                      isError.price && validation(e);
                     }}
                     value={values.price}
                     onBlur={e => validation(e)}
@@ -373,7 +396,11 @@ const ModalAddNotice = props => {
               )}
               <InputContainer>
                 <Label htmlFor="petImage">Load the pet's image:</Label>
-                <LabelPhotoInput htmlFor="petImage">
+                <LabelPhotoInput
+                  htmlFor="petImage"
+                  tabIndex={0}
+                  onKeyPress={e => e.key === 'Enter' && e.target.click()}
+                >
                   <ImageContainer>
                     <ImagePlus src={plusIcon} alt="add"></ImagePlus>
                     {values.photoUrl && (
@@ -400,7 +427,9 @@ const ModalAddNotice = props => {
                 <Textarea
                   onChange={e => {
                     handleChange(e);
+                    isError.comments && validation(e);
                   }}
+                  maxLength={120}
                   rows={4}
                   id="petComments"
                   name="comments"
