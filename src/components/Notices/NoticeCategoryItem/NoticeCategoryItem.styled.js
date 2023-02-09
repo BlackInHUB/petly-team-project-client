@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {ReactComponent as Heart} from '../../../images/icons/heart2.svg'
+import {ReactComponent as Delete} from '../../../images/icons/petsItem/delete.svg'
 
 export const NoticeCard = styled.li`
   display: flex;
@@ -107,6 +108,12 @@ export const PetInfo = styled.div`
   }
 `;
 
+export const DeleteIcon = styled(Delete)`
+  fill: ${p => p.theme.colors.accent};
+  margin-left: 13px;
+  fill-opacity: 1;
+`
+
 export const HeartIcon = styled(Heart)`
   padding: 0;
   margin: 0;
@@ -117,7 +124,7 @@ export const HeartIcon = styled(Heart)`
   transition: ${p => p.theme.transition.all};
 
   &:hover,
-  &:focus-visible {
+  :focus-visible {
     stroke: ${p => p.theme.colors.hoveredAccent};
     fill: ${p => p.theme.colors.hoveredAccent};
   }
@@ -137,6 +144,11 @@ export const HeartBtn = styled.button`
 
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
+
+  &:hover,
+  :focus-visible {
+    fill: ${p => p.theme.colors.hoveredAccent};
+  }
 `;
 
 export const ButtonWrapper = styled.div`
