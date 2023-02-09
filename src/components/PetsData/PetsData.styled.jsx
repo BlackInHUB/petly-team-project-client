@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const AddPetWrapper = styled.div`
+    position: relative;
     width: 100%;
 
     @media screen and (min-width: 768px) {
