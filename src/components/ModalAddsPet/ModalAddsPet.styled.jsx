@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { ReactComponent as Plus} from '../../images/icons/modalAddsPet/plus.svg'
 
 export const ModalAddsPetWrapper = styled.div`
     position: absolute;
@@ -21,7 +20,7 @@ export const ModalAddsPetWrapper = styled.div`
     }
 `
 export const ModalAddsPetForm = styled.form`
-    min-width: 446px;
+   
 `
 
 export const FirstPageAddsPetForm = styled.div`
@@ -108,9 +107,11 @@ export const ModalAddsPetInput = styled.input`
 `
 
 export const ButtonWrapper = styled.div`
+   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: space-around;
     flex-direction: row-reverse;
+    }
 `
 
 export const ModalAddsPetDescription = styled.p`
@@ -129,60 +130,8 @@ export const ModalAddsPetDescription = styled.p`
     }
 `
 
-export const ModalAddsPetPlusWrapper = styled.div`
-    position: relative;
-    background-color: ${p => p.theme.colors.background};
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: ${p => p.theme.space[6]}px;
-    width: 208px;
-    height: 208px;
-    border-radius: ${p => p.theme.radii.normal};
-    border: ${p => p.theme.borders.none};
-
-    @media screen and (min-width: 768px) {
-        width: 182px;
-        height: 182px;
-        margin-bottom: ${p => p.theme.space[10]}px;
-    }
-` 
-
-export const ModalAddsPetImg = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: ${p => p.theme.radii.normal};
-`
-
-export const ModalAddsPetPlusInput = styled.input`
-    padding-bottom: 25px;
-    opacity: 0;
-    position: absolute;
-    /* z-index: -1; */
-    width: 50px;
-    height: 50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    
-`
-
-export const PlusStyled = styled(Plus)`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: ${p => p.theme.transition.all};
-
-    &:hover,
-      :focus {
-           fill: ${p => p.theme.colors.hoveredAccent}
-    }
-
-`
-
 export const ModalAddsPetTextarea = styled.textarea`
+    font-family: ${p => p.theme.fonts.body};
     color: ${p => p.theme.colors.text};
     font-size: ${p => p.theme.fontSizes[1]};
     font-weight: ${p => p.theme.fontWeights.thin};
@@ -221,3 +170,86 @@ export const ModalAddsPetTextarea = styled.textarea`
         padding-left: ${p => p.theme.space[5]}px;
     }
 `
+
+export const LabelPhotoInput = styled.label`
+  background-color: ${p => p.theme.colors.background};
+  width: 208px;
+  height: 208px;
+  margin-right: auto;
+  margin-left: auto;
+  border: ${p => p.theme.borders.none};
+  border-radius: ${p => p.theme.radii.normal};
+  border-color: ${p => p.theme.colors.accent};
+
+  transition: box-shadow ease 0.25s, border-color ease 0.25s;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
+    cursor: pointer;
+    outline: none;
+    border-color: ${p => p.theme.colors.hoveredAccent};
+  }
+
+  @media (min-width: 768px) {
+    width: 182px;
+    height: 182px;
+  }
+`;
+
+export const ImageContainer = styled.div`
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+`;
+
+export const ImagePlus = styled.img`
+  border: ${p => p.theme.borders.none};
+  border-radius: ${p => p.theme.radii.normal};
+  position: relative;
+  top: 80px;
+  left: 0;
+  width: 50px;
+  height: 50px;
+
+  @media (min-width: 768px) {
+    top: 60px;
+  }
+  z-index: 2;
+`;
+
+export const Image = styled.img`
+  border: ${p => p.theme.borders.none};
+  border-radius: ${p => p.theme.radii.normal};
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 192px;
+  height: 192px;
+
+  @media (min-width: 768px) {
+    top: 10px;
+    left: 10px;
+    width: 162px;
+    height: 162px;
+  }
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: ${p => p.theme.space[6]}px;
+
+  @media (min-width: 768px) {
+     margin-bottom: ${p => p.theme.space[10]}px;}
+`;
+
+export const PhotoInput = styled.input`
+  display: none;
+`;

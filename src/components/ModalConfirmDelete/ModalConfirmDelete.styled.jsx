@@ -28,7 +28,8 @@ export const CloseBtnWrapper = styled.div`
 export const ModalCloseBtn = styled.button`
     position: absolute;
     right: ${p => p.theme.space[0]}px;
-    top: -20px;
+    top: -30px;
+    right: -10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,6 +42,7 @@ export const ModalCloseBtn = styled.button`
     cursor: pointer;
 
     @media screen and (min-width: 768px) {
+        top: -20px;
         width: 44px;
         height: 44px;
         right: -55px;

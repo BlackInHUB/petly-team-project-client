@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
+import { DropdownGroup } from 'components/baseComponents/Dropdown/DropdownGroup'
 import { AddsPetBtnOrange } from "./AddsPetBtn/AddsPetBtnOrange/AddsPetBtnOrange";
+import plusIcon from '../../images/icons/modalAddsPet/plus.svg'
 import { ModalAddsPetWrapper, ModalAddsPetForm, FirstPageAddsPetForm, SecondPageAddsPetForm,
     ModalAddsPetItputsWrapper, ModalAddsPetContainer, ModalAddsPetLabel, ModalAddsPetInput,
-    ModalAddsPetDescription, ModalAddsPetPlusWrapper, ButtonWrapper, ModalAddsPetImg, ModalAddsPetPlusInput, PlusStyled, ModalAddsPetTextarea
+    ModalAddsPetDescription, InputContainer, LabelPhotoInput,
+    ImageContainer, ImagePlus, Image,
+    PhotoInput, ButtonWrapper, ModalAddsPetTextarea
  } from './ModalAddsPet.styled'
 import { useDispatch } from "react-redux";
 import { authOperations } from "redux/auth";
 
 export const ModalAddsPet = ({onClose, onCloseBtn}) => {
     const dispatch = useDispatch()
+    const [startDate, setStartDate] = useState();
     const [firstPageHide, setFirstPageHide] = useState(true)
     const [secondPageHide, setSecondPageHide] = useState(false)
     
@@ -33,7 +38,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
     }
 
     const patternName=/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
-    const patternDate=/\d{4}-\d{2}-\d{2}/
+    // const patternDate=/\d{4}-\d{2}-\d{2}/
     const patterBreed = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
 
     
@@ -53,7 +58,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         e.preventDefault();
         const data = new FormData()
         await data.append('name', state.name)
-        await data.append('birthday', state.birthday)
+        data.append('birthday', startDate);
         await data.append('breed', state.breed)
         await data.append('photoUrl', state.photoUrl[0])
         await data.append('comments', state.comments)
@@ -89,18 +94,8 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
       
                     <ModalAddsPetContainer>
                     <ModalAddsPetLabel htmlFor="birthday">Date of birth</ModalAddsPetLabel>
-                      <ModalAddsPetInput
-                        value={state.birthday} onChange={handleChange}
-                        name='birthday'
-                        type='text'
-                        placeholder='Type date of birth'
-                        min="1990-01-01"
-                        max={new Date()}
-                        pattern={patternDate}
-                        title="Date may contain only format 0000-00-00 and up-to-date"
-                        id="birthday"
-                        required
-                       />  
+                    <DropdownGroup date={startDate} setState={setStartDate} />
+                   
                     </ModalAddsPetContainer>
       
                     <ModalAddsPetContainer>
@@ -133,25 +128,27 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
 
                     <ModalAddsPetDescription>Add photo and some comments</ModalAddsPetDescription>
     
-                        
-                        <ModalAddsPetPlusWrapper>
-                            <label htmlFor="photoUrl"></label>
-                            {state.photoUrl === '' ?
-                            (<>
-                            <PlusStyled />
-                            <ModalAddsPetPlusInput
-                            onChange={handleChange}
+                    <InputContainer>
+                        <LabelPhotoInput htmlFor="photoUrl">
+                            <ImageContainer>
+                                <ImagePlus src={plusIcon} alt="add"></ImagePlus>
+                                {state.photoUrl && (
+                                <Image
+                                    src={URL.createObjectURL(state.photoUrl[0])}
+                                    alt=""
+                                />
+                                )}
+                            </ImageContainer>
+                        </LabelPhotoInput>
+                        <PhotoInput
+                            onChange={e => {handleChange(e)}}
                             type="file"
-                            name="photoUrl"
-                            accept=".png, .jpg, .jpeg"
                             id="photoUrl"
-                            required
-                            />
-                            </>) :
-                            (<ModalAddsPetImg src={`${URL.createObjectURL(state.photoUrl[0])}`} alt=''/>)
-                            }
-                        </ModalAddsPetPlusWrapper>
-                       
+                            name="photoUrl"
+                            accept=".gif,.jpg,.jpeg,.png"
+                        />
+                    </InputContainer>                 
+
                         <ModalAddsPetLabel>Comments</ModalAddsPetLabel>
                         <ModalAddsPetTextarea   
                             value={state.comments} onChange={handleChange}
@@ -170,4 +167,3 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         </ModalAddsPetWrapper>
     )
 }
-

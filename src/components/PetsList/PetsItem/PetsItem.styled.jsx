@@ -80,6 +80,10 @@ export const PetsItemDeleteBtn = styled.button`
         height: 44px;
         background: ${p => p.theme.colors.background};
     }
+
+    @media screen and (min-width: 1600px) {
+        right: 160px;
+    }
 `
 
 export const DeleteIcon = styled(Delete)`
