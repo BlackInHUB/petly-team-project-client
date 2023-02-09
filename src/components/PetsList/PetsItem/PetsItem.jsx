@@ -17,7 +17,7 @@ export const PetsItem = ({pet}) => {
 
     return(
         <>
-             <PetsItemWrapper>
+            <PetsItemWrapper>
             <PetsItemImg src={photoUrl} alt={name}/>
             <PetsItemInfoBlock>
                 <PetsItemDeleteBtn type='button' onClick={toggleModal}><DeleteIcon /></PetsItemDeleteBtn>
