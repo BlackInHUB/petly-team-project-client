@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import friendsApi from '../../services/friends';
 import  {OurFriends}  from '../../components/OurFriends/OurFriends';
 import { Title } from "components/baseComponents/Title/Title";
+import PaddingWrapper from "components/baseComponents/PaddingWrapper/PaddingWrapper";
 
 
 export default function OurFriendsPage() {
@@ -14,11 +15,11 @@ export default function OurFriendsPage() {
     }, []);
 
     return (
-      <div >
+      <PaddingWrapper >
         <Title value={'Our friends'} />
         {ourFriends ? <OurFriends items={ourFriends} /> : <Title>{"No friends added yet :("}</Title> }
           
-      </div>
+      </PaddingWrapper>
         
     )
 }

@@ -9,14 +9,14 @@ export const TimeContainer = ({ work }) => {
         <ul>
             <TimeList>
                 <Time>Time:</Time>
-                {work ? work.map(({ isOpen, from, to }, index) => index === date.getDay() &&
+                {work ? work.map(({ isOpen, from, to }, index) => (index === date.getDay() && isOpen) &&
                     <p key={index}>{from} - {to}</p>) : <p>{"Closed"}</p>
                 }
 
                 <ul>
-                    {work && work.map(({ isOpen, from, to }, index) => isOpen ?
+                    {work ? work.map(({ isOpen, from, to }, index) => isOpen ?
                         <LiStyled key={index} index={index}><ListWeek>{week[index]}</ListWeek><ListTime>{from}- {to}</ListTime></LiStyled> :
-                        <LiStyled key={index} index={index}><ListWeek>{week[index]}</ListWeek><ListTime>Closed</ListTime></LiStyled>)
+                        <LiStyled key={index} index={index}><ListWeek>{week[index]}</ListWeek><ListTime>Closed</ListTime></LiStyled>) : <li>{"We don't know, yet"}</li>
                     }
                 </ul>
 

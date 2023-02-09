@@ -22,13 +22,13 @@ export const OurFriends = ({ items }) => {
                               
                             <ContainerAddr>
                                 <p>Address: </p>
-                                {address ? <AddrLink href={addressUrl}  rel="noreferrer" target="_blank" >{address}</AddrLink> : "--------------------------------------"}
+                                {address ? <AddrLink href={addressUrl}  rel="noreferrer" target="_blank" >{address}</AddrLink> : <AddrLink>{"We don't know, yet"}</AddrLink>}
 
                                 <p>Email: </p>
-                                {email ? <AddrLink href={`mailto:${email}`}  rel="noreferrer" target="_blank" >{email}</AddrLink> : "--------------------------------------"}
+                                {email ? <AddrLink href={`mailto:${email}`}  rel="noreferrer" target="_blank" >{email}</AddrLink> : <AddrLink>{"We don't know, yet"}</AddrLink>}
 
                                 <p>Phone: </p>
-                                {phone ? <AddrLink href={`tel:${phone}`}  rel="noreferrer" target="_blank" >{phone}</AddrLink> : "--------------------------------------"}
+                                {phone ? <AddrLink href={`tel:${phone}`}  rel="noreferrer" target="_blank" >{phone}</AddrLink> : <AddrLink>{"We don't know, yet"}</AddrLink>}
                             </ContainerAddr>
                         </ContainerText>
                     </ContainerCard>
