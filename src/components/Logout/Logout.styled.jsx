@@ -9,6 +9,11 @@ export const LogoutBtn = styled.button`
     cursor: pointer;
     margin-left: auto;
     padding-right: ${ p => p.theme.space[4]}px;
+    transform: ${p => p.theme.transition.all};
+    
+    :hover svg{
+        stroke: ${p => p.theme.colors.hoveredAccent}
+    }
 
     @media screen and (min-width: 768px) {
         position: absolute;
@@ -24,7 +29,7 @@ export const LogoutBtn = styled.button`
 `
 
 export const LogoutIconStyled = styled(LogoutIcon)`
-    fill: ${p => p.theme.colors.accent};
+    stroke: ${p => p.theme.colors.accent};
     transition: ${p => p.theme.transition.all};
 
     &:hover,
