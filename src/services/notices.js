@@ -21,6 +21,11 @@ export const getOwn = async () => {
   return await instance.get('notices/user/own');
 };
 
+export const favoritesToggle = async id => {
+  const { data } = await instance.get(`/notices/favorites/${id}`);
+  return data;
+};
+
 export const getFavorites = async () => {
   return await instance.get('notices/user/favorites');
 };
