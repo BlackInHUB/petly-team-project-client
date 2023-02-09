@@ -112,6 +112,7 @@ export const DeleteIcon = styled(Delete)`
   fill: ${p => p.theme.colors.accent};
   margin-left: 13px;
   fill-opacity: 1;
+  transition: ${p => p.theme.transition.all};
 `
 
 export const HeartIcon = styled(Heart)`

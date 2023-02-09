@@ -50,7 +50,10 @@ export const Title = styled.h2`
         font-size: ${p => p.theme.fontSizes[4]};
     }
 
-    
+    &:hover,
+    :focus {
+        color: ${p => p.theme.colors.hoveredAccent}
+    }
 `;
 
 export const ContainerCard = styled.div`

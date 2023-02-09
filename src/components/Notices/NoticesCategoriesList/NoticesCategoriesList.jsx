@@ -32,11 +32,12 @@ const NoticesCategoriesList = () => {
    const toRender = category === 'my-favorites' ? favorites : category === 'my-notices' ? own : notices;
 
    if (toRender.length === 0) {
-      return;
+      return (<h2>Sorry there is nothing to show</h2>);
    };
 
    return (
       <NoticesCategoriesListStyled>
+         {!toRender && <h2>We have no notices in this category.</h2>}
          {toRender.map(notice => <NoticeCategoryItem key={notice._id} notice={notice} learnMore={handleInfoOpen} />)}
       </NoticesCategoriesListStyled>
    )  

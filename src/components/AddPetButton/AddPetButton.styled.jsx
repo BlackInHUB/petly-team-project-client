@@ -13,13 +13,40 @@ export const AddPetWrapper = styled.div`
     z-index: 10;
     flex-direction: column-reverse;
     justify-content: center;
-    box-shadow: ${p => p.theme.shadows.userDataShadow};    
+    box-shadow: ${p => p.theme.shadows.userDataShadow};
+    transition: ${p => p.theme.transition.all};
+    
+    &:hover,
+    :focus {
+        background: ${p => p.theme.colors.hoveredAccent};
+    }
 }
     position: absolute;
     top: 0;
     right: 0;
     display: flex;
     align-items: center;
+`
+
+export const AddPetBtn = styled.button`
+@media (max-width: 767px) {
+    padding-bottom: 0;
+}
+
+    display: flex;
+    background-color: transparent;
+    border: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+    padding: ${p => p.theme.space[3]}px;
+    background: ${p => p.theme.colors.accent};
+    border-radius: ${p => p.theme.radii.big};
+    cursor: pointer;
+    transition: ${p => p.theme.transition.all};
+
+    &:hover,
+    :focus {
+        background: ${p => p.theme.colors.hoveredAccent};
+        border-color: ${p => p.theme.colors.hoveredAccent};
+    }
 `
 
 export const AddPetDesc = styled.p`
@@ -34,34 +61,14 @@ export const AddPetDesc = styled.p`
     font-weight: ${p => p.theme.fontWeights.normal};
     line-height: ${p => p.theme.fontHeight.l};
     margin-right: ${p => p.theme.space[4]}px;
-`
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: ${p => p.theme.transition.all};
 
-export const PlusContainer = styled.div`
-  width: 24px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: ${p => p.theme.colors.accent};
-  transition: ${p => p.theme.transition.all};
-  border-radius: ${p => p.theme.radii.big};
-  @media (min-width: 768px) {
-    width: 44px;
-    height: 44px;
-  }
-`;
-export const AddPetBtn = styled.button`
-@media (max-width: 767px) {
-    padding-bottom: 0;
-}
-
-    display: flex;
-    background-color: transparent;
-    border: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
-    padding: ${p => p.theme.space[3]}px;
-    background: ${p => p.theme.colors.accent};
-    border-radius: ${p => p.theme.radii.big};
-    cursor: pointer;
+    ${AddPetWrapper}:hover & {
+        opacity: 1;
+        transform: translateX(0);
+    }
 `
 
 export const PlusIcon = styled(Plus)`

@@ -90,6 +90,11 @@ export const Link = styled.a`
     font-size: ${p => p.theme.fontSizes[2]};
     line-height: ${p => p.theme.fontHeight.l};
     color: ${p => p.theme.colors.accent};
+
+    &:hover,
+    :focus {
+        color: ${p => p.theme.colors.hoveredAccent}
+    }
 `
 
 export const Decor = styled.div`
