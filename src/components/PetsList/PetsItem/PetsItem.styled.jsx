@@ -27,6 +27,11 @@ export const PetsItemWrapper= styled.li`
             margin-bottom: 22px;
     }
     }
+
+    @media screen and (min-width: 1600px) {
+        &:not(:last-child){
+            margin-bottom: ${p => p.theme.space[0]}px;
+    }}
 `
 export const PetsItemImg = styled.img`
     width:240px;
