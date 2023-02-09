@@ -18,6 +18,7 @@ border-radius: ${p => p.theme.radii.big};
 border: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
 background-color: ${p => p.theme.colors.white};
 transition: ${p => p.theme.transition.all};
+outline: none;
 
 &.active {
   background-color: ${p => p.theme.colors.accent};
@@ -30,6 +31,7 @@ transition: ${p => p.theme.transition.all};
 
   &:hover:not(.active),
   :focus-visible:not(.active) {
+    color: ${p => p.theme.colors.hoveredAccent};
     border-color: ${p => p.theme.colors.hoveredAccent};
   }
 `

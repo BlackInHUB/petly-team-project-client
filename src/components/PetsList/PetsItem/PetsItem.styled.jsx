@@ -27,6 +27,11 @@ export const PetsItemWrapper= styled.li`
             margin-bottom: 22px;
     }
     }
+
+    @media screen and (min-width: 1600px) {
+        &:not(:last-child){
+            margin-bottom: ${p => p.theme.space[0]}px;
+    }}
 `
 export const PetsItemImg = styled.img`
     width:240px;
@@ -72,7 +77,12 @@ export const PetsItemDeleteBtn = styled.button`
     border-radius: ${p => p.theme.radii.round};
     width: ${p => p.theme.space[6]}px;
     height: ${p => p.theme.space[6]}px;
-    cursor: pointer;  
+    cursor: pointer; 
+    transform: ${p => p.theme.transition.all};
+    
+    :hover svg{
+        fill: ${p => p.theme.colors.hoveredAccent}
+    }
 
     @media screen and (min-width: 768px) {
         top: ${p => p.theme.space[0]}px;
@@ -89,6 +99,8 @@ export const PetsItemDeleteBtn = styled.button`
 export const DeleteIcon = styled(Delete)`
     width: ${p => p.theme.space[6]}px;
     height: ${p => p.theme.space[6]}px;
+    fill: ${p => p.theme.colors.logout};
+    transform: ${p => p.theme.transition.all};
 
     @media screen and (min-width: 768px) {
         width: ${p => p.theme.space[7]}px;

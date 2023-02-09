@@ -5,7 +5,7 @@ import { Suspense, useState, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router';
 import { Title } from 'components/baseComponents/Title/Title';
 import { Box } from './NoticesPage.styled';
-import { AddPetButton } from 'components/AddPetButton/AddPetButton';
+import { AddNoticeButton } from 'components/Notices/AddNoticeButton/AddNoticeButton';
 import PaddingWrapper from '../../components/baseComponents/PaddingWrapper/PaddingWrapper';
 import ModalAddNotice from 'components/Notices/ModalAddNotice/ModalAddNotice';
 import LearnMoreModal from 'components/Notices/LearnMoreModal/LearnMoreModal';
@@ -41,7 +41,7 @@ const NoticesPage = () => {
           <NoticesSearch category={category} />
           <Box>
             <NoticesCategoriesNav />
-            <AddPetButton onOpenAddsPet={handleAddModalOpen} />
+            <AddNoticeButton onOpenAddsPet={handleAddModalOpen} />
           </Box>
         </div>
         <Suspense fallback={<Loader />}>

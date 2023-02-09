@@ -1,6 +1,6 @@
 import useNotices from "hooks/useNotices";
 import { NoticeCategoryItem } from "../NoticeCategoryItem/NoticeCategoryItem";
-import {NoticesCategoriesListStyled} from "./NoticesCategoriesList.Styled"
+import {NoticesCategoriesListStyled, Plug} from "./NoticesCategoriesList.Styled"
 import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "hooks/useAuth";
@@ -31,14 +31,13 @@ const NoticesCategoriesList = () => {
 
    const toRender = category === 'my-favorites' ? favorites : category === 'my-notices' ? own : notices;
 
-   if (toRender.length === 0) {
-      return;
-   };
-
    return (
+      <>
+      {toRender.length === 0 && <Plug><h2>Your notice may be first in this category 😎</h2></Plug>}
       <NoticesCategoriesListStyled>
          {toRender.map(notice => <NoticeCategoryItem key={notice._id} notice={notice} learnMore={handleInfoOpen} />)}
       </NoticesCategoriesListStyled>
+      </>
    )  
 };
 

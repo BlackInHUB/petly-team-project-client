@@ -1,5 +1,4 @@
-import { NoticeCard, HeartBtn, PetInfo, ButtonWrapper, HeartIcon } from "./NoticeCategoryItem.styled";
-import { HiTrash } from "react-icons/hi";
+import { NoticeCard, HeartBtn, PetInfo, ButtonWrapper, HeartIcon, DeleteIcon } from "./NoticeCategoryItem.styled";
 import Button from "../../baseComponents/Button/Button";
 import { useAuth } from "hooks/useAuth";
 import { useDispatch } from "react-redux";
@@ -9,7 +8,7 @@ import { authOperations } from "redux/auth";
 export const NoticeCategoryItem = ({ notice, learnMore }) => {
     const { category, photoUrl, title, breed, location, price, birthday } = notice;
     const {user} = useAuth();
-    const favorite = user.favorites.includes(notice._id) ? true : false;
+    const favorite = user.favorites?.includes(notice._id) ? 1 : 0;
     const owner = user._id === notice.owner ? true : false;
     const dispatch = useDispatch();
 
@@ -35,7 +34,7 @@ export const NoticeCategoryItem = ({ notice, learnMore }) => {
             </PetInfo>
             <ButtonWrapper>
                 <Button type="button" loadMore buttonStyle="secondary" onClick={() => learnMore(notice._id)}>Learn more</Button>
-                {owner && <Button type="button" loadMore buttonStyle="secondary" onClick={handleDelete} >Delete <HiTrash width="28px" height="28px" /></Button> }
+                {owner && <Button type="button" loadMore buttonStyle="secondary" onClick={handleDelete} >Delete <DeleteIcon /></Button> }
             </ButtonWrapper>
         </NoticeCard>
     )

@@ -6,6 +6,9 @@ export const List = styled.div`
 @media screen and (min-width: 320px) {
     padding-top: 40px;
     justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    gap: 40px 0px;
 }
 
 @media screen and (min-width: 768px) {
@@ -90,6 +93,11 @@ export const Link = styled.a`
     font-size: ${p => p.theme.fontSizes[2]};
     line-height: ${p => p.theme.fontHeight.l};
     color: ${p => p.theme.colors.accent};
+
+    &:hover,
+    :focus {
+        color: ${p => p.theme.colors.hoveredAccent}
+    }
 `
 
 export const Decor = styled.div`

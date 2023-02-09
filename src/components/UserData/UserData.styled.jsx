@@ -14,7 +14,6 @@ export const UserDataContainer = styled.div`
 
     @media screen and (min-width: 1280px) {
         display: block;
-        /* margin-left: ${p => p.theme.space[5]}px; */
         margin-bottom: ${p => p.theme.space[7]}px;
     }
 `
@@ -76,6 +75,10 @@ export const EditPhotoLabel = styled.label`
 
     &:hover, &:focus {
         color: ${p => p.theme.colors.hoveredAccent}
+    }
+
+    :hover svg{
+        fill: ${p => p.theme.colors.hoveredAccent}
     }
 
     @media screen and (min-width: 768px) {

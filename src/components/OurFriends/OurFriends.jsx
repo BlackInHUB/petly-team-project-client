@@ -7,7 +7,7 @@ export const OurFriends = ({ items }) => {
             <ContainerList>
               {items && items.map(({ _id, title, url, addressUrl, imageUrl, address, workDays, phone, email }) =>
                 <ContainerItem key={_id}>
-                    <Title><a href={url}  rel="noreferrer" target="_blank">{title}</a></Title>
+                    <Title href={url}  rel="noreferrer" target="_blank"><a href={url}  rel="noreferrer" target="_blank">{title}</a></Title>
                     <ContainerCard>
                           
                         <ContainerLogo>

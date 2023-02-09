@@ -47,6 +47,10 @@ export const StyledButton = styled.button`
         ? p.theme.colors.white
         : p.theme.colors.hoveredAccent};
     box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
+
+    & svg {
+      fill: ${p => p.theme.colors.hoveredAccent};
+    }
   }
 
   @media (min-width: 1280px) {

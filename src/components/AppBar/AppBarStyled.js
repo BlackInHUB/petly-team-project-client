@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const AppBarWrapper = styled.header`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
   width: 100%;
 

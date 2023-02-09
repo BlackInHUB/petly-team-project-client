@@ -20,6 +20,10 @@ export const ModalAddsPetCloseBtn = styled.button`
     height: 34px;
     cursor: pointer;
 
+    :hover svg{
+        fill: ${p => p.theme.colors.hoveredAccent}
+    }
+
     @media screen and (min-width: 768px) {
         width: 44px;
         height: 44px;
