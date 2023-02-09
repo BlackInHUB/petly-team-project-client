@@ -38,7 +38,6 @@ export const Title = styled.h2`
     font-weight: ${p => p.theme.fontWeights.bold};
     font-size: ${p => p.theme.fontSizes[0]};
     line-height: ${p => p.theme.fontHeight.l};
-    text-decoration: underline;
     text-align: center;
     color: ${p => p.theme.colors.accent};
 
@@ -48,6 +47,10 @@ export const Title = styled.h2`
 
     @media screen and (min-width: 1280px){
         font-size: ${p => p.theme.fontSizes[4]};
+    }
+
+    & a {
+        text-decoration: none;
     }
 
     &:hover,
