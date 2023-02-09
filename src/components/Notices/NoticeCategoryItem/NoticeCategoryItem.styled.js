@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {ReactComponent as Heart} from '../../../images/icons/heart2.svg'
 
 export const NoticeCard = styled.li`
   display: flex;
@@ -106,35 +107,36 @@ export const PetInfo = styled.div`
   }
 `;
 
+export const HeartIcon = styled(Heart)`
+  padding: 0;
+  margin: 0;
+  width: 24px;
+  height: auto;
+  fill: ${p => p.favorite ?  p.theme.colors.hoveredAccent : p => p.theme.colors.white};
+  stroke: ${p => p.favorite ?  p.theme.colors.hoveredAccent : p => p.theme.colors.accent};
+  transition: ${p => p.theme.transition.all};
+
+  &:hover,
+  &:focus-visible {
+    stroke: ${p => p.theme.colors.hoveredAccent};
+    fill: ${p => p.theme.colors.hoveredAccent};
+  }
+`
+
 export const HeartBtn = styled.button`
+  display: flex;
   position: absolute;
   right: 12px;
   top: 12px;
-  width: 44px;
-  height: 44px;
   padding: 8px;
   font-size: ${p => p.theme.fontSizes[6]};
   color: ${p => p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.round};
-  border: ${p => p.theme.borders.none};
+  border: ${p => p.theme.borders.normal} transparent;
+  cursor: pointer;
 
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
-
-  & svg.active {
-    fill: ${p => p.theme.colors.accent};
-
-    &:hover,
-    &:focus-visible {
-    }
-  }
-
-  &:hover,
-  &:focus-visible {
-    border: ${p => p.theme.borders.small} ${p => p.theme.colors.hoveredAccent};
-    color: ${p => p.theme.colors.hoveredAccent};
-    cursor: pointer;
-  }
 `;
 
 export const ButtonWrapper = styled.div`
