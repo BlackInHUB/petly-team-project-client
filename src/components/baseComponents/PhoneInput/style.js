@@ -1,9 +1,9 @@
 import PhoneInput from 'react-phone-input-2';
-import './phoneInput.css';
+import './material.css';
 
 import styled from 'styled-components';
 
-export const MobPhoneInput = styled(PhoneInput)`
+export const PhoneInputStyled = styled(PhoneInput)`
   width: 100%;
   #phone:hover,
   #phone:focus {
@@ -28,4 +28,8 @@ export const MobPhoneInput = styled(PhoneInput)`
 
       white-space: nowrap;
   }
+`;
+
+export const FieldWrapper = styled.div`
+  position: relative;
 `;

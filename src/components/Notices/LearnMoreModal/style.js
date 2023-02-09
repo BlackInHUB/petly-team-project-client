@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as Heart } from 'images/icons/heart2.svg';
 
 export const ModalForm = styled.div`
   position: absolute;
@@ -91,6 +92,27 @@ export const PetPhoto = styled.img`
     width: 288px;
     height: 328px;
   }
+`;
+
+export const FavoritIcon = styled(Heart)`
+  stroke: ${p => p.theme.colors.hoveredAccent};
+  fill: ${p => p.theme.colors.hoveredAccent};
+`;
+
+export const FavoritIconContainer = styled.div`
+  display: flex;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  padding: 8px;
+  font-size: ${p => p.theme.fontSizes[6]};
+  color: ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.round};
+  border: ${p => p.theme.borders.normal} transparent;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
 `;
 
 export const PetCategory = styled.div`

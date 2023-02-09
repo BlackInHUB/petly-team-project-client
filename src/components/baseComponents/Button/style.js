@@ -4,6 +4,7 @@ export const StyledButton = styled.button`
   width: ${p => (p.loadMore ? '248px' : '100%')};
   height: ${p => (p.loadMore ? '38px' : '44px')};
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   padding-left: 28px;

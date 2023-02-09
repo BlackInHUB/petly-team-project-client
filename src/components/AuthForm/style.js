@@ -72,15 +72,24 @@ export const FormStyled = styled(Form)`
   }
 `;
 
-export const Error = styled.p`
+export const Error = styled.div`
   padding: ${p => p.theme.space[1] + 'px'} ${p => p.theme.space[5] + 'px'} 0px
     ${p => p.theme.space[5] + 'px'};
   color: ${p => p.theme.colors.hoveredAccent};
-  font-size: ${p => p.theme.fontSizes[3]};
-  line-height: ${p =>
-    Math.floor(p.theme.fontHeight.s * p.theme.fontSizes[3].slice(0, -2)) +
-    'px'};
+  font-size: ${p => p.theme.fontSizes[0]};
+  line-height: ${p => p.theme.fontHeight.s};
   font-weight: ${p => p.theme.fontWeights.normal};
+  border: ${p => p.theme.borders.normal} ${p => p.theme.colors.hoveredAccent};
+  background-color: ${p => p.theme.colors.background};
+
+  padding: 2px 10px;
+
+  border-radius: ${p => p.theme.radii.big};
+
+  position: absolute;
+  bottom: -10px;
+  right: 20px;
+  z-index: 2;
 `;
 
 export const BottomText = styled.p`
@@ -103,4 +112,9 @@ export const NavLinkStyled = styled(NavLink)`
   letter-spacing: 4%;
   font-weight: ${p => p.theme.fontWeights.thin};
   display: inline-block;
+
+  :hover,
+  :focus {
+    outline-color: ${p => p.theme.colors.hoveredAccent};
+  }
 `;

@@ -5,16 +5,15 @@ import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/authOperations';
 import { useAuth } from 'hooks/useAuth';
 
-import closeImg from 'images/icons/modal/close_button.svg';
+//import closeImg from 'images/icons/modal/close_button.svg';
 import heartImg from 'images/icons/modal/heart.svg';
 
 import { Modal } from 'components/Modal/Modal';
+import ModalForm from 'components/baseComponents/ModalForm/ModalForm';
 import { Loader } from 'components/Loader/Loader';
 import { getOne } from 'services/notices';
 
 import {
-  ModalForm,
-  ModalCloseBtn,
   PetPhotoContainer,
   PetPhoto,
   PetCategory,
@@ -23,6 +22,8 @@ import {
   ButtonContainer,
   PetPhotoAndInfoContainer,
   PetPhotoAndInfoAndCommentsContainer,
+  FavoritIcon,
+  FavoritIconContainer,
 } from './style';
 
 import PetInfo from './PetInfo';
@@ -105,53 +106,58 @@ const LearnMoreModal = props => {
   //   }, []);
 
   return (
-    <Modal setShow={props.setShow}>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <ModalForm>
-          <ModalCloseBtn onClick={() => props.setShow()}>
-            <img src={closeImg} width="16px" alt="close" />
-          </ModalCloseBtn>
-          <PetPhotoAndInfoAndCommentsContainer>
-            <PetPhotoAndInfoContainer>
-              <PetPhotoContainer>
-                <PetPhoto
-                  src={
-                    pet?.photoUrl ||
-                    'http://res.cloudinary.com/dazfphdfk/image/upload/v1675066555/avatar/07fbd5b5-dce0-4641-b3e0-c65688f7b282-noPetPhoto.png'
+    <>
+      {isLoading && <Loader />}
+      {!isLoading && (
+        <Modal setShow={props.setShow}>
+          <ModalForm width={props.width} setShow={props.setShow}>
+            <PetPhotoAndInfoAndCommentsContainer>
+              <PetPhotoAndInfoContainer>
+                <PetPhotoContainer>
+                  <PetPhoto
+                    src={
+                      pet?.photoUrl ||
+                      'http://res.cloudinary.com/dazfphdfk/image/upload/v1675066555/avatar/07fbd5b5-dce0-4641-b3e0-c65688f7b282-noPetPhoto.png'
+                    }
+                  ></PetPhoto>
+                  <PetCategory>{pet?.category}</PetCategory>
+                  {favoritesList?.includes(id) && (
+                    <FavoritIconContainer>
+                      <FavoritIcon />
+                    </FavoritIconContainer>
+                  )}
+                </PetPhotoContainer>
+                <PetInfoContainer>
+                  <PetTitle>{pet?.title}</PetTitle>
+                  <PetInfo data={pet}></PetInfo>
+                </PetInfoContainer>
+              </PetPhotoAndInfoContainer>
+              <Comments>{pet?.comments}</Comments>
+            </PetPhotoAndInfoAndCommentsContainer>
+            <div style={{ display: 'flex', justifyContent: 'end' }}>
+              <ButtonContainer>
+                <Button
+                  style={{ height: '40px' }}
+                  onClick={() =>
+                    window.open(`tel:${pet?.owner.phone}`, '_self')
                   }
-                ></PetPhoto>
-                <PetCategory>{pet?.category}</PetCategory>
-              </PetPhotoContainer>
-              <PetInfoContainer>
-                <PetTitle>{pet?.title}</PetTitle>
-                <PetInfo data={pet}></PetInfo>
-              </PetInfoContainer>
-            </PetPhotoAndInfoContainer>
-            <Comments>{pet?.comments}</Comments>
-          </PetPhotoAndInfoAndCommentsContainer>
-          <div style={{ display: 'flex', justifyContent: 'end' }}>
-            <ButtonContainer>
-              <Button
-                style={{ height: '40px' }}
-                onClick={() => window.open(`tel:${pet?.owner.phone}`, '_self')}
-              >
-                Contact
-              </Button>
-              <Button
-                style={{ height: '40px' }}
-                buttonStyle="secondary"
-                onClick={() => toggleFavorites()}
-              >
-                {favoritesList?.includes(id) ? 'Remove from' : 'Add to'}&nbsp;
-                <img src={heartImg} alt="heart" />
-              </Button>
-            </ButtonContainer>
-          </div>
-        </ModalForm>
+                >
+                  Contact
+                </Button>
+                <Button
+                  style={{ height: '40px' }}
+                  buttonStyle="secondary"
+                  onClick={() => toggleFavorites()}
+                >
+                  {favoritesList?.includes(id) ? 'Remove from' : 'Add to'}&nbsp;
+                  <img src={heartImg} alt="heart" />
+                </Button>
+              </ButtonContainer>
+            </div>
+          </ModalForm>
+        </Modal>
       )}
-    </Modal>
+    </>
   );
 };
 

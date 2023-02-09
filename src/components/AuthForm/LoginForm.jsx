@@ -20,17 +20,15 @@ const validationSchema = yup.object({
     .matches(
       /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
       'Invalid email format'
-    )
-    .required('Required'),
+    ),
   password: yup
     .string()
-    .min(7, 'Password is too short - should be 7 chars minimum.')
-    .max(32, 'Password is too long - should be 32 chars maximum.')
+    .min(7, 'should be 7 chars minimum')
+    .max(32, 'should be 32 chars maximum')
     .matches(
       /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/,
-      'Password can only contain Latin letters, and without spaces.'
-    )
-    .required('No password provided'),
+      'letters, numbers, symbols'
+    ),
 });
 
 export default function LoginForm() {
@@ -57,22 +55,24 @@ export default function LoginForm() {
       validationSchema={validationSchema}
     >
       {({ isSubmitting, errors, touched }) => (
-        <FormStyled>
+        <FormStyled noValidate>
           <Header>Login</Header>
           <FieldsWrapper>
             <Input name="email" text="Email">
-              <Error>{touched.email ? errors.email : null}</Error>
+              {touched.email && errors.email && <Error>{errors.email}</Error>}
             </Input>
-            <div>
-              <Input name="password" password={true} text="Password" />
-              <Error>{touched.password ? errors.password : null}</Error>
-            </div>
+
+            <Input name="password" password={true} text="Password">
+              {touched.password && errors.password && (
+                <Error>{errors.password}</Error>
+              )}
+            </Input>
           </FieldsWrapper>
           <div>
             <Button type="submit" disabled={isSubmitting}>
+              {isError && <Error>{isError}</Error>}
               {isSubmitting ? <ButtonSpinner /> : <span>Login</span>}
             </Button>
-            <Error>{isError}</Error>
           </div>
           <span>
             <BottomText>Don't have an account? &nbsp;</BottomText>

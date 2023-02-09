@@ -14,8 +14,7 @@ const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
   } catch (error) {
     let message = '';
     if (error.response.status === 409)
-      message =
-        'User with the same email already registrated, we can send password on your email';
+      message = 'User with the same email already registrated';
     if (error.response.status === 401) message = 'Data is wrong';
     if (error.response.status === 500)
       message = 'BackEnd dead, please try later';
@@ -35,7 +34,7 @@ const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
   try {
     const result = await api.update(updateData);
     return result;
-  } catch ({response}) {
+  } catch ({ response }) {
     return thunkAPI.rejectWithValue(response.data.message);
   }
 });
@@ -44,7 +43,7 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await api.logout();
     return true;
-  } catch ({response}) {
+  } catch ({ response }) {
     return thunkAPI.rejectWithValue(response.data.message);
   }
 });
@@ -53,7 +52,7 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const { token } = thunkAPI.getState().auth;
   try {
     return await api.refresh(token);
-  } catch ({response}) {
+  } catch ({ response }) {
     return thunkAPI.rejectWithValue(response.data.message);
   }
 });
@@ -61,16 +60,16 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
   try {
     const result = await api.addPet(pet);
-    return result
-  } catch ({response}) {
+    return result;
+  } catch ({ response }) {
     return thunkAPI.rejectWithValue(response.data.message);
-  };
+  }
 });
 
 const favorites = createAsyncThunk('auth/favorites', async (id, thunkAPI) => {
-  console.log(id)
+  console.log(id);
   try {
-    const {favorites} = await api.favorites(id);
+    const { favorites } = await api.favorites(id);
     return favorites;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data.message);
@@ -80,11 +79,11 @@ const favorites = createAsyncThunk('auth/favorites', async (id, thunkAPI) => {
 const removePet = createAsyncThunk('auth/removePet', async (_id, thunkAPI) => {
   try {
     const result = await api.removePet(_id);
-    return {result, _id}
-  } catch ({response}) {
-    return thunkAPI.rejectWithValue(response.data.message)
+    return { result, _id };
+  } catch ({ response }) {
+    return thunkAPI.rejectWithValue(response.data.message);
   }
-})
+});
 
 const authOperations = {
   register,

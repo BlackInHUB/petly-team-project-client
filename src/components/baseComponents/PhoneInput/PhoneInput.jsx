@@ -1,51 +1,58 @@
-// import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-// import {
-//     PhoneInputStyled
-// } from './style';
+import { PhoneInputStyled, FieldWrapper } from './style';
 
-// const PhoneInput = ({phoneNumber, setPhoneNumber}) => {
-//     const phoneRegExp = /^\+\d{7,15}$/;
+import { Error } from 'components/AuthForm/style';
 
-//   const [isPhoneValid, setPhoneIsValid] = useState(null);
+const PhoneInput = ({
+  phoneNumber,
+  setPhoneNumber,
+  isPhoneValid,
+  setPhoneIsValid,
+}) => {
+  const phoneRegExp = /^\+\d{7,15}$/;
 
-//   const phoneValidation = () => {
-//     return phoneRegExp.test(`+${phoneNumber}`);
-//   };
+  const phoneValidation = value => {
+    return phoneRegExp.test(`+${value}`);
+  };
 
-//   const onBlurPhone = () => {
-//     phoneValidation()
-//       ? setPhoneIsValid(null)
-//       : setPhoneIsValid('incorrect phone number');
-//   };
+  const onBlurPhone = () => {
+    console.log(phoneNumber);
+    phoneValidation(phoneNumber)
+      ? setPhoneIsValid(null)
+      : setPhoneIsValid('incorrect phone number');
+  };
+  return (
+    <FieldWrapper>
+      <PhoneInputStyled
+        inputProps={{
+          id: 'phone',
+        }}
+        onBlur={onBlurPhone}
+        countryCodeEditable={false}
+        name="phone"
+        autoComplete="off"
+        country={'ua'}
+        placeholder="Mobile phone"
+        value={phoneNumber}
+        onChange={value => {
+          setPhoneNumber(value);
+          if (phoneValidation(value)) {
+            setPhoneIsValid(null);
+          }
+        }}
+      />
+      {isPhoneValid && <Error>{isPhoneValid}</Error>}
+    </FieldWrapper>
+  );
+};
 
-//   return (
-//     <div>
-//       <PhoneInputStyled
-//         inputProps={{
-//             id: 'phone',
-//           }}
-//         autoComplete="off"
-//         name="phone"
-//         onBlur={() => onBlurPhone()}
+PhoneInput.propTypes = {
+  phoneNumber: PropTypes.string.isRequired,
+  setPhoneNumber: PropTypes.func.isRequired,
+  isPhoneValid: PropTypes.string,
+  setPhoneIsValid: PropTypes.func.isRequired,
+};
 
-//         value={phoneNumber}
-//         onChange={value => setPhoneNumber(value)}
-//         country={'ua'}
-//         placeholder="Mobile phone"
-
-//       />
-
-//         {isPhoneValid ? <p>{isPhoneValid}</p> : null}
-//     </div>
-//   );
-// };
-
-// PhoneInput.propTypes = {
-//     phoneNumber: PropTypes.string.isRequired,
-//     setPhoneNumber: PropTypes.func.isRequired,
-
-// };
-
-// export default PhoneInput;
+export default PhoneInput;
