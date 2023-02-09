@@ -41,7 +41,10 @@ export const StyledButton = styled.button`
         ? p.theme.colors.hoveredAccent
         : p.theme.colors.white};
     border-color: ${p => p.theme.colors.hoveredAccent};
-    color: ${p => p.theme.colors.hoveredAccent};
+    color: ${p =>
+      p.buttonStyle === 'primary'
+        ? p.theme.colors.white
+        : p.theme.colors.hoveredAccent};
     box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
   }
 
