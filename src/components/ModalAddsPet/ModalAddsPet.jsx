@@ -167,3 +167,4 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         </ModalAddsPetWrapper>
     )
 }
+

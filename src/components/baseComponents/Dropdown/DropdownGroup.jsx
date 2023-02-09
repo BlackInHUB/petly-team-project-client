@@ -65,18 +65,21 @@ export const DropdownGroup = props => {
       }}
     >
       <Dropdown
+        height={props.height}
         options={optionsYear}
         placeHolder={year}
         setValue={setYear}
       ></Dropdown>
       {/* <span>{year}</span> */}
       <Dropdown
+        height={props.height}
         options={optionsMonth}
         placeHolder={optionsMonth[month - 1].label}
         setValue={setMonth}
       ></Dropdown>
       {/* <span>{month}</span> */}
       <Dropdown
+        height={props.height}
         options={optionsDay}
         placeHolder={day}
         setValue={setDay}

@@ -60,12 +60,16 @@ export const Input = styled.input`
 
   transition: box-shadow ease 0.25s, border-color ease 0.25s;
 
-  &:hover,
-  &:focus {
+  &:hover {
     box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
-
-    outline: none;
     border-color: ${p => p.theme.colors.hoveredAccent};
+  }
+  &:focus {
+    outline-color: ${p => p.theme.colors.hoveredAccent};
+    outline-width: 3px;
+    box-shadow: none;
+
+    border-color: transparent;
   }
 
   @media (min-width: 768px) {
@@ -94,12 +98,16 @@ export const Textarea = styled.textarea`
 
   transition: box-shadow ease 0.25s, border-color ease 0.25s;
 
-  &:hover,
-  &:focus {
+  &:hover {
     box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
-
-    outline: none;
     border-color: ${p => p.theme.colors.hoveredAccent};
+  }
+  &:focus {
+    outline-color: ${p => p.theme.colors.hoveredAccent};
+    outline-width: 3px;
+    box-shadow: none;
+
+    border-color: transparent;
   }
 
   ::placeholder {
@@ -165,6 +173,11 @@ export const Img = styled.img`
     filter: grayscale(0%) !important;
     cursor: pointer;
   }
+  &:focus {
+    outline: none;
+    filter: grayscale(0%) !important;
+    cursor: pointer;
+  }
 `;
 
 export const PhotoInput = styled.input`
@@ -209,6 +222,7 @@ export const ImageContainer = styled.div`
   @media (min-width: 768px) {
     width: 140px;
     height: 140px;
+  }
 `;
 export const ImagePlus = styled.img`
   border: ${p => p.theme.borders.none};
