@@ -18,8 +18,8 @@ export const ModalConfirmDelete = ({_id, onClose, onCloseBtn}) => {
             </CloseBtnWrapper>
             <ModalDescription>Are you sure you want to delete the pet card?</ModalDescription>
             <ModalButtonWrapper>
-            <ModalButton type='button' onClick={handleDelete}>Yes</ModalButton>
-            <ModalButton type='button' onClick={onCloseBtn}>No</ModalButton>
+                <ModalButton type='button' onClick={handleDelete}>Yes</ModalButton>
+                <ModalButton type='button' onClick={onCloseBtn}>No</ModalButton>
             </ModalButtonWrapper>
         </ModalWrapper>
         </>
