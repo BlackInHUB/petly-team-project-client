@@ -3,7 +3,7 @@ import { ReactComponent as Close} from '../../images/icons/modalAddsPet/close.sv
 
 export const ModalWrapper = styled.div`
     position: absolute;
-    width: 90%;
+    /* width: 90%; */
     background-color: ${p => p.theme.colors.white};
     padding-left: ${p => p.theme.space[10]}px;
     padding-right: ${p => p.theme.space[10]}px;
@@ -15,11 +15,11 @@ export const ModalWrapper = styled.div`
     transform: translate(-50%, -50%);
 
     @media (min-width: 768px) {
-        max-width: 60%;
+        /* max-width: 60%; */
     }
 
     @media (min-width: 1280px) {
-        max-width: 40%;
+        /* max-width: 40%; */
     }
 `
 
@@ -42,7 +42,7 @@ export const ModalCloseBtn = styled.button`
     width: 34px;
     height: 34px;
     cursor: pointer;
-    transition: ${p => p.theme.transition.all};
+    transform: ${p => p.theme.transition.all};
     
     :hover svg{
         fill: ${p => p.theme.colors.hoveredAccent}
@@ -59,7 +59,7 @@ export const CloseIcon = styled(Close)`
     width: ${p => p.theme.space[5]};
     height: ${p => p.theme.space[5]};
     fill: ${p => p.theme.colors.black};
-    transition: ${p => p.theme.transition.all};
+    transform: ${p => p.theme.transition.all};
 
     &:hover,
     :focus {
@@ -90,7 +90,7 @@ export const ModalDescription = styled.p`
 `
 export const ModalButtonWrapper = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 `
 
 export const ModalButton = styled.button`
@@ -111,11 +111,9 @@ export const ModalButton = styled.button`
     border: ${p => p.theme.borders.normal};
     border-color: ${p => p.theme.colors.accent};
     cursor: pointer;
-    transition: ${p => p.theme.transition.all};
+    transform: ${p => p.theme.transition.all};
 
     &:hover, :focus {
-        border: ${p => p.theme.borders.normal};
-        border-color: ${p => p.theme.colors.hoveredAccent};
         background: ${p => p.theme.colors.accent};
         color: ${p => p.theme.colors.white};
     }
