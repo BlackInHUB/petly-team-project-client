@@ -2,7 +2,7 @@ import { NoticesSearch } from 'components/Notices/NoticesSearch/NoticesSearch';
 import { Loader } from 'components/Loader/Loader';
 import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
 import { Suspense, useState, useEffect } from 'react';
-import { Outlet, useParams } from 'react-router';
+import { Outlet } from 'react-router';
 import { Title } from 'components/baseComponents/Title/Title';
 import { Box } from './NoticesPage.styled';
 import { AddNoticeButton } from 'components/Notices/AddNoticeButton/AddNoticeButton';
@@ -15,7 +15,6 @@ import useNotices from 'hooks/useNotices';
 const modalRoot = document.querySelector('#modal-root');
 
 const NoticesPage = () => {
-  const { categoryName: category } = useParams();
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState({ open: false, id: null });
   const { isLoggedIn } = useAuth();
@@ -38,14 +37,14 @@ const NoticesPage = () => {
       <PaddingWrapper>
         <div>
           <Title value={'Find your favorite pet'} />
-          <NoticesSearch category={category} />
+          <NoticesSearch />
           <Box>
             <NoticesCategoriesNav />
             <AddNoticeButton onOpenAddsPet={handleAddModalOpen} />
           </Box>
         </div>
         <Suspense fallback={<Loader />}>
-          <Outlet context={{ handleInfoOpen, category }} />
+          <Outlet context={{ handleInfoOpen }} />
         </Suspense>
       </PaddingWrapper>
       {isAddOpen &&

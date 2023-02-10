@@ -9,14 +9,11 @@ import { noticesOperations } from "redux/notices";
 
 
 const NoticesCategoriesList = () => {
-   const location = useLocation();
-   console.log(location)
+   const category = useLocation().pathname.split('/').pop();
    const {notices, favorites, own} = useNotices();
-   const {handleInfoOpen, category} = useOutletContext();
+   const {handleInfoOpen } = useOutletContext();
    const {user} = useAuth();
    const dispatch = useDispatch();
-
-   console.log(category)
 
    useEffect(() => {
       if(!category) {
