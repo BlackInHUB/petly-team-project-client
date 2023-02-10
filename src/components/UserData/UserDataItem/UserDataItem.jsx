@@ -1,113 +1,58 @@
-// import { useState } from 'react'
-// import { useDispatch } from 'react-redux'
-// import { authOperations } from '../../../redux/auth'
-// import { UserDataItemWrapper, UserDataItemLabel, UserDataItemInputBtnWrapper,
-//     UserDataItemInput, UserDataItemBtn, PensilStyle, CheckMarkStyle, UserDataInputError } from './UserDataItem.styled'
-
-// export const UserDataItem = ({name, label, type, defaultValue, pattern, title}) => {
-//     const dispatch = useDispatch();
-    
-//     const [inputValue, setInputValue] = useState(defaultValue);
-//     const [active, setActive] = useState(false);
-//     const [isValid, setIsValid] = useState(true);
-
-//     const handleChange = (e) => {
-//         setInputValue(e.currentTarget.value)
-//     }
-
-//     const handleClick = (e) => {
-//         e.preventDefault();
-//         const validValue = pattern.test(inputValue);
- 
-//     if (!validValue) {
-//         setIsValid(false) 
-//         return}
-
-//         setIsValid(true)
-//         setActive(true)
-
-//     if (active === true){
-//         if (name === 'name'){
-//             dispatch(authOperations.update({name: inputValue}))
-//         }
-//         if (name === 'email'){
-//             dispatch(authOperations.update({email: inputValue}))
-//         }
-//         else if (name === 'birthday'){
-//             dispatch(authOperations.update({birthday: inputValue}))
-//         }
-//         else if (name === 'phone'){
-//             dispatch(authOperations.update({phone: inputValue}))
-//         }
-//         else if (name === 'city'){
-//             dispatch(authOperations.update({city: inputValue}))
-//         }
-//         setActive(false)
-//     }
-// }
-
-//     return(
-//         <>
-//            <UserDataItemWrapper>
-//                     <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
-//                     <UserDataItemInputBtnWrapper>
-//                         <UserDataItemInput value={inputValue} onChange={handleChange} disabled={!active} type={type} name={name} pattern={pattern} id={name}/> 
-//                         <UserDataItemBtn onClick={handleClick}>{!active ? <PensilStyle /> : <CheckMarkStyle />}</UserDataItemBtn>
-//                     </UserDataItemInputBtnWrapper>                
-//             </UserDataItemWrapper>
-//             {!isValid && <UserDataInputError>{title}</UserDataInputError>} 
-//         </>
-//     )
-// }
-
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { authOperations } from '../../../redux/auth'
 import { UserDataItemWrapper, UserDataItemLabel, UserDataItemInputBtnWrapper,
     UserDataItemInput, UserDataItemBtn, PensilStyle, CheckMarkStyle } from './UserDataItem.styled'
 
-export const UserDataItem = ({name, label, type, defaultValue}) => {
+export const UserDataItem = ({name, label, type, defaultValue, active, setActive}) => {
     const dispatch = useDispatch();
     
     const [inputValue, setInputValue] = useState(defaultValue);
-    const [active, setActive] = useState(false)
 
     const handleChange = (e) => {
-        setInputValue(e.currentTarget.value)
+        const {name, value} = (e.currentTarget)
+        
+            if (name === 'name'){
+                setInputValue(value)
+            }
+            if (name === 'email'){
+                setInputValue(value)
+                
+            }
+            else if (name === 'birthday'){
+                setInputValue(value)
+            }
+            else if (name === 'phone'){
+                setInputValue(value)
+            }
+            else if (name === 'city'){
+                setInputValue(value)
+            }
     }
 
-    const handleClick = (e) => {
-                e.preventDefault();
-                setActive(true)
-            if (active === true){
-                if (name === 'name'){
-                    dispatch(authOperations.update({name: inputValue}))
-                }
-                if (name === 'email'){
-                    dispatch(authOperations.update({email: inputValue}))
-                }
-                else if (name === 'birthday'){
-                    dispatch(authOperations.update({birthday: inputValue}))
-                }
-                else if (name === 'phone'){
-                    dispatch(authOperations.update({phone: inputValue}))
-                }
-                else if (name === 'city'){
-                    dispatch(authOperations.update({city: inputValue}))
-                }
-                setActive(false)
-            }
-        }
+    const handleSubmit = (name) => {
+        setActive('')
+        dispatch(authOperations.update({[name]: inputValue}))
+    }    
+
+    const activeHandleClick = (name) => {
+        setActive(name)
+    }
 
     return(
         <>
-           <UserDataItemWrapper>
-                    <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
-                    <UserDataItemInputBtnWrapper>
-                        <UserDataItemInput value={inputValue} onChange={handleChange} disabled={!active} type={type} name={name} id={name}/> 
-                        <UserDataItemBtn onClick={handleClick}>{!active ? <PensilStyle /> : <CheckMarkStyle />}</UserDataItemBtn>
-                    </UserDataItemInputBtnWrapper>                 
-            </UserDataItemWrapper>
-        </>
+        <UserDataItemWrapper>
+                 <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
+                 <UserDataItemInputBtnWrapper>
+                     <UserDataItemInput value={inputValue} onChange={handleChange} active={active === name} disabled={active !== name} type={type} name={name} id={name}/> 
+
+                    {active === name ? 
+                        <UserDataItemBtn onClick={() => handleSubmit(name)}><CheckMarkStyle /></UserDataItemBtn> :
+                        <UserDataItemBtn onClick={() => activeHandleClick(name)}><PensilStyle /></UserDataItemBtn>
+                    }
+                    
+                 </UserDataItemInputBtnWrapper>                 
+         </UserDataItemWrapper>
+     </>
     )
 }

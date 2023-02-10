@@ -77,6 +77,7 @@ export const UserDataItemBtn = styled.button`
     border-radius: ${p => p.theme.radii.round};
     border-color: transparent;
     margin-left: 9px;
+    cursor: pointer;
 
     @media screen and (min-width: 768px) {
         width: 32px;
