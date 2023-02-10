@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { ReactComponent as Delete } from '../../../images/icons/petsItem/delete.svg'
 
 export const PetsItemWrapper= styled.li`
+    position: relative;
     background-color: ${p => p.theme.colors.white};
     border-radius: ${p => p.theme.radii.normal};
     box-shadow: ${p => p.theme.shadows.userDataShadow};
@@ -52,7 +53,7 @@ export const PetsItemImg = styled.img`
 `
 
 export const PetsItemInfoBlock = styled.div`
-    position: relative;
+    /* position: relative; */
     border-color: ${p => p.theme.colors.accent};
     width: 100%;
 
@@ -67,7 +68,8 @@ export const PetsItemInfoBlock = styled.div`
 
 export const PetsItemDeleteBtn = styled.button`
     position: absolute;
-    right: ${p => p.theme.space[0]}px;
+    top: 270px;
+    right: ${p => p.theme.space[6]}px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,15 +87,15 @@ export const PetsItemDeleteBtn = styled.button`
     }
 
     @media screen and (min-width: 768px) {
-        top: ${p => p.theme.space[0]}px;
+        top: ${p => p.theme.space[6]}px;
         width: 44px;
         height: 44px;
         background: ${p => p.theme.colors.background};
     }
-
+/* 
     @media screen and (min-width: 1600px) {
         right: 0px;
-    }
+    } */
 `
 
 export const DeleteIcon = styled(Delete)`
