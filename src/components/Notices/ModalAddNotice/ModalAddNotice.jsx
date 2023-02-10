@@ -73,7 +73,6 @@ const ModalAddNotice = props => {
         ? e.target.getAttribute('data-value')
         : value;
     if (type === 'file' && newValue.length === 0) return;
-    console.log(1);
     setValues(prevState => ({
       ...prevState,
       [name]: newValue,
@@ -178,7 +177,6 @@ const ModalAddNotice = props => {
       }
     }
     setStep(prev => prev + args[0]);
-    console.log(step);
   };
 
   return (
