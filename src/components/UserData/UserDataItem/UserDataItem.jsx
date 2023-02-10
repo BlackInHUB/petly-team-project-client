@@ -48,7 +48,7 @@ export const UserDataItem = ({name, label, type, defaultValue, active, setActive
 
                     {active === name ? 
                         <UserDataItemBtn onClick={() => handleSubmit(name)}><CheckMarkStyle /></UserDataItemBtn> :
-                        <UserDataItemBtn onClick={() => activeHandleClick(name)}><PensilStyle /></UserDataItemBtn>
+                        <UserDataItemBtn disabled={active && active !== name} onClick={() => activeHandleClick(name)}><PensilStyle /></UserDataItemBtn>
                     }
                     
                  </UserDataItemInputBtnWrapper>                 
