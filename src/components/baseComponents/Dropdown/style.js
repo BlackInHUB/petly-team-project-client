@@ -37,7 +37,7 @@ export const DropdownWrapper = styled.div`
 
 export const Input = styled.input`
   position: absolute;
-  width: 120px;
+  width: 100%;
   height: 40px;
   border: ${p => p.theme.borders.small};
   border-color: ${p => p.theme.colors.accent};
@@ -46,6 +46,7 @@ export const Input = styled.input`
   z-index: -1;
 
   @media (min-width: 768px) {
+    
     height: 48px;
     border-radius: ${p => p.theme.radii.big};
   }

@@ -5,11 +5,9 @@ import { ReactComponent as BackgroundPCIcon } from '../../images/pcBackground.sv
 import styled from 'styled-components';
 
 export const PageWrapper = styled.div`
-  position: absolute;
-  top: 50%;
   width: 100%;
   z-index: 1;
-  transform: translateY(-50%);
+
   display: flex;
   flex-direction: column;
   justify-content: center;

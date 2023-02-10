@@ -120,8 +120,8 @@ export const HeartIcon = styled(Heart)`
   margin: 0;
   width: 24px;
   height: auto;
-  fill: ${p => p.favorite ?  p.theme.colors.hoveredAccent : p => p.theme.colors.white};
-  stroke: ${p => p.favorite ?  p.theme.colors.hoveredAccent : p => p.theme.colors.accent};
+  fill: ${p => p.favorite === 1 ?  p.theme.colors.hoveredAccent : p => p.theme.colors.white};
+  stroke: ${p => p.favorite === 1 ?  p.theme.colors.hoveredAccent : p => p.theme.colors.accent};
   transition: ${p => p.theme.transition.all};
 
   &:hover,

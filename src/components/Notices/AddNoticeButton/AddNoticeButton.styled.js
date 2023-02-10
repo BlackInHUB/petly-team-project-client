@@ -1,7 +1,26 @@
 import styled from "styled-components"
-import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
+import { ReactComponent as Plus} from '../../../images/icons/addPetBtn/plus.svg'
 
-export const AddPetWrapper = styled.div`
+export const AddNoticeWrapper = styled.div`
+@media (max-width: 767px) {
+    position: fixed;
+    top: 75vh;
+    right: 20px;
+    background: ${p => p.theme.colors.accent};
+    width: 80px;
+    height: 80px;
+    border-radius: ${p => p.theme.radii.big};
+    z-index: 10;
+    flex-direction: column-reverse;
+    justify-content: center;
+    box-shadow: ${p => p.theme.shadows.userDataShadow};
+    transition: ${p => p.theme.transition.all};
+    
+    &:hover,
+    :focus {
+        background: ${p => p.theme.colors.hoveredAccent};
+    }
+}
     position: absolute;
     top: 0;
     right: 0;
@@ -9,9 +28,9 @@ export const AddPetWrapper = styled.div`
     align-items: center;
 `
 
-export const AddPetBtn = styled.button`
+export const AddNoticeBtn = styled.button`
 @media (max-width: 767px) {
-    padding: 10px;
+    padding-bottom: 0;
 }
 
     display: flex;
@@ -30,10 +49,12 @@ export const AddPetBtn = styled.button`
     }
 `
 
-export const AddPetDesc = styled.p`
+export const AddNoticeDesc = styled.p`
 @media (max-width: 767px) {
     font-size: ${p => p.theme.fontSizes[0]};
     color: ${p => p.theme.colors.white};
+    opacity: 1;
+    transform: translateX(0);
     margin: 0;
 }
     color: ${p => p.theme.colors.text};
@@ -46,13 +67,18 @@ export const AddPetDesc = styled.p`
     opacity: 0;
     transition: ${p => p.theme.transition.all};
 
-    ${AddPetWrapper}:hover & {
+    ${AddNoticeWrapper}:hover & {
         opacity: 1;
         transform: translateX(0);
     }
 `
 
 export const PlusIcon = styled(Plus)`
+@media (max-width: 767px) {
+    width: 32px;
+    height: auto;
+}
+
 width: 24px;
 stroke: ${p => p.theme.colors.white};
 `

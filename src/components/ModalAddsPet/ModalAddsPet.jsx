@@ -94,7 +94,7 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
       
                     <ModalAddsPetContainer>
                     <ModalAddsPetLabel htmlFor="birthday">Date of birth</ModalAddsPetLabel>
-                    <DropdownGroup date={startDate} setState={setStartDate} height={'150px'}/>
+                    <DropdownGroup date={startDate} setState={setStartDate} height='150px' />
                    
                     </ModalAddsPetContainer>
       

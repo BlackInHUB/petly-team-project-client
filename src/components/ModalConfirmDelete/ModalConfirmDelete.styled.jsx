@@ -40,6 +40,11 @@ export const ModalCloseBtn = styled.button`
     width: 34px;
     height: 34px;
     cursor: pointer;
+    transition: ${p => p.theme.transition.all};
+    
+    :hover svg{
+        fill: ${p => p.theme.colors.hoveredAccent}
+    }
 
     @media screen and (min-width: 768px) {
         top: -20px;
@@ -106,9 +111,13 @@ export const ModalButton = styled.button`
     transition: ${p => p.theme.transition.all};
 
     &:hover, :focus {
-        border-color: ${p => p.theme.colors.hoveredAccent};
+        /* border-color: ${p => p.theme.colors.hoveredAccent}; */
         background: ${p => p.theme.colors.accent};
         color: ${p => p.theme.colors.white};
+    }
+
+    :hover svg{
+        fill: ${p => p.theme.colors.hoveredAccent}
     }
 
     @media screen and (min-width: 768px) {

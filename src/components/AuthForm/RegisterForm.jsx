@@ -9,7 +9,8 @@ import ButtonSpinner from '../baseComponents/ButtonSpinner/ButtonSpinner';
 import Input from 'components/baseComponents/Input/Input';
 import FieldsWrapper from '../baseComponents/FieldsWrapper/FieldsWrapper';
 
-import { MobPhoneInput } from '../baseComponents/PhoneInput/style';
+//import { MobPhoneInput } from '../baseComponents/PhoneInput/style';
+import PhoneInput from 'components/baseComponents/PhoneInput/PhoneInput';
 
 import {
   FormStyled,
@@ -27,10 +28,7 @@ const initialValues = {
   confirmPassword: '',
   name: '',
   city: '',
-  phone: '',
 };
-
-const phoneRegExp = /^\+\d{7,15}$/;
 
 const validationSchema = yup.object({
   email: yup
@@ -38,39 +36,37 @@ const validationSchema = yup.object({
     .matches(
       /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
       'Invalid email format'
-    )
-    .required('Required'),
+    ),
   password: yup
     .string()
-    .min(7, 'Password is too short - should be 7 chars minimum.')
-    .max(32, 'Password is too long - should be 32 chars maximum.')
+    .min(7, 'should be 7 chars minimum')
+    .max(32, 'should be 32 chars maximum')
     .matches(
       /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/,
-      'Password can only contain Latin letters, and without spaces.'
-    )
-    .required('No password provided'),
+      'letters, numbers, symbols'
+    ),
   confirmPassword: yup.string().when('password', {
     is: val => (val && val.length > 0 ? true : false),
-    then: yup
-      .string()
-      .oneOf([yup.ref('password')], 'Both password need to be the same'),
+    then: yup.string().oneOf([yup.ref('password')], 'Passwords vary'),
   }),
-  name: yup.string().required('Required'),
+  name: yup.string(),
   city: yup
     .string()
     .matches(
       /^\s*([A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+,\s?)?[A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+\s*$/,
       'put City, Region or only City'
-    )
-    .required('Required'),
+    ),
 });
 
 export default function RegisterForm() {
   const [step, setStep] = useState(1);
   const [nextError, setNextError] = useState(null);
+  const [submitError, setSubmitError] = useState(null);
 
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isPhoneValid, setPhoneIsValid] = useState(null);
+
+  const formikRef = React.createRef();
 
   useEffect(() => {}, [step]);
 
@@ -79,7 +75,7 @@ export default function RegisterForm() {
   const { isError } = useAuth();
 
   const onNext = (errors, values) => {
-    console.log(values);
+    console.log(values, phoneNumber);
     if (!values.email || !values.password || !values.confirmPassword) {
       setNextError('Please, enter all data');
     }
@@ -103,26 +99,42 @@ export default function RegisterForm() {
     dispatch(authOperations.eraseErrors());
   };
 
-  const phoneValidation = () => {
-    return phoneRegExp.test(`+${phoneNumber}`);
-  };
-
-  const onBlurPhone = () => {
-    phoneValidation()
-      ? setPhoneIsValid(null)
-      : setPhoneIsValid('incorrect phone number');
-  };
-
-  const onSubmit = async (values, { setSubmitting }) => {
-    const { name, email, city, password } = values;
+  const handleSubmit = async (e, errors, values, setSubmitting) => {
+    e.preventDefault();
     const phone = `+${phoneNumber}`;
-    const data = { name, email, city, phone, password };
+    const data = {
+      email: values.email,
+      password: values.password,
+      name: values.name,
+      city: values.city,
+      phone: phone,
+    };
+    console.log(data);
 
     try {
-      if (phoneValidation()) {
-        setPhoneIsValid(null);
+      setSubmitting(true);
+      if (
+        !errors.name &&
+        !errors.city &&
+        !isPhoneValid &&
+        values.name &&
+        values.city &&
+        phone
+      ) {
+        console.log(data);
+        setSubmitError(null);
         await dispatch(authOperations.register(data));
-      } else setPhoneIsValid('incorrect phone number');
+      } else {
+        console.log(
+          !errors.name,
+          !errors.city,
+          !isPhoneValid,
+          values.name,
+          values.city,
+          phone
+        );
+        setSubmitError('Enter all data');
+      }
     } catch (e) {
     } finally {
       setSubmitting(false);
@@ -133,73 +145,67 @@ export default function RegisterForm() {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
         validationSchema={validationSchema}
+        innerRef={formikRef}
       >
-        {({ isSubmitting, errors, touched, values }) => (
-          <FormStyled>
+        {({ setSubmitting, isSubmitting, errors, touched, values }) => (
+          <FormStyled
+            onSubmit={e => handleSubmit(e, errors, values, setSubmitting)}
+            noValidate
+          >
             <Header>Registration</Header>
 
             <FieldsWrapper visible={step === 1 ? true : false}>
               <Input name="email" text="Email">
-                <Error>{touched.email ? errors.email : null}</Error>
+                {touched.email && errors.email && <Error>{errors.email}</Error>}
               </Input>
-              <div>
-                <Input name="password" password={true} text="Password" />
-                <Error>{touched.password ? errors.password : null}</Error>
-              </div>
-              <div>
-                <Input
-                  name="confirmPassword"
-                  password={true}
-                  text="Confirm Password"
-                />
-                <Error>
-                  {touched.confirmPassword ? errors.confirmPassword : null}
-                </Error>
-              </div>
+
+              <Input name="password" password={true} text="Password">
+                {touched.password && errors.password && (
+                  <Error>{errors.password}</Error>
+                )}
+              </Input>
+
+              <Input
+                name="confirmPassword"
+                password={true}
+                text="Confirm Password"
+              >
+                {touched.confirmPassword && errors.confirmPassword && (
+                  <Error>{errors.confirmPassword}</Error>
+                )}
+              </Input>
             </FieldsWrapper>
 
             <FieldsWrapper visible={step === 2 ? true : false}>
               <Input name="name" text="Name">
-                <Error>{touched.name ? errors.name : null}</Error>
+                {touched.name && errors.name && <Error>{errors.name}</Error>}
               </Input>
               <Input name="city" text="City, region">
-                <Error>{touched.city ? errors.city : null}</Error>
+                {touched.city && errors.city && <Error>{errors.city}</Error>}
               </Input>
-              <div>
-                <MobPhoneInput
-                  inputProps={{
-                    id: 'phone',
-                  }}
-                  onBlur={() => onBlurPhone()}
-                  countryCodeEditable={false}
-                  name="phone"
-                  autoComplete="off"
-                  country={'ua'}
-                  placeholder="Mobile phone"
-                  value={phoneNumber}
-                  onChange={value => {
-                    setPhoneNumber(value);
-                  }}
-                />
 
-                {isPhoneValid ? <Error>{isPhoneValid}</Error> : null}
-              </div>
+              <PhoneInput
+                phoneNumber={phoneNumber}
+                setPhoneNumber={setPhoneNumber}
+                isPhoneValid={isPhoneValid}
+                setPhoneIsValid={setPhoneIsValid}
+              />
             </FieldsWrapper>
 
             <FieldsWrapper visible={step === 1 ? true : false}>
-              <Button onClick={() => onNext(errors, values)}>Next</Button>
-              <Error>{nextError}</Error>
+              <Button onClick={() => onNext(errors, values)}>
+                Next {nextError && <Error>{nextError}</Error>}
+              </Button>
             </FieldsWrapper>
 
             <FieldsWrapper visible={step === 2 ? true : false}>
-              <div>
-                <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? <ButtonSpinner /> : <span>Register</span>}
-                </Button>
-                <Error>{isError}</Error>
-              </div>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? <ButtonSpinner /> : <span>Register</span>}
+                {submitError && <Error>{submitError}</Error>}
+                {!submitError && isError && <Error>{isError}</Error>}
+              </Button>
+
               <div>
                 <Button
                   buttonStyle="secondary"

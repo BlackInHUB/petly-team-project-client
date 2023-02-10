@@ -19,3 +19,11 @@ export const NoticesCategoriesListStyled = styled.ul`
     grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
   }
 `;
+
+export const Plug = styled.div`
+  text-align: center;
+  
+  & h2 {
+    font-size: ${p => p.theme.fontSizes[7]};
+  }
+`
