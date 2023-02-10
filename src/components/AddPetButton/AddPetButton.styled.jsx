@@ -2,9 +2,6 @@ import styled from "styled-components"
 import { ReactComponent as Plus} from '../../images/icons/addPetBtn/plus.svg'
 
 export const AddPetWrapper = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
     display: flex;
     align-items: center;
 `

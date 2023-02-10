@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const NavContainer = styled.div`
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+
+@media (min-width: 768px) {
+  width: 90%;
+  }
 `
 
 export const NavBtn = styled(NavLink)`
