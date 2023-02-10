@@ -6,25 +6,26 @@ import { noticesOperations } from "redux/notices";
 import { authOperations } from "redux/auth";
 
 export const NoticeCategoryItem = ({ notice, learnMore }) => {
-    const { category, photoUrl, title, breed, location, price, birthday } = notice;
+    const { category, photoUrl, title, breed, location, price, birthday, _id, owner } = notice;
     const {user} = useAuth();
     const dispatch = useDispatch();
 
-    const favorite = user.favorites?.includes(notice._id) ? 1 : 0;
-    const owner = user._id === notice.owner ? true : false;
+    const isOwner = user._id === owner;
+    const favorite = user.favorites?.includes(_id) ? 1 : 0;
 
     const handleDelete = () => {
-        dispatch(noticesOperations.remove(notice._id))
+        dispatch(noticesOperations.remove(_id))
     }
 
     const toggleFavorites = () => {
-        dispatch(authOperations.favorites(notice._id))
+        dispatch(authOperations.favorites(_id))
     }
 
     return (
         <NoticeCard>
             <span className="category">{category}</span>
-            {!owner && <HeartBtn className="heart"type="button" onClick={toggleFavorites}>{<HeartIcon favorite={favorite} />}</HeartBtn>}
+            {!isOwner
+             && <HeartBtn className="heart"type="button" onClick={toggleFavorites}>{<HeartIcon favorite={favorite} />}</HeartBtn>}
             <img src={photoUrl} alt={title}/>
             <h3>{title}</h3>
             <PetInfo>
@@ -34,8 +35,9 @@ export const NoticeCategoryItem = ({ notice, learnMore }) => {
                 {price && <p><span className="pet-info-title">Price:</span><span>{price}</span></p>}
             </PetInfo>
             <ButtonWrapper>
-                <Button type="button" loadMore buttonStyle="secondary" onClick={() => learnMore(notice._id)}>Learn more</Button>
-                {owner && <Button type="button" loadMore buttonStyle="secondary" onClick={handleDelete} >Delete <DeleteIcon /></Button> }
+                <Button type="button" loadMore buttonStyle="secondary" onClick={() => learnMore(_id)}>Learn more</Button>
+                {isOwner
+                 && <Button type="button" loadMore buttonStyle="secondary" onClick={handleDelete} >Delete <DeleteIcon /></Button> }
             </ButtonWrapper>
         </NoticeCard>
     )
