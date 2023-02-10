@@ -17,9 +17,12 @@ export const ListTime = styled.span`
 `
 
 export const Time = styled.span`
+    font-family: 'Manrope';
     display:block;
     background:${p => p.theme.colors.white};
     padding-top:${p => p.theme.fontSizes[0]};
+    line-height: ${p => p.theme.fontHeight.l};
+    font-weight:  ${p => p.theme.fontWeights.normal};
 
     span{
         display:flex;
