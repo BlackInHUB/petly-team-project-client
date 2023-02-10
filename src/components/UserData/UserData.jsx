@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { authOperations } from '../../redux/auth'
 import defaultUserPhoto from '../../images/UserData/defaultUserPhoto.png'
@@ -8,6 +9,7 @@ import { UserDataContainer,
 import { useAuth } from 'hooks/useAuth'
 
 export const UserData = () => {
+    const [active, setActive] = useState('')
     const dispatch = useDispatch();   
     const {user} = useAuth();
    
@@ -40,10 +42,12 @@ export const UserData = () => {
             </UserDataImgWrapper>
 
             <UserDataList>
-                <UserDataItem label={'Name:'} 
+                <UserDataItem   label={'Name:'} 
                                 defaultValue={user.name} 
                                 type="text" 
                                 name='name'
+                                active={active}
+                                setActive={setActive}
                                 pattern={patternName}
                                 title="Name may contain only letters."
                                 id="name" />
@@ -52,6 +56,8 @@ export const UserData = () => {
                                 defaultValue={user.email}   
                                 type="email" 
                                 name='email' 
+                                active={active}
+                                setActive={setActive}
                                 pattern={patternEmail}
                                 title="Email no valid"
                                 id="email"/>
@@ -60,6 +66,8 @@ export const UserData = () => {
                                 defaultValue={user.birthday || "01.01.1900"} 
                                 type="text" 
                                 name='birthday'
+                                active={active}
+                                setActive={setActive}
                                 // pattern={patternDate}
                                 title="Date may contain only format 0000-00-00"
                                 id="birthday" />
@@ -68,6 +76,8 @@ export const UserData = () => {
                                 defaultValue={user.phone} 
                                 type="tel" 
                                 name='phone'
+                                active={active}
+                                setActive={setActive}
                                 pattern={patternPhone}
                                 title="Phone may be formated +0000000000"
                                 id="phone"  />
@@ -76,6 +86,8 @@ export const UserData = () => {
                                 defaultValue={user.city} 
                                 type="text" 
                                 name='city'
+                                active={active}
+                                setActive={setActive}
                                 pattern={patternCity}
                                 title="City, Region"
                                 id="city" />

@@ -92,7 +92,7 @@ export const PetsItemDeleteBtn = styled.button`
     }
 
     @media screen and (min-width: 1600px) {
-        right: 160px;
+        right: 0px;
     }
 `
 
