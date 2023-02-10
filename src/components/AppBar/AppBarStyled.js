@@ -23,7 +23,7 @@ export const AppBarWrapper = styled.header`
     }
   }
 
-  @media (min-width: 768px) and (max-width: 1279.98px) {
+  @media (min-width: 768px) and (max-width: 1279px) {
     margin-bottom: 88px;
 
     .nav {
@@ -81,7 +81,7 @@ export const CommonLink = styled(NavLink)`
     color: ${p => p.theme.colors.hoveredAccent};
   }
 
-  @media (max-width: 767.98px) {
+  @media (max-width: 767px) {
     font-weight: ${p => p.theme.fontWeights.normal};
     font-size: ${p => p.theme.fontSizes[7]};
     line-height: ${p => p.theme.fontHeight.l};
@@ -90,7 +90,7 @@ export const CommonLink = styled(NavLink)`
     justify-self: center;
   }
 
-  @media (min-width: 768px) and (max-width: 1279.98px) {
+  @media (min-width: 768px) and (max-width: 1279px) {
     font-weight: ${p => p.theme.fontWeights.normal};
     font-size: ${p => p.theme.fontSizes[9]};
     line-height: ${p => p.theme.fontHeight.l};
@@ -143,7 +143,7 @@ export const UserLink = styled(NavLink)`
     color: ${p => p.theme.colors.hoveredAccent};
   }
 
-  @media (max-width: 767.98px) {
+  @media (max-width: 767px) {
     font-size: ${p => p.theme.fontSizes[1]};
     margin-left: 0;
   }
@@ -162,13 +162,13 @@ export const ModalWrapper = styled.div`
   width: auto;
   height: 100vh;
 
-  @media (max-width: 768.98px) {
+  @media (max-width: 767px) {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 16px;
   }
 
-  @media (min-width: 768px) and (max-width: 1279.98px) {
+  @media (min-width: 768px) and (max-width: 1279px) {
     margin-bottom: 88px;
     padding-left: 32px;
     padding-right: 32px;

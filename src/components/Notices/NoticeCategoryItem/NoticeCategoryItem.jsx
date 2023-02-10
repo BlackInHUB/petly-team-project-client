@@ -8,9 +8,10 @@ import { authOperations } from "redux/auth";
 export const NoticeCategoryItem = ({ notice, learnMore }) => {
     const { category, photoUrl, title, breed, location, price, birthday } = notice;
     const {user} = useAuth();
+    const dispatch = useDispatch();
+
     const favorite = user.favorites?.includes(notice._id) ? 1 : 0;
     const owner = user._id === notice.owner ? true : false;
-    const dispatch = useDispatch();
 
     const handleDelete = () => {
         dispatch(noticesOperations.remove(notice._id))
