@@ -33,8 +33,24 @@ export const App = () => {
         <Route index element={<HomePage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/notices" element={<NoticesPage />}>
-          <Route path=":categoryName" element={<NoticesCategoriesList />}/>
           <Route index element={<Navigate to="sell" />} />
+          <Route path=":categoryName" element={<NoticesCategoriesList />}/>
+          <Route
+            path="favorites"
+            element={
+              <PrivateRoute>
+                <NoticesCategoriesList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="own"
+            element={
+              <PrivateRoute>
+                <NoticesCategoriesList />
+              </PrivateRoute>
+            }
+          />
         </Route>
         <Route path="/friends" element={<OurFriendsPage />} />
         <Route
