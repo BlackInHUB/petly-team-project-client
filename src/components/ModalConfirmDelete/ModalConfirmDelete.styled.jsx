@@ -3,10 +3,10 @@ import { ReactComponent as Close} from '../../images/icons/modalAddsPet/close.sv
 
 export const ModalWrapper = styled.div`
     position: absolute;
-    max-width: 280px;
+    width: 90%;
     background-color: ${p => p.theme.colors.white};
-    padding-left: ${p => p.theme.space[6]}px;
-    padding-right: ${p => p.theme.space[6]}px;
+    padding-left: ${p => p.theme.space[10]}px;
+    padding-right: ${p => p.theme.space[10]}px;
     padding-top: ${p => p.theme.space[10]}px;
     padding-bottom: ${p => p.theme.space[10]}px;
     border-radius: ${p => p.theme.radii.normal};
@@ -15,9 +15,11 @@ export const ModalWrapper = styled.div`
     transform: translate(-50%, -50%);
 
     @media (min-width: 768px) {
-        max-width: 608px;
-        padding-left: ${p => p.theme.space[13]}px;
-        padding-right: ${p => p.theme.space[13]}px;
+        max-width: 60%;
+    }
+
+    @media (min-width: 1280px) {
+        max-width: 40%;
     }
 `
 
@@ -29,7 +31,7 @@ export const ModalCloseBtn = styled.button`
     position: absolute;
     right: ${p => p.theme.space[0]}px;
     top: -30px;
-    right: -10px;
+    right: -30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,10 +49,9 @@ export const ModalCloseBtn = styled.button`
     }
 
     @media screen and (min-width: 768px) {
-        top: -20px;
         width: 44px;
         height: 44px;
-        right: -55px;
+        right: -30px;
     }
 `
 
@@ -78,6 +79,8 @@ export const ModalDescription = styled.p`
     line-height: ${p => p.theme.fontHeight.l};
     text-align: center;
     margin-bottom: ${p => p.theme.space[8]}px;
+    padding-left: ${p => p.theme.space[7]}px;
+    padding-right: ${p => p.theme.space[7]}px;
 
     @media screen and (min-width: 768px) {
         font-size: ${p => p.theme.fontSizes[4]};
@@ -87,19 +90,19 @@ export const ModalDescription = styled.p`
 `
 export const ModalButtonWrapper = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 `
 
 export const ModalButton = styled.button`
-    width: 240px;
+    width: 100px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: ${p => p.theme.radii.big};
     letter-spacing: 0.04em;
-    padding-top: 9px;
-    padding-bottom: 9px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: ${p => p.theme.fontSizes[2]};
     font-weight: ${p => p.theme.fontWeights.normal};
     line-height: ${p => p.theme.fontHeight.l};
@@ -111,20 +114,13 @@ export const ModalButton = styled.button`
     transition: ${p => p.theme.transition.all};
 
     &:hover, :focus {
-        /* border-color: ${p => p.theme.colors.hoveredAccent}; */
+        border: ${p => p.theme.borders.normal};
+        border-color: ${p => p.theme.colors.hoveredAccent};
         background: ${p => p.theme.colors.accent};
         color: ${p => p.theme.colors.white};
     }
 
-    :hover svg{
-        fill: ${p => p.theme.colors.hoveredAccent}
-    }
-
     @media screen and (min-width: 768px) {
-        width: 180px;
-        height: 44px;
-        padding-top: 10px;
-        padding-bottom: 10px;
         font-size: ${p => p.theme.fontSizes[4]};
     }
 `

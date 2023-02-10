@@ -19,7 +19,7 @@ export const ModalLogout = ({_id, onClose, onCloseBtn}) => {
             <ModalDescription>Are you sure you want to exit?</ModalDescription>
             <ModalButtonWrapper>
                 <ModalButton type='button' onClick={handleDelete}>Yes</ModalButton>
-                <ModalButton type='button' onClick={onCloseBtn}>No</ModalButton>
+                <ModalButton type='button' onClick={onCloseBtn} style={{ backgroundColor: "#F59256"}}>No</ModalButton>
             </ModalButtonWrapper>
         </ModalWrapper>
         </>
