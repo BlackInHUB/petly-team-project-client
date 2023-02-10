@@ -19,6 +19,7 @@ export const AppBar = () => {
   
   const handleClose = () =>  {
     setShowModal(false);
+    document.body.style.overflow = '';
   }
     const {isLoggedIn} = useAuth();
 
