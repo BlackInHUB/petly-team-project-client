@@ -15,10 +15,7 @@ export const NoticesSearch = ({category}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    if (filter === '') {
-      return
-    }
+    
     dispatch(noticesOperations.getAll(category));
   }
 

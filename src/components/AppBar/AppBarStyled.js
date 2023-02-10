@@ -8,7 +8,7 @@ export const AppBarWrapper = styled.header`
   position: relative;
   width: 100%;
 
-  @media (max-width: 767.98px) {
+  @media (max-width: 767px) {
     margin-bottom: 42px;
 
     .user,

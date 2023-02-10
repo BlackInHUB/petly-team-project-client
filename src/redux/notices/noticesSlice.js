@@ -26,6 +26,7 @@ const noticesSlice = createSlice({
         state.allNotices = state.category === payload.notice.category 
         ? [payload.notice, ...state.allNotices] 
         : state.allNotices;
+        state.own = [payload.notice, ...state.own];
     })
     .addCase(noticesOperations.add.rejected, (state, {payload}) => {
         state.isLoading = false;
@@ -90,7 +91,8 @@ const noticesSlice = createSlice({
     .addCase(noticesOperations.remove.fulfilled, (state, {payload}) => {
         state.isLoading = false;
         state.isError = null;
-        state.allNotices = state.allNotices.filter(notice => notice._id !== payload)
+        state.allNotices = state.allNotices.filter(notice => notice._id !== payload);
+        state.own = state.own.filter(notice => notice._id !== payload);
     })
     .addCase(noticesOperations.remove.rejected, (state, {payload}) => {
         state.isLoading = false;
