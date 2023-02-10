@@ -60,7 +60,11 @@ const NoticesPage = () => {
         )}
       {isInfoOpen.open &&
         createPortal(
-          <LearnMoreModal id={isInfoOpen.id} setShow={handleInfoOpen} />,
+          <LearnMoreModal
+            width="704px"
+            id={isInfoOpen.id}
+            setShow={handleInfoOpen}
+          />,
           modalRoot
         )}
       {isLoading && createPortal(<Loader />, modalRoot)}
