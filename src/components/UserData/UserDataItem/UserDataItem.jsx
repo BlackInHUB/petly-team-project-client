@@ -47,9 +47,18 @@ export const UserDataItem = ({name, label, type, defaultValue, active, setActive
                      <UserDataItemInput value={inputValue} onChange={handleChange} active={active === name} disabled={active !== name} type={type} name={name} id={name}/> 
 
                     {active === name ? 
-                        <UserDataItemBtn onClick={() => handleSubmit(name)}><CheckMarkStyle /></UserDataItemBtn> :
+                        <UserDataItemBtn ><CheckMarkStyle onClick={() => handleSubmit(name)}/></UserDataItemBtn> :
                         <UserDataItemBtn disabled={active && active !== name} onClick={() => activeHandleClick(name)}><PensilStyle /></UserDataItemBtn>
                     }
+
+                    {/* <UserDataItemBtn>
+                        {active === name ?
+                        <CheckMarkStyle onClick={() => handleSubmit(name)}/> :
+                        <PensilStyle disabled={active && active !== name} onClick={() => activeHandleClick(name)}/>}
+                    </UserDataItemBtn> */}
+
+                    {/* <button disabled>Button1</button>
+                    <Btn2 disabled>Button2</Btn2> */}
                     
                  </UserDataItemInputBtnWrapper>                 
          </UserDataItemWrapper>

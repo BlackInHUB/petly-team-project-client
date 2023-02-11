@@ -78,6 +78,11 @@ export const UserDataItemBtn = styled.button`
     border-color: transparent;
     margin-left: 9px;
     cursor: pointer;
+    transform: ${p => p.theme.transition.all};
+    
+    :hover svg{
+        fill: ${p => p.disabled ? p.theme.colors.accent : p.theme.colors.hoveredAccent}
+    }
 
     @media screen and (min-width: 768px) {
         width: 32px;
@@ -89,13 +94,8 @@ export const UserDataItemBtn = styled.button`
 export const PensilStyle = styled(Pencil)`
     width: 14px;
     height: 14px;
-    fill: ${p => p.theme.colors.accent};
-    transition: ${p => p.theme.transition.all};
-
-    &:hover,
-    :focus {
-        fill: ${p => p.theme.colors.hoveredAccent}
-    }
+    fill: ${p =>  p.theme.colors.accent};
+    transform: ${p => p.theme.transition.all};
 
     @media screen and (min-width: 768px) {
         width: ${p => p.theme.space[6]}px;
@@ -107,7 +107,7 @@ export const CheckMarkStyle = styled(CheckMark)`
     width: 14px;
     height: 14px;
     fill: ${p => p.theme.colors.accent};
-    transition: ${p => p.theme.transition.all};
+    transform: ${p => p.theme.transition.all};
 
     &:hover,
     :focus {
@@ -129,4 +129,9 @@ export const UserDataInputError = styled.p`
         font-size: 12px;
         padding-left: 120px;
     }
+`
+
+export const Btn2 = styled.button`
+    background-color: red;
+    &:hover{background-color:green;}
 `
