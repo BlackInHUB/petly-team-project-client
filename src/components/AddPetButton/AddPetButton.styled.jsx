@@ -5,7 +5,10 @@ export const AddPetWrapper = styled.div`
     display: flex;
     align-items: center;
 
-
+    @media (min-width: 1280px) {
+        position: absolute;
+        right: 10px;
+    }
 `
 
 export const AddPetBtn = styled.button`
@@ -23,11 +26,6 @@ export const AddPetBtn = styled.button`
         background: ${p => p.theme.colors.hoveredAccent};
         border-color: ${p => p.theme.colors.hoveredAccent};
     }
-
-    @media (min-width: 1280px) {
-        position: absolute;
-        right: 10px;
-}
 `
 
 export const AddPetDesc = styled.p`
