@@ -184,6 +184,7 @@ font-weight: ${p => p.theme.fontWeights.normal};
 line-height: ${p => p.theme.fontHeight.l};
 letter-spacing: 0.04em;
 transition: ${p => p.theme.transition.all};
+cursor: pointer;
 
 &:not(:last-child) {
   margin-bottom: ${p => p.theme.space[4]}px;
