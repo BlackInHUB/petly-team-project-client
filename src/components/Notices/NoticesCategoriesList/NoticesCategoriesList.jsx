@@ -7,7 +7,6 @@ import { useAuth } from "hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { noticesOperations } from "redux/notices";
 
-
 const NoticesCategoriesList = () => {
    const category = useLocation().pathname.split('/').pop();
    const {notices, favorites, own} = useNotices();

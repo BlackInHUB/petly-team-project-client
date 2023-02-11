@@ -4,11 +4,13 @@ import { useAuth } from "hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { noticesOperations } from "redux/notices";
 import { authOperations } from "redux/auth";
+import getAge from "./getAge";
 
 export const NoticeCategoryItem = ({ notice, learnMore }) => {
     const { category, photoUrl, title, breed, location, price, birthday, _id, owner } = notice;
     const {user} = useAuth();
     const dispatch = useDispatch();
+    const age = getAge(birthday);
 
     const isOwner = user._id === owner;
     const favorite = user.favorites?.includes(_id) ? 1 : 0;
@@ -31,7 +33,7 @@ export const NoticeCategoryItem = ({ notice, learnMore }) => {
             <PetInfo>
                 <p><span className="pet-info-title">Breed:</span><span>{breed}</span></p>
                 <p><span className="pet-info-title">Place:</span><span>{location}</span></p>
-                <p><span className="pet-info-title">Age:</span><span>{birthday}</span></p>
+                <p><span className="pet-info-title">Age:</span><span>{age}</span></p>
                 {price && <p><span className="pet-info-title">Price:</span><span>{price}</span></p>}
             </PetInfo>
             <ButtonWrapper>
