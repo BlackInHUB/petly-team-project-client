@@ -4,7 +4,7 @@ import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/No
 import { Suspense, useState, useEffect } from 'react';
 import { Outlet } from 'react-router';
 import { Title } from 'components/baseComponents/Title/Title';
-import { Box } from './NoticesPage.styled';
+import { Box, PageBox } from './NoticesPage.styled';
 import { AddNoticeButton } from 'components/Notices/AddNoticeButton/AddNoticeButton';
 import PaddingWrapper from '../../components/baseComponents/PaddingWrapper/PaddingWrapper';
 import ModalAddNotice from 'components/Notices/ModalAddNotice/ModalAddNotice';
@@ -33,7 +33,7 @@ const NoticesPage = () => {
   };
 
   return (
-    <>
+    <PageBox>
       <PaddingWrapper>
         <div>
           <Title value={'Find your favorite pet'} />
@@ -67,7 +67,7 @@ const NoticesPage = () => {
           modalRoot
         )}
       {isLoading && createPortal(<Loader />, modalRoot)}
-    </>
+    </PageBox>
   );
 };
 

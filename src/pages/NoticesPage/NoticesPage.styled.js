@@ -11,3 +11,11 @@ export const Box = styled.div`
     margin-top: 40px;
   }
 `;
+
+export const PageBox = styled.div`
+padding-bottom: 100px;
+
+@media (min-width: 1280px) {
+  padding-bottom: 200px;
+}
+`
