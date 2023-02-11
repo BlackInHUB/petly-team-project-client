@@ -78,7 +78,7 @@ export const PetsItemDeleteBtn = styled.button`
     width: ${p => p.theme.space[6]}px;
     height: ${p => p.theme.space[6]}px;
     cursor: pointer; 
-    transform: ${p => p.theme.transition.all};
+    transition: ${p => p.theme.transition.all};
     
     :hover svg{
         fill: ${p => p.theme.colors.hoveredAccent}
@@ -97,7 +97,7 @@ export const DeleteIcon = styled(Delete)`
     width: ${p => p.theme.space[6]}px;
     height: ${p => p.theme.space[6]}px;
     fill: ${p => p.theme.colors.logout};
-    transform: ${p => p.theme.transition.all};
+    transition: ${p => p.theme.transition.all};
 
     @media screen and (min-width: 768px) {
         width: ${p => p.theme.space[7]}px;
