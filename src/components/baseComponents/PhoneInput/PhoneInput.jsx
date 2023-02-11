@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PhoneInputStyled, FieldWrapper } from './style';
+import { PhoneInputStyled, FieldWrapper, DecorativeDiv } from './style';
 
 import { Error } from 'components/AuthForm/style';
 
@@ -43,6 +43,7 @@ const PhoneInput = ({
           }
         }}
       />
+      <DecorativeDiv>{'Phone'}</DecorativeDiv>
       {isPhoneValid && <Error>{isPhoneValid}</Error>}
     </FieldWrapper>
   );

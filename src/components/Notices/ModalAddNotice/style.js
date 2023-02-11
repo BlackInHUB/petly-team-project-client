@@ -25,6 +25,7 @@ export const FormContainer = styled.div`
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 
   align-items: flex-start;
 `;
@@ -125,6 +126,7 @@ export const FormButtonContainerWrapper = styled.div`
 `;
 export const FormButtonContainer = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 8px;
   align-items: flex-start;

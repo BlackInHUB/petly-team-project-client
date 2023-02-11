@@ -24,6 +24,7 @@ import {
   PetPhotoAndInfoAndCommentsContainer,
   FavoritIcon,
   FavoritIconContainer,
+  ButtonDiv,
 } from './style';
 
 import PetInfo from './PetInfo';
@@ -35,31 +36,6 @@ const LearnMoreModal = props => {
   const [pet, setPet] = useState();
 
   const { id } = props;
-  console.log(id);
-
-  // function usePet() {
-  //   const [value, setValue] = useState(null);
-  //   const [error, setError] = useState(null);
-  //   const [loading, setLoading] = useState(true);
-  //   async function getPet() {
-  //     try {
-  //       setLoading(true);
-  //       const { data } = await getOne(id);
-  //       setValue(data);
-  //     } catch (e) {
-  //       setError(e);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  //   useEffect(() => {
-  //     getPet();
-  //   }, []);
-
-  //   return [value, error, loading]; // highlight-line
-  // }
-
-  // const [value, loading] = usePet();
 
   const dispatch = useDispatch();
   const { favoritesList } = useAuth();
@@ -73,37 +49,14 @@ const LearnMoreModal = props => {
       try {
         setIsLoading(true);
         const { data } = await getOne(id);
-        console.log(data);
         setPet(data);
       } catch (e) {
-        console.log(e);
         return e;
       } finally {
         setIsLoading(false);
       }
     })();
   }, [id]);
-
-  //   const promisedState = newState =>
-  //     new Promise(resolve => setPet(newState, resolve));
-
-  //   const getPet = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       const { data } = await getOne(id);
-  //       console.log(data);
-  //       setPet(data);
-  //     } catch (e) {
-  //       console.log(e);
-  //       return e;
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     getPet();
-  //   }, []);
 
   return (
     <>
@@ -134,7 +87,7 @@ const LearnMoreModal = props => {
               </PetPhotoAndInfoContainer>
               <Comments>{pet?.comments}</Comments>
             </PetPhotoAndInfoAndCommentsContainer>
-            <div style={{ display: 'flex', justifyContent: 'end' }}>
+            <ButtonDiv>
               <ButtonContainer>
                 <Button
                   style={{ height: '40px' }}
@@ -153,7 +106,7 @@ const LearnMoreModal = props => {
                   <img src={heartImg} alt="heart" />
                 </Button>
               </ButtonContainer>
-            </div>
+            </ButtonDiv>
           </ModalForm>
         </Modal>
       )}

@@ -33,9 +33,20 @@ export const FieldStyled = styled(Field)`
     left: 25px;
     color: ${p => p.theme.colors.text};
     padding: 0 ${p => p.theme.space[2] + 'px'};
-    background-color: ${p => p.theme.colors.white};
+
     line-height: ${p => p.theme.fontSizes[3]};
     font-size: ${p => p.theme.fontSizes[1]};
+  }
+  &:focus + label + label,
+  &:hover + label + label,
+  &:valid + label + label {
+    opacity: 1;
+  }
+
+  &:focus + label + label,
+  &:hover + label + label {
+    top: -2px;
+    height: 4px;
   }
   &:hover,
   &:focus {
@@ -57,9 +68,23 @@ export const FieldStyled = styled(Field)`
   }
 `;
 
+export const DecorativeDiv = styled.label`
+  opacity: 0;
+  position: absolute;
+  left: 25px;
+  top: -1px;
+  height: 3px;
+  padding-right: 2px;
+  background-color: ${p => p.theme.colors.background};
+  color: transparent;
+  z-index: 1;
+
+  transition: opacity 0.25s ease-out;
+`;
+
 export const Label = styled.label`
   position: absolute;
-  top: 10px;
+  top: 8px;
   left: ${p => p.theme.space[5] + 'px'};
 
   color: ${p => p.theme.colors.gray};
@@ -74,6 +99,7 @@ export const Label = styled.label`
   @media (min-width: 768px) {
     top: 13px;
   }
+  z-index: 2;
 `;
 
 const styleEyeButtonsSvg = `position: absolute;

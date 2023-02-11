@@ -83,6 +83,7 @@ export const Error = styled.div`
   background-color: ${p => p.theme.colors.background};
 
   padding: 2px 10px;
+  box-shadow: ${p => p.theme.shadows.mainShadow};
 
   border-radius: ${p => p.theme.radii.big};
 

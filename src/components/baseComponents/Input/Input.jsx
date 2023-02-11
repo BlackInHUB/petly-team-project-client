@@ -7,6 +7,7 @@ import {
   FieldWrapper,
   EyeIconOn,
   EyeIconOff,
+  DecorativeDiv,
 } from './style';
 
 const Input = props => {
@@ -38,6 +39,7 @@ const Input = props => {
         {...rest}
       />
       <Label htmlFor={name}>{text}</Label>
+      <DecorativeDiv>{text}</DecorativeDiv>
       {password && showPassword && (
         <EyeIconOn onClick={() => setShowPassword(!showPassword)} />
       )}

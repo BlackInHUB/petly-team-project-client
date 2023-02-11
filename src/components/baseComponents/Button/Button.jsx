@@ -5,6 +5,7 @@ import { StyledButton } from './style';
 
 const Button = props => {
   const { type, buttonStyle, disabled, children, ...rest } = props;
+
   return (
     <StyledButton
       type={type || 'button'}

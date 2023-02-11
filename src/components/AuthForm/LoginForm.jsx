@@ -69,7 +69,7 @@ export default function LoginForm() {
             </Input>
           </FieldsWrapper>
           <div>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button type="submit" buttonStyle="primary" disabled={isSubmitting}>
               {isError && <Error>{isError}</Error>}
               {isSubmitting ? <ButtonSpinner /> : <span>Login</span>}
             </Button>

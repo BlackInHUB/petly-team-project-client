@@ -7,7 +7,7 @@ export const ModalFormStyled = styled.div`
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
-
+  overflow-x: hidden;
   position: absolute;
 
   scrollbar-width: thin;

@@ -13,6 +13,8 @@ import plusIcon from 'images/icons/modalAddsPet/plus.svg';
 import { DropdownGroup } from 'components/baseComponents/Dropdown/DropdownGroup';
 
 import { useState } from 'react';
+
+import { Error } from 'components/AuthForm/style';
 import {
   ButtonContainer,
   FormContainer,
@@ -30,7 +32,6 @@ import {
   ImageContainer,
   ImagePlus,
   Image,
-  Error,
   FormButtonContainerWrapper,
 } from './style';
 
@@ -54,6 +55,7 @@ const ModalAddNotice = props => {
   const errorInitialState = {
     title: '',
     name: '',
+    birthday: '',
     breed: '',
     location: '',
     price: '',
@@ -63,6 +65,7 @@ const ModalAddNotice = props => {
   const [values, setValues] = useState(initialState);
   const [isError, setIsError] = useState(errorInitialState);
   const [startDate, setStartDate] = useState();
+  const [dateError, setDateError] = useState(null);
 
   const handleChange = e => {
     const { value, type, name, files } = e.target;
@@ -97,13 +100,14 @@ const ModalAddNotice = props => {
         ? setIsError({ ...isError, breed: 'please type from 2 to 24 letters' })
         : setIsError({ ...isError, breed: '', next: '' });
     }
+
     if (e.target.name === 'location') {
       !values.location.match(
         /^\s*([A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+,\s?)?[A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+\s*$/
       )
         ? setIsError({
             ...isError,
-            location: 'please type city or/and region, like "Brovary, Kyiv"',
+            location: 'type smth like "Brovary, Kyiv"',
           })
         : setIsError({ ...isError, location: '', submit: '' });
     }
@@ -113,9 +117,21 @@ const ModalAddNotice = props => {
         : setIsError({ ...isError, price: '', submit: '' });
     }
     if (e.target.name === 'comments') {
-      values.comments.length > 120
-        ? setIsError({ ...isError, comments: 'max size - 120 letters' })
-        : setIsError({ ...isError, comments: '', submit: '' });
+      const length = values.comments.length;
+      switch (true) {
+        case length === 0:
+          setIsError({ ...isError, comments: 'please fill this field' });
+          break;
+        case 0 < length && length < 8:
+          setIsError({ ...isError, comments: 'min size - 8 letters' });
+          break;
+        case length > 120:
+          setIsError({ ...isError, comments: 'max size - 120 letters' });
+          break;
+        default:
+          setIsError({ ...isError, comments: '', submit: '' });
+          break;
+      }
     }
   };
 
@@ -149,7 +165,8 @@ const ModalAddNotice = props => {
     data.append('sex', values.sex);
     data.append('location', values.location);
     values.category === 'sell' && data.append('price', values.price);
-    data.append('photoUrl', values.photoUrl[0]);
+
+    values.photoUrl && data.append('photoUrl', values.photoUrl[0]);
     data.append('comments', values.comments);
 
     dispatch(noticesOperations.add(data));
@@ -170,6 +187,7 @@ const ModalAddNotice = props => {
         isError.title ||
         isError.name ||
         isError.breed ||
+        dateError ||
         values.title === ''
       ) {
         setIsError({ ...isError, next: 'please put valid data' });
@@ -249,7 +267,7 @@ const ModalAddNotice = props => {
                   }}
                   onBlur={e => validation(e)}
                 />
-                <Error>{isError.title ? isError.title : null}</Error>
+                {isError.title && <Error>{isError.title}</Error>}
               </InputContainer>
               <InputContainer>
                 <Label htmlFor="petName">Name pet</Label>
@@ -266,11 +284,16 @@ const ModalAddNotice = props => {
                   }}
                   onBlur={e => validation(e)}
                 />
-                <Error>{isError.name ? isError.name : null}</Error>
+                {isError.name && <Error>{isError.name}</Error>}
               </InputContainer>
               <InputContainer>
                 <Label htmlFor="petBirthday">Date of birth</Label>
-                <DropdownGroup date={startDate} setState={setStartDate} />
+                <DropdownGroup
+                  date={startDate}
+                  setState={setStartDate}
+                  setDateError={setDateError}
+                />
+                {dateError && <Error>{dateError}</Error>}
               </InputContainer>
               <InputContainer>
                 <Label htmlFor="petBreed">Breed</Label>
@@ -287,13 +310,14 @@ const ModalAddNotice = props => {
                   }}
                   onBlur={e => validation(e)}
                 />
-                <Error>{isError.breed ? isError.breed : null}</Error>
+                {isError.breed && <Error>{isError.breed}</Error>}
               </InputContainer>
             </FormContainer>
             <FormButtonContainerWrapper>
-              {' '}
               <FormButtonContainer>
-                <Button onClick={() => stepChange(1)}>Next</Button>
+                <Button onClick={() => stepChange(1)}>
+                  Next {isError.next && <Error>{isError.next}</Error>}
+                </Button>
                 <Button
                   buttonStyle="secondary"
                   onClick={() => {
@@ -304,7 +328,6 @@ const ModalAddNotice = props => {
                   Cancel
                 </Button>
               </FormButtonContainer>
-              <Error>{isError.next ? isError.next : null}</Error>
             </FormButtonContainerWrapper>
           </>
         )}
@@ -369,7 +392,7 @@ const ModalAddNotice = props => {
                   value={values.location}
                   onBlur={e => validation(e)}
                 />
-                <Error>{isError.location ? isError.location : null}</Error>
+                {isError.location && <Error>{isError.location}</Error>}
               </InputContainer>
               {values.category === 'sell' && (
                 <InputContainer>
@@ -389,7 +412,7 @@ const ModalAddNotice = props => {
                     value={values.price}
                     onBlur={e => validation(e)}
                   />
-                  <Error>{isError.price ? isError.price : null}</Error>
+                  {isError.price && <Error>{isError.price}</Error>}
                 </InputContainer>
               )}
               <InputContainer>
@@ -435,17 +458,18 @@ const ModalAddNotice = props => {
                   onBlur={e => validation(e)}
                   value={values.comments}
                 />
-                <Error>{isError.comments ? isError.comments : null}</Error>
+                {isError.comments && <Error>{isError.comments}</Error>}
               </InputContainer>
             </FormContainer>
             <FormButtonContainerWrapper>
               <FormButtonContainer>
-                <Button onClick={e => handleSubmit(e)}>Done</Button>
+                <Button onClick={e => handleSubmit(e)}>
+                  Done {isError.submit && <Error>{isError.submit}</Error>}
+                </Button>
                 <Button buttonStyle="secondary" onClick={() => stepChange(-1)}>
                   Back
                 </Button>
               </FormButtonContainer>
-              <Error>{isError.submit ? isError.submit : null}</Error>
             </FormButtonContainerWrapper>
           </>
         )}
