@@ -9,18 +9,27 @@ text-decoration: ${p => (p.index === date.getDay()) ? p.theme.textDecor.under : 
 `
 
 export const ListWeek = styled.span`
-
+   
 `
 
 export const ListTime = styled.span`
 
 `
 
-export const Time = styled.p`
+export const Time = styled.span`
+    font-family: 'Manrope';
+    display:block;
+    background:${p => p.theme.colors.white};
     padding-top:${p => p.theme.fontSizes[0]};
+    line-height: ${p => p.theme.fontHeight.l};
+    font-weight:  ${p => p.theme.fontWeights.normal};
 
-    +p{
-        margin-bottom: ${p => p.theme.space[2]}px;
+    span{
+        display:flex;
+    }
+
+    span +span{
+        padding-bottom: ${p => p.theme.space[2]}px;
     }
 
     @media screen and (min-width: 768px){
@@ -33,12 +42,25 @@ export const Time = styled.p`
     }
 `;
 
-export const TimeList = styled.li`
+export const TimeList = styled.div`
     position: relative;
+
+    button {
+        border:${p => p.theme.borders.none};
+        cursor: pointer;
+    }
+
+    button :active{
+        color: ${p => p.theme.colors.accent};
+    }
+
+    
 
     ul{
         position: absolute;
-        width: 120px;
+        left:-5px;
+        top:100%;
+        min-width: 120px;
         font-size: ${p => p.theme.fontSizes[0]};
         line-height: ${p => p.theme.fontHeight.l};
         padding:${p => p.theme.space[4]}px;
@@ -46,21 +68,6 @@ export const TimeList = styled.li`
         border: 1px solid ${p => p.theme.colors.accent};
         box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
         border-radius: ${p => p.theme.radii.small};
-        left:-5px;
-        top:100%;
-
-        opacity:0;
-        pointer-events:none;
-        transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    :hover{
-        color: ${p => p.theme.colors.accent};
-    }
-
-    :hover ul {
-        opacity: 1;
-        transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        color: ${p => p.theme.colors.black};
-    }
 `
