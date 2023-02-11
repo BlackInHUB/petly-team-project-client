@@ -130,8 +130,3 @@ export const UserDataInputError = styled.p`
         padding-left: 120px;
     }
 `
-
-export const Btn2 = styled.button`
-    background-color: red;
-    &:hover{background-color:green;}
-`
