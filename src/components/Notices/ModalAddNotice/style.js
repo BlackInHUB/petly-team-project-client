@@ -45,6 +45,11 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   height: 40px;
   width: 100%;
 
@@ -211,7 +216,11 @@ export const LabelPhotoInput = styled.label`
     height: 140px;
   }
 `;
-
+export const PriceContainer = styled.div`
+  position: relative;
+  display: flex;
+  gap: 20px;
+`;
 export const ImageContainer = styled.div`
   position: relative;
   top: 0;
