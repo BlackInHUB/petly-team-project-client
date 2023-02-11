@@ -11,5 +11,6 @@ to {
 `;
 export const SpinnerStyled = styled(FaSpinner)`
   animation: ${spinerAnimation} infinite 2s ease;
-  color: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.link};
+  fill: ${p => p.theme.colors.white} !important;
 `;

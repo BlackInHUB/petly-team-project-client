@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { debounce } from 'utils/dobounce';
 
 import {
   PageWrapper,
@@ -10,20 +11,36 @@ import {
 import RegisterForm from 'components/AuthForm/RegisterForm';
 
 export default function RegisterPage() {
-  const isMobile = window.matchMedia('only screen and (max-width: 767px)');
-  const isTablet = window.matchMedia(
-    'only screen and (max-width: 1279px) and (min-width: 768px)'
-  );
-  const isPC = window.matchMedia('only screen and (min-width: 1280px)');
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    console.log(windowWidth);
+    debounce(function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }, 300);
+  }, [windowWidth]);
+
+  useEffect(() => {
+    const debouncedHandleResize = debounce(function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }, 300);
+
+    window.addEventListener('resize', debouncedHandleResize);
+
+    return _ => {
+      window.removeEventListener('resize', debouncedHandleResize);
+    };
+  });
   return (
     <>
       <PageWrapper>
         <RegisterForm />
       </PageWrapper>
-      {isMobile.matches && <BackgroundMobileIconStyled />}
-      {isTablet.matches && <BackgroundTabletIconStyled />}
-      {isPC.matches && <BackgroundPCIconStyled />}
+      {windowWidth <= 767 && <BackgroundMobileIconStyled />}
+      {768 <= windowWidth && windowWidth <= 1279 && (
+        <BackgroundTabletIconStyled />
+      )}
+      {windowWidth >= 1280 && <BackgroundPCIconStyled />}
     </>
   );
 }

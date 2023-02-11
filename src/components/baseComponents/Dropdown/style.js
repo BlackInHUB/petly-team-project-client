@@ -94,7 +94,7 @@ export const Menu = styled.div`
 
   overflow-x: hidden;
 
-  z-index: 2;
+  z-index: 3;
 `;
 
 export const Item = styled.div`

@@ -25,9 +25,9 @@ export const Dropdown = ({ placeHolder, options, setValue, height }) => {
     setShowMenu(!showMenu);
   };
   const getDisplay = () => {
-    if (selectedValue) {
-      return selectedValue.label;
-    }
+    // if (selectedValue) {
+    //   return selectedValue.label;
+    // }
     return placeHolder;
   };
 

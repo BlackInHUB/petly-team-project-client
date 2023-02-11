@@ -22,12 +22,25 @@ export const PhoneInputStyled = styled(PhoneInput)`
       display: block;
       color: ${p => p.theme.colors.text};
 
-      background: ${p => p.theme.colors.white};
+      background: transparent;
       padding: 0 5px;
       font-size: 14px;
 
       white-space: nowrap;
+      z-index: 2;
   }
+  
+`;
+
+export const DecorativeDiv = styled.label`
+  position: absolute;
+  left: 25px;
+  top: -2px;
+  height: 4px;
+  padding-right: 2px;
+  background-color: ${p => p.theme.colors.background};
+  color: transparent;
+  z-index: 1;
 `;
 
 export const FieldWrapper = styled.div`
