@@ -34,7 +34,7 @@ export const logout = async () => {
 export const refresh = async token => {
   try {
     setToken(token);
-    const {data} = await instance.get('/user/current');
+    const { data } = await instance.get('/user/current');
     return data;
   } catch (error) {
     setToken(null);
@@ -51,13 +51,12 @@ export const addPet = async pet => {
   return data.pet;
 };
 
-export const removePet = async (_id) => {
+export const removePet = async _id => {
   const { data } = await instance.delete(`/user/pet/${_id}`);
-  return data
-}
-
-export const profile = async (_id) => {
-  const {data} = await instance.get(`/profile/${_id}`)
   return data;
 };
 
+export const profile = async _id => {
+  const { data } = await instance.get(`/auth/profile/${_id}`);
+  return data;
+};

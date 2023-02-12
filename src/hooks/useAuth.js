@@ -7,6 +7,7 @@ import {
   getUser,
   getPets,
   getFavorites,
+  getProfile,
 } from 'redux/auth/authSelectors';
 
 export const useAuth = () => {
@@ -17,6 +18,7 @@ export const useAuth = () => {
   const user = useSelector(getUser);
   const pets = useSelector(getPets);
   const favoritesList = useSelector(getFavorites);
+  const profile = useSelector(getProfile);
 
   return {
     isLoggedIn,
@@ -26,5 +28,6 @@ export const useAuth = () => {
     user,
     pets,
     favoritesList,
+    profile,
   };
 };
