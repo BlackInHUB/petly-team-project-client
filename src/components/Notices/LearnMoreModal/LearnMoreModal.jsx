@@ -13,6 +13,9 @@ import ModalForm from 'components/baseComponents/ModalForm/ModalForm';
 import { Loader } from 'components/Loader/Loader';
 import { getOne } from 'services/notices';
 
+import { ImProfile } from 'react-icons/im';
+import { AiFillPhone } from 'react-icons/ai';
+
 import {
   PetPhotoContainer,
   PetPhoto,
@@ -25,6 +28,7 @@ import {
   FavoritIcon,
   FavoritIconContainer,
   ButtonDiv,
+  ContactButtonsContainer,
 } from './style';
 
 import PetInfo from './PetInfo';
@@ -94,26 +98,39 @@ const LearnMoreModal = props => {
               </PetPhotoAndInfoContainer>
               <Comments>{pet?.comments}</Comments>
             </PetPhotoAndInfoAndCommentsContainer>
-            <ButtonDiv>
-              <ButtonContainer>
-                <Button
-                  style={{ height: '40px' }}
-                  onClick={() =>
-                    window.open(`tel:${pet?.owner.phone}`, '_self')
-                  }
-                >
-                  Contact
-                </Button>
-                <Button
-                  style={{ height: '40px' }}
-                  buttonStyle="secondary"
-                  onClick={() => toggleFavorites()}
-                >
-                  {favoritesList?.includes(id) ? 'Remove from' : 'Add to'}&nbsp;
-                  <img src={heartImg} alt="heart" />
-                </Button>
-              </ButtonContainer>
-            </ButtonDiv>
+            {isLoggedIn && (
+              <ButtonDiv>
+                <ButtonContainer>
+                  <ContactButtonsContainer>
+                    <Button
+                      buttonStyle="secondary"
+                      style={{ height: '40px' }}
+                      onClick={() =>
+                        window.open(`tel:${pet?.owner.phone}`, '_self')
+                      }
+                    >
+                      <AiFillPhone />
+                    </Button>
+                    <Button
+                      buttonStyle="secondary"
+                      style={{ height: '40px' }}
+                      onClick={() => {}}
+                    >
+                      <ImProfile />
+                    </Button>
+                  </ContactButtonsContainer>
+                  <Button
+                    style={{ height: '40px' }}
+                    buttonStyle="secondary"
+                    onClick={() => toggleFavorites()}
+                  >
+                    {favoritesList?.includes(id) ? 'Remove from' : 'Add to'}
+                    &nbsp;
+                    <img src={heartImg} alt="heart" />
+                  </Button>
+                </ButtonContainer>
+              </ButtonDiv>
+            )}
           </ModalForm>
         </Modal>
       )}

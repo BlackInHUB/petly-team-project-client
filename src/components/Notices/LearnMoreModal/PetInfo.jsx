@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useAuth } from 'hooks/useAuth';
 
 function debounce(fn, ms) {
   let timer;
@@ -37,6 +38,11 @@ const Ul = styled.div`
   .overflow:hover + span {
     display: block;
   }
+`;
+
+const Div = styled.div`
+  position: relative;
+  text-align: start;
 `;
 
 const Item = styled.p`
@@ -117,18 +123,12 @@ function check(el) {
 
   el.style.overflow = curOverf;
 
-  console.log(
-    el,
-    el.clientWidth,
-    el.scrollWidth,
-    isOverflowing,
-    el.style.overflow
-  );
   return isOverflowing;
 }
 
 const PetInfo = props => {
-  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     const elements = document.querySelectorAll('.data');
@@ -142,7 +142,6 @@ const PetInfo = props => {
   useEffect(() => {
     const debouncedHandleResize = debounce(function handleResize() {
       setWindowWidth(window.innerWidth);
-      console.log('done');
     }, 300);
 
     window.addEventListener('resize', debouncedHandleResize);
@@ -160,45 +159,49 @@ const PetInfo = props => {
         <ItemBold>Breed:</ItemBold>
         <ItemBold>Location:</ItemBold>
         <ItemBold>The sex:</ItemBold>
-        <ItemBold>Email:</ItemBold>
-        <ItemBold>Phone:</ItemBold>
+        {isLoggedIn && <ItemBold>Email:</ItemBold>}
+        {isLoggedIn && <ItemBold>Phone:</ItemBold>}
         {props.data?.category === 'sell' && <ItemBold>Price:</ItemBold>}
       </NamesContainer>
       <InfoContainer>
-        <Item>
+        <Div>
           <Item className="data">{props.data?.name || 'unknown'}</Item>
           <Text>{props.data?.name}</Text>
-        </Item>
-        <Item>
+        </Div>
+        <Div>
           <Item className="data">{props.data?.birthday || 'unknown'}</Item>
           <Text>{props.data?.birthday}</Text>
-        </Item>
-        <Item>
+        </Div>
+        <Div>
           <Item className="data">{props.data?.breed || 'unknown'}</Item>
           <Text>{props.data?.breed}</Text>
-        </Item>
-        <Item>
+        </Div>
+        <Div>
           <Item className="data">{props.data?.location || 'unknown'}</Item>
           <Text>{props.data?.location}</Text>
-        </Item>
+        </Div>
         <Item className="data">{props.data?.sex || 'unknown'}</Item>
-        <Item>
-          <Link className="data" href={`mailto:${props.data?.owner.email}`}>
-            {props.data?.owner.email || 'unknown'}
-          </Link>
-          <Text>{props.data?.owner.email}</Text>
-        </Item>
-        <Item>
-          <Link className="data" href={`tel:${props.data?.owner.phone}`}>
-            {props.data?.owner.phone || 'unknown'}
-          </Link>
-          <Text>{props.data?.owner.phone}</Text>
-        </Item>
+        {isLoggedIn && (
+          <Div>
+            <Link className="data" href={`mailto:${props.data?.owner.email}`}>
+              {props.data?.owner.email || 'unknown'}
+            </Link>
+            <Text>{props.data?.owner.email}</Text>
+          </Div>
+        )}
+        {isLoggedIn && (
+          <Div>
+            <Link className="data" href={`tel:${props.data?.owner.phone}`}>
+              {props.data?.owner.phone || 'unknown'}
+            </Link>
+            <Text>{props.data?.owner.phone}</Text>
+          </Div>
+        )}
         {props.data?.category === 'sell' && (
-          <Item>
+          <Div>
             <Item className="data">{props.data?.price || 'unknown'}</Item>
             <Text>{props.data?.owner.price}</Text>
-          </Item>
+          </Div>
         )}
       </InfoContainer>
     </Ul>
