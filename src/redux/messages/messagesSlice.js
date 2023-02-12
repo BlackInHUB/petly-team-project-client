@@ -38,6 +38,19 @@ const messagesSlice = createSlice({
         state.isLoading = false;
         state.isError = payload;
     })
+    .addCase(messagesOperations.remove.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+    })
+    .addCase(messagesOperations.remove.fulfilled, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = null;
+        console.log(payload)
+    })
+    .addCase(messagesOperations.remove.rejected, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = payload;
+    })
     }
 });
 

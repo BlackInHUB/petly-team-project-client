@@ -6,6 +6,7 @@ import { useState } from "react";
 
 
 export const MessagesListItem = ({item}) => {
+    
     const [isOpen, setIsOpen] = useState(false);
     const {title, message, sender, createdAt, recipient} = item;
     const {users, user} = useAuth()
@@ -16,6 +17,10 @@ export const MessagesListItem = ({item}) => {
 
     const handleOpen = () => {
         setIsOpen(!isOpen);
+    }
+
+    const handleDelete = () => {
+        
     }
 
     return (
