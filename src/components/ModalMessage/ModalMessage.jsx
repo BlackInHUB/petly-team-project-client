@@ -53,7 +53,6 @@ export const ModalMessage = () => {
                 </MessageForm>
                 <ToastContainer autoClose={3000} />
             </Modal>}
-            
         </>
     )
 }
