@@ -9,22 +9,15 @@ import FrameTablet from "../../images/tablet_Frame.png";
 import MainImageMobile from "../../images/mobile_girl_with_dog.png";
 import FrameMobile from "../../images/mobile_Frame.png";
 
-import {ModalMessage} from "../../components/ModalMessage/ModalMessage"
-
 export default function HomePage() {
-  
-
 
   return (
     <HomePageWrapper>
       <PaddingWrapper>
-         <ModalMessage />
         <HomePageTitle>
         Take good care of
           <br />your small pets
-          
       </HomePageTitle>
-    
       <BackgroundWrapper>
         <img className="main" src={MainImage} alt="girl with dog" />
         <img className="bg" src={BgFrame} alt="" />
@@ -36,8 +29,6 @@ export default function HomePage() {
         <img className="bgMobile" src={FrameMobile} alt=""/>
       </BackgroundWrapper>
       </PaddingWrapper>
-      
-      
     </HomePageWrapper>
   );
 }

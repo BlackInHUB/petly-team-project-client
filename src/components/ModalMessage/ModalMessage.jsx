@@ -2,13 +2,17 @@ import { MessageForm, MessageTitle, MessageNameInput } from "./ModalMessageStyle
 import React from "react";
 import { Modal } from "../Modal/Modal";
 import { useState } from 'react';
-import InputEmoji from 'react-input-emoji'
+import InputEmoji from 'react-input-emoji';
 import Button from "components/baseComponents/Button/Button";
+import { useAuth } from "hooks/useAuth";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export const ModalMessage = () => {
     const [ text, setText ] = useState('')
     const [showModal, setShowModal] = useState(false);
-
+    const { user } = useAuth();
+    
     const handleOpen = () => {
     setShowModal(true);
   }
@@ -19,8 +23,12 @@ export const ModalMessage = () => {
     }
     
   const handleSubmit = event => {
-    event.preventDefault();
-    event.target.reset();
+      event.preventDefault();
+      event.target.reset();
+      setText('');
+      toast.success('Your message successfully sent', {
+            theme: "colored"
+        });
   };
 
     return (
@@ -31,20 +39,21 @@ export const ModalMessage = () => {
                     <MessageTitle htmlFor="message">
                         Send message to seller
                     </MessageTitle>
-                    <MessageNameInput id="message" type="text" name="name" placeholder="Enter your name" width="150px" />
+                    <MessageNameInput id="message" type="text" name="name" value={user.name} readOnly />
                     <InputEmoji
                         value={text}
                         onChange={setText}
-                        cleanOnEnter="true"
-                        placeholder="Type a message"
+                        placeholder="Type a message."
                         borderColor="#f59256"
                         borderRadius="20px"
                         fontSize="18px"
                         height="300px"
                     />
-                    <Button type="submit" width="100">Send message</Button>
+                    <Button type="submit" style={{ width: '300px', padding: '9px 12px' }}>Send message</Button>
                 </MessageForm>
+                <ToastContainer autoClose={3000} />
             </Modal>}
+            
         </>
     )
 }
