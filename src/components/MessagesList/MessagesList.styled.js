@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {ReactComponent as deleteIcon} from '../../images/icons/petsItem/delete.svg'
 import {IoMailUnreadOutline} from 'react-icons/io5'
+import {FaArrowAltCircleUp, FaArrowAltCircleDown} from 'react-icons/fa';
 
 export const List = styled.ul`
 width: 50%;
@@ -37,6 +38,8 @@ cursor: pointer;
 `
 
 export const ItemInfoSender = styled.span`
+display: flex;
+align-items: center;    
 font-weight: ${p => p.theme.fontWeights.bold};
 `
 
@@ -72,15 +75,12 @@ export const ItemDeleteBtn = styled.button`
     &:hover,
     :focus {
         fill: ${p => p.theme.colors.hoveredAccent};
+        fill-opacity: 1;
     }
 `
 
 export const DeleteIcon = styled(deleteIcon)`
-    /* transition: ${p => p.theme.transition.all};
-    
-    ${ItemDeleteBtn} & :hover {
-        fill: ${p => p.theme.colors.hoveredAccent};
-    }; */
+    fill-opacity: 0.6;
 `
 
 export const Unreaded = styled(IoMailUnreadOutline)`
@@ -91,4 +91,14 @@ export const Unreaded = styled(IoMailUnreadOutline)`
     height: auto;
     fill: ${p => p.theme.colors.accent};
     stroke: ${p => p.theme.colors.accent};
+`
+
+export const OutIcon = styled(FaArrowAltCircleUp)`
+    fill: green;
+    margin-right: ${p => p.theme.space[3]}px;
+`
+
+export const InIcon = styled(FaArrowAltCircleDown)`
+    fill: blue;
+    margin-right: ${p => p.theme.space[3]}px;
 `
