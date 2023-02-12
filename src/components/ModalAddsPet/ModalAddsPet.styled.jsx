@@ -19,19 +19,8 @@ export const ModalAddsPetWrapper = styled.div`
     padding-right: ${p => p.theme.space[13]}px;
   }
 `;
+
 export const ModalAddsPetForm = styled.form``;
-
-export const FirstPageAddsPetForm = styled.div`
-  position: ${p => (p.firstPageHide ? 'fixed' : 'static')};
-  opacity: ${p => (p.firstPageHide ? 0 : 1)};
-  width: ${p => (p.firstPageHide ? p.theme.space[0] : '100%')};
-`;
-
-export const SecondPageAddsPetForm = styled.div`
-  position: ${p => (p.firstPageHide ? 'fixed' : 'static')};
-  opacity: ${p => (p.firstPageHide ? 0 : 1)};
-  width: ${p => (p.firstPageHide ? p.theme.space[0] : '100%')};
-`;
 
 export const ModalAddsPetItputsWrapper = styled.div`
   margin-top: ${p => p.theme.space[8]}px;
@@ -43,6 +32,8 @@ export const ModalAddsPetItputsWrapper = styled.div`
 `;
 
 export const ModalAddsPetContainer = styled.div`
+  position: relative;
+  
   &:not(:last-child) {
     margin-bottom: ${p => p.theme.space[5]}px;
   }
@@ -128,44 +119,14 @@ export const ModalAddsPetDescription = styled.p`
   }
 `;
 
-export const ModalAddsPetTextarea = styled.textarea`
-  font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.text};
-  font-size: ${p => p.theme.fontSizes[1]};
-  font-weight: ${p => p.theme.fontWeights.thin};
-  line-height: 1.35;
-  width: 240px;
-  min-height: 100px;
-  padding-top: ${p => p.theme.space[4]}px;
-  padding-left: 14px;
-  border-radius: ${p => p.theme.radii.big};
-  background-color: ${p => p.theme.colors.background};
-  border: ${p => p.theme.borders.small};
-  border-radius: ${p => p.theme.radii.normal};
-  border-color: ${p => p.theme.colors.inputColor};
-  margin-bottom: ${p => p.theme.space[10]}px;
-  transition: ${p => p.theme.transition.all};
-  resize: none;
-  overflow: auto;
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: ${p => p.theme.space[6]}px;
 
-  &:focus {
-    border-color: ${p => p.theme.colors.hoveredAccent};
-    border: ${p => p.theme.borders.small};
-    border-radius: ${p => p.theme.radii.normal};
-    box-shadow: ${p => p.theme.shadows.mainShadow};
-    outline-color: ${p => p.theme.colors.hoveredAccent};
-  }
-
-  &::placeholder {
-    color: ${p => p.theme.colors.inputPlaceholder};
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 394px;
-    min-height: 116px;
-    font-size: ${p => p.theme.fontSizes[2]};
-    padding-top: ${p => p.theme.space[5]}px;
-    padding-left: ${p => p.theme.space[5]}px;
+  @media (min-width: 768px) {
+    margin-bottom: ${p => p.theme.space[10]}px;
   }
 `;
 
@@ -238,17 +199,53 @@ export const Image = styled.img`
   }
 `;
 
-export const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: ${p => p.theme.space[6]}px;
-
-  @media (min-width: 768px) {
-    margin-bottom: ${p => p.theme.space[10]}px;
-  }
-`;
-
 export const PhotoInput = styled.input`
   display: none;
+`;
+
+export const TextareaWrapper = styled.div`
+  position: relative;
+  margin-bottom: 40px;
+`
+
+export const ModalAddsPetTextarea = styled.textarea`
+  position: relative;
+  font-family: ${p => p.theme.fonts.body};
+  color: ${p => p.theme.colors.text};
+  font-size: ${p => p.theme.fontSizes[1]};
+  font-weight: ${p => p.theme.fontWeights.thin};
+  line-height: 1.35;
+  width: 240px;
+  min-height: 100px;
+  padding-top: ${p => p.theme.space[4]}px;
+  padding-left: 14px;
+  border-radius: ${p => p.theme.radii.big};
+  background-color: ${p => p.theme.colors.background};
+  border: ${p => p.theme.borders.small};
+  border-radius: ${p => p.theme.radii.normal};
+  border-color: ${p => p.theme.colors.inputColor};
+  /* margin-bottom: ${p => p.theme.space[10]}px; */
+  transition: ${p => p.theme.transition.all};
+  resize: none;
+  overflow: auto;
+
+  &:focus {
+    border-color: ${p => p.theme.colors.hoveredAccent};
+    border: ${p => p.theme.borders.small};
+    border-radius: ${p => p.theme.radii.normal};
+    box-shadow: ${p => p.theme.shadows.mainShadow};
+    outline-color: ${p => p.theme.colors.hoveredAccent};
+  }
+
+  &::placeholder {
+    color: ${p => p.theme.colors.inputPlaceholder};
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 394px;
+    min-height: 116px;
+    font-size: ${p => p.theme.fontSizes[2]};
+    padding-top: ${p => p.theme.space[5]}px;
+    padding-left: ${p => p.theme.space[5]}px;
+  }
 `;

@@ -111,6 +111,14 @@ export const ButtonDiv = styled.div`
   }
 `;
 
+export const ContactButtonsContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  @media (min-width: 768px) {
+    gap: 12px;
+  }
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;

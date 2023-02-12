@@ -30,8 +30,8 @@ export const StyledButton = styled.button`
       : p.theme.borders.normal + ' ' + p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.big};
 
-  transition: box-shadow ease 0.25s, border-color ease 0.25s,
-    background-color ease 0.25s, color ease 0.25s, background-color ease 0.25s;
+  transition: box-shadow ease 0.25s, border-color ease 0.25s, fill ease 0.25s,
+    background-color ease 0.25s, color ease 0.25s;
 
   &:focus,
   &:hover {
@@ -51,6 +51,10 @@ export const StyledButton = styled.button`
     & svg {
       fill: ${p => p.theme.colors.hoveredAccent};
     }
+  }
+
+  svg {
+    transition: fill ease 0.25s;
   }
 
   @media (min-width: 1280px) {

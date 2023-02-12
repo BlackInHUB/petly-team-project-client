@@ -42,16 +42,6 @@ export const PetDataWrapper = styled.div`
     padding-right: ${p => p.theme.space[6]}px;
     padding-top: ${p => p.theme.space[9]}px;
     padding-bottom: ${p => p.theme.space[9]}px;
-
-    /* @media (min-width: 768px) {
-        display: flex;
-        padding-top: ${p => p.theme.space[6]}px;
-        padding-bottom: ${p => p.theme.space[6]}px;
-    }
-
-    @media (min-width: 1280px) {
-        padding-right: ${p => p.theme.space[8]}px;
-    } */
 `
 
 export const PetDataInfo = styled.h2`

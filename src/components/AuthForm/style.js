@@ -15,7 +15,6 @@ export const PhoneInputStyled = styled(PhoneInput)`
   #phone {
     background-color: ${p => p.theme.colors.background};     
     }
-  }
   .special-label {
     position: absolute;
       z-index: 1;
