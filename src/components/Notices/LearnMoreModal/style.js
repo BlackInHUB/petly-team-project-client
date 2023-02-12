@@ -71,6 +71,7 @@ export const PetCategory = styled.div`
   border-radius: 0 40px 40px 0;
   color: ${p => p.theme.colors.text};
   background-color: ${p => p.theme.colors.paleWhite};
+  backdrop-filter: blur(4px);
 
   display: flex;
   align-items: center;
@@ -103,8 +104,9 @@ export const PetTitle = styled.div`
 `;
 
 export const ButtonDiv = styled.div`
-  margin-left: auto;
-  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+
   @media (min-width: 768px) {
     margin-left: auto;
     margin-right: 0;
@@ -112,17 +114,20 @@ export const ButtonDiv = styled.div`
 `;
 
 export const ContactButtonsContainer = styled.div`
+  width: 100px;
   display: flex;
+  justify-content: center;
   gap: 20px;
   @media (min-width: 768px) {
     gap: 12px;
+    width: 100%;
   }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   gap: 12px;
   min-width: 240px;
   @media (min-width: 768px) {
