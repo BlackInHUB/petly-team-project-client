@@ -16,10 +16,13 @@ export const AddsPetBtnStyle = styled.button`
     color: ${p => p.theme.colors.text};
     background: ${p => p.theme.colors.white};
     border: ${p => p.theme.borders.normal};
+    border-radius: ${p => p.theme.radii.big};
     border-color: ${p => p.theme.colors.accent};
     cursor: pointer;
+    transition: ${p => p.theme.transition.all};
 
     &:hover, :focus {
+        outline: none;
         border-color: ${p => p.theme.colors.hoveredAccent};
     }
 
