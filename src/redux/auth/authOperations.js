@@ -51,6 +51,9 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 
 const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const { token } = thunkAPI.getState().auth;
+  if (!token) {
+    return;
+  };
   try {
     return await api.refresh(token);
   } catch ({ response }) {
@@ -85,6 +88,15 @@ const removePet = createAsyncThunk('auth/removePet', async (_id, thunkAPI) => {
   }
 });
 
+const profile = createAsyncThunk('auth/profile', async (_id, thunkAPI) => {
+  try {
+    const result = await api.profile(_id);
+    return result;
+  } catch ({ response }) {
+    return thunkAPI.rejectWithValue(response.data.message);
+  }
+})
+
 const authOperations = {
   register,
   login,
@@ -95,6 +107,7 @@ const authOperations = {
   addPet,
   favorites,
   removePet,
+  profile
 };
 
 export default authOperations;
