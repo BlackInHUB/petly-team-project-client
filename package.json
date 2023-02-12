@@ -9,7 +9,6 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.5",
-    "emoji-picker-react": "^4.4.7",
     "formik": "^2.2.9",
     "formik-persist-values": "^1.4.1",
     "moment": "^2.29.4",
