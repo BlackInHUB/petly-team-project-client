@@ -13,6 +13,7 @@ import ModalForm from 'components/baseComponents/ModalForm/ModalForm';
 import { Loader } from 'components/Loader/Loader';
 import { getOne } from 'services/notices';
 
+import { Link } from 'react-router-dom';
 import { ImProfile } from 'react-icons/im';
 import { AiFillPhone } from 'react-icons/ai';
 
@@ -111,13 +112,19 @@ const LearnMoreModal = props => {
                     >
                       <AiFillPhone />
                     </Button>
-                    <Button
-                      buttonStyle="secondary"
-                      style={{ height: '40px' }}
-                      onClick={() => {}}
+                    <Link
+                      to={{
+                        pathname: `/profile/${pet.owner._id}`,
+                      }}
                     >
-                      <ImProfile />
-                    </Button>
+                      <Button
+                        buttonStyle="secondary"
+                        style={{ height: '40px' }}
+                        onClick={() => {}}
+                      >
+                        <ImProfile />
+                      </Button>
+                    </Link>
                   </ContactButtonsContainer>
                   <Button
                     style={{ height: '40px' }}
