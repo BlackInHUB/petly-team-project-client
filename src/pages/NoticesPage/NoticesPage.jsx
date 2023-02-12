@@ -12,6 +12,8 @@ import LearnMoreModal from 'components/Notices/LearnMoreModal/LearnMoreModal';
 import { createPortal } from 'react-dom';
 import { useAuth } from 'hooks/useAuth';
 import useNotices from 'hooks/useNotices';
+import Notiflix from 'notiflix/build/notiflix-notify-aio';
+
 const modalRoot = document.querySelector('#modal-root');
 
 const NoticesPage = () => {
@@ -25,7 +27,11 @@ const NoticesPage = () => {
   }, [isAddOpen, isInfoOpen]);
 
   const handleAddModalOpen = () => {
-    setIsAddOpen(!isAddOpen);
+    isLoggedIn
+      ? setIsAddOpen(!isAddOpen)
+      : Notiflix.Notify.failure(`You must log in to add a Notice`, {
+          timeout: 3000,
+        });
   };
 
   const handleInfoOpen = id => {

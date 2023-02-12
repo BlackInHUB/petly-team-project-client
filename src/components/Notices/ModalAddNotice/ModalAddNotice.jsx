@@ -4,7 +4,6 @@ import noticesOperations from 'redux/notices/noticesOperations';
 import Button from 'components/baseComponents/Button/Button';
 import ModalForm from 'components/baseComponents/ModalForm/ModalForm';
 import { Modal } from 'components/Modal/Modal';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import femaleIcon from 'images/icons/modalAddsPet/female_icon.jpg';
 import maleIcon from 'images/icons/modalAddsPet/male_icon.jpg';
@@ -184,11 +183,6 @@ const ModalAddNotice = props => {
     data.append('comments', values.comments);
 
     dispatch(noticesOperations.add(data));
-
-    Notify.init({ position: 'center-center' });
-    Notify.success('ad successfully created', {
-      timeout: 1500,
-    });
 
     document.body.style.overflow = '';
     props.setShow();

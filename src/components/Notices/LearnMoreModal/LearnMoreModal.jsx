@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/authOperations';
 import { useAuth } from 'hooks/useAuth';
 
-//import closeImg from 'images/icons/modal/close_button.svg';
+import Notiflix from 'notiflix/build/notiflix-notify-aio';
 import heartImg from 'images/icons/modal/heart.svg';
 
 import { Modal } from 'components/Modal/Modal';
@@ -38,10 +38,17 @@ const LearnMoreModal = props => {
   const { id } = props;
 
   const dispatch = useDispatch();
-  const { favoritesList } = useAuth();
+  const { favoritesList, isLoggedIn } = useAuth();
 
   const toggleFavorites = () => {
-    dispatch(authOperations.favorites(id));
+    isLoggedIn
+      ? dispatch(authOperations.favorites(id))
+      : Notiflix.Notify.failure(
+          `You must log in to add Notice to the favorite list`,
+          {
+            timeout: 3000,
+          }
+        );
   };
 
   useEffect(() => {
