@@ -10,6 +10,7 @@ import { authOperations } from 'redux/auth';
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const ProfilePage = lazy(() => import('../pages/ProfilePage/ProfilePage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
@@ -32,6 +33,7 @@ export const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/news" element={<NewsPage />} />
+        
         <Route path="/notices" element={<NoticesPage />}>
           <Route index element={<Navigate to="sell" />} />
           <Route path=":categoryName" element={<NoticesCategoriesList />}/>
