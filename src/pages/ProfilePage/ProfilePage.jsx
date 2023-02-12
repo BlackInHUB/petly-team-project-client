@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import LearnMoreModal from 'components/Notices/LearnMoreModal/LearnMoreModal';
+import { ModalMessage } from 'components/ModalMessage/ModalMessage';
 
 import { authOperations } from 'redux/auth';
 
@@ -26,7 +27,9 @@ import NoticeList from './NoticeList/NoticeList';
 const ProfilePage = () => {
   const [option, setOption] = useState('Pets');
   const [learnMoreModal, setLearnMoreModal] = useState(false);
+  const [createMessageModal, setCreateMessageModal] = useState(false);
   const [noticeId, setNoticeId] = useState(null);
+
   const modalRoot = document.querySelector('#modal-root');
   const params = useParams();
   const dispatch = useDispatch();
@@ -76,6 +79,7 @@ const ProfilePage = () => {
               </Button>
             </div>
             <Button
+              onClick={() => setCreateMessageModal(true)}
               buttonStyle={'secondary'}
               style={{ width: 'max-content', height: '35px' }}
             >
@@ -93,6 +97,15 @@ const ProfilePage = () => {
               width="704px"
               id={noticeId}
               setShow={setLearnMoreModal}
+            />,
+            modalRoot
+          )}
+        {createMessageModal &&
+          createPortal(
+            <ModalMessage
+              name={profile?.user.name}
+              id={profile?.user._id}
+              setShow={setCreateMessageModal}
             />,
             modalRoot
           )}
