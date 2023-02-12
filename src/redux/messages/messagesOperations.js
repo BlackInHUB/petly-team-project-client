@@ -14,7 +14,7 @@ const newMessage = createAsyncThunk('messages/new', async(data, thunkApi) => {
 const get = createAsyncThunk('messages/get', async(_, thunkApi) => {
     try {
         const {data} = await api.get();
-        return data;
+        return data.messages;
     } catch ({result}) {
         return thunkApi.rejectWithValue(result.data.message)
     }

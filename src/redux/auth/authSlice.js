@@ -14,6 +14,7 @@ const initialState = {
     messages: []
   },
   pets: [],
+  users: [],
   profile: null,
   token: null,
   isLoading: false,
@@ -151,6 +152,19 @@ const authSlice = createSlice({
         state.isError = null;
       })
       .addCase(authOperations.profile.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = payload;
+      })
+      .addCase(authOperations.getUsers.pending, state => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(authOperations.getUsers.fulfilled, (state, { payload }) => {
+        state.users = payload;
+        state.isLoading = false;
+        state.isError = null;
+      })
+      .addCase(authOperations.getUsers.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isError = payload;
       })

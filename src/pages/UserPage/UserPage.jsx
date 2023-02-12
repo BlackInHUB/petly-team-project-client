@@ -1,4 +1,5 @@
 import { Logout } from "components/Logout/Logout"
+import { MessagesList } from "components/MessagesList/MessagesList"
 import { PetsData } from "components/PetsData/PetsData"
 import { UserData } from "components/UserData/UserData"
 import { UserDataTitle } from "components/UserDataTitle/UserDataTitle"
@@ -17,6 +18,7 @@ const UserPage = () => {
             </UserDataWrapper>
             <PetsData />
         </UserPageWrapper>
+        <MessagesList />
         </>
     )
 }
