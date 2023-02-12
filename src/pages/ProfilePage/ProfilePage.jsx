@@ -17,6 +17,7 @@ import {
   UserDataContainer,
   UserPageWrapper,
   UserDataWrapper,
+  Div,
 } from './ProfilePage.styled';
 import { useAuth } from 'hooks/useAuth';
 import Button from 'components/baseComponents/Button/Button';
@@ -55,13 +56,7 @@ const ProfilePage = () => {
           </UserDataContainer>
         </UserDataWrapper>
         <div style={{ width: '100%' }}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '20px 0',
-            }}
-          >
+          <Div>
             <div style={{ display: 'flex', gap: '12px' }}>
               <Button
                 style={{ width: 'max-content', height: '35px' }}
@@ -86,7 +81,7 @@ const ProfilePage = () => {
             >
               <AiOutlineMessage />
             </Button>
-          </div>
+          </Div>
           {option === 'Pets' && <PetsData pets={profile?.pets} />}
           {option === 'Notices' && (
             <NoticeList notices={profile?.notices} learnMore={learnMore} />
