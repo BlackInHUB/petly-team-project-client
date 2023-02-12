@@ -96,6 +96,7 @@ const authSlice = createSlice({
       })
       .addCase(authOperations.logout.fulfilled, (state, _) => {
         state.user = initialState.user;
+        state.pets = initialState.pets;
         state.isLoggedIn = initialState.isLoggedIn;
         state.isRefreshing = initialState.isRefreshing;
         state.token = initialState.token;
