@@ -32,7 +32,9 @@ import {
   ImagePlus,
   Image,
   FormButtonContainerWrapper,
+  PriceContainer,
 } from './style';
+import { Dropdown } from 'components/baseComponents/Dropdown/Dropdown';
 
 const ModalAddNotice = props => {
   const dispatch = useDispatch();
@@ -45,12 +47,18 @@ const ModalAddNotice = props => {
     breed: '',
     sex: 'male',
     location: '',
-    price: '',
+    price: 0,
     photoUrl: '',
     comments: '',
     next: '',
     submit: '',
   };
+  const optionsCurrency = [
+    { value: 'UAH', label: 'UAH' },
+    { value: 'USD', label: 'USD' },
+    { value: 'EURO', label: 'EURO' },
+  ];
+
   const errorInitialState = {
     title: '',
     name: '',
@@ -65,6 +73,7 @@ const ModalAddNotice = props => {
   const [isError, setIsError] = useState(errorInitialState);
   const [startDate, setStartDate] = useState();
   const [dateError, setDateError] = useState(null);
+  const [currency, setCurrency] = useState('UAH');
 
   const handleChange = e => {
     const { value, type, name, files } = e.target;
@@ -111,8 +120,12 @@ const ModalAddNotice = props => {
         : setIsError({ ...isError, location: '', submit: '' });
     }
     if (e.target.name === 'price') {
-      values.price.length === 0
+      values.price = parseInt(values.price);
+      values.price.length === 0 || values.price === 0
         ? setIsError({ ...isError, price: 'please fill this field' })
+        : setIsError({ ...isError, price: '', submit: '' });
+      values.price > 999999999
+        ? setIsError({ ...isError, price: 'easy, easy' })
         : setIsError({ ...isError, price: '', submit: '' });
     }
     if (e.target.name === 'comments') {
@@ -149,7 +162,7 @@ const ModalAddNotice = props => {
     if (
       values.title === '' ||
       values.location === '' ||
-      (values.price === '' && values.category === 'sell')
+      (values.price === 0 && values.category === 'sell')
     ) {
       setIsError({ ...isError, submit: 'please put all data' });
       return;
@@ -163,7 +176,8 @@ const ModalAddNotice = props => {
     data.append('breed', values.breed);
     data.append('sex', values.sex);
     data.append('location', values.location);
-    values.category === 'sell' && data.append('price', values.price);
+    values.category === 'sell' &&
+      data.append('price', parseInt(values.price).toString() + ' ' + currency);
 
     values.photoUrl && data.append('photoUrl', values.photoUrl[0]);
     data.append('comments', values.comments);
@@ -393,20 +407,27 @@ const ModalAddNotice = props => {
                   <Label htmlFor="petPrice">
                     Price<span style={{ color: 'red' }}>*</span>:
                   </Label>
-
-                  <Input
-                    maxLength={20}
-                    id="petPrice"
-                    name="price"
-                    placeholder="Type price"
-                    onChange={e => {
-                      handleChange(e);
-                      isError.price && validation(e);
-                    }}
-                    value={values.price}
-                    onBlur={e => validation(e)}
-                  />
-                  {isError.price && <Error>{isError.price}</Error>}
+                  <PriceContainer>
+                    <Dropdown
+                      placeHolder={currency}
+                      options={optionsCurrency}
+                      setValue={setCurrency}
+                    />
+                    <Input
+                      maxLength={20}
+                      id="petPrice"
+                      name="price"
+                      type="number"
+                      placeholder="Type price"
+                      onChange={e => {
+                        handleChange(e);
+                        isError.price && validation(e);
+                      }}
+                      value={values.price}
+                      onBlur={e => validation(e)}
+                    />
+                    {isError.price && <Error>{isError.price}</Error>}
+                  </PriceContainer>
                 </InputContainer>
               )}
               <InputContainer>
