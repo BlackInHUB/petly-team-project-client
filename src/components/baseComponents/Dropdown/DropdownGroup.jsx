@@ -1,18 +1,19 @@
 import { Dropdown } from './Dropdown';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
-export const DropdownGroup = props => {
+export const DropdownGroup = ({ date, setState, setDateError, height }) => {
   const nowDay = new Date().getDate();
   const nowMonth = new Date().getMonth() + 1;
   const nowYear = new Date().getFullYear();
 
   const [year, setYear] = useState(
-    props.date ? props.date.slice(props.date.length - 4) : nowYear
+    date ? parseInt(date.slice(date.length - 4)) : nowYear
   );
-  const [day, setDay] = useState(props.date ? props.date.slice(1, 2) : nowDay);
+  const [day, setDay] = useState(date ? parseInt(date.slice(0, 2)) : nowDay);
   const [month, setMonth] = useState(
-    props.date ? props.date.slice(4, 5) : nowMonth
+    date ? parseInt(date.slice(3, 5)) : nowMonth
   );
 
   useEffect(() => {
@@ -26,10 +27,7 @@ export const DropdownGroup = props => {
     ) {
       setDay(nowDay);
       setMonth(nowMonth);
-      console.log(nowDay);
-      console.log(nowMonth);
-      // props.setDateError('pick date in past');
-    } else props.setDateError(null);
+    } else setDateError && setDateError(null);
 
     const data =
       day.toString().padStart(2, '0') +
@@ -38,9 +36,10 @@ export const DropdownGroup = props => {
       '.' +
       year.toString();
 
-    props.setState(data);
+    setState(data);
+    console.log(year);
     console.log(data);
-  }, [day, month, nowDay, nowMonth, props, year]);
+  }, [day, month, nowDay, nowMonth, setState, setDateError, year]);
 
   const numberOfYears = 30;
   const optionsYear = [];
@@ -83,14 +82,13 @@ export const DropdownGroup = props => {
       }}
     >
       <Dropdown
-        height={props.height}
+        height={height}
         options={optionsYear}
         placeHolder={year}
         setValue={setYear}
       ></Dropdown>
-      {/* <span>{year}</span> */}
       <Dropdown
-        height={props.height}
+        height={height}
         options={
           year === nowYear
             ? optionsMonth.filter((item, i) => i < nowMonth)
@@ -99,9 +97,8 @@ export const DropdownGroup = props => {
         placeHolder={optionsMonth[month - 1].label}
         setValue={setMonth}
       ></Dropdown>
-      {/* <span>{month}</span> */}
       <Dropdown
-        height={props.height}
+        height={height}
         options={
           year === nowYear && month === nowMonth
             ? optionsDay.filter((item, i) => i < nowDay)
@@ -112,7 +109,13 @@ export const DropdownGroup = props => {
         placeHolder={day}
         setValue={setDay}
       ></Dropdown>
-      {/* <span>{day}</span> */}
     </div>
   );
+};
+
+DropdownGroup.propTypes = {
+  date: PropTypes.string,
+  setState: PropTypes.func.isRequired,
+  setDateError: PropTypes.func,
+  height: PropTypes.string,
 };
