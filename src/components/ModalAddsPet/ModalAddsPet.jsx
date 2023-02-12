@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "redux/auth";
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { AddsPetTitle } from './AddsPetTitle/AddsPetTitle'
 import { AddsPetBtn } from "./AddsPetBtn/AddsPetBtn";
 import { AddsPetBtnOrange } from "./AddsPetBtn/AddsPetBtnOrange/AddsPetBtnOrange";
@@ -95,11 +94,6 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         data.append('comments', state.comments)
 
         dispatch(authOperations.addPet(data))
-
-        Notify.init({ position: 'center-top' });
-        Notify.success('ad successfully created', {
-            timeout: 1500,
-        });
 
         onClose();
     }
