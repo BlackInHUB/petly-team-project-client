@@ -33,6 +33,7 @@ export const ItemInfo = styled.p`
 display: flex;
 justify-content: space-between;
 margin-bottom: ${p => p.theme.space[4]}px;
+cursor: pointer;
 `
 
 export const ItemInfoSender = styled.span`

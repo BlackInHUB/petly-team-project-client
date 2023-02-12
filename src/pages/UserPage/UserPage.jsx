@@ -4,8 +4,17 @@ import { PetsData } from "components/PetsData/PetsData"
 import { UserData } from "components/UserData/UserData"
 import { UserDataTitle } from "components/UserDataTitle/UserDataTitle"
 import { UserDataContainer, UserPageWrapper, UserDataWrapper } from "./UserPage.styled"
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { messagesOperations } from "redux/messages";
 
 const UserPage = () => {
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(messagesOperations.get());
+    }, [dispatch]);
+
     return (
         <>
         <UserPageWrapper>

@@ -24,9 +24,6 @@ export const UserDataItem = ({
 
   const [inputValue, setInputValue] = useState(defaultValue);
 
-  console.log(defaultValue);
-  console.log(inputValue);
-
   const handleChange = e => {
     const { name, value } = e.currentTarget;
 

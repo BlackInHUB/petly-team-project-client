@@ -1,32 +1,32 @@
-import { useAuth } from "hooks/useAuth";
 import { ListItem, ItemDeleteBtn, ItemInfo, ItemText, ItemTitle, DeleteIcon,
 ItemInfoSender, ItemInfoTime, Unreaded, Details } from "./MessagesList.styled";
 import getTime from "./getTime";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { messagesOperations } from "redux/messages";
 
 
-export const MessagesListItem = ({item}) => {
-    
+export const MessagesListItem = ({item, users}) => {
+    const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
-    const {title, message, sender, createdAt, recipient} = item;
-    const {users, user} = useAuth()
+    const {title, message, sender, createdAt, recipient, readed} = item;
 
-    const readed = user.messages.find(message => message._id === item._id).readed;
     const senderName = users.find(user => user._id === sender).name;
     const sentTime = getTime(createdAt)
 
     const handleOpen = () => {
         setIsOpen(!isOpen);
+        dispatch(messagesOperations.readed(item._id));
     }
 
     const handleDelete = () => {
-        
-    }
+        dispatch(messagesOperations.remove(item._id));
+    };
 
     return (
-        <ListItem onClick={handleOpen} isOpen={isOpen}>
+        <ListItem isOpen={isOpen}>
             {!readed && <Unreaded />}
-            <ItemInfo>
+            <ItemInfo onClick={handleOpen}>
                 <ItemInfoSender>from: {senderName}</ItemInfoSender> 
                 <ItemInfoTime>{sentTime}</ItemInfoTime>
                 </ItemInfo>
@@ -34,7 +34,7 @@ export const MessagesListItem = ({item}) => {
             {isOpen &&
             <Details>
                 <ItemText>{message}</ItemText>
-            <ItemDeleteBtn><DeleteIcon/></ItemDeleteBtn>
+            <ItemDeleteBtn onClick={handleDelete}><DeleteIcon/></ItemDeleteBtn>
         </Details>
             }
             

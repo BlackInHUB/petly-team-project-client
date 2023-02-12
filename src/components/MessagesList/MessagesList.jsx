@@ -1,27 +1,19 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { messagesOperations } from "redux/messages";
-import { authOperations } from "redux/auth";
+import { useSelector } from "react-redux";
 import { List } from "./MessagesList.styled";
 import { MessagesListItem } from "./MessagesListItem";
+import { useAuth } from "hooks/useAuth";
 
 export const MessagesList = () => {
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        dispatch(authOperations.getUsers());
-        dispatch(messagesOperations.get());
-    }, [dispatch]);
-
     const {messages} = useSelector(state => state.messages);
-    
+    const {users} = useAuth();
+
     if(!messages) {
         return;
     };
 
     return (
         <List>
-            {messages.map(item => <MessagesListItem key={item._id._id} item={item._id} />)}
+            {messages.map(item => <MessagesListItem key={item._id} item={item} users={users} />)}
         </List>
     )
 };

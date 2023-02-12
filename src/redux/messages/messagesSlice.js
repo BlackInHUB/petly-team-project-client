@@ -38,6 +38,25 @@ const messagesSlice = createSlice({
         state.isLoading = false;
         state.isError = payload;
     })
+    .addCase(messagesOperations.readed.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+    })
+    .addCase(messagesOperations.readed.fulfilled, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = null;
+        state.messages = state.messages.map(message => {
+            if(message._id === payload._id) {
+                message.readed = true;
+                return message
+            };
+            return message;
+        });
+    })
+    .addCase(messagesOperations.readed.rejected, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = payload;
+    })
     .addCase(messagesOperations.remove.pending, (state) => {
         state.isLoading = true;
         state.isError = null;
@@ -45,7 +64,7 @@ const messagesSlice = createSlice({
     .addCase(messagesOperations.remove.fulfilled, (state, {payload}) => {
         state.isLoading = false;
         state.isError = null;
-        console.log(payload)
+        state.messages = state.messages.filter(message => message._id !== payload);
     })
     .addCase(messagesOperations.remove.rejected, (state, {payload}) => {
         state.isLoading = false;
