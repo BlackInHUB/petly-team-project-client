@@ -56,3 +56,8 @@ export const removePet = async (_id) => {
   return data
 }
 
+export const profile = async (_id) => {
+  const {data} = await instance.get(`/profile/${_id}`)
+  return data;
+};
+

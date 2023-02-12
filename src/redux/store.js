@@ -14,6 +14,7 @@ import { authReducer } from './auth';
 import { noticesReducer } from './notices';
 import { default as filterReducer } from './filter/filter';
 import { default as newsReducer } from './news/news';
+import {messagesReducer} from './messages';
 
 
 const persistAuthConfig = {
@@ -29,7 +30,8 @@ export const store = configureStore({
     auth: persistedAuthReducer,
     notices: noticesReducer,
     filter: filterReducer,
-    news: newsReducer
+    news: newsReducer,
+    messages: messagesReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
