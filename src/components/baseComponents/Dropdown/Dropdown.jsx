@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { DropdownWrapper, Input, Menu, Item, InputContainer } from './style';
 const Icon = () => {
@@ -51,7 +52,7 @@ export const Dropdown = ({ placeHolder, options, setValue, height }) => {
         <div className="dropdown-selected-value">{getDisplay()}</div>
         <Icon />
         {showMenu && (
-          <Menu style={{ height: `${height}` }}>
+          <Menu style={{ maxHeight: `${height}` }}>
             {options.map(option => (
               <Item
                 onClick={() => onItemClick(option)}
@@ -66,4 +67,18 @@ export const Dropdown = ({ placeHolder, options, setValue, height }) => {
       </InputContainer>
     </DropdownWrapper>
   );
+};
+
+Dropdown.propTypes = {
+  placeHolder: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.number.isRequired,
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+    })
+  ).isRequired,
+  setValue: PropTypes.func.isRequired,
+  height: PropTypes.string,
 };
