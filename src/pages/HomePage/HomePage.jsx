@@ -10,12 +10,13 @@ import MainImageMobile from "../../images/mobile_girl_with_dog.png";
 import FrameMobile from "../../images/mobile_Frame.png";
 
 export default function HomePage() {
+
   return (
     <HomePageWrapper>
       <PaddingWrapper>
         <HomePageTitle>
         Take good care of
-        <br/>your small pets
+          <br />your small pets
       </HomePageTitle>
       <BackgroundWrapper>
         <img className="main" src={MainImage} alt="girl with dog" />
@@ -28,8 +29,6 @@ export default function HomePage() {
         <img className="bgMobile" src={FrameMobile} alt=""/>
       </BackgroundWrapper>
       </PaddingWrapper>
-      
-      
     </HomePageWrapper>
   );
 }
