@@ -1,10 +1,15 @@
-import { MessageForm, MessageTitle } from './ModalMessageStyled';
+import {
+  MessageForm,
+  MessageTitle,
+  MessageNameInput,
+  ButtonWrapper,
+} from './ModalMessageStyled';
 import React from 'react';
 import { Modal } from '../Modal/Modal';
 import { useState } from 'react';
 import InputEmoji from 'react-input-emoji';
 import Button from 'components/baseComponents/Button/Button';
-import { useAuth } from 'hooks/useAuth';
+import { Error } from 'components/AuthForm/style';
 
 import { newMessage } from 'services/messages';
 import Notiflix from 'notiflix/build/notiflix-notify-aio';
@@ -12,8 +17,13 @@ import ButtonSpinner from 'components/baseComponents/ButtonSpinner/ButtonSpinner
 
 export const ModalMessage = ({ id, name, setShow }) => {
   const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { user } = useAuth();
+  const [isError, setIsError] = useState(null);
+
+  const onChangeInput = event => {
+    setTitle(event.target.value);
+  };
 
   const handleClose = () => {
     setShow(false);
@@ -21,10 +31,15 @@ export const ModalMessage = ({ id, name, setShow }) => {
   };
 
   const handleSubmit = async event => {
+    setIsError(null);
     event.preventDefault();
     console.log(text);
-    console.log(id);
-    const message = { title: user._id, message: text };
+    console.log(title);
+    if (!text || !title) {
+      setIsError('enter title and text');
+      return;
+    }
+    const message = { title: title, message: text };
     console.log(message);
     const recipientId = id;
 
@@ -52,20 +67,29 @@ export const ModalMessage = ({ id, name, setShow }) => {
           <MessageTitle htmlFor="message">
             {`Send message to ${name}`}
           </MessageTitle>
-          <p>{`from: ${user.name}`}</p>
+          <MessageNameInput
+            maxLength="36"
+            placeholder="Type a title"
+            value={title}
+            onChange={onChangeInput}
+          />
 
           <InputEmoji
+            maxLength="240"
             value={text}
             onChange={setText}
-            placeholder="Type a message."
+            placeholder="Type a message"
             borderColor="#f59256"
             borderRadius="20px"
             fontSize="18px"
             height="300px"
           />
-          <Button type="submit" style={{ width: '300px', padding: '9px 12px' }}>
-            {isLoading ? <ButtonSpinner /> : 'Send message'}
-          </Button>
+          <ButtonWrapper>
+            <Button type="submit" style={{ padding: '9px 12px' }}>
+              {isLoading ? <ButtonSpinner /> : 'Send message'}{' '}
+              {isError && <Error>{isError}</Error>}
+            </Button>
+          </ButtonWrapper>
         </MessageForm>
       </Modal>
     </>
