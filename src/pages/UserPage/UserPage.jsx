@@ -68,9 +68,10 @@ const UserPage = () => {
                         <NavBtn active={toShow} onClick={() => setToShow('pets')}>My pets</NavBtn>
                         <NavMessageBtn active={toShow} onClick={() => setToShow('messages')}>
                             Messages
+                            {newMessages > 0 &&
                             <NewMessagesCount>
                                 {newMessages}
-                            </NewMessagesCount>
+                            </NewMessagesCount>}
                         </NavMessageBtn>
                     </NavBtnsContainer>
                     <AddPetButton onOpenAddsPet={toggleModal} />

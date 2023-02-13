@@ -7,8 +7,6 @@ import {BsReply} from 'react-icons/bs'
 export const List = styled.ul`
 margin-top: ${p => p.theme.space[5]}px;
 width: 100%;
-/* padding: ${p => p.theme.space[6]}px; */
-/* margin: 0 auto; */
 display: flex;
 flex-direction: column;
 `
