@@ -27,11 +27,11 @@ export const UserDataItem = ({
 
     const dispatch = useDispatch();
 
-    const [inputValue, setInputValue] = useState(defaultValue);
+    const [inputValue, setInputValue] = useState(defaultValue ?? '')
     const [isError, setIsError] = useState('');
 
     console.log(defaultValue);
-    console.log(inputValue);
+    console.log( inputValue);
 
     const handleChange = e => {
         const { name, value } = e.currentTarget;
