@@ -1,12 +1,8 @@
-import { useState, useEffect } from 'react';
-import { AddPetButton } from 'components/AddPetButton/AddPetButton';
 import { PetsList } from 'components/PetsList/PetsList';
-import { Modal } from 'components/Modal/Modal';
-import { ModalAddsPet } from 'components/ModalAddsPet/ModalAddsPet';
+
 import {
   AddPetWrapper,
   AddPetDiv,
-  PetDataTitle,
   PetDataWrapper,
   PetDataInfo,
 } from './PetsData.styled';

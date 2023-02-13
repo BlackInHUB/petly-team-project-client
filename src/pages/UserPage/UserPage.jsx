@@ -20,7 +20,7 @@ const UserPage = () => {
     useEffect(() => {
         setInterval(() => {
             dispatch(messagesOperations.get());
-        }, 5000)
+        }, 10000)
     }, [dispatch]);
 
     useEffect(() => {
