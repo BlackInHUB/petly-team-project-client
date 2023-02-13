@@ -66,6 +66,38 @@ export const UserDataItemInput = styled.input`
     }
 `
 
+export const InputWrapper = styled.div`
+    position: relative;
+`
+
+export const Error = styled.div`
+  /* padding: ${p => p.theme.space[1] + 'px'} ${p => p.theme.space[5] + 'px'} 0px
+    ${p => p.theme.space[5] + 'px'}; */
+  color: ${p => p.theme.colors.hoveredAccent};
+  font-size: ${p => p.theme.fontSizes[0]};
+  line-height: ${p => p.theme.fontHeight.xs};
+  font-weight: ${p => p.theme.fontWeights.thin};
+  border: ${p => p.theme.borders.small} ${p => p.theme.colors.hoveredAccent};
+  background-color: ${p => p.theme.colors.background};
+
+  padding: 1px 8px;
+  box-shadow: ${p => p.theme.shadows.mainShadow};
+
+  border-radius: ${p => p.theme.radii.big};
+
+  position: absolute;
+  bottom: -10px;
+  right: 20px;
+  z-index: 2;
+
+  @media screen and (min-width: 768px) {
+    padding: 2px 10px;
+    line-height: ${p => p.theme.fontHeight.s};
+    font-weight: ${p => p.theme.fontWeights.normal};
+    border: ${p => p.theme.borders.normal} ${p => p.theme.colors.hoveredAccent};
+    }
+`;
+
 export const UserDataItemBtn = styled.button`
     display: flex;
     align-items: center;
@@ -117,16 +149,5 @@ export const CheckMarkStyle = styled(CheckMark)`
     @media screen and (min-width: 768px) {
         width: ${p => p.theme.space[6]}px;
         height: ${p => p.theme.space[6]}px;
-    }
-`
-
-export const UserDataInputError = styled.p`
-    font-size: 10px;
-    color: red;
-    padding-left: 90px;
-
-    @media screen and (min-width: 768px) {
-        font-size: 12px;
-        padding-left: 120px;
     }
 `
