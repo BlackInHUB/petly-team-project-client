@@ -94,9 +94,14 @@ export const NavBtnsContainer = styled.div`
 
 export const NavBtn = styled.button`
     outline: none;
-    background-color: transparent;
-    border: ${p => p.theme.borders.small} ${p => p.theme.colors.transparent};
-    color:${p => p.theme.colors.black};
+    background-color: ${p => p.active === 'pets' ? p.theme.colors.accent : p.theme.colors.transparent};
+    border-top: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
+    border-right: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
+    border-left: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
+    border-bottom: none;
+    border-top-right-radius: ${p => p.theme.radii.small};
+    border-top-left-radius: ${p => p.theme.radii.small};
+    color:${p => p.active === 'pets' ? p.theme.colors.white : p.theme.colors.black};
     font-family: ${p => p.theme.fonts.body};
     font-size: ${p => p.theme.fontSizes[4]};
     font-weight: ${p => p.theme.fontWeights.normal};
@@ -104,7 +109,9 @@ export const NavBtn = styled.button`
     letter-spacing: 0.04em;
     padding-left: ${p => p.theme.space[3]}px;
     padding-right: ${p => p.theme.space[3]}px;
+    padding-bottom: ${p => p.theme.space[2]}px;
     cursor: pointer;
+    transition: ${p => p.theme.transition.all};
 
     @media screen and (min-width: 768px) {
         font-size: ${p => p.theme.fontSizes[6]};
@@ -119,15 +126,65 @@ export const NavBtn = styled.button`
 
     &:hover,
     :focus {
-        border: ${p => p.theme.borders.small} ${p => p.theme.colors.accent};
-        border-top-right-radius: ${p => p.theme.radii.small};
-        border-top-left-radius: ${p => p.theme.radii.small};
-        background-color: ${p => p.theme.colors.accent};
-        color: ${p => p.theme.colors.white};
+        border-top: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+        border-left: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+        border-right: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
     }
+`
 
-    &.active {
-        color: ${p => p.theme.colors.white};
-        background-color: ${p => p.theme.colors.accent};
+export const NavMessageBtn = styled.button`
+position: relative;
+outline: none;
+background-color: ${p => p.active === 'messages' ? p.theme.colors.accent : p.theme.colors.transparent};
+border-top: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
+border-right: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
+border-left: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
+border-bottom: none;
+border-top-right-radius: ${p => p.theme.radii.small};
+border-top-left-radius: ${p => p.theme.radii.small};
+color:${p => p.active === 'messages' ? p.theme.colors.white : p.theme.colors.black};
+font-family: ${p => p.theme.fonts.body};
+font-size: ${p => p.theme.fontSizes[4]};
+font-weight: ${p => p.theme.fontWeights.normal};
+line-height: ${p => p.theme.fontHeight.l};
+letter-spacing: 0.04em;
+padding-left: ${p => p.theme.space[3]}px;
+padding-right: ${p => p.theme.space[3]}px;
+padding-bottom: ${p => p.theme.space[2]}px;
+cursor: pointer;
+transition: ${p => p.theme.transition.all};
+
+@media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes[6]};
+    letter-spacing: 0;
+}
+
+@media (max-width: 400px) {
+    &:not(:last-child) {
+        margin-bottom: ${p => p.theme.space[3]}px;
     }
+}
+
+&:hover,
+:focus {
+    border-top: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+    border-left: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+    border-right: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+}
+`
+
+export const NewMessagesCount = styled.div`
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: ${p => p.theme.fontSizes[0]};
+    color: ${p => p.theme.colors.white};
+    background-color: ${p => p.theme.colors.accent};
+    border: ${p => p.theme.borders.normal} ${p => p.theme.colors.hoveredAccent};
+    border-radius: ${p => p.theme.radii.round};
+    width: 30px;
+    height: 30px;
 `

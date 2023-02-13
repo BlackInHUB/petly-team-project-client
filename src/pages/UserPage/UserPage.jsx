@@ -3,25 +3,48 @@ import { MessagesList } from "components/MessagesList/MessagesList"
 import { PetsData } from "components/PetsData/PetsData"
 import { UserData } from "components/UserData/UserData"
 import { UserDataTitle } from "components/UserDataTitle/UserDataTitle"
-import { UserDataContainer, UserPageWrapper, UserDataWrapper, NavBtnsContainer, TopContainer, NavBtn, UserAboutWrapper } from "./UserPage.styled"
+import { UserDataContainer,
+    UserPageWrapper,
+    UserDataWrapper,
+    NavBtnsContainer,
+    TopContainer,
+    NavBtn,
+    UserAboutWrapper,
+    NewMessagesCount,
+    NavMessageBtn
+} from "./UserPage.styled"
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { messagesOperations } from "redux/messages";
 import { AddPetButton } from "components/AddPetButton/AddPetButton"
 import { Modal } from "components/Modal/Modal"
 import { ModalAddsPet } from "components/ModalAddsPet/ModalAddsPet"
+import { useAuth } from "hooks/useAuth"
 
 const UserPage = () => {
     const dispatch = useDispatch();
+    const {isLoggedIn, user} = useAuth();
     const [toShow, setToShow] = useState('pets');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const toggleModal = () => setIsModalOpen(state => !state);
         
     useEffect(() => {
-        setInterval(() => {
-            dispatch(messagesOperations.get());
-        }, 10000)
-    }, [dispatch]);
+        if(isLoggedIn) {
+            setInterval(() => {
+                dispatch(messagesOperations.get());
+            }, 10000)
+        };
+        
+    }, [dispatch, isLoggedIn]);
+
+    const {messages} = useSelector(state => state.messages);
+
+    const newMessages = messages.reduce((acc, message) => {
+        if(!message.readed & user._id === message.recipient) {
+            return acc + 1;
+        };
+        return acc;
+    }, 0)
 
     useEffect(() => {
         if (!isModalOpen) {
@@ -42,8 +65,13 @@ const UserPage = () => {
             <UserAboutWrapper>
                 <TopContainer>
                     <NavBtnsContainer>
-                        <NavBtn onClick={() => setToShow('pets')}>My pets</NavBtn>
-                        <NavBtn onClick={() => setToShow('messages')}>Messages</NavBtn>
+                        <NavBtn active={toShow} onClick={() => setToShow('pets')}>My pets</NavBtn>
+                        <NavMessageBtn active={toShow} onClick={() => setToShow('messages')}>
+                            Messages
+                            <NewMessagesCount>
+                                {newMessages}
+                            </NewMessagesCount>
+                        </NavMessageBtn>
                     </NavBtnsContainer>
                     <AddPetButton onOpenAddsPet={toggleModal} />
                 </TopContainer>
