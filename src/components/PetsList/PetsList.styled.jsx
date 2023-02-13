@@ -8,11 +8,11 @@ export const PetsListWrapper= styled.ul`
         gap: 60px 33px;
     }
 
-    @media screen and (min-width: 768px) {
+    /* @media screen and (min-width: 768px) {
         padding-left: ${ p => p.theme.space[9]}px;
     }  
 
     @media screen and (min-width: 1280px) {
         padding-left: ${ p => p.theme.space[0]}px;
-    } 
+    }  */
 `
