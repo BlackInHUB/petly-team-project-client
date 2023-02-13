@@ -37,7 +37,7 @@ export const MessagesListItem = ({item}) => {
 
     const handleOpen = () => {
         setIsOpen(!isOpen);
-        if(!readed) {
+        if(!readed & !messageOwner) {
             dispatch(messagesOperations.readed(item._id));
         };
     };
