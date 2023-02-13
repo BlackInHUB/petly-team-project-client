@@ -14,8 +14,6 @@ import { Loader } from 'components/Loader/Loader';
 import { getOne } from 'services/notices';
 
 import { Link } from 'react-router-dom';
-import { ImProfile } from 'react-icons/im';
-import { AiFillPhone } from 'react-icons/ai';
 
 import {
   PetPhotoContainer,
@@ -30,6 +28,8 @@ import {
   FavoritIconContainer,
   ButtonDiv,
   ContactButtonsContainer,
+  CallIcon,
+  ProfileIcon,
 } from './style';
 
 import PetInfo from './PetInfo';
@@ -111,7 +111,7 @@ const LearnMoreModal = props => {
                           window.open(`tel:${pet?.owner.phone}`, '_self')
                         }
                       >
-                        <AiFillPhone />
+                        <CallIcon />
                       </Button>
                       <Link
                         to={{
@@ -123,7 +123,7 @@ const LearnMoreModal = props => {
                           style={{ height: '40px' }}
                           onClick={() => {}}
                         >
-                          <ImProfile />
+                          <ProfileIcon />
                         </Button>
                       </Link>
                     </ContactButtonsContainer>

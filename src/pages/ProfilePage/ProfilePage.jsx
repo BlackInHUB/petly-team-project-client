@@ -11,15 +11,17 @@ import { authOperations } from 'redux/auth';
 
 import { createPortal } from 'react-dom';
 
-import { AiOutlineMessage } from 'react-icons/ai';
-
 import { useState, useEffect } from 'react';
 import {
   UserDataContainer,
   UserPageWrapper,
   UserDataWrapper,
-  Div,
+  NavBtn,
+  MailIcon,
+  NavBtnsContainer,
 } from './ProfilePage.styled';
+
+import { UserAboutWrapper, TopContainer } from 'pages/UserPage/UserPage.styled';
 import { useAuth } from 'hooks/useAuth';
 import Button from 'components/baseComponents/Button/Button';
 import NoticeList from './NoticeList/NoticeList';
@@ -33,16 +35,10 @@ const ProfilePage = () => {
   const modalRoot = document.querySelector('#modal-root');
   const params = useParams();
   const dispatch = useDispatch();
-  //setUser(dispatch(authOperations.profile(params.id)));
   const { profile } = useAuth();
   useEffect(() => {
     dispatch(authOperations.profile(params.id));
   }, [dispatch, params.id]);
-
-  const optionsChange = e => {
-    const { value } = e.target;
-    setOption(value);
-  };
 
   const learnMore = _id => {
     setLearnMoreModal(true);
@@ -58,58 +54,61 @@ const ProfilePage = () => {
             <UserData user={profile?.user} />
           </UserDataContainer>
         </UserDataWrapper>
-        <div style={{ width: '100%' }}>
-          <Div>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <Button
-                style={{ width: 'max-content', height: '35px' }}
-                buttonStyle={option === 'Pets' ? 'primary' : 'secondary'}
-                value="Pets"
-                onClick={e => optionsChange(e)}
+        <UserAboutWrapper>
+          <TopContainer style={{ paddingBottom: '15px' }}>
+            <NavBtnsContainer>
+              <NavBtn
+                active={option}
+                name={'Pets'}
+                onClick={() => setOption('Pets')}
               >
                 Pets
-              </Button>
-              <Button
-                style={{ width: 'max-content', height: '35px' }}
-                buttonStyle={option === 'Notices' ? 'primary' : 'secondary'}
-                value="Notices"
-                onClick={e => optionsChange(e)}
+              </NavBtn>
+              <NavBtn
+                active={option}
+                name={'Notices'}
+                onClick={() => setOption('Notices')}
               >
                 Notices
-              </Button>
-            </div>
+              </NavBtn>
+            </NavBtnsContainer>
             <Button
               onClick={() => setCreateMessageModal(true)}
               buttonStyle={'secondary'}
-              style={{ width: 'max-content', height: '35px' }}
+              style={{
+                width: 'max-content',
+                height: '50px',
+                padding: '5px 15px',
+              }}
             >
-              <AiOutlineMessage />
+              <MailIcon />
             </Button>
-          </Div>
+          </TopContainer>
           {option === 'Pets' && <PetsData pets={profile?.pets} />}
           {option === 'Notices' && (
             <NoticeList notices={profile?.notices} learnMore={learnMore} />
           )}
-        </div>
-        {learnMoreModal &&
-          createPortal(
-            <LearnMoreModal
-              width="704px"
-              id={noticeId}
-              setShow={setLearnMoreModal}
-            />,
-            modalRoot
-          )}
-        {createMessageModal &&
-          createPortal(
-            <ModalMessage
-              name={profile?.user.name}
-              id={profile?.user._id}
-              setShow={setCreateMessageModal}
-            />,
-            modalRoot
-          )}
+        </UserAboutWrapper>
       </UserPageWrapper>
+
+      {learnMoreModal &&
+        createPortal(
+          <LearnMoreModal
+            width="704px"
+            id={noticeId}
+            setShow={setLearnMoreModal}
+          />,
+          modalRoot
+        )}
+      {createMessageModal &&
+        createPortal(
+          <ModalMessage
+            name={profile?.user.name}
+            id={profile?.user._id}
+            setShow={setCreateMessageModal}
+          />,
+          modalRoot
+        )}
     </>
   );
 };

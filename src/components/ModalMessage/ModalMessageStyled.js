@@ -67,7 +67,6 @@ export const MessageForm = styled.form`
     border: ${p => p.theme.borders.small} ${p => p.theme.colors.accent};
 
     &:hover {
-      box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
       border-color: ${p => p.theme.colors.hoveredAccent};
     }
 
@@ -126,11 +125,11 @@ export const MessageTitle = styled.h2`
 export const MessageNameInput = styled.input`
   background: ${p => p.theme.colors.background};
   border: ${p => p.theme.borders.small} ${p => p.theme.colors.accent};
-  border-radius: ${p => p.theme.radii.big};
+  border-radius: ${p => p.theme.radii.normal};
   padding: 9px 12px;
   width: 70%;
   font-style: ${p => p.theme.fontStyle.normal};
-  font-weight: ${p => p.theme.fontWeights.thin};
+  font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes[3]};
   line-height: ${p => p.theme.fontHeight.l};
   display: flex;
@@ -139,15 +138,13 @@ export const MessageNameInput = styled.input`
   color: ${p => p.theme.colors.text};
 
   &:hover {
-    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
     border-color: ${p => p.theme.colors.hoveredAccent};
   }
   &:focus {
+    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
     outline-color: ${p => p.theme.colors.hoveredAccent};
-    outline-width: 3px;
-    box-shadow: none;
 
-    border-color: transparent;
+    border-color: ${p => p.theme.colors.hoveredAccent};
   }
 `;
 

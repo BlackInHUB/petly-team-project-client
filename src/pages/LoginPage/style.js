@@ -28,10 +28,10 @@ export const PageWrapper = styled.div`
 //   width: 100vw;
 //   height: 100vh;
 
-const styleForBackgroundImg = `position: absolute;
+const styleForBackgroundImg = `position: fixed;
 bottom: 0px;
 width: 100%;
-zIndex: 0;`;
+z-index: -1;`;
 export const BackgroundMobileIconStyled = styled(BackgroundMobileIcon)`
   ${styleForBackgroundImg}
 `;

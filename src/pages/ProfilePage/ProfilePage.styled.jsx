@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoMailOutline } from 'react-icons/io5';
 
 export const UserPageWrapper = styled.div`
   @media (min-width: 320px) {
@@ -73,4 +74,51 @@ export const UserDataContainer = styled.div`
     padding-top: ${p => p.theme.space[6]}px;
     padding-bottom: ${p => p.theme.space[6]}px;
   }
+`;
+export const NavBtn = styled.button`
+  outline: none;
+  background-color: ${p =>
+    p.active === p.name ? p.theme.colors.accent : p.theme.colors.transparent};
+  border-top: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
+  border-right: ${p => p.theme.borders.normal}
+    ${p => p.theme.colors.transparent};
+  border-left: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
+  border-bottom: none;
+  border-top-right-radius: ${p => p.theme.radii.small};
+  border-top-left-radius: ${p => p.theme.radii.small};
+  color: ${p =>
+    p.active === p.name ? p.theme.colors.white : p.theme.colors.black};
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes[4]};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  line-height: ${p => p.theme.fontHeight.l};
+  letter-spacing: 0.04em;
+  padding-left: ${p => p.theme.space[3]}px;
+  padding-right: ${p => p.theme.space[3]}px;
+  padding-bottom: ${p => p.theme.space[0]}px;
+  cursor: pointer;
+  transition: ${p => p.theme.transition.all};
+
+  @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes[6]};
+    padding-bottom: ${p => p.theme.space[2]}px;
+    letter-spacing: 0;
+  }
+
+  &:hover,
+  :focus {
+    border-top: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+    border-left: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+    border-right: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+  }
+`;
+
+export const MailIcon = styled(IoMailOutline)`
+  color: ${p => p.theme.colors.accent};
+`;
+
+export const NavBtnsContainer = styled.div`
+  display: flex;
+  width: 95%;
+  border-bottom: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
 `;
