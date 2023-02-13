@@ -4,13 +4,13 @@ export const AddPetWrapper = styled.div`
     position: relative;
     width: 100%;
 
-    @media screen and (min-width: 768px) {
+    /* @media screen and (min-width: 768px) {
         padding-left: ${p => p.theme.space[9]}px;
     }
 
     @media screen and (min-width: 768px) {
         padding-left: ${p => p.theme.space[5]}px;
-    }
+    } */
 `
 
 export const AddPetDiv = styled.div`

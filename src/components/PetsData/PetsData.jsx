@@ -13,8 +13,8 @@ import {
 import { useAuth } from 'hooks/useAuth';
 
 export const PetsData = props => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModal = () => setIsModalOpen(state => !state);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const toggleModal = () => setIsModalOpen(state => !state);
 
   let { pets } = useAuth();
   let profile = false;
@@ -23,19 +23,19 @@ export const PetsData = props => {
     profile = true;
   }
 
-  useEffect(() => {
-    if (!isModalOpen) {
-      document.body.style.overflow = '';
-    }
-  }, [isModalOpen]);
+  // useEffect(() => {
+  //   if (!isModalOpen) {
+  //     document.body.style.overflow = '';
+  //   }
+  // }, [isModalOpen]);
 
   return (
     <>
       <AddPetWrapper>
         {!profile && (
           <AddPetDiv>
-            <PetDataTitle>My pets:</PetDataTitle>
-            <AddPetButton onOpenAddsPet={toggleModal} />
+            {/* <PetDataTitle>My pets:</PetDataTitle> */}
+            {/* <AddPetButton onOpenAddsPet={toggleModal} /> */}
           </AddPetDiv>
         )}
 
@@ -47,11 +47,11 @@ export const PetsData = props => {
           <PetsList pets={pets} profile={profile} />
         )}
 
-        {isModalOpen && (
+        {/* {isModalOpen && (
           <Modal setShow={toggleModal}>
             <ModalAddsPet onClose={toggleModal} onCloseBtn={toggleModal} />
           </Modal>
-        )}
+        )} */}
       </AddPetWrapper>
     </>
   );

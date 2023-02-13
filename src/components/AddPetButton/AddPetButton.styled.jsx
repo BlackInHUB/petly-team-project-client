@@ -6,7 +6,7 @@ export const AddPetWrapper = styled.div`
     align-items: center;
 
     @media (min-width: 1280px) {
-        position: absolute;
+        /* position: absolute; */
         right: 10px;
     }
 `
