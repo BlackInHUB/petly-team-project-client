@@ -33,18 +33,34 @@ transition: ${p => p.theme.transition.all};
 export const ItemInfo = styled.p`
 display: flex;
 justify-content: space-between;
+flex-direction: column;
 margin-bottom: ${p => p.theme.space[4]}px;
 cursor: pointer;
+
+@media (min-width: 400px){
+    flex-direction: row;
+    align-items: center;
+}
 `
 
 export const ItemInfoSender = styled.span`
 display: flex;
 align-items: center;    
 font-weight: ${p => p.theme.fontWeights.bold};
+margin-bottom: ${p => p.theme.space[2]}px;
+
+@media (min-width: 400px) {
+    font-size: ${p => p.theme.fontSizes[3]};
+    margin-bottom: 0;
+}
 `
 
 export const ItemInfoTime = styled.span`
+    font-size: ${p => p.theme.fontSizes[0]};
 
+    @media (min-width: 768px) {
+        font-size: ${p => p.theme.fontSizes[2]};
+    }
 `
 
 export const ItemTitle = styled.p`

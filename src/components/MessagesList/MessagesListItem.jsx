@@ -62,8 +62,8 @@ export const MessagesListItem = ({item}) => {
                     <ItemInfoTime>
                         {messageOwner ? <>sent: {sentTime}</> : <>received: {sentTime}</>}
                     </ItemInfoTime>
-                    </ItemInfo>
-                    <ItemTitle>{title}</ItemTitle>
+                </ItemInfo>
+                <ItemTitle>{title}</ItemTitle>
                 {isOpen &&
                 <Details>
                     <ItemText>{message}</ItemText>
