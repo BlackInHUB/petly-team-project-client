@@ -128,15 +128,17 @@ const LearnMoreModal = props => {
                       </Link>
                     </ContactButtonsContainer>
                   )}
-                  <Button
-                    style={{ height: '40px' }}
-                    buttonStyle="secondary"
-                    onClick={() => toggleFavorites()}
-                  >
-                    {favoritesList?.includes(id) ? 'Remove from' : 'Add to'}
-                    &nbsp;
-                    <img src={heartImg} alt="heart" />
-                  </Button>
+                  {!(user._id === pet?.owner._id) && (
+                    <Button
+                      style={{ height: '40px' }}
+                      buttonStyle="secondary"
+                      onClick={() => toggleFavorites()}
+                    >
+                      {favoritesList?.includes(id) ? 'Remove from' : 'Add to'}
+                      &nbsp;
+                      <img src={heartImg} alt="heart" />
+                    </Button>
+                  )}
                 </ButtonContainer>
               </ButtonDiv>
             )}
