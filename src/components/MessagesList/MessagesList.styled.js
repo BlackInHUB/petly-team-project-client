@@ -123,9 +123,9 @@ export const Unreaded = styled(IoMailUnreadOutline)`
     stroke: ${p => p.theme.colors.accent};
 
     @media (min-width: 768px) {
-    top: -20px;
-    left: -22px;
-    width: 30px;
+    top: -17px;
+    left: -19px;
+    width: 25px;
     }
 `
 

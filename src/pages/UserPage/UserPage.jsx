@@ -29,15 +29,25 @@ const UserPage = () => {
     const toggleModal = () => setIsModalOpen(state => !state);
         
     useEffect(() => {
+        if (!isModalOpen) {
+          document.body.style.overflow = '';
+        }
+      }, [isModalOpen]);
+
+    useEffect(() => {
         if(isLoggedIn) {
             setInterval(() => {
                 dispatch(messagesOperations.get());
-            }, 10000)
+            }, 20000)
         };
         
     }, [dispatch, isLoggedIn]);
 
     const {messages} = useSelector(state => state.messages);
+
+    if(!messages || messages.length === 0) {
+        return
+    };
 
     const newMessages = messages.reduce((acc, message) => {
         if(!message.readed & user._id === message.recipient) {
@@ -45,12 +55,6 @@ const UserPage = () => {
         };
         return acc;
     }, 0)
-
-    useEffect(() => {
-        if (!isModalOpen) {
-          document.body.style.overflow = '';
-        }
-      }, [isModalOpen]);
 
     return (
         <>
@@ -74,7 +78,7 @@ const UserPage = () => {
                             </NewMessagesCount>}
                         </NavMessageBtn>
                     </NavBtnsContainer>
-                    <AddPetButton onOpenAddsPet={toggleModal} />
+                    {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />}
                 </TopContainer>
                 {toShow === 'pets' && <PetsData />}
                 {toShow === 'messages' && <MessagesList />}

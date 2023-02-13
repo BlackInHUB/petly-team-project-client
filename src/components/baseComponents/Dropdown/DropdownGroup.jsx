@@ -37,8 +37,6 @@ export const DropdownGroup = ({ date, setState, setDateError, height }) => {
       year.toString();
 
     setState(data);
-    console.log(year);
-    console.log(data);
   }, [day, month, nowDay, nowMonth, setState, setDateError, year]);
 
   const numberOfYears = 30;

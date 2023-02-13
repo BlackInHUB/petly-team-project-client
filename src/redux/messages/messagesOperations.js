@@ -12,6 +12,10 @@ const newMessage = createAsyncThunk('messages/new', async(data, thunkApi) => {
 });
 
 const get = createAsyncThunk('messages/get', async(_, thunkApi) => {
+    const {isLoggedIn} = thunkApi.getState().auth;
+    if(!isLoggedIn) {
+        return
+    };
     try {
         const {data} = await api.get();
         return data.messages;
