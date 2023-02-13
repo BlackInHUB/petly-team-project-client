@@ -97,51 +97,45 @@ justify-content: space-between;
 export const NavBtnsContainer = styled.div`
     display: flex;
     width: 80%;
-    border-bottom: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
+    border-bottom: none;
 
     @media (max-width: 400px) {
         flex-direction: column;
         align-items: flex-start
     }
 
-     /* /* @media screen and (min-width: 768px) {
-        padding-left: ${ p => p.theme.space[9]}px;
-    }  */
-
-    /* @media screen and (min-width: 768px) {
-        padding-left: ${ p => p.theme.space[9]}px;
+    @media screen and (min-width: 768px) {
+        border-bottom: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
     } 
-    
-    @media screen and (min-width: 1280px) {
-        padding-left: ${ p => p.theme.space[0]}px;
-    }  */
 `
 
 export const NavBtn = styled.button`
     outline: none;
-    background-color: ${p => p.active === 'pets' ? p.theme.colors.accent : p.theme.colors.transparent};
-    border-top: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
-    border-right: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
-    border-left: ${p => p.theme.borders.normal} ${p => p.theme.colors.transparent};
-    border-bottom: none;
+    font-family: ${p => p.theme.fonts.body};
+    border-top: ${p => p.theme.borders.normal} ${p => p.active === 'pets' ? p.theme.colors.accent : p.theme.colors.transparent};
+    border-left: ${p => p.theme.borders.normal} ${p => p.active === 'pets' ? p.theme.colors.accent : p.theme.colors.transparent};
+    border-right: ${p => p.theme.borders.normal} ${p => p.active === 'pets' ? p.theme.colors.accent : p.theme.colors.transparent};
+    border-bottom: ${p => p.theme.borders.normal} ${p => p.active === 'pets' ? p.theme.colors.accent : p.theme.colors.transparent};
     border-top-right-radius: ${p => p.theme.radii.small};
     border-top-left-radius: ${p => p.theme.radii.small};
     color:${p => p.active === 'pets' ? p.theme.colors.white : p.theme.colors.black};
-    font-family: ${p => p.theme.fonts.body};
-    font-size: ${p => p.theme.fontSizes[4]};
+    background-color: ${p => p.active !== 'pets' ? p.theme.colors.accent : p.theme.colors.transparent};
+    font-size: ${p => p.theme.fontSizes[3]};
     font-weight: ${p => p.theme.fontWeights.normal};
     line-height: ${p => p.theme.fontHeight.l};
     letter-spacing: 0.04em;
     padding-left: ${p => p.theme.space[3]}px;
     padding-right: ${p => p.theme.space[3]}px;
-    padding-bottom: ${p => p.theme.space[2]}px;
+    padding-bottom: ${p => p.theme.space[0]}px;
     cursor: pointer;
+    background-color: ${p => p.active === 'pets' ? p.theme.colors.accent : p.theme.colors.transparent};
     transition: ${p => p.theme.transition.all};
 
-    @media screen and (min-width: 768px) {
-        font-size: ${p => p.theme.fontSizes[6]};
-        letter-spacing: 0;
-    }
+    &:hover,
+    :focus {
+        border-color: ${p => p.theme.colors.accent};
+        /* border-bottom: none; */
+    } 
 
     @media (max-width: 400px) {
         &:not(:last-child) {
@@ -149,12 +143,18 @@ export const NavBtn = styled.button`
         }
     }
 
-    &:hover,
-    :focus {
+    @media (min-width: 768px) {
+        border-bottom: none;
+        font-size: ${p => p.theme.fontSizes[6]};
+        padding-bottom: ${p => p.theme.space[2]}px;
+
+        &:hover,
+        :focus {
         border-top: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
         border-left: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
         border-right: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
-    }
+    } 
+    } 
 `
 
 export const NavMessageBtn = styled.button`
@@ -169,7 +169,7 @@ border-top-right-radius: ${p => p.theme.radii.small};
 border-top-left-radius: ${p => p.theme.radii.small};
 color:${p => p.active === 'messages' ? p.theme.colors.white : p.theme.colors.black};
 font-family: ${p => p.theme.fonts.body};
-font-size: ${p => p.theme.fontSizes[4]};
+font-size: ${p => p.theme.fontSizes[3]};
 font-weight: ${p => p.theme.fontWeights.normal};
 line-height: ${p => p.theme.fontHeight.l};
 letter-spacing: 0.04em;
