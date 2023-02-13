@@ -64,6 +64,14 @@ export const UserAboutWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    @media screen and (min-width: 768px) {
+        padding-left: ${ p => p.theme.space[9]}px;
+    } 
+    
+    @media screen and (min-width: 1280px) {
+        padding-left: ${ p => p.theme.space[0]}px;
+    }
     /* @media screen and (min-width: 768px) {
         padding-left: ${p => p.theme.space[9]}px;
     }
@@ -77,13 +85,13 @@ export const TopContainer = styled.div`
 display: flex;
 justify-content: space-between;
 /* border-bottom: ${p => p.theme.borders.small} ${p => p.theme.colors.accent}; */
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
         padding-left: ${ p => p.theme.space[9]}px;
     } 
     
     @media screen and (min-width: 1280px) {
         padding-left: ${ p => p.theme.space[0]}px;
-    } 
+    }  */
 `
 
 export const NavBtnsContainer = styled.div`
@@ -95,6 +103,10 @@ export const NavBtnsContainer = styled.div`
         flex-direction: column;
         align-items: flex-start
     }
+
+     /* /* @media screen and (min-width: 768px) {
+        padding-left: ${ p => p.theme.space[9]}px;
+    }  */
 
     /* @media screen and (min-width: 768px) {
         padding-left: ${ p => p.theme.space[9]}px;
