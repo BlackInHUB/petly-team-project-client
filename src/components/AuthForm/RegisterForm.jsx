@@ -75,7 +75,6 @@ export default function RegisterForm() {
   const { isError } = useAuth();
 
   const onNext = (errors, values) => {
-    console.log(values, phoneNumber);
     if (!values.email || !values.password || !values.confirmPassword) {
       setNextError('Please, enter all data');
     }
@@ -109,7 +108,6 @@ export default function RegisterForm() {
       city: values.city,
       phone: phone,
     };
-    console.log(data);
 
     try {
       setSubmitting(true);
@@ -121,18 +119,9 @@ export default function RegisterForm() {
         values.city &&
         phone
       ) {
-        console.log(data);
         setSubmitError(null);
         await dispatch(authOperations.register(data));
       } else {
-        console.log(
-          !errors.name,
-          !errors.city,
-          !isPhoneValid,
-          values.name,
-          values.city,
-          phone
-        );
         setSubmitError('Enter all data');
       }
     } catch (e) {

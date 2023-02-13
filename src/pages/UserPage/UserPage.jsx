@@ -45,11 +45,7 @@ const UserPage = () => {
 
     const {messages} = useSelector(state => state.messages);
 
-    if(!messages || messages.length === 0) {
-        return
-    };
-
-    const newMessages = messages.reduce((acc, message) => {
+    const newMessages = messages?.reduce((acc, message) => {
         if(!message.readed & user._id === message.recipient) {
             return acc + 1;
         };

@@ -18,7 +18,6 @@ const PhoneInput = ({
   };
 
   const onBlurPhone = () => {
-    console.log(phoneNumber);
     phoneValidation(phoneNumber)
       ? setPhoneIsValid(null)
       : setPhoneIsValid('incorrect phone number');
