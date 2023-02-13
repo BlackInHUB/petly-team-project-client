@@ -1,5 +1,19 @@
-import { ListItem, ItemDeleteBtn, ItemInfo, ItemText, ItemTitle, DeleteIcon,
-ItemInfoSender, ItemInfoTime, Unreaded, Details, InIcon, OutIcon } from "./MessagesList.styled";
+import {
+ListItem,
+ItemDeleteBtn,
+ItemInfo,
+ItemText,
+ItemTitle,
+DeleteIcon,
+ItemInfoSender,
+ItemInfoTime,
+Unreaded,
+Details,
+InIcon,
+OutIcon,
+ReplyBtn,
+ReplyIcon,
+BtnsWrapper} from "./MessagesList.styled";
 import getTime from "./getTime";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -11,6 +25,10 @@ export const MessagesListItem = ({item}) => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const {title, message, sender, createdAt, recipient, readed} = item;
+
+    if(!users) {
+        return;
+    };
 
     const senderName = users.find(user => user._id === sender).name;
     const recipientName = users.find(user => user._id === recipient).name;
@@ -43,10 +61,12 @@ export const MessagesListItem = ({item}) => {
             {isOpen &&
             <Details>
                 <ItemText>{message}</ItemText>
-            <ItemDeleteBtn onClick={handleDelete}><DeleteIcon/></ItemDeleteBtn>
-        </Details>
+                <BtnsWrapper>
+                    {!messageOwner && <ReplyBtn type="button"><ReplyIcon size={27} /></ReplyBtn>}
+                    <ItemDeleteBtn type="button" onClick={handleDelete}><DeleteIcon/></ItemDeleteBtn>
+                </BtnsWrapper>
+            </Details>
             }
-            
         </ListItem>
     )
 };

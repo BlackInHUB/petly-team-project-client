@@ -32,13 +32,14 @@ const getAge = (birthday) => {
     const year = parts[0];
     const month = parts[1];
     
-    const months = month === 1 ? `${numbers[month]} month` : month === 0 ? '' : `${numbers[month]} months`;
-    const years = year === 1 ? `${numbers[year]} year` : year === 0 ? '' : `${numbers[year]} years`;
+    const months = month === '1' ? `${numbers[month]} month` : month === '0' ? '' : `${numbers[month]} months`;
+    const years = year === '1' ? `${numbers[year]} year` : year === '0' ? '' : `${numbers[year]} years`;
 
     const result = () => {
         if (year === '0' & month === '0') {
             return 'just born';
-        } else if (year > '0' & month === '0') {
+        }
+        else if (year > '0' & month === '0') {
             return years;
         } else if (year === '0' & month > '0') {
             return months;

@@ -26,7 +26,6 @@ export const UserData = props => {
     user = props.user;
     profile = true;
   }
-  console.log(user);
 
   const changeAvatar = e => {
     const data = new FormData();

@@ -13,7 +13,6 @@ export default function LoginPage() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    console.log(windowWidth);
     debounce(function handleResize() {
       setWindowWidth(window.innerWidth);
     }, 300);

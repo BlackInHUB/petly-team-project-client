@@ -136,6 +136,7 @@ export const HeartIcon = styled(Heart)`
 `
 
 export const HeartBtn = styled.button`
+  outline: none;
   display: flex;
   position: absolute;
   right: 12px;

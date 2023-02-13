@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {ReactComponent as deleteIcon} from '../../images/icons/petsItem/delete.svg'
 import {IoMailUnreadOutline} from 'react-icons/io5'
 import {FaArrowAltCircleUp, FaArrowAltCircleDown} from 'react-icons/fa';
+import {BsReply} from 'react-icons/bs'
 
 export const List = styled.ul`
 width: 50%;
@@ -58,13 +59,18 @@ position: relative;
 `
 
 export const ItemText = styled.p`
+    width: 80%;
+`
 
+export const BtnsWrapper = styled.div`
+position: absolute;
+display: flex;
+align-items: center;
+bottom: 0;
+right: 0;
 `
 
 export const ItemDeleteBtn = styled.button`
-    position: absolute;
-    bottom: 0;
-    right: 0;
     padding: ${p => p.theme.space[1]}px;
     outline: none;
     border: none;
@@ -91,6 +97,24 @@ export const Unreaded = styled(IoMailUnreadOutline)`
     height: auto;
     fill: ${p => p.theme.colors.accent};
     stroke: ${p => p.theme.colors.accent};
+`
+
+export const ReplyBtn = styled.button`
+padding: ${p => p.theme.space[1]}px;
+outline: none;
+border: none;
+background-color: transparent;
+cursor: pointer;
+
+& :hover {
+        fill: ${p => p.theme.colors.hoveredAccent};
+    }
+`
+
+export const ReplyIcon = styled(BsReply)`
+    fill: ${p => p.theme.colors.accent};
+    margin-right: ${p => p.theme.space[4]}px;
+    transition: ${p => p.theme.transition.all};
 `
 
 export const OutIcon = styled(FaArrowAltCircleUp)`
