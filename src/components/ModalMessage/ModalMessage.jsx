@@ -33,14 +33,12 @@ export const ModalMessage = ({ id, name, setShow }) => {
   const handleSubmit = async event => {
     setIsError(null);
     event.preventDefault();
-    console.log(text);
-    console.log(title);
     if (!text || !title) {
       setIsError('enter title and text');
       return;
     }
     const message = { title: title, message: text };
-    console.log(message);
+
     const recipientId = id;
 
     try {

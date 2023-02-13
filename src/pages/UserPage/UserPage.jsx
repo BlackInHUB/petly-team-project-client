@@ -12,7 +12,9 @@ const UserPage = () => {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        dispatch(messagesOperations.get());
+        setInterval(() => {
+            dispatch(messagesOperations.get());
+        }, 5000)
     }, [dispatch]);
 
     return (

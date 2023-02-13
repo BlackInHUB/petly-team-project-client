@@ -22,7 +22,6 @@ export const Modal = ({ children, setShow }) => {
 
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
-      console.log('клик по бекдропу');
       document.body.style.overflow = '';
       setShow();
     }
