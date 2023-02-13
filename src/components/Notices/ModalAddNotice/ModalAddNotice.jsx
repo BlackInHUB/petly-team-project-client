@@ -111,7 +111,7 @@ const ModalAddNotice = props => {
 
     if (e.target.name === 'location') {
       !values.location.match(
-        /^\s*([A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+,\s?)?[A-ZёЁЇїІіЄєҐґА-Я][a-zа-я]+\s*$/
+        /^\s*([A-ZёЁЇІЄҐА-Я][a-zґїіє'а-я]+,\s?)?[A-ZёЁЇІЄҐА-Я][a-zґїіє'а-я]+\s*$/
       )
         ? setIsError({
             ...isError,
