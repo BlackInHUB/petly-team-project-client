@@ -60,8 +60,8 @@ export const ModalAddsPet = ({onClose, onCloseBtn}) => {
         : setIsError({ ...isError, breed: '', next: '' });
     }
     if (e.target.name === 'comments') {
-        (state.comments.length < 2 || state.comments.length > 8)
-        ? setIsError({ ...isError, comments: 'please type from 2 to 8 letters minimum' })
+        (state.comments.length < 2 || state.comments.length > 120)
+        ? setIsError({ ...isError, comments: 'please type from 2 to 120 letters maximum' })
         : setIsError({ ...isError, comments: '', submit: '' });
     }
   };
