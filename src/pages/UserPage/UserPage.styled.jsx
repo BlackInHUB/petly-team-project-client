@@ -40,8 +40,7 @@ export const UserDataContainer = styled.div`
 
     @media screen and (min-width: 768px) {
         position: relative;
-        /* margin-left: -32px; */
-        margin-bottom: ${ p => p.theme.space[6]}px;
+        margin-bottom: ${ p => p.theme.space[10]}px;
         margin-top: ${ p => p.theme.space[10]}px;
         padding-right: ${ p => p.theme.space[10]}px;
         padding-top: ${ p => p.theme.space[7]}px;
@@ -53,7 +52,6 @@ export const UserDataContainer = styled.div`
     }
 
     @media screen and (min-width: 1280px) {
-        /* margin-left: ${ p => p.theme.space[-5]}px; */
         margin-bottom: ${ p => p.theme.space[0]}px;
         margin-top: ${ p => p.theme.space[7]}px;
         padding-right: ${ p => p.theme.space[5]}px;
@@ -79,6 +77,13 @@ export const TopContainer = styled.div`
 display: flex;
 justify-content: space-between;
 /* border-bottom: ${p => p.theme.borders.small} ${p => p.theme.colors.accent}; */
+@media screen and (min-width: 768px) {
+        padding-left: ${ p => p.theme.space[9]}px;
+    } 
+    
+    @media screen and (min-width: 1280px) {
+        padding-left: ${ p => p.theme.space[0]}px;
+    } 
 `
 
 export const NavBtnsContainer = styled.div`
@@ -90,6 +95,14 @@ export const NavBtnsContainer = styled.div`
         flex-direction: column;
         align-items: flex-start
     }
+
+    /* @media screen and (min-width: 768px) {
+        padding-left: ${ p => p.theme.space[9]}px;
+    } 
+    
+    @media screen and (min-width: 1280px) {
+        padding-left: ${ p => p.theme.space[0]}px;
+    }  */
 `
 
 export const NavBtn = styled.button`
