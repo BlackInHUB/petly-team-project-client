@@ -24,6 +24,8 @@ export const UserDataItem = ({
 }) => {
     const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
     const cityRegex = /^(\w+(,)\s*)+\w+$/;
+    const dayToday = new Date().toLocaleDateString()
+    const minDate = new Date('01.01.1910').toLocaleDateString()
 
     const dispatch = useDispatch();
 
@@ -69,6 +71,19 @@ export const UserDataItem = ({
             setActive('')
             dispatch(authOperations.update({email: inputValue})) 
         }
+
+        else if (name === 'birthday'){
+          setActive('birthday')
+          if ( inputValue > dayToday )
+          {setIsError('date must be current');
+          return}
+          if ( inputValue < minDate )
+          {setIsError('date must be current');
+          return}
+          setIsError('')
+          setActive('')
+          dispatch(authOperations.update({birthday: inputValue})) 
+      }
 
         else if (name === 'phone'){
             setActive('phone')
@@ -133,12 +148,6 @@ export const UserDataItem = ({
                 <PensilStyle />
               </UserDataItemBtn>
             ))}
-
-          {/* <UserDataItemBtn>
-                        {active === name ?
-                        <CheckMarkStyle onClick={() => handleSubmit(name)}/> :
-                        <PensilStyle disabled={active && active !== name} onClick={() => activeHandleClick(name)}/>}
-                    </UserDataItemBtn> */}
         </UserDataItemInputBtnWrapper>
       </UserDataItemWrapper>
     </>
