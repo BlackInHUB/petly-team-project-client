@@ -33,13 +33,6 @@ export const UserData = props => {
     dispatch(authOperations.update(data));
   };
 
-  const patternName =
-    /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
-  const patternEmail = /^\S+@\S+\.\S+$/;
-  // const patternDate=/\d{4}-\d{2}-\d{2}/
-  const patternPhone = /^\+\d{7,15}$/;
-  const patternCity = /^\s*([A-ZА-Я][a-zа-я]+,\s?)?[A-ZА-Я][a-zа-я]+\s*$/;
-
   return (
     <>
       <UserDataContainer>
@@ -75,8 +68,6 @@ export const UserData = props => {
             name="name"
             active={active}
             setActive={setActive}
-            pattern={patternName}
-            title="Name may contain only letters."
             id="name"
           />
 
@@ -88,8 +79,6 @@ export const UserData = props => {
             name="email"
             active={active}
             setActive={setActive}
-            pattern={patternEmail}
-            title="Email no valid"
             id="email"
           />
 
@@ -101,8 +90,6 @@ export const UserData = props => {
             name="birthday"
             active={active}
             setActive={setActive}
-            // pattern={patternDate}
-            title="Date may contain only format 0000-00-00"
             id="birthday"
           />
 
@@ -114,8 +101,6 @@ export const UserData = props => {
             name="phone"
             active={active}
             setActive={setActive}
-            pattern={patternPhone}
-            title="Phone may be formated +0000000000"
             id="phone"
           />
 
@@ -127,8 +112,6 @@ export const UserData = props => {
             name="city"
             active={active}
             setActive={setActive}
-            pattern={patternCity}
-            title="City, Region"
             id="city"
           />
         </UserDataList>
