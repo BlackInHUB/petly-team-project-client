@@ -54,6 +54,7 @@ export const UserData = props => {
                 name="edit photo"
                 id="user_photo"
                 onChange={changeAvatar}
+                accept=".gif,.jpg,.jpeg,.png"
               />
             </EditCameraForm>
           )}
