@@ -68,7 +68,7 @@ export const MessagesListItem = ({item}) => {
                 <Details>
                     <ItemText>{message}</ItemText>
                     <BtnsWrapper>
-                        {!messageOwner && <ReplyBtn onClick={() => setCreateMessageModal(true)} type="button"><ReplyIcon size={27} /></ReplyBtn>}
+                        {!messageOwner && <ReplyBtn onClick={() => setCreateMessageModal(true)} type="button"><ReplyIcon size={30} /></ReplyBtn>}
                         <ItemDeleteBtn type="button" onClick={handleDelete}><DeleteIcon/></ItemDeleteBtn>
                     </BtnsWrapper>
                 </Details>

@@ -13,12 +13,16 @@ flex-direction: column;
 
 export const ListItem = styled.li`
 position: relative;
-padding: ${p => p.theme.space[4]}px;
+padding: ${p => p.theme.space[3]}px;
 background-color: ${p => p.theme.colors.white};
 border-radius: ${p => p.theme.radii.normal};
 border: ${p => p.theme.borders.small} ${p => p.isOpen ? p.theme.colors.accent : p.theme.colors.transparent};
 box-shadow: ${p => p.theme.shadows.mainShadow};
 transition: ${p => p.theme.transition.all};
+
+@media (min-width: 768px) {
+    padding: ${p => p.theme.space[4]}px;
+}
 
 &:not(:last-child) {
     margin-bottom: ${p => p.theme.space[4]}px;
@@ -80,9 +84,14 @@ export const ItemText = styled.p`
 export const BtnsWrapper = styled.div`
 position: absolute;
 display: flex;
+flex-direction: column;
 align-items: center;
 bottom: 0;
 right: 0;
+
+@media (min-width: 768px) {
+    flex-direction: row;
+}
 `
 
 export const ItemDeleteBtn = styled.button`
@@ -106,12 +115,18 @@ export const DeleteIcon = styled(deleteIcon)`
 
 export const Unreaded = styled(IoMailUnreadOutline)`
     position: absolute;
-    top: -20px;
-    left: -22px;
-    width: 30px;
+    top: -13px;
+    left: -15px;
+    width: 20px;
     height: auto;
     fill: ${p => p.theme.colors.accent};
     stroke: ${p => p.theme.colors.accent};
+
+    @media (min-width: 768px) {
+    top: -20px;
+    left: -22px;
+    width: 30px;
+    }
 `
 
 export const ReplyBtn = styled.button`
@@ -119,7 +134,13 @@ padding: ${p => p.theme.space[1]}px;
 outline: none;
 border: none;
 background-color: transparent;
+margin-bottom: ${p => p.theme.space[3]}px;
 cursor: pointer;
+
+@media (min-width: 768px) {
+    margin-right: ${p => p.theme.space[6]}px;
+    margin-bottom: 0px;
+}
 
 & :hover {
         fill: ${p => p.theme.colors.hoveredAccent};
@@ -128,7 +149,6 @@ cursor: pointer;
 
 export const ReplyIcon = styled(BsReply)`
     fill: ${p => p.theme.colors.accent};
-    margin-right: ${p => p.theme.space[4]}px;
     transition: ${p => p.theme.transition.all};
 `
 
