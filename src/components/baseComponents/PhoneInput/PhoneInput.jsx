@@ -11,7 +11,7 @@ const PhoneInput = ({
   isPhoneValid,
   setPhoneIsValid,
 }) => {
-  const phoneRegExp = /^\+\d{7,15}$/;
+  const phoneRegExp = /^\+\d{12,15}$/;
 
   const phoneValidation = value => {
     return phoneRegExp.test(`+${value}`);

@@ -93,6 +93,7 @@ const Link = styled.a`
 `;
 
 const Text = styled.span`
+  max-width: 230px;
   position: absolute;
   top: 20px;
   right: 0;
@@ -109,8 +110,6 @@ const Text = styled.span`
   text-align: center;
   border-radius: ${p => p.theme.radii.big};
   padding: 5px 5px;
-
-  /* Position the tooltip */
 `;
 
 function check(el) {

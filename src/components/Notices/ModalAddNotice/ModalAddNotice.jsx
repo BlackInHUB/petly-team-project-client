@@ -162,6 +162,7 @@ const ModalAddNotice = props => {
     if (
       values.title === '' ||
       values.location === '' ||
+      values.comments === '' ||
       (values.price === 0 && values.category === 'sell')
     ) {
       setIsError({ ...isError, submit: 'please put all data' });

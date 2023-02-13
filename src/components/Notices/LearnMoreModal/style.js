@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as Heart } from 'images/icons/heart2.svg';
+import { ImProfile } from 'react-icons/im';
+import { AiFillPhone } from 'react-icons/ai';
 
 export const PetPhotoAndInfoContainer = styled.div`
   display: flex;
@@ -134,4 +136,12 @@ export const ButtonContainer = styled.div`
     width: 380px;
     flex-direction: row-reverse;
   }
+`;
+
+export const CallIcon = styled(AiFillPhone)`
+  color: ${p => p.theme.colors.accent};
+`;
+
+export const ProfileIcon = styled(ImProfile)`
+  color: ${p => p.theme.colors.accent};
 `;

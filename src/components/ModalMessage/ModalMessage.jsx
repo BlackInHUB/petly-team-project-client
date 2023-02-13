@@ -32,7 +32,7 @@ export const ModalMessage = ({ id, name, setShow }) => {
 
   const handleSubmit = async event => {
     setIsError(null);
-    event.preventDefault();
+
     if (!text || !title) {
       setIsError('enter title and text');
       return;
@@ -74,16 +74,16 @@ export const ModalMessage = ({ id, name, setShow }) => {
 
           <InputEmoji
             maxLength="240"
+            onEnter={handleSubmit}
             value={text}
             onChange={setText}
             placeholder="Type a message"
-            borderColor="#f59256"
             borderRadius="20px"
             fontSize="18px"
             height="300px"
           />
           <ButtonWrapper>
-            <Button type="submit" style={{ padding: '9px 12px' }}>
+            <Button onClick={handleSubmit} style={{ padding: '9px 12px' }}>
               {isLoading ? <ButtonSpinner /> : 'Send message'}{' '}
               {isError && <Error>{isError}</Error>}
             </Button>
