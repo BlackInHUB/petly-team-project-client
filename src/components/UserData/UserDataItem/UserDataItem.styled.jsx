@@ -111,6 +111,12 @@ export const UserDataItemBtn = styled.button`
         fill: ${p => p.disabled ? p.theme.colors.accent : p.theme.colors.hoveredAccent}
     }
 
+    :disabled {
+    svg{
+        fill: ${p => p.theme.colors.inputColor}
+    }
+    }
+
     @media screen and (min-width: 768px) {
         width: 32px;
         height: 32px;
