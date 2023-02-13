@@ -65,6 +65,7 @@ export const CommonLink = styled(NavLink)`
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes[4]};
   line-height: ${p => p.theme.fontHeight.l};
+  outline: none;
 
   color: ${p => p.theme.colors.text};
 
@@ -117,6 +118,7 @@ export const UserLink = styled(NavLink)`
   letter-spacing: 0.04em;
   padding: 10px 28px;
   color: ${p => p.theme.colors.text};
+  outline: none;
 
   gap: 10px;
   background: ${p => p.theme.colors.white};

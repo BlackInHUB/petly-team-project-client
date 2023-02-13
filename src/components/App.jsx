@@ -26,6 +26,7 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(authOperations.getUsers());
     dispatch(authOperations.refresh());
   }, [dispatch]);
 

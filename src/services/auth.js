@@ -60,3 +60,8 @@ export const profile = async _id => {
   const { data } = await instance.get(`/auth/profile/${_id}`);
   return data;
 };
+
+export const getUsers = async () => {
+  const {data} = await instance.get('/user/all')
+  return data;
+}

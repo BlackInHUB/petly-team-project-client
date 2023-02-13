@@ -29,6 +29,7 @@ export const AddNoticeWrapper = styled.div`
 `
 
 export const AddNoticeBtn = styled.button`
+outline: none;
 @media (max-width: 767px) {
     padding-bottom: 0;
 }

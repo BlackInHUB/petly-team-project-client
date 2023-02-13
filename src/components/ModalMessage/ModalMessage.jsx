@@ -1,58 +1,97 @@
-import { MessageForm, MessageTitle, MessageNameInput } from "./ModalMessageStyled";
-import React from "react";
-import { Modal } from "../Modal/Modal";
+import {
+  MessageForm,
+  MessageTitle,
+  MessageNameInput,
+  ButtonWrapper,
+} from './ModalMessageStyled';
+import React from 'react';
+import { Modal } from '../Modal/Modal';
 import { useState } from 'react';
 import InputEmoji from 'react-input-emoji';
-import Button from "components/baseComponents/Button/Button";
-import { useAuth } from "hooks/useAuth";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import Button from 'components/baseComponents/Button/Button';
+import { Error } from 'components/AuthForm/style';
 
-export const ModalMessage = () => {
-    const [ text, setText ] = useState('')
-    const [showModal, setShowModal] = useState(false);
-    const { user } = useAuth();
-    
-    const handleOpen = () => {
-    setShowModal(true);
-  }
+import { newMessage } from 'services/messages';
+import Notiflix from 'notiflix/build/notiflix-notify-aio';
+import ButtonSpinner from 'components/baseComponents/ButtonSpinner/ButtonSpinner';
 
-  const handleClose = () =>  {
-    setShowModal(false);
-    document.body.style.overflow = '';
-    }
-    
-  const handleSubmit = event => {
-      event.preventDefault();
-      event.target.reset();
-      setText('');
-      toast.success('Your message successfully sent', {
-            theme: "colored"
-        });
+export const ModalMessage = ({ id, name, setShow }) => {
+  const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
+
+  const onChangeInput = event => {
+    setTitle(event.target.value);
   };
 
-    return (
-        <>
-            <button type='button' onClick={handleOpen}>Send message</button>
-            {showModal && <Modal setShow={handleClose} onClick={handleClose}>
-                <MessageForm action="" onSubmit={handleSubmit}>
-                    <MessageTitle htmlFor="message">
-                        Send message to seller
-                    </MessageTitle>
-                    <MessageNameInput id="message" type="text" name="name" value={user.name} readOnly />
-                    <InputEmoji
-                        value={text}
-                        onChange={setText}
-                        placeholder="Type a message."
-                        borderColor="#f59256"
-                        borderRadius="20px"
-                        fontSize="18px"
-                        height="300px"
-                    />
-                    <Button type="submit" style={{ width: '300px', padding: '9px 12px' }}>Send message</Button>
-                </MessageForm>
-                <ToastContainer autoClose={3000} />
-            </Modal>}
-        </>
-    )
-}
+  const handleClose = () => {
+    setShow(false);
+    document.body.style.overflow = '';
+  };
+
+  const handleSubmit = async event => {
+    setIsError(null);
+    event.preventDefault();
+    console.log(text);
+    console.log(title);
+    if (!text || !title) {
+      setIsError('enter title and text');
+      return;
+    }
+    const message = { title: title, message: text };
+    console.log(message);
+    const recipientId = id;
+
+    try {
+      setIsLoading(true);
+      await newMessage(message, recipientId);
+      Notiflix.Notify.success('Your message successfully sent', {
+        timeout: 3000,
+      });
+    } catch (e) {
+      Notiflix.Notify.failure('Something went wrong', {
+        timeout: 3000,
+      });
+      return e;
+    } finally {
+      setIsLoading(false);
+      handleClose();
+    }
+  };
+
+  return (
+    <>
+      <Modal setShow={handleClose} onClick={handleClose}>
+        <MessageForm action="" onSubmit={handleSubmit}>
+          <MessageTitle htmlFor="message">
+            {`Send message to ${name}`}
+          </MessageTitle>
+          <MessageNameInput
+            maxLength="36"
+            placeholder="Type a title"
+            value={title}
+            onChange={onChangeInput}
+          />
+
+          <InputEmoji
+            maxLength="240"
+            value={text}
+            onChange={setText}
+            placeholder="Type a message"
+            borderColor="#f59256"
+            borderRadius="20px"
+            fontSize="18px"
+            height="300px"
+          />
+          <ButtonWrapper>
+            <Button type="submit" style={{ padding: '9px 12px' }}>
+              {isLoading ? <ButtonSpinner /> : 'Send message'}{' '}
+              {isError && <Error>{isError}</Error>}
+            </Button>
+          </ButtonWrapper>
+        </MessageForm>
+      </Modal>
+    </>
+  );
+};

@@ -95,6 +95,15 @@ const profile = createAsyncThunk('auth/profile', async (_id, thunkAPI) => {
   } catch ({ response }) {
     return thunkAPI.rejectWithValue(response.data.message);
   }
+});
+
+const getUsers = createAsyncThunk('auth/getUsers', async (_, thunkAPI) => {
+  try {
+    const result = await api.getUsers();
+    return result;
+  } catch ({ response }) {
+    return thunkAPI.rejectWithValue(response.data.message);
+  }
 })
 
 const authOperations = {
@@ -107,7 +116,8 @@ const authOperations = {
   addPet,
   favorites,
   removePet,
-  profile
+  profile,
+  getUsers
 };
 
 export default authOperations;

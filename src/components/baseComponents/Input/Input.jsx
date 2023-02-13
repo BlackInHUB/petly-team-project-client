@@ -10,21 +10,19 @@ import {
   DecorativeDiv,
 } from './style';
 
-const Input = props => {
+const Input = ({
+  name,
+  id,
+  type,
+  autoComplete = 'none',
+  required,
+  password = false,
+  text,
+  children,
+  ...rest
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordReadOnly, setPasswordReadOnly] = useState(true);
-
-  const {
-    name,
-    id,
-    type,
-    autoComplete,
-    required,
-    password = false,
-    text,
-    children,
-    ...rest
-  } = props;
 
   return (
     <FieldWrapper>

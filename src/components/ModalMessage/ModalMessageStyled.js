@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
 export const MessageForm = styled.form`
+  .react-input-emoji--wrapper:focus-within {
+    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
+    border-color: ${p => p.theme.colors.hoveredAccent};
+  }
+
   height: auto;
+  font-family: ${p => p.theme.fonts.body};
 
   display: flex;
   flex-direction: column;
@@ -15,25 +21,43 @@ export const MessageForm = styled.form`
   border-radius: ${p => p.theme.radii.big};
 
   @media (max-width: 767px) {
-    max-width: 600px;
-    padding: 10px;
+    max-width: calc(100vw - 40px);
   }
 
   @media (min-width: 768px) {
-    width: 608px;
+    width: 618px;
   }
 
-  @media (min-width: 1280px) {
-    width: 618px;
+  .react-emoji-picker--container {
+    top: 100px;
+  }
+  .react-emoji-picker--wrapper {
+    background: ${p => p.theme.colors.background};
+    border-radius: ${p => p.theme.radii.normal};
+    border: ${p => p.theme.borders.small} ${p => p.theme.colors.accent};
+    box-shadow: ${p => p.theme.shadows.mainShadow};
   }
 
   & .react-input-emoji--container {
     margin: 16px 0;
+  }
 
-    :hover {
-      border: ${p => p.theme.borders.normal}
-        ${p => p.theme.colors.hoveredAccent};
+  .react-input-emoji--button {
+    svg {
+      fill: ${p => p.theme.colors.accent};
     }
+
+    :hover svg,
+    :focus svg {
+      fill: ${p => p.theme.colors.hoveredAccent};
+    }
+  }
+
+  & .react-emoji-picker--wrapper,
+  .react-emoji-picker--container,
+  .react-emoji-picker .emoji-mart {
+    max-width: 70vw;
+    max-height: 35vh;
   }
 
   & .react-input-emoji--wrapper {
@@ -41,6 +65,15 @@ export const MessageForm = styled.form`
     background: ${p => p.theme.colors.background};
     border-radius: ${p => p.theme.radii.normal};
     border: ${p => p.theme.borders.small} ${p => p.theme.colors.accent};
+
+    &:hover {
+      box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
+      border-color: ${p => p.theme.colors.hoveredAccent};
+    }
+
+    ::placeholder {
+      font-family: 'Manrope', sans-serif;
+    }
   }
 
   & .react-input-emoji--input {
@@ -50,7 +83,7 @@ export const MessageForm = styled.form`
     font-weight: ${p => p.theme.fontWeights.thin};
     font-size: ${p => p.theme.fontSizes[3]};
     line-height: ${p => p.theme.fontHeight.l};
-    color: ${p => p.theme.colors.inputPlaceholder};
+    color: ${p => p.theme.colors.text};
     padding: 0;
   }
 
@@ -58,6 +91,7 @@ export const MessageForm = styled.form`
     display: block;
     top: 12px;
     left: 10px;
+    color: ${p => p.theme.colors.inputPlaceholder};
   }
 
   & .react-input-emoji--button {
@@ -94,7 +128,7 @@ export const MessageNameInput = styled.input`
   border: ${p => p.theme.borders.small} ${p => p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.big};
   padding: 9px 12px;
-  width: 300px;
+  width: 70%;
   font-style: ${p => p.theme.fontStyle.normal};
   font-weight: ${p => p.theme.fontWeights.thin};
   font-size: ${p => p.theme.fontSizes[3]};
@@ -102,5 +136,26 @@ export const MessageNameInput = styled.input`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
-  color: ${p => p.theme.colors.inputPlaceholder};
+  color: ${p => p.theme.colors.text};
+
+  &:hover {
+    box-shadow: 0 0 0 1px ${p => p.theme.colors.hoveredAccent};
+    border-color: ${p => p.theme.colors.hoveredAccent};
+  }
+  &:focus {
+    outline-color: ${p => p.theme.colors.hoveredAccent};
+    outline-width: 3px;
+    box-shadow: none;
+
+    border-color: transparent;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 70%;
+  @media (max-width: 420px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;

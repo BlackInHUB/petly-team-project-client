@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import LearnMoreModal from 'components/Notices/LearnMoreModal/LearnMoreModal';
+import { ModalMessage } from 'components/ModalMessage/ModalMessage';
 
 import { authOperations } from 'redux/auth';
 
@@ -17,6 +18,7 @@ import {
   UserDataContainer,
   UserPageWrapper,
   UserDataWrapper,
+  Div,
 } from './ProfilePage.styled';
 import { useAuth } from 'hooks/useAuth';
 import Button from 'components/baseComponents/Button/Button';
@@ -25,7 +27,9 @@ import NoticeList from './NoticeList/NoticeList';
 const ProfilePage = () => {
   const [option, setOption] = useState('Pets');
   const [learnMoreModal, setLearnMoreModal] = useState(false);
+  const [createMessageModal, setCreateMessageModal] = useState(false);
   const [noticeId, setNoticeId] = useState(null);
+
   const modalRoot = document.querySelector('#modal-root');
   const params = useParams();
   const dispatch = useDispatch();
@@ -55,13 +59,7 @@ const ProfilePage = () => {
           </UserDataContainer>
         </UserDataWrapper>
         <div style={{ width: '100%' }}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '20px 0',
-            }}
-          >
+          <Div>
             <div style={{ display: 'flex', gap: '12px' }}>
               <Button
                 style={{ width: 'max-content', height: '35px' }}
@@ -81,12 +79,13 @@ const ProfilePage = () => {
               </Button>
             </div>
             <Button
+              onClick={() => setCreateMessageModal(true)}
               buttonStyle={'secondary'}
               style={{ width: 'max-content', height: '35px' }}
             >
               <AiOutlineMessage />
             </Button>
-          </div>
+          </Div>
           {option === 'Pets' && <PetsData pets={profile?.pets} />}
           {option === 'Notices' && (
             <NoticeList notices={profile?.notices} learnMore={learnMore} />
@@ -98,6 +97,15 @@ const ProfilePage = () => {
               width="704px"
               id={noticeId}
               setShow={setLearnMoreModal}
+            />,
+            modalRoot
+          )}
+        {createMessageModal &&
+          createPortal(
+            <ModalMessage
+              name={profile?.user.name}
+              id={profile?.user._id}
+              setShow={setCreateMessageModal}
             />,
             modalRoot
           )}

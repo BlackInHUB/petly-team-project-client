@@ -14,7 +14,7 @@ const newMessage = createAsyncThunk('messages/new', async(data, thunkApi) => {
 const get = createAsyncThunk('messages/get', async(_, thunkApi) => {
     try {
         const {data} = await api.get();
-        return data;
+        return data.messages;
     } catch ({result}) {
         return thunkApi.rejectWithValue(result.data.message)
     }
@@ -31,8 +31,8 @@ const readed = createAsyncThunk('messages/readed', async(messageId, thunkApi) =>
 
 const remove = createAsyncThunk('messages/remove', async(messageId, thunkApi) => {
     try {
-        const {data} = await api.remove(messageId);
-        return data;
+        await api.remove(messageId);
+        return messageId;
     } catch ({result}) {
         return thunkApi.rejectWithValue(result.data.message)
     }

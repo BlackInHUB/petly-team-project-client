@@ -43,7 +43,6 @@ export default function LoginForm() {
       console.log(e.message);
       console.log('catch');
     } finally {
-      console.log(isError, isLoggedIn);
       setSubmitting(false);
     }
   };

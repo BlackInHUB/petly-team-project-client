@@ -29,6 +29,19 @@ export const UserDataWrapper = styled.div`
   }
 `;
 
+export const Div = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+  align-items: center;
+  padding: 0 0 20px 0;
+  @media screen and (min-width: 440px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
 export const UserDataContainer = styled.div`
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.normal};

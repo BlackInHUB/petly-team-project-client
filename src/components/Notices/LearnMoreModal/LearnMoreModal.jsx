@@ -43,7 +43,7 @@ const LearnMoreModal = props => {
   const { id } = props;
 
   const dispatch = useDispatch();
-  const { favoritesList, isLoggedIn } = useAuth();
+  const { favoritesList, isLoggedIn, user } = useAuth();
 
   const toggleFavorites = () => {
     isLoggedIn
@@ -102,30 +102,32 @@ const LearnMoreModal = props => {
             {isLoggedIn && (
               <ButtonDiv>
                 <ButtonContainer>
-                  <ContactButtonsContainer>
-                    <Button
-                      buttonStyle="secondary"
-                      style={{ height: '40px' }}
-                      onClick={() =>
-                        window.open(`tel:${pet?.owner.phone}`, '_self')
-                      }
-                    >
-                      <AiFillPhone />
-                    </Button>
-                    <Link
-                      to={{
-                        pathname: `/profile/${pet.owner._id}`,
-                      }}
-                    >
+                  {!(user._id === pet?.owner._id) && (
+                    <ContactButtonsContainer>
                       <Button
                         buttonStyle="secondary"
                         style={{ height: '40px' }}
-                        onClick={() => {}}
+                        onClick={() =>
+                          window.open(`tel:${pet?.owner.phone}`, '_self')
+                        }
                       >
-                        <ImProfile />
+                        <AiFillPhone />
                       </Button>
-                    </Link>
-                  </ContactButtonsContainer>
+                      <Link
+                        to={{
+                          pathname: `/profile/${pet.owner._id}`,
+                        }}
+                      >
+                        <Button
+                          buttonStyle="secondary"
+                          style={{ height: '40px' }}
+                          onClick={() => {}}
+                        >
+                          <ImProfile />
+                        </Button>
+                      </Link>
+                    </ContactButtonsContainer>
+                  )}
                   <Button
                     style={{ height: '40px' }}
                     buttonStyle="secondary"
