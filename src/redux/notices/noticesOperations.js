@@ -78,6 +78,17 @@ const setCategory = createAsyncThunk(
   }
 );
 
+const update = createAsyncThunk('notices/update', async (data, thunkApi) => {
+  const {_id, updateData} = data;
+
+  try {
+    const result = await api.update(_id, updateData);
+    return result;
+  } catch ({ result }) {
+    return thunkApi.rejectWithValue(result.data.message);
+  }
+});
+
 const noticesOperations = {
   getAll,
   getOne,
@@ -86,6 +97,7 @@ const noticesOperations = {
   add,
   remove,
   setCategory,
+  update
 };
 
 export default noticesOperations;

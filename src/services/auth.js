@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'https://petly.onrender.com/api',
-  // baseURL: 'http://localhost:8080/api'
+  // baseURL: 'https://petly.onrender.com/api',
+  baseURL: 'http://localhost:8080/api'
 });
 
 const setToken = token => {
@@ -26,7 +26,6 @@ export const login = async user => {
 
 export const logout = async () => {
   await instance.get('/auth/logout');
-
   setToken(null);
   return true;
 };
@@ -34,7 +33,7 @@ export const logout = async () => {
 export const refresh = async token => {
   try {
     setToken(token);
-    const { data } = await instance.get('/user/current');
+    const { data } = await instance.get('/auth/current');
     return data;
   } catch (error) {
     setToken(null);
@@ -46,22 +45,27 @@ export const update = async updateData => {
   return data;
 };
 
-export const addPet = async pet => {
-  const { data } = await instance.post('/user/pet/add', pet);
-  return data.pet;
-};
-
-export const removePet = async _id => {
-  const { data } = await instance.delete(`/user/pet/${_id}`);
-  return data;
-};
-
 export const profile = async _id => {
   const { data } = await instance.get(`/auth/profile/${_id}`);
   return data;
 };
 
 export const getUsers = async () => {
-  const {data} = await instance.get('/user/all')
+  const {data} = await instance.get('/auth/users')
+  return data;
+}
+
+export const addPet = async pet => {
+  const { data } = await instance.post('/pets/add', pet);
+  return data.pet;
+};
+
+export const removePet = async _id => {
+  const { data } = await instance.delete(`/pets/${_id}`);
+  return data;
+};
+
+export const updatePet = async (_id, updateData) => {
+  const {data} = await instance.patch(`/pets/update/${_id}`, updateData);
   return data;
 }

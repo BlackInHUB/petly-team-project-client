@@ -117,6 +117,32 @@ const authSlice = createSlice({
       .addCase(authOperations.favorites.rejected, (state, _) => {
         state.isLoading = false;
       })
+      .addCase(authOperations.profile.pending, state => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(authOperations.profile.fulfilled, (state, { payload }) => {
+        state.profile = payload;
+        state.isLoading = false;
+        state.isError = null;
+      })
+      .addCase(authOperations.profile.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = payload;
+      })
+      .addCase(authOperations.getUsers.pending, state => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(authOperations.getUsers.fulfilled, (state, { payload }) => {
+        state.users = payload;
+        state.isLoading = false;
+        state.isError = null;
+      })
+      .addCase(authOperations.getUsers.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = payload;
+      })
       .addCase(authOperations.addPet.pending, state => {
         state.isLoading = true;
         state.isError = null;
@@ -143,29 +169,21 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = payload;
       })
-      .addCase(authOperations.profile.pending, state => {
+      .addCase(authOperations.updatePet.pending, state => {
         state.isLoading = true;
         state.isError = null;
       })
-      .addCase(authOperations.profile.fulfilled, (state, { payload }) => {
-        state.profile = payload;
+      .addCase(authOperations.updatePet.fulfilled, (state, { payload }) => {
+        state.pets = state.pets.map(pet => {
+          if(pet._id === payload._id) {
+            return payload;
+          };
+          return pet;
+        })
         state.isLoading = false;
         state.isError = null;
       })
-      .addCase(authOperations.profile.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.isError = payload;
-      })
-      .addCase(authOperations.getUsers.pending, state => {
-        state.isLoading = true;
-        state.isError = null;
-      })
-      .addCase(authOperations.getUsers.fulfilled, (state, { payload }) => {
-        state.users = payload;
-        state.isLoading = false;
-        state.isError = null;
-      })
-      .addCase(authOperations.getUsers.rejected, (state, { payload }) => {
+      .addCase(authOperations.updatePet.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isError = payload;
       })

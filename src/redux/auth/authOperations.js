@@ -61,33 +61,6 @@ const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   }
 });
 
-const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
-  try {
-    const result = await api.addPet(pet);
-    return result;
-  } catch ({ response }) {
-    return thunkAPI.rejectWithValue(response.data.message);
-  }
-});
-
-const favorites = createAsyncThunk('auth/favorites', async (id, thunkAPI) => {
-  try {
-    const {favorites} = await favoritesToggle(id);
-    return favorites;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.message);
-  }
-});
-
-const removePet = createAsyncThunk('auth/removePet', async (_id, thunkAPI) => {
-  try {
-    const result = await api.removePet(_id);
-    return { result, _id };
-  } catch ({ response }) {
-    return thunkAPI.rejectWithValue(response.data.message);
-  }
-});
-
 const profile = createAsyncThunk('auth/profile', async (_id, thunkAPI) => {
   try {
     const result = await api.profile(_id);
@@ -104,7 +77,44 @@ const getUsers = createAsyncThunk('auth/getUsers', async (_, thunkAPI) => {
   } catch ({ response }) {
     return thunkAPI.rejectWithValue(response.data.message);
   }
-})
+});
+
+const favorites = createAsyncThunk('auth/favorites', async (id, thunkAPI) => {
+  try {
+    const {favorites} = await favoritesToggle(id);
+    return favorites;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message);
+  }
+});
+
+const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
+  try {
+    const result = await api.addPet(pet);
+    return result;
+  } catch ({ response }) {
+    return thunkAPI.rejectWithValue(response.data.message);
+  }
+});
+
+const removePet = createAsyncThunk('auth/removePet', async (_id, thunkAPI) => {
+  try {
+    const result = await api.removePet(_id);
+    return { result, _id };
+  } catch ({ response }) {
+    return thunkAPI.rejectWithValue(response.data.message);
+  }
+});
+
+const updatePet = createAsyncThunk('auth/updatePet', async(data, thunkAPI) => {
+  try {
+    const {_id, updateData} = data;
+    const result = await api.updatePet(_id, updateData);
+    return result;
+  } catch ({ response }) {
+    return thunkAPI.rejectWithValue(response.data.message);
+  }
+});
 
 const authOperations = {
   register,
@@ -113,11 +123,12 @@ const authOperations = {
   refresh,
   update,
   eraseErrors,
-  addPet,
-  favorites,
-  removePet,
   profile,
-  getUsers
+  favorites,
+  getUsers,
+  addPet,
+  removePet,
+  updatePet
 };
 
 export default authOperations;

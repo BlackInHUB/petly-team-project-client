@@ -29,3 +29,7 @@ export const favoritesToggle = async id => {
 export const getFavorites = async () => {
   return await instance.get('notices/user/favorites');
 };
+
+export const update = async (_id, updateData) => {
+  return await instance(`notices/update/${_id}`, updateData);
+};

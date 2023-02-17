@@ -101,6 +101,25 @@ const noticesSlice = createSlice({
     .addCase(noticesOperations.setCategory.fulfilled, (state, {payload}) => {
         state.category = payload;
     })
+    .addCase(noticesOperations.update.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+    })
+    .addCase(noticesOperations.update.fulfilled, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = null;
+        state.allNotices = state.allNotices.map(notice => {
+            if(notice._id === payload._id) {
+                return payload;
+            };
+            return notice;
+        });
+        state.own = state.own.filter(notice => notice._id !== payload);
+    })
+    .addCase(noticesOperations.update.rejected, (state, {payload}) => {
+        state.isLoading = false;
+        state.isError = payload;
+    })
     }
 });
 

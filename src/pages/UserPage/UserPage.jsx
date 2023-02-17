@@ -23,7 +23,7 @@ import { useAuth } from "hooks/useAuth"
 
 const UserPage = () => {
     const dispatch = useDispatch();
-    const {isLoggedIn, user} = useAuth();
+    const {user} = useAuth();
     const [toShow, setToShow] = useState('pets');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const toggleModal = () => setIsModalOpen(state => !state);
@@ -35,13 +35,8 @@ const UserPage = () => {
       }, [isModalOpen]);
 
     useEffect(() => {
-        if(isLoggedIn) {
-            setInterval(() => {
-                dispatch(messagesOperations.get());
-            }, 20000)
-        };
-        
-    }, [dispatch, isLoggedIn]);
+        dispatch(messagesOperations.get());
+    }, [dispatch]);
 
     const {messages} = useSelector(state => state.messages);
 
