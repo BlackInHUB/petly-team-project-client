@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {IoReloadCircle} from 'react-icons/io5'
 
 export const UserPageWrapper = styled.div`
     @media (min-width: 320px) {
@@ -196,6 +197,28 @@ transition: ${p => p.theme.transition.all};
     border-left: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
     border-right: ${p => p.theme.borders.normal} ${p => p.theme.colors.accent};
 }
+`
+
+export const ReloadMessagesBtn = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+`
+
+export const ReloadIcon = styled(IoReloadCircle)`
+    fill: ${p => p.theme.colors.accent};
+    width: 46px;
+    height: auto;
+    transition: ${p => p.theme.transition.all};
+
+    ${ReloadMessagesBtn} &:hover {
+        fill: ${p => p.theme.colors.hoveredAccent};
+    }
 `
 
 export const NewMessagesCount = styled.div`

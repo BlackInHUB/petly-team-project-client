@@ -11,7 +11,9 @@ import { UserDataContainer,
     NavBtn,
     UserAboutWrapper,
     NewMessagesCount,
-    NavMessageBtn
+    NavMessageBtn,
+    ReloadMessagesBtn,
+    ReloadIcon
 } from "./UserPage.styled"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,7 +47,11 @@ const UserPage = () => {
             return acc + 1;
         };
         return acc;
-    }, 0)
+    }, 0);
+
+    const reloadMessages = () => {
+        dispatch(messagesOperations.get());
+    };
 
     return (
         <>
@@ -71,6 +77,7 @@ const UserPage = () => {
                       
                     </NavBtnsContainer>
                     {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />}
+                    {toShow === 'messages' && <ReloadMessagesBtn onClick={reloadMessages}><ReloadIcon /></ReloadMessagesBtn>}
                 </TopContainer>
                 {toShow === 'pets' && <PetsData />}
                 {toShow === 'messages' && <MessagesList />}
