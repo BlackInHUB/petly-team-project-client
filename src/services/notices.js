@@ -18,7 +18,7 @@ export const remove = async id => {
 };
 
 export const getOwn = async () => {
-  return await instance.get('notices/user/own');
+  return await instance.get('notices/own');
 };
 
 export const favoritesToggle = async id => {
@@ -27,7 +27,7 @@ export const favoritesToggle = async id => {
 };
 
 export const getFavorites = async () => {
-  return await instance.get('notices/user/favorites');
+  return await instance.get('notices/favorites');
 };
 
 export const update = async (_id, updateData) => {

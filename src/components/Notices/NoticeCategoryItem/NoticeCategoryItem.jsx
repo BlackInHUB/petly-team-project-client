@@ -13,6 +13,8 @@ import {
   StringText,
   Button,
   ContentWrapper,
+  UpdateBtn,
+  UpdateIcon
 } from './NoticeCategoryItem.styled';
 import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
@@ -58,8 +60,11 @@ export const NoticeCategoryItem = ({ notice, learnMore }) => {
   return (
     <NoticeCard>
       <Category>{category}</Category>
-      {!isOwner && (
-        <HeartBtn className="heart" type="button" onClick={toggleFavorites}>
+      {isOwner ? 
+        (<UpdateBtn>
+          <UpdateIcon />
+        </UpdateBtn>) : 
+        (<HeartBtn className="heart" type="button" onClick={toggleFavorites}>
           {<HeartIcon favorite={favorite} />}
         </HeartBtn>
       )}

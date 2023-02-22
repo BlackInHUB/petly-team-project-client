@@ -44,6 +44,7 @@ const getOne = createAsyncThunk('notices/getOne', async (id, thunkApi) => {
 const getOwn = createAsyncThunk('notices/getOwn', async (_, thunkApi) => {
   try {
     const { data } = await api.getOwn();
+    console.log(data)
     return data;
   } catch ({ result }) {
     return thunkApi.rejectWithValue(result.data.message);
@@ -55,6 +56,7 @@ const getFavorites = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await api.getFavorites();
+      console.log(data)
       return data;
     } catch ({ result }) {
       return thunkApi.rejectWithValue(result.data.message);

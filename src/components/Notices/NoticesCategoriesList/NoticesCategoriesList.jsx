@@ -37,7 +37,7 @@ const NoticesCategoriesList = () => {
 
    return (
       <>
-      {toRender.length === 0 && <Plug><h2>Your notice may be first in this category 😎</h2></Plug>}
+      {toRender.length <= 0 && <Plug><h2>Your notice may be first in this category 😎</h2></Plug>}
       <NoticesCategoriesListStyled>
          {toRender.map(notice => <NoticeCategoryItem key={notice._id} notice={notice} learnMore={handleInfoOpen} />)}
       </NoticesCategoriesListStyled>
